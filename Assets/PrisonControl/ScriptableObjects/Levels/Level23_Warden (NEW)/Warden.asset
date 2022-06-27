@@ -1,0 +1,55 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1d563ba3bd8734cc28862a0b9f32a8f3, type: 3}
+  m_Name: Warden
+  m_EditorClassIdentifier: 
+  wardenGameType: 0
+  aud_negetiveConv:
+  - {fileID: 8300000, guid: 196fba289c0ef45e68dfb8101ca26775, type: 3}
+  - {fileID: 8300000, guid: 6c5125fe8c1b5468fb13009323d39d0a, type: 3}
+  - {fileID: 8300000, guid: 751fbe6fc8ca54ed88247b6318aa2e4c, type: 3}
+  aud_positiveConv:
+  - {fileID: 8300000, guid: c92ed4154c3094e749f6c9d73daaf7d3, type: 3}
+  - {fileID: 8300000, guid: ce98ec712d98041bb8dcd2ffe172cf66, type: 3}
+  - {fileID: 8300000, guid: e9fb849b1243942d49a3e377bc142f5c, type: 3}
+  aud_positiveResponse:
+  - {fileID: 8300000, guid: 7b5af534cc79e406e8df17f175b6afab, type: 3}
+  - {fileID: 8300000, guid: 923ff428ae5c04b06a3e81de3b941c3d, type: 3}
+  - {fileID: 8300000, guid: 23c620613753c47c0a7f8d0b5209b1df, type: 3}
+  aud_negetiveResponse:
+  - {fileID: 8300000, guid: db32191a19df84207bbaadb11ab40e9d, type: 3}
+  - {fileID: 8300000, guid: 890fe7541aa764d299907317b0a753aa, type: 3}
+  - {fileID: 8300000, guid: cc00ce2c5b9384f7fac3e93b45e77000, type: 3}
+  negetive_conversation:
+  - I still don't believe you
+  - WHAT? You checked her cell? She's my girlfriend
+  - OUCH!
+  conversation:
+  - What have you been doing around the prison?
+  - What's your proof?
+  - Get me more proof. Come back when you're ready.
+  positiveResponse:
+  - I think something fishy is up with Clea
+  - I don't have all the details, maybe you should look into it
+  - Yes, sir
+  negetiveResponse:
+  - I found proof that she's cheating
+  - I checked her cell and found dirty pics on her phone
+  - SLAP
+  tool: {fileID: 192275117437176108, guid: f669019aed1d548b88cdb333d0978e89, type: 3}
+  isToolUnlock: 0
+  punishmentType: 1
+  positive_anim: 00000000000000000000000003000000
+  negetive_anim: 070000000700000007000000
+  prisoner_anim: 
+  isFemalePrisoner: 0
+  wardenPos: 0

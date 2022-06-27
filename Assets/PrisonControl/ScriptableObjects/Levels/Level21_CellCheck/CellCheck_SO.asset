@@ -1,0 +1,24 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c4b12906989614621b40834665241ba5, type: 3}
+  m_Name: CellCheck_SO
+  m_EditorClassIdentifier: 
+  pf_cell: {fileID: 9184803851989732639, guid: bba282f47ae5b447ebf73bd545adf50a, type: 3}
+  pf_hiddenObject: {fileID: 5155017571911049492, guid: 079df4caf0d9b4a188cf972e655c9f7d,
+    type: 3}
+  prisoner: {fileID: 4291136966000375897, guid: 86091e358fe4244ba92a0f86311fe94a,
+    type: 3}
+  prisonerDialogue: Don't tell me you are here to check my cell!
+  prisonerExitDialogue: You found my stuff! Please don't punish me!
+  audDialogue: {fileID: 8300000, guid: d1f14283abbc6458c81d529764fb8a9c, type: 3}
+  audDialogueExit: {fileID: 8300000, guid: 1356c3d4225264a87814702a2dced289, type: 3}
+  punishment: 9

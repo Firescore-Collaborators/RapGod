@@ -1,0 +1,27 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ca7d031a54b8f4e3982b2aa3279e280b, type: 3}
+  m_Name: FoodPlating2
+  m_EditorClassIdentifier: 
+  prisoner: {fileID: 11400000, guid: 2b14f12aa8d3bb94da1726c2dfde4daa, type: 2}
+  foodRequest: Warden said you'll take care of it
+  aud_foodReq: {fileID: 8300000, guid: 1a2cadfb3236943c681f333a7dc58395, type: 3}
+  positiveResponseBtn: Okay
+  negetiveResponseBtn: More
+  positiveResponse: I hate you
+  negetiveResponse: Ummm something seems off
+  aud_posResponse: {fileID: 8300000, guid: e0b37c75732594a308210a50557a2aaf, type: 3}
+  aud_negResponse: {fileID: 8300000, guid: ad4a9831291274740931ab820e552ec2, type: 3}
+  pf_plate: {fileID: 8163181022135966538, guid: 339297b4d609d406da9a3fcb3b4e9a78,
+    type: 3}
+  list_requestFoodItems: 02000000030000000100000000000000
+  list_displayFoodItems: 020000000100000000000000030000000400000005000000060000000700000008000000090000000a000000

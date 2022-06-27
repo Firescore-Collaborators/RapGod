@@ -1,0 +1,26 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a1b79f0bbfa994128880fa7e6be702ec, type: 3}
+  m_Name: PrisonYard
+  m_EditorClassIdentifier: 
+  scenarioInfo:
+  - Warden and Clea Celebrating Love
+  - Corleone Rallying the Troops
+  - Inmates Fighting
+  - Inmates Ready to Fight
+  pf_scenario:
+  - {fileID: 7401933674500987721, guid: d8d73316b66954d3786ed06fc3ac769d, type: 3}
+  - {fileID: 3106935855609877302, guid: 29e6b033d16824384a443bfc0c7560fd, type: 3}
+  - {fileID: 5011342036679011133, guid: a7b3e25a8b34a440f89138d2151d04fe, type: 3}
+  - {fileID: 6073143006021070183, guid: c84fe0653b09340b7bd67a324c7d619d, type: 3}
+  spawnPoses: 04000000050000000000000001000000
+  isInnocent: 01000000

@@ -1,0 +1,24 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c4b12906989614621b40834665241ba5, type: 3}
+  m_Name: CellCheck_SO
+  m_EditorClassIdentifier: 
+  pf_cell: {fileID: 5969151424680836557, guid: b7b305af012c0420e8107ce58ed87fc8, type: 3}
+  pf_hiddenObject: {fileID: 5155017571911049492, guid: 5aed53fc366224c00b02dae7b48454b1,
+    type: 3}
+  prisoner: {fileID: 7415205812383604709, guid: 6d1ebafc6adaa46629fcb3577c4b62c9,
+    type: 3}
+  prisonerDialogue: Why are you checking Giorgio's cell?
+  prisonerExitDialogue: Those items belong to me, the boss is innocent!
+  audDialogue: {fileID: 8300000, guid: c21a45dd669b34239ad051b780bd65bc, type: 3}
+  audDialogueExit: {fileID: 8300000, guid: e313ef39739e641bebf4cb96d59171f0, type: 3}
+  punishment: 5

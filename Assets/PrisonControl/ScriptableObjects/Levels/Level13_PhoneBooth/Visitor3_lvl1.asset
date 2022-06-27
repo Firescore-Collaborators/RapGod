@@ -1,0 +1,24 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4ebadc5247e29264fa0a52da54dbb6b7, type: 3}
+  m_Name: Visitor3_lvl1
+  m_EditorClassIdentifier: 
+  dialogues:
+  - I hid a knife in the lunchbox, did you find it?
+  - "It\u2019s inside the banana peel"
+  statementText: What?? What did I do?
+  isGuilty: 1
+  vCamera: 0
+  aud_dialogs:
+  - {fileID: 8300000, guid: 0fa34839f09584927b01397fcd9d567e, type: 3}
+  - {fileID: 8300000, guid: 667eeb4b0289d4070930cc11aea95121, type: 3}
+  aud_statement: {fileID: 8300000, guid: de2ba284e137f46a2aea41dfeb792b1f, type: 3}

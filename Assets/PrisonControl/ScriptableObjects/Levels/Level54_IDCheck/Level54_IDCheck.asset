@@ -1,0 +1,40 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b652e8311fd824d12be8b02faa5e0178, type: 3}
+  m_Name: Level54_IDCheck
+  m_EditorClassIdentifier: 
+  totalMiniLevels: 3
+  levelTypes: 000000000000000000000000
+  iDCheckInfo:
+  - {fileID: 11400000, guid: 1b5bd22b4098445b78875df8f14ed69f, type: 2}
+  - {fileID: 11400000, guid: 71b56ddea229948208d0cb7901b3ebdd, type: 2}
+  - {fileID: 11400000, guid: 343b445aeafd34b19a8bd6fb22d87b23, type: 2}
+  lunchBoxInfo: []
+  bribeBoxInfo: []
+  vistorsInfo: []
+  visitorInmatePairs: []
+  interrogation_SO: {fileID: 0}
+  warden_so: {fileID: 0}
+  jailEntry_so: []
+  foodPlating_SO: []
+  mugshot_so: {fileID: 0}
+  prisonYard_so: {fileID: 0}
+  cCTVMonitor_SO: {fileID: 0}
+  slapAndRun_SO: {fileID: 0}
+  cellChec_SO: {fileID: 0}
+  guests:
+  - {fileID: 11400000, guid: 5ca37461fbc8b4d5a9ed0752fe19cee4, type: 2}
+  - {fileID: 11400000, guid: d487f6f3300704b01a5f9046235058e4, type: 2}
+  - {fileID: 11400000, guid: 16dd40c9cd0994fddaebf4d165f45ca3, type: 2}
+  badResponse: Dirt Digga digs tunnel, 50 prisoners escape
+  goodResponse: Dirt Digga gets caught, dirt from digging found on him
+  commonResponse: Dirt Digga gets caught, dirt from digging found on him

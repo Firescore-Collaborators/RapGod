@@ -1,0 +1,34 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b652e8311fd824d12be8b02faa5e0178, type: 3}
+  m_Name: Level33_SlapRun
+  m_EditorClassIdentifier: 
+  totalMiniLevels: 0
+  levelTypes: 0c000000
+  iDCheckInfo: []
+  lunchBoxInfo: []
+  bribeBoxInfo: []
+  vistorsInfo: []
+  visitorInmatePairs: []
+  interrogation_SO: {fileID: 0}
+  warden_so: {fileID: 0}
+  jailEntry_so: []
+  foodPlating_SO: []
+  mugshot_so: {fileID: 0}
+  prisonYard_so: {fileID: 0}
+  cCTVMonitor_SO: {fileID: 0}
+  slapAndRun_SO: {fileID: 11400000, guid: 6f794383f1239427292aff23c39a58b5, type: 2}
+  cellChec_SO: {fileID: 0}
+  guests: []
+  badResponse: Slapped 26 inmates!
+  goodResponse: Slapped 26 inmates!
+  commonResponse: Slapped 26 inmates!

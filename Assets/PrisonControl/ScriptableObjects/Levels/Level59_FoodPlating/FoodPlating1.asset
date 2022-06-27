@@ -1,0 +1,27 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ca7d031a54b8f4e3982b2aa3279e280b, type: 3}
+  m_Name: FoodPlating1
+  m_EditorClassIdentifier: 
+  prisoner: {fileID: 11400000, guid: 1bbb5060200934b95aa561ad9867a4d4, type: 2}
+  foodRequest: Grasshoppers now!
+  aud_foodReq: {fileID: 8300000, guid: ec95d9fca22b145d59d1a7c202dc9959, type: 3}
+  positiveResponseBtn: NEXT!
+  negetiveResponseBtn: Add More
+  positiveResponse: Haha, tricked you. They're now my pets.
+  negetiveResponse: Are you slow? It's the green insect.
+  aud_posResponse: {fileID: 8300000, guid: 938bd15aba30e4e3c9f7bf4749c6a68c, type: 3}
+  aud_negResponse: {fileID: 8300000, guid: d9054587004804c829e19fceb0dd2d75, type: 3}
+  pf_plate: {fileID: 8163181022135966538, guid: 339297b4d609d406da9a3fcb3b4e9a78,
+    type: 3}
+  list_requestFoodItems: 09000000
+  list_displayFoodItems: 0500000002000000040000000300000008000000090000000a00000007000000060000000000000001000000

@@ -1,0 +1,55 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1d563ba3bd8734cc28862a0b9f32a8f3, type: 3}
+  m_Name: Warden
+  m_EditorClassIdentifier: 
+  wardenGameType: 0
+  aud_negetiveConv:
+  - {fileID: 8300000, guid: ced0448e9c0014281985d7d40db6ffbc, type: 3}
+  - {fileID: 8300000, guid: 73ab56f22d1a1441fbe794d63ed5d69e, type: 3}
+  - {fileID: 8300000, guid: e3cf3aa15d2504810b92b36b930f8153, type: 3}
+  aud_positiveConv:
+  - {fileID: 8300000, guid: 878c7674a41034be9b46754356ad1614, type: 3}
+  - {fileID: 8300000, guid: 9862ce62fad9b4159b6b9d366fc020ef, type: 3}
+  - {fileID: 8300000, guid: d847161dd27464efebeb5967c7da75a6, type: 3}
+  aud_positiveResponse:
+  - {fileID: 8300000, guid: c553ff7f613574fc38cf5244361f6886, type: 3}
+  - {fileID: 8300000, guid: ad1d5123eab644ad1ab3ded24889d18f, type: 3}
+  - {fileID: 8300000, guid: 8e60937881e11416595127090a558ba0, type: 3}
+  aud_negetiveResponse:
+  - {fileID: 8300000, guid: 17caf1dbc48d94dffb7e9db1db28d4e0, type: 3}
+  - {fileID: 8300000, guid: 0b75a8011832a4bf8a0e2343710509dc, type: 3}
+  - {fileID: 8300000, guid: b9abcdd2a94584da5a180c87ca06027a, type: 3}
+  negetive_conversation:
+  - Be more sensitive, I'm a nam vet - War ain't fun!
+  - Just stay away from Clea's cell this time, or I'll get mad
+  - Just go!
+  conversation:
+  - Rookie, looks like the fighting has turned into all out war
+  - Back in my day, we'd round all these inmates up and show em who's boss
+  - Now get out there and deal with this war!
+  positiveResponse:
+  - Oh no, that's terrible
+  - That's a great idea
+  - I'll take care of it, Warden
+  negetiveResponse:
+  - War is fun. Anything goes. I can shoot everyone.
+  - If this is war, then I'm going to raid some cells
+  - Lock n Load!
+  tool: {fileID: 192275117437176108, guid: f669019aed1d548b88cdb333d0978e89, type: 3}
+  isToolUnlock: 0
+  punishmentType: 0
+  positive_anim: 00000000000000000300000000000000
+  negetive_anim: 07000000060000000700000000000000
+  prisoner_anim: 
+  isFemalePrisoner: 0
+  wardenPos: 1

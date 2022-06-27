@@ -1,0 +1,36 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!21 &2100000
+Material:
+  serializedVersion: 6
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: ElectricShock
+  m_Shader: {fileID: -6465566751694194690, guid: e2e77e637c6422b4486b0e98cbb01766,
+    type: 3}
+  m_ShaderKeywords: 
+  m_LightmapFlags: 4
+  m_EnableInstancingVariants: 0
+  m_DoubleSidedGI: 0
+  m_CustomRenderQueue: -1
+  stringTagMap: {}
+  disabledShaderPasses: []
+  m_SavedProperties:
+    serializedVersion: 3
+    m_TexEnvs:
+    - _SampleTexture2D_6C0136D_Texture_1:
+        m_Texture: {fileID: 2800000, guid: 666ca45349cb3194a992fa2de109b2f8, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    m_Floats:
+    - Boolean_B0B377F6: 1
+    - Vector1_1441BE87: 1
+    - Vector1_22AF84B9: 5
+    - Vector1_3703EF55: 0.1
+    - Vector1_59B477E9: 20
+    - electricity_amt: 5
+    m_Colors:
+    - Color_E7691780: {r: 11.03437, g: 1.3012227, b: 9.481942, a: 0}
+    - Vector2_D0EE5254: {r: 0, g: 1, b: 0, a: 0}

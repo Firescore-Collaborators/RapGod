@@ -1,0 +1,24 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4ebadc5247e29264fa0a52da54dbb6b7, type: 3}
+  m_Name: Visitor1_lvl1
+  m_EditorClassIdentifier: 
+  dialogues:
+  - I got you some dinner today. Grasshopper and Cockroach Sandwich.
+  - "You will really enjoy the taste, I promise. It\u2019s crispy and creamy, both."
+  statementText: OMG! You were listening?
+  isGuilty: 0
+  vCamera: 0
+  aud_dialogs:
+  - {fileID: 8300000, guid: 80cc170a057e54144aefe242bf891dd0, type: 3}
+  - {fileID: 8300000, guid: c07d048fb3e7d42b28d412de3db98f22, type: 3}
+  aud_statement: {fileID: 8300000, guid: 9189fb3ecc7084ab3b1f6aa818ffb56e, type: 3}

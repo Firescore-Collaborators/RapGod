@@ -1,0 +1,44 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0d1cc080c2b524fa8beab593da00fd8c, type: 3}
+  m_Name: Interrogation
+  m_EditorClassIdentifier: 
+  intro: I told you man, it's for cutting tomatoes
+  reasonText: Who even carries a saw?
+  conversation:
+  - What do you care?
+  - Do you even know how to use a saw?
+  - Wow...you're crazy
+  positiveResponse:
+  - I'm worried you'll cut yourself
+  - No dangerous items are allowed
+  - Just trying to help
+  negetiveResponse:
+  - Maybe I should try it on you
+  - I'll sharpen it and cut you
+  - THROW SPIDERS
+  aud_intro: {fileID: 8300000, guid: 555f6c926f5ab41728bbf7379cae37fb, type: 3}
+  aud_reason: {fileID: 8300000, guid: 378885ad47bfb4660921b83e63d5e6a7, type: 3}
+  aud_conversation:
+  - {fileID: 8300000, guid: fdb25904ead4f42ad9460579a7c9a0ec, type: 3}
+  - {fileID: 8300000, guid: 35193519c37c54ae189f976723cfd159, type: 3}
+  - {fileID: 8300000, guid: ee9622d0e91874bc4a67640bc11233cc, type: 3}
+  aud_positiveResponse:
+  - {fileID: 8300000, guid: 3d245c5a3c5c5440ebf95bb68088ada8, type: 3}
+  - {fileID: 8300000, guid: 10c3cd89856264fc2a33838775e78461, type: 3}
+  - {fileID: 8300000, guid: 0ac5c9e2e0ea44c199e9fbd9ebc0770f, type: 3}
+  aud_negetiveResponse:
+  - {fileID: 8300000, guid: 0a4e19e28a9534a1a9615d959c2a25af, type: 3}
+  - {fileID: 8300000, guid: 1d369b26c6bbb4b639bb683a9ac0f7f7, type: 3}
+  - {fileID: 8300000, guid: d2e5ecb72264942e5a34a5f8450830eb, type: 3}
+  isGuilty: 1
+  punishmentType: 8

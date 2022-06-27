@@ -1,0 +1,24 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4ebadc5247e29264fa0a52da54dbb6b7, type: 3}
+  m_Name: Visitor2_lvl1
+  m_EditorClassIdentifier: 
+  dialogues:
+  - "Honey, I\u2019m pregnant. And the baby is not yours."
+  - "But I want you to be the father, so I\u2019m helping you escape."
+  statementText: I'm innocent, I swear!
+  isGuilty: 1
+  vCamera: 0
+  aud_dialogs:
+  - {fileID: 8300000, guid: 6a8b3541c037a40c9b9abbdafded9296, type: 3}
+  - {fileID: 8300000, guid: 6edafa624cc4148ac9d7decd6364d419, type: 3}
+  aud_statement: {fileID: 8300000, guid: 199ff4d3b097040d2ba7c7f215ca0f5f, type: 3}

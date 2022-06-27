@@ -1,0 +1,27 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ca7d031a54b8f4e3982b2aa3279e280b, type: 3}
+  m_Name: FoodPlating2
+  m_EditorClassIdentifier: 
+  prisoner: {fileID: 11400000, guid: 7777eb8cd3385c949b0294729134ebc8, type: 2}
+  foodRequest: I want a grasshopper and roach sandwich
+  aud_foodReq: {fileID: 8300000, guid: e2d618258b9b94823b11c525342ac342, type: 3}
+  positiveResponseBtn: NEXT!
+  negetiveResponseBtn: Add More
+  positiveResponse: Thank you! That was perfect!
+  negetiveResponse: Hoppers, roaches and bread yo. How hard is that?
+  aud_posResponse: {fileID: 8300000, guid: b78b18df104334534a7b9ef631797c85, type: 3}
+  aud_negResponse: {fileID: 8300000, guid: dad05632eab4f479588d77f302390b41, type: 3}
+  pf_plate: {fileID: 8163181022135966538, guid: 339297b4d609d406da9a3fcb3b4e9a78,
+    type: 3}
+  list_requestFoodItems: 090000000800000003000000
+  list_displayFoodItems: 090000000800000003000000010000000000000002000000040000000500000006000000070000000a000000

@@ -1,0 +1,27 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ca7d031a54b8f4e3982b2aa3279e280b, type: 3}
+  m_Name: FoodPlating3
+  m_EditorClassIdentifier: 
+  prisoner: {fileID: 11400000, guid: 95ccc040c25b345a9bf9a9462f95e525, type: 2}
+  foodRequest: Give me everything you've got!
+  aud_foodReq: {fileID: 8300000, guid: b1b4d791d66464be2a88bae6297a6e45, type: 3}
+  positiveResponseBtn: Move Along
+  negetiveResponseBtn: Add More
+  positiveResponse: Just what I was looking for!
+  negetiveResponse: I said everything! Please add the missing items
+  aud_posResponse: {fileID: 8300000, guid: db2dc190d76574778addede41a9c062d, type: 3}
+  aud_negResponse: {fileID: 8300000, guid: 8866d41ff80da4333a520524cf55acb7, type: 3}
+  pf_plate: {fileID: 8163181022135966538, guid: 339297b4d609d406da9a3fcb3b4e9a78,
+    type: 3}
+  list_requestFoodItems: 000000000100000002000000030000000400000005000000060000000700000008000000090000000a000000
+  list_displayFoodItems: 020000000100000000000000030000000400000005000000060000000700000008000000090000000a000000

@@ -1,0 +1,24 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4ebadc5247e29264fa0a52da54dbb6b7, type: 3}
+  m_Name: Visitor3
+  m_EditorClassIdentifier: 
+  dialogues:
+  - Wow! Have you been lifting weights?
+  - OH? You benchpress your cellmate? That's totally normal
+  statementText: You got a problem with me??
+  isGuilty: 0
+  vCamera: 0
+  aud_dialogs:
+  - {fileID: 8300000, guid: 186954e37767d4adc80f4642af031da0, type: 3}
+  - {fileID: 8300000, guid: 11c951d193cf44e6d80b75c9fd886658, type: 3}
+  aud_statement: {fileID: 8300000, guid: 54e07dddf9ceb416d8306fb31e7dd944, type: 3}

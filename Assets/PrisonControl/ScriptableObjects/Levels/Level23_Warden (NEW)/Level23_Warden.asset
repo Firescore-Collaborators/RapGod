@@ -1,0 +1,35 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b652e8311fd824d12be8b02faa5e0178, type: 3}
+  m_Name: Level23_Warden
+  m_EditorClassIdentifier: 
+  totalMiniLevels: 0
+  levelTypes: 05000000
+  iDCheckInfo: []
+  lunchBoxInfo: []
+  bribeBoxInfo: []
+  vistorsInfo: []
+  visitorInmatePairs: []
+  interrogation_SO: {fileID: 0}
+  warden_so: {fileID: 11400000, guid: 6a14558adb5a44ca39130ad6edba8ebc, type: 2}
+  jailEntry_so:
+  - {fileID: 0}
+  foodPlating_SO: []
+  mugshot_so: {fileID: 0}
+  prisonYard_so: {fileID: 0}
+  cCTVMonitor_SO: {fileID: 0}
+  slapAndRun_SO: {fileID: 0}
+  cellChec_SO: {fileID: 0}
+  guests: []
+  badResponse: Warden changes mind. Agrees slap was deserved. Goes to confront Clea.
+  goodResponse: Warden commends you on gathering proof. Good job rookie!
+  commonResponse: Warden commends you on gathering proof. Good job rookie!

@@ -1,0 +1,35 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b652e8311fd824d12be8b02faa5e0178, type: 3}
+  m_Name: Level61_Interrogation
+  m_EditorClassIdentifier: 
+  totalMiniLevels: 1
+  levelTypes: 04000000
+  iDCheckInfo: []
+  lunchBoxInfo: []
+  bribeBoxInfo: []
+  vistorsInfo: []
+  visitorInmatePairs: []
+  interrogation_SO: {fileID: 11400000, guid: 9a87a8efffb2a4402800586a9aa8eecc, type: 2}
+  warden_so: {fileID: 0}
+  jailEntry_so: []
+  foodPlating_SO: []
+  mugshot_so: {fileID: 0}
+  prisonYard_so: {fileID: 0}
+  cCTVMonitor_SO: {fileID: 0}
+  slapAndRun_SO: {fileID: 0}
+  cellChec_SO: {fileID: 0}
+  guests:
+  - {fileID: 11400000, guid: df0d68c508d73462f9b74e344bda5a83, type: 2}
+  badResponse: Janet found spider babies in her clothes, gets mad at you
+  goodResponse: Janet is loving the attention you are giving her
+  commonResponse: Janet is loving the attention you are giving her

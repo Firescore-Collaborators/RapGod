@@ -1,0 +1,56 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1d563ba3bd8734cc28862a0b9f32a8f3, type: 3}
+  m_Name: Warden
+  m_EditorClassIdentifier: 
+  wardenGameType: 0
+  aud_negetiveConv:
+  - {fileID: 8300000, guid: 1582d34c5e2cc4063b13e78519f7480b, type: 3}
+  - {fileID: 8300000, guid: a194b48e4ac7e4cbf81cc2ea46d3cc42, type: 3}
+  - {fileID: 8300000, guid: 751fbe6fc8ca54ed88247b6318aa2e4c, type: 3}
+  aud_positiveConv:
+  - {fileID: 8300000, guid: 1d33543ac1e78421b8f69cfab5d2bda3, type: 3}
+  - {fileID: 8300000, guid: 632a1201f0b794b1ca0c0c13e2f8a5a4, type: 3}
+  - {fileID: 8300000, guid: ac097ac976f894d08abbd1ea8a94ca17, type: 3}
+  aud_positiveResponse:
+  - {fileID: 8300000, guid: b9fec03514fac4bcd827e7b1cc6bcd17, type: 3}
+  - {fileID: 8300000, guid: 7366f51dd08b14db3a6e777413cbcbd3, type: 3}
+  - {fileID: 8300000, guid: 7592912eaf8874845be26489d0a45138, type: 3}
+  aud_negetiveResponse:
+  - {fileID: 8300000, guid: fb10674f0a5074a27a004a9d708c6d02, type: 3}
+  - {fileID: 8300000, guid: e263a776c370a4196ab936a4a6acf03e, type: 3}
+  - {fileID: 8300000, guid: 5ea3a239927344623bfef75f51551a7e, type: 3}
+  negetive_conversation:
+  - I ain't called the Italian Stallion for nothing
+  - Italian Stallion - I've been a master for many years
+  - OUCH!
+  conversation:
+  - Rookie you're smart, I want you to counsel us on our relationship. Tell her to
+    stop cheating.
+  - I can get her out of prison if she just listens to me, tell her to love me!
+  - Rookie go interrogate her 'other' friend. And scare him to never see her again.
+  positiveResponse:
+  - Clea, stop cheating!
+  - Warden, calm down. You'll be in prison then.
+  - Yes sir, that I'm good at.
+  negetiveResponse:
+  - Old man, you should give her more pleasure
+  - What a lustful fool. Old man! Is this the first time you've been with someone?
+  - LOW BLOW
+  tool: {fileID: 192275117437176108, guid: f669019aed1d548b88cdb333d0978e89, type: 3}
+  isToolUnlock: 0
+  punishmentType: 7
+  positive_anim: 00000000000000000000000003000000
+  negetive_anim: 07000000000000000700000007000000
+  prisoner_anim: 00000000070000000800000001000000
+  isFemalePrisoner: 1
+  wardenPos: 0

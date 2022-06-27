@@ -886,14 +886,14 @@ namespace Tabtale.TTPlugins {
 
             private void OnApplicationFocus(bool focus)
             {
-                Debug.Log("TTPCore::TTPGameObject:OnApplicationFocus:focus=" + focus);
+//                Debug.Log("TTPCore::TTPGameObject:OnApplicationFocus:focus=" + focus);
                 if (focus && OnApplicationFocusEvent != null)
                     OnApplicationFocusEvent();
             }
 
             private void OnApplicationPause(bool pause)
             {
-                Debug.Log("TTPCore::TTPGameObject:OnApplicationPause:pause=" + pause);
+ //               Debug.Log("TTPCore::TTPGameObject:OnApplicationPause:pause=" + pause);
                 if (pause && OnApplicationPauseEvent != null)
                     OnApplicationPauseEvent();
             }

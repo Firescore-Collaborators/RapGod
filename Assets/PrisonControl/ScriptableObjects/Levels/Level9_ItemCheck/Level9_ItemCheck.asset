@@ -1,0 +1,39 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b652e8311fd824d12be8b02faa5e0178, type: 3}
+  m_Name: Level9_ItemCheck
+  m_EditorClassIdentifier: 
+  totalMiniLevels: 2
+  levelTypes: 0100000001000000
+  iDCheckInfo: []
+  lunchBoxInfo:
+  - {fileID: 11400000, guid: 684c3fd222c3943a69e8983b22c9cf18, type: 2}
+  - {fileID: 11400000, guid: c8d274da39e1e4e7a80b4282584389e0, type: 2}
+  - {fileID: 11400000, guid: c8d274da39e1e4e7a80b4282584389e0, type: 2}
+  bribeBoxInfo: []
+  vistorsInfo: []
+  visitorInmatePairs: []
+  interrogation_SO: {fileID: 0}
+  warden_so: {fileID: 0}
+  jailEntry_so: []
+  foodPlating_SO: []
+  mugshot_so: {fileID: 0}
+  prisonYard_so: {fileID: 0}
+  cCTVMonitor_SO: {fileID: 0}
+  slapAndRun_SO: {fileID: 0}
+  cellChec_SO: {fileID: 0}
+  guests:
+  - {fileID: 11400000, guid: 6794428644646428ea08501d2a98f137, type: 2}
+  - {fileID: 11400000, guid: 69618cb66316b4a27abf0e90db14abb4, type: 2}
+  badResponse: How did you manage to arrest the innocent?!
+  goodResponse: First Item Check complete. You have an eye for danger.
+  commonResponse: First Item Check complete. You have an eye for danger.

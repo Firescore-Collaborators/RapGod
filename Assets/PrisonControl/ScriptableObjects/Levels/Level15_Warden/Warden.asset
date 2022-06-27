@@ -1,0 +1,57 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1d563ba3bd8734cc28862a0b9f32a8f3, type: 3}
+  m_Name: Warden
+  m_EditorClassIdentifier: 
+  wardenGameType: 0
+  aud_negetiveConv:
+  - {fileID: 8300000, guid: b83e39f3761ee4cef82b300bc4f1b13b, type: 3}
+  - {fileID: 8300000, guid: 3d41575db18e8419fa9e0be8b94464ae, type: 3}
+  - {fileID: 8300000, guid: 751fbe6fc8ca54ed88247b6318aa2e4c, type: 3}
+  aud_positiveConv:
+  - {fileID: 8300000, guid: 5634a29525d3f4d89b46c925d135b8db, type: 3}
+  - {fileID: 8300000, guid: 57f129e868e984bdbac0ed33eba61cc7, type: 3}
+  - {fileID: 8300000, guid: 564d8d9aaa742420b8a38a858660dd77, type: 3}
+  aud_positiveResponse:
+  - {fileID: 8300000, guid: eb1aa2c1674bb4c9eb4e2ca3952767a0, type: 3}
+  - {fileID: 8300000, guid: 769e00123286e468999e90f9f777ec3a, type: 3}
+  - {fileID: 8300000, guid: 5fdfbed495ad94c20bb936c5951d5a05, type: 3}
+  aud_negetiveResponse:
+  - {fileID: 8300000, guid: 88607bf27ec7347d28f2c2f834fe6017, type: 3}
+  - {fileID: 8300000, guid: f80f0b63828294d8c9907ac49bceb73f, type: 3}
+  - {fileID: 8300000, guid: 3b10c09c78e7547df83faaf55b157b6c, type: 3}
+  negetive_conversation:
+  - How can you say such a despicable thing!
+  - You will be out if you do not listen to my orders
+  - OUCH!
+  conversation:
+  - Come in rookie, meet Clea Torres. I'm in love with her!
+  - Now that me and CT are together make sure to serve her needs when you see her
+    around the prison
+  - I want you to check the CCTV cameras and punish anyone who is misbehaving with
+    her
+  positiveResponse:
+  - Nice to meet you Clea Torres
+  - Yes Sir.
+  - Aye Aye Captain
+  negetiveResponse:
+  - Clea torres, haha, your parent's head must be in the gutter
+  - Get out of here old man, ain't doing that
+  - SLAP
+  tool: {fileID: 192275117437176108, guid: f669019aed1d548b88cdb333d0978e89, type: 3}
+  isToolUnlock: 0
+  punishmentType: 1
+  positive_anim: 00000000000000000300000000000000
+  negetive_anim: 07000000070000000700000007000000
+  prisoner_anim: 0000000002000000010000000c000000
+  isFemalePrisoner: 1
+  wardenPos: 0

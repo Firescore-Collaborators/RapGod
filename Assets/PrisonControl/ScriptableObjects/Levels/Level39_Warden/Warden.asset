@@ -1,0 +1,55 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1d563ba3bd8734cc28862a0b9f32a8f3, type: 3}
+  m_Name: Warden
+  m_EditorClassIdentifier: 
+  wardenGameType: 0
+  aud_negetiveConv:
+  - {fileID: 8300000, guid: bf60be9ac56874bd695862797d35630b, type: 3}
+  - {fileID: 8300000, guid: eae8abea709c548888347d2342e4ebbd, type: 3}
+  - {fileID: 8300000, guid: 78fc6df71be544b0d8cc78c145f54192, type: 3}
+  aud_positiveConv:
+  - {fileID: 8300000, guid: f3eb9819185ce4299b5dd3a73badc062, type: 3}
+  - {fileID: 8300000, guid: 097964fd18d904002b33d0bd43c5f4f4, type: 3}
+  - {fileID: 8300000, guid: 6969f12b1f31c4ffdb346a55b57c2b0b, type: 3}
+  aud_positiveResponse:
+  - {fileID: 8300000, guid: 240dc4290df934dd0a14c0b3dee89d24, type: 3}
+  - {fileID: 8300000, guid: 0f5095def15fc470586912a559a49ac3, type: 3}
+  - {fileID: 8300000, guid: c7a708e678ee6448e868c25fcca01131, type: 3}
+  aud_negetiveResponse:
+  - {fileID: 8300000, guid: 82c5c71be961246c88250da3143e5cb0, type: 3}
+  - {fileID: 8300000, guid: 9f0963bb52c244a4d841c5d19d285f55, type: 3}
+  - {fileID: 8300000, guid: 9f0963bb52c244a4d841c5d19d285f55, type: 3}
+  negetive_conversation:
+  - Yes, please get them for me.
+  - Your time is my time, rookie.
+  - Bu-t...I....oouuch
+  conversation:
+  - The robbery hit me hard, the prisoners have my private info
+  - I expect to see those prisoners punished as soon as possible
+  - Just get outta here already
+  positiveResponse:
+  - Should I punish them?
+  - Yes sir, you just need to stop speaking
+  - Yes, sir
+  negetiveResponse:
+  - Haha, I'm going to take it from them
+  - I'll work on my time
+  - TASER
+  tool: {fileID: 192275117437176108, guid: f669019aed1d548b88cdb333d0978e89, type: 3}
+  isToolUnlock: 1
+  punishmentType: 2
+  positive_anim: 00000000000000000000000003000000
+  negetive_anim: 05000000070000000000000000000000
+  prisoner_anim: 
+  isFemalePrisoner: 0
+  wardenPos: 0

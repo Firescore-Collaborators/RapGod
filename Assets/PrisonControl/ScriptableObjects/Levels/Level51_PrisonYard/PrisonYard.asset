@@ -1,0 +1,27 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a1b79f0bbfa994128880fa7e6be702ec, type: 3}
+  m_Name: PrisonYard
+  m_EditorClassIdentifier: 
+  scenarioInfo:
+  - Henchmen Fighting
+  - Corleone's at war!
+  - Also Henchmen Fighting
+  - You guessed it! More henchmen fighting!
+  - Sigh...will this war ever end?
+  pf_scenario:
+  - {fileID: 6279098855208378952, guid: 08ceee7de26ad423980846fe085bade9, type: 3}
+  - {fileID: 813103050603902748, guid: 9929e00e2923e43a2b6db81689ca4404, type: 3}
+  - {fileID: 2706807591804328305, guid: 2cb7a38de351048038bd652940a8cb05, type: 3}
+  - {fileID: 6752327054372279352, guid: 36a326df5e04e437994dd76934e4b847, type: 3}
+  - {fileID: 5011342036679011133, guid: a7b3e25a8b34a440f89138d2151d04fe, type: 3}
+  spawnPoses: 0300000005000000020000000000000001000000

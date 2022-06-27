@@ -1,0 +1,140 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 88ba0d4508021b4449ebf0ebe31fe251, type: 3}
+  m_Name: CopOutfit
+  m_EditorClassIdentifier: 
+  maleOutfit:
+    outfits:
+    - id: 0
+      body: {fileID: 9197045959998880601, guid: c835b4da14d05e54cb57e43e12cc9af2,
+        type: 3}
+      bottom: {fileID: 5742239416190724438, guid: c835b4da14d05e54cb57e43e12cc9af2,
+        type: 3}
+      hair: {fileID: 0}
+      hat: {fileID: -5732856546993815529, guid: c835b4da14d05e54cb57e43e12cc9af2,
+        type: 3}
+      shoes: {fileID: -4144254986336922386, guid: c835b4da14d05e54cb57e43e12cc9af2,
+        type: 3}
+      Tie: {fileID: 0}
+      Top: {fileID: -2729282032040467783, guid: c835b4da14d05e54cb57e43e12cc9af2,
+        type: 3}
+      body_mat: {fileID: 2100000, guid: 2d9f3812f3ce14bac86ebcc5f12aa192, type: 2}
+      bottom_mat: {fileID: 2100000, guid: ac184c73bf4a38343be86e21203679e9, type: 2}
+      hair_mat: {fileID: 2100000, guid: ac184c73bf4a38343be86e21203679e9, type: 2}
+      hat_mat: {fileID: 2100000, guid: ac184c73bf4a38343be86e21203679e9, type: 2}
+      shoes_mat: {fileID: 2100000, guid: ac184c73bf4a38343be86e21203679e9, type: 2}
+      Tie_mat: {fileID: 2100000, guid: ac184c73bf4a38343be86e21203679e9, type: 2}
+      Top_mat: {fileID: 2100000, guid: ac184c73bf4a38343be86e21203679e9, type: 2}
+    - id: 0
+      body: {fileID: 9197045959998880601, guid: c835b4da14d05e54cb57e43e12cc9af2,
+        type: 3}
+      bottom: {fileID: 1949694388017896063, guid: c835b4da14d05e54cb57e43e12cc9af2,
+        type: 3}
+      hair: {fileID: -7898826585581431238, guid: c835b4da14d05e54cb57e43e12cc9af2,
+        type: 3}
+      hat: {fileID: 5544889416707917086, guid: c835b4da14d05e54cb57e43e12cc9af2, type: 3}
+      shoes: {fileID: -285969685704364707, guid: c835b4da14d05e54cb57e43e12cc9af2,
+        type: 3}
+      Tie: {fileID: -2792737491445897696, guid: c835b4da14d05e54cb57e43e12cc9af2,
+        type: 3}
+      Top: {fileID: 97563308277235331, guid: c835b4da14d05e54cb57e43e12cc9af2, type: 3}
+      body_mat: {fileID: 2100000, guid: 2d9f3812f3ce14bac86ebcc5f12aa192, type: 2}
+      bottom_mat: {fileID: 2100000, guid: c3ee7a831c8bbd145b753f0329eccefd, type: 2}
+      hair_mat: {fileID: 2100000, guid: e665f3e1b7506c04bb331ee43eaedcb0, type: 2}
+      hat_mat: {fileID: 2100000, guid: c3ee7a831c8bbd145b753f0329eccefd, type: 2}
+      shoes_mat: {fileID: 2100000, guid: c3ee7a831c8bbd145b753f0329eccefd, type: 2}
+      Tie_mat: {fileID: 2100000, guid: c3ee7a831c8bbd145b753f0329eccefd, type: 2}
+      Top_mat: {fileID: 2100000, guid: c3ee7a831c8bbd145b753f0329eccefd, type: 2}
+    - id: 0
+      body: {fileID: 9197045959998880601, guid: c835b4da14d05e54cb57e43e12cc9af2,
+        type: 3}
+      bottom: {fileID: -3060069846158180075, guid: c835b4da14d05e54cb57e43e12cc9af2,
+        type: 3}
+      hair: {fileID: -4156199464010825012, guid: c835b4da14d05e54cb57e43e12cc9af2,
+        type: 3}
+      hat: {fileID: -8616878817384663937, guid: c835b4da14d05e54cb57e43e12cc9af2,
+        type: 3}
+      shoes: {fileID: 5819058125287337235, guid: c835b4da14d05e54cb57e43e12cc9af2,
+        type: 3}
+      Tie: {fileID: -3705110625826990045, guid: c835b4da14d05e54cb57e43e12cc9af2,
+        type: 3}
+      Top: {fileID: 4497460494742669248, guid: c835b4da14d05e54cb57e43e12cc9af2, type: 3}
+      body_mat: {fileID: 2100000, guid: 2d9f3812f3ce14bac86ebcc5f12aa192, type: 2}
+      bottom_mat: {fileID: 2100000, guid: efaf37b3dc4422e49986bf0deb63dffc, type: 2}
+      hair_mat: {fileID: 2100000, guid: 7f41d8742205b1e4dbbed3e60bdee4b2, type: 2}
+      hat_mat: {fileID: 2100000, guid: efaf37b3dc4422e49986bf0deb63dffc, type: 2}
+      shoes_mat: {fileID: 2100000, guid: efaf37b3dc4422e49986bf0deb63dffc, type: 2}
+      Tie_mat: {fileID: 2100000, guid: efaf37b3dc4422e49986bf0deb63dffc, type: 2}
+      Top_mat: {fileID: 2100000, guid: efaf37b3dc4422e49986bf0deb63dffc, type: 2}
+  femaleOutfit:
+    outfits:
+    - id: 1
+      body: {fileID: 8522524688372986282, guid: c600c1e8be6a744a296d173178b85248,
+        type: 3}
+      bottom: {fileID: -4577089887896364144, guid: c600c1e8be6a744a296d173178b85248,
+        type: 3}
+      hair: {fileID: 5921006103006200038, guid: c600c1e8be6a744a296d173178b85248,
+        type: 3}
+      hat: {fileID: -1843865045854439504, guid: c600c1e8be6a744a296d173178b85248,
+        type: 3}
+      shoes: {fileID: -5732873814922362649, guid: c600c1e8be6a744a296d173178b85248,
+        type: 3}
+      Tie: {fileID: -5446426277861332161, guid: c600c1e8be6a744a296d173178b85248,
+        type: 3}
+      Top: {fileID: 5300275208183507837, guid: c600c1e8be6a744a296d173178b85248, type: 3}
+      body_mat: {fileID: 2100000, guid: bcdf8908cc6bb4bc485baeb3bc4f7432, type: 2}
+      bottom_mat: {fileID: 2100000, guid: c13cdbc1d1f0f428986e875cf4640910, type: 2}
+      hair_mat: {fileID: 2100000, guid: ada92e1c8583e457dae8d6711f69eb5b, type: 2}
+      hat_mat: {fileID: 2100000, guid: c13cdbc1d1f0f428986e875cf4640910, type: 2}
+      shoes_mat: {fileID: 2100000, guid: c13cdbc1d1f0f428986e875cf4640910, type: 2}
+      Tie_mat: {fileID: 2100000, guid: c13cdbc1d1f0f428986e875cf4640910, type: 2}
+      Top_mat: {fileID: 2100000, guid: c13cdbc1d1f0f428986e875cf4640910, type: 2}
+    - id: 2
+      body: {fileID: 8522524688372986282, guid: c600c1e8be6a744a296d173178b85248,
+        type: 3}
+      bottom: {fileID: 1749990345774224359, guid: c600c1e8be6a744a296d173178b85248,
+        type: 3}
+      hair: {fileID: -4380255336104243532, guid: c600c1e8be6a744a296d173178b85248,
+        type: 3}
+      hat: {fileID: -2249342984565990191, guid: c600c1e8be6a744a296d173178b85248,
+        type: 3}
+      shoes: {fileID: 6239870151456227544, guid: c600c1e8be6a744a296d173178b85248,
+        type: 3}
+      Tie: {fileID: 1009408526517355082, guid: c600c1e8be6a744a296d173178b85248, type: 3}
+      Top: {fileID: 6809916912486523059, guid: c600c1e8be6a744a296d173178b85248, type: 3}
+      body_mat: {fileID: 2100000, guid: 65449c4a49c03499fb7cf7908a8b6f70, type: 2}
+      bottom_mat: {fileID: 2100000, guid: f47651b1323c54daabf9452cdfe6da0d, type: 2}
+      hair_mat: {fileID: 2100000, guid: c2200090aa8ef48cbae7ed6df2a355af, type: 2}
+      hat_mat: {fileID: 2100000, guid: f47651b1323c54daabf9452cdfe6da0d, type: 2}
+      shoes_mat: {fileID: 2100000, guid: f47651b1323c54daabf9452cdfe6da0d, type: 2}
+      Tie_mat: {fileID: 2100000, guid: f47651b1323c54daabf9452cdfe6da0d, type: 2}
+      Top_mat: {fileID: 2100000, guid: f47651b1323c54daabf9452cdfe6da0d, type: 2}
+    - id: 3
+      body: {fileID: 8522524688372986282, guid: c600c1e8be6a744a296d173178b85248,
+        type: 3}
+      bottom: {fileID: 7678607718233991053, guid: c600c1e8be6a744a296d173178b85248,
+        type: 3}
+      hair: {fileID: -773196667580185219, guid: c600c1e8be6a744a296d173178b85248,
+        type: 3}
+      hat: {fileID: 7603847614367010416, guid: c600c1e8be6a744a296d173178b85248, type: 3}
+      shoes: {fileID: 5211738666976352207, guid: c600c1e8be6a744a296d173178b85248,
+        type: 3}
+      Tie: {fileID: -8038396734110582261, guid: c600c1e8be6a744a296d173178b85248,
+        type: 3}
+      Top: {fileID: 5211738666976352207, guid: c600c1e8be6a744a296d173178b85248, type: 3}
+      body_mat: {fileID: 2100000, guid: 64fb989138646441482c1906f1f0cd5a, type: 2}
+      bottom_mat: {fileID: 2100000, guid: af9e75c7bd1694c5ea873a56f88de2c6, type: 2}
+      hair_mat: {fileID: 2100000, guid: e3554b245786545d1ac2ead013c8f0c7, type: 2}
+      hat_mat: {fileID: 2100000, guid: af9e75c7bd1694c5ea873a56f88de2c6, type: 2}
+      shoes_mat: {fileID: 2100000, guid: af9e75c7bd1694c5ea873a56f88de2c6, type: 2}
+      Tie_mat: {fileID: 2100000, guid: af9e75c7bd1694c5ea873a56f88de2c6, type: 2}
+      Top_mat: {fileID: 2100000, guid: af9e75c7bd1694c5ea873a56f88de2c6, type: 2}

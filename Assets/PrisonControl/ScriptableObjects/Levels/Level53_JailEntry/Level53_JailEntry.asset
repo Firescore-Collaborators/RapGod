@@ -1,0 +1,37 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b652e8311fd824d12be8b02faa5e0178, type: 3}
+  m_Name: Level53_JailEntry
+  m_EditorClassIdentifier: 
+  totalMiniLevels: 1
+  levelTypes: 06000000
+  iDCheckInfo: []
+  lunchBoxInfo: []
+  bribeBoxInfo: []
+  vistorsInfo: []
+  visitorInmatePairs: []
+  interrogation_SO: {fileID: 0}
+  warden_so: {fileID: 0}
+  jailEntry_so:
+  - {fileID: 11400000, guid: 094e51655709146b392a04eb8ad08820, type: 2}
+  - {fileID: 11400000, guid: 2c318babb0c79468d99a15bd42a961f8, type: 2}
+  - {fileID: 11400000, guid: 04dc22a4e9f834e9bb64bf414b7fb592, type: 2}
+  foodPlating_SO: []
+  mugshot_so: {fileID: 0}
+  prisonYard_so: {fileID: 0}
+  cCTVMonitor_SO: {fileID: 0}
+  slapAndRun_SO: {fileID: 0}
+  cellChec_SO: {fileID: 0}
+  guests: []
+  badResponse: Whack on the head cures crazy visitor
+  goodResponse: Crazy visitor gets lost in prison, eats guard
+  commonResponse: Crazy visitor gets lost in prison, eats guard

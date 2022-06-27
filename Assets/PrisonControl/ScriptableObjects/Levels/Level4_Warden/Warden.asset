@@ -1,0 +1,48 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1d563ba3bd8734cc28862a0b9f32a8f3, type: 3}
+  m_Name: Warden
+  m_EditorClassIdentifier: 
+  wardenGameType: 1
+  aud_negetiveConv:
+  - {fileID: 8300000, guid: 7980e1d6316934374b4cb35a50f0941d, type: 3}
+  aud_positiveConv:
+  - {fileID: 8300000, guid: 496aaf19e361b466cbe072bb14d8b580, type: 3}
+  - {fileID: 8300000, guid: 60131ddc5bc91411faee7bf6509b7893, type: 3}
+  aud_positiveResponse:
+  - {fileID: 8300000, guid: 1e8364e761e994043971d19c3a19983a, type: 3}
+  - {fileID: 8300000, guid: c681f509e23bc43c59809fe9bef7a6f5, type: 3}
+  aud_negetiveResponse:
+  - {fileID: 8300000, guid: 9829e243ea72a49e1969d6cec76f9ddf, type: 3}
+  - {fileID: 8300000, guid: d5f3bbd980a444a7689ce783ef61c90e, type: 3}
+  negetive_conversation:
+  - It's a compliment rookie, I was praising your snap skills
+  - It's a compliment rookie, no need to get so worked up
+  conversation:
+  - Great Job on the Mugshot newbie, heard you're a real natural
+  - Now click my snaps for the FRNDR dating app. Make sure to get my best side
+  - Now I want you to click my snaps, make sure to get my best side
+  positiveResponse:
+  - It's my passion
+  - Nice I love it
+  - Nice I love it
+  negetiveResponse:
+  - And you're a natural pain in the a**
+  - Yuck, I hope I never see that side
+  - Yuck, I hope I never see that side
+  tool: {fileID: 0}
+  isToolUnlock: 0
+  punishmentType: 0
+  positive_anim: 0000000000000000
+  negetive_anim: 07000000
+  prisoner_anim: 
+  isFemalePrisoner: 0

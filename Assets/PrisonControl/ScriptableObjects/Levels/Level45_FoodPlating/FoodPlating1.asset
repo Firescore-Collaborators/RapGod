@@ -1,0 +1,27 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ca7d031a54b8f4e3982b2aa3279e280b, type: 3}
+  m_Name: FoodPlating1
+  m_EditorClassIdentifier: 
+  prisoner: {fileID: 11400000, guid: 0e530ebcd6d7273418c54280dabb0f05, type: 2}
+  foodRequest: I want large fries
+  aud_foodReq: {fileID: 8300000, guid: 1f2cdba97d5144e9baaa372110b43ad6, type: 3}
+  positiveResponseBtn: NEXT!
+  negetiveResponseBtn: Add More
+  positiveResponse: Better than Mickey D's!!
+  negetiveResponse: Where's my fries??
+  aud_posResponse: {fileID: 8300000, guid: 22a5551116c4444b68b21534aa744bfc, type: 3}
+  aud_negResponse: {fileID: 8300000, guid: 88ee33d3eae20480b8678f451e23ccdb, type: 3}
+  pf_plate: {fileID: 8163181022135966538, guid: 339297b4d609d406da9a3fcb3b4e9a78,
+    type: 3}
+  list_requestFoodItems: 05000000
+  list_displayFoodItems: 0500000002000000040000000300000008000000090000000a00000007000000060000000000000001000000

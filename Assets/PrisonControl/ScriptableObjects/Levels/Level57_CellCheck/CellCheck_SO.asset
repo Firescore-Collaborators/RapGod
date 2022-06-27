@@ -1,0 +1,25 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c4b12906989614621b40834665241ba5, type: 3}
+  m_Name: CellCheck_SO
+  m_EditorClassIdentifier: 
+  pf_cell: {fileID: 5969151424680836557, guid: 7d51183be3d504569a0910a509a99953, type: 3}
+  pf_hiddenObject: {fileID: 5155017571911049492, guid: 5aed53fc366224c00b02dae7b48454b1,
+    type: 3}
+  prisoner: {fileID: 4013277775086035344, guid: 3fec9b69012c247988cd993bcb582c0a,
+    type: 3}
+  prisonerDialogue: I messed up Clea's room because she was being a B****
+  prisonerExitDialogue: Thank God it's still in the room, sharp eyes rookie. That's
+    what you're here for.
+  audDialogue: {fileID: 8300000, guid: 47e7c15f004d441edb93f6dfb7ccb4a9, type: 3}
+  audDialogueExit: {fileID: 8300000, guid: b9427c9376db547b0bd6526c28f6359e, type: 3}
+  punishment: 7

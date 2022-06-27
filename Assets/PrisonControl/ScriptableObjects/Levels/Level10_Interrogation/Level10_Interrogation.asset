@@ -1,0 +1,35 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b652e8311fd824d12be8b02faa5e0178, type: 3}
+  m_Name: Level10_Interrogation
+  m_EditorClassIdentifier: 
+  totalMiniLevels: 1
+  levelTypes: 04000000
+  iDCheckInfo: []
+  lunchBoxInfo: []
+  bribeBoxInfo: []
+  vistorsInfo: []
+  visitorInmatePairs: []
+  interrogation_SO: {fileID: 11400000, guid: 18d23a0d085c64602ba8e7749ae60b89, type: 2}
+  warden_so: {fileID: 0}
+  jailEntry_so: []
+  foodPlating_SO: []
+  mugshot_so: {fileID: 0}
+  prisonYard_so: {fileID: 0}
+  cCTVMonitor_SO: {fileID: 0}
+  slapAndRun_SO: {fileID: 0}
+  cellChec_SO: {fileID: 0}
+  guests:
+  - {fileID: 11400000, guid: b212cf4a6e3474fc7946b3f0d7bd9fbe, type: 2}
+  badResponse: Warden recieves complaint that you spat on a visitor
+  goodResponse: You let visitor go free, puts 3 inmates to sleep
+  commonResponse: You let visitor go free, puts 3 inmates to sleep

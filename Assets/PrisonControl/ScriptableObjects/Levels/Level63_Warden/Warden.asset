@@ -1,0 +1,55 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1d563ba3bd8734cc28862a0b9f32a8f3, type: 3}
+  m_Name: Warden
+  m_EditorClassIdentifier: 
+  wardenGameType: 0
+  aud_negetiveConv:
+  - {fileID: 8300000, guid: 49e56e34b134e4092b22d3b2fbb894b5, type: 3}
+  - {fileID: 8300000, guid: 828865e77e8164c5d97e6f40c0ecb9ee, type: 3}
+  - {fileID: 8300000, guid: 21345d90cc6b34e469878d6428542dd8, type: 3}
+  aud_positiveConv:
+  - {fileID: 8300000, guid: c5d076baacbe5467bac12c3cd2afbcf4, type: 3}
+  - {fileID: 8300000, guid: 77af38fdbf9464c13a7a25f31385e30f, type: 3}
+  - {fileID: 8300000, guid: 93daa100dbf244197b6ac887d58978e7, type: 3}
+  aud_positiveResponse:
+  - {fileID: 8300000, guid: 89d5fbc1547df409db373824f4373b66, type: 3}
+  - {fileID: 8300000, guid: 5a91380c0e1d84dcbbae2a563f21f96a, type: 3}
+  - {fileID: 8300000, guid: d076f849a256b44998ad4669496f7fe1, type: 3}
+  aud_negetiveResponse:
+  - {fileID: 8300000, guid: 4ae2d42db910a4bbaae40eb30fc80a57, type: 3}
+  - {fileID: 8300000, guid: 54984d598d923452eab7cd62e0facb44, type: 3}
+  - {fileID: 8300000, guid: 54984d598d923452eab7cd62e0facb44, type: 3}
+  negetive_conversation:
+  - No one can kill me Captain, I have Clea by my side
+  - Don't be humble now Captain, you're a professional punisher.
+  - YUCK!
+  conversation:
+  - Captain your methods are making our prison very famous
+  - New celebrity prisoners are coming in. Give them our famous hospitality.
+  - Go make the right decisions, Captain. Remember to only punish the innocent.
+  positiveResponse:
+  - Gustavo is going to poison your coffee sir
+  - Sir, did you not hear me? Gustavo's going to kill you
+  - Innocent? What about Gus-...Ok sir
+  negetiveResponse:
+  - Old man, you're naive. I'm going to let the gangsters kill you.
+  - I'm out of practice, need to try it on you two first
+  - Sure, I'll start with you two
+  tool: {fileID: 192275117437176108, guid: f669019aed1d548b88cdb333d0978e89, type: 3}
+  isToolUnlock: 1
+  punishmentType: 2
+  positive_anim: 00000000000000000000000003000000
+  negetive_anim: 070000000100000007000000
+  prisoner_anim: 0000000001000000020000000c000000
+  isFemalePrisoner: 1
+  wardenPos: 0

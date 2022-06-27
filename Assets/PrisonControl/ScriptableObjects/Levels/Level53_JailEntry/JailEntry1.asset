@@ -1,0 +1,27 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f90a1a83005db4d449186801fdca17dc, type: 3}
+  m_Name: JailEntry1
+  m_EditorClassIdentifier: 
+  prisoner: {fileID: 11400000, guid: 66d2744a43f1142b5a5b728dbab725ea, type: 2}
+  firstDialogue: Why y'all checking me? Isn't this just for prisoners?
+  aud_firstDialogue: {fileID: 8300000, guid: c44cd9ba7ed43416d8dcb8f9cc12f343, type: 3}
+  listHiddenObjects:
+  - {fileID: 1207647885284026547, guid: cbf0ae53625764e508ff6b0dbd984a9c, type: 3}
+  caughtDialogue: I forgot to leave that at home, let me go
+  copResponse: Sounds good to me
+  aud_caughtDialogue: {fileID: 8300000, guid: ed6b03dfb013a45aaa7365acd38fffc6, type: 3}
+  aud_copResponse: {fileID: 0}
+  punishmentType1: 8
+  hidePos: 03000000
+  scanImage: {fileID: 21300000, guid: 34c9b4ef9e3ef48f2baa0957527cc492, type: 3}
+  isGuilty: 1

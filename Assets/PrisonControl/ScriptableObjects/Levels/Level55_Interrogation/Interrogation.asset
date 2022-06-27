@@ -1,0 +1,44 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0d1cc080c2b524fa8beab593da00fd8c, type: 3}
+  m_Name: Interrogation
+  m_EditorClassIdentifier: 
+  intro: What is this about?
+  reasonText: You were trying to help someone escape
+  conversation:
+  - Umm...I was just kidding
+  - You're too silly to understand my jokes
+  - You're a *@$%#@! See?? Joking again
+  positiveResponse:
+  - Hahahahaha
+  - Actually, I thought it was really funny
+  - Love it, you're free to go!
+  negetiveResponse:
+  - What are you, two years old?
+  - Silly? I'll show you silly
+  - TASER
+  aud_intro: {fileID: 8300000, guid: 752fcc414c83a4529bd5c5d13fd7ca21, type: 3}
+  aud_reason: {fileID: 8300000, guid: 719c0ae5e261e440dad675ad92f78a78, type: 3}
+  aud_conversation:
+  - {fileID: 8300000, guid: 4f656d316ca6a44daa5d7f43ffb25c80, type: 3}
+  - {fileID: 8300000, guid: ee116b5576aae44a49495d62dbf6af08, type: 3}
+  - {fileID: 8300000, guid: be71145b4ce284189a359fadbacaba61, type: 3}
+  aud_positiveResponse:
+  - {fileID: 8300000, guid: 163faf413f31b44d59a732dddf353d3c, type: 3}
+  - {fileID: 8300000, guid: 65215e714093e47a591457d180b4a974, type: 3}
+  - {fileID: 8300000, guid: 2f731517487444ec99d261a51918bb7a, type: 3}
+  aud_negetiveResponse:
+  - {fileID: 8300000, guid: 5c04840a2c1df48d0b4a5cb997870a6c, type: 3}
+  - {fileID: 8300000, guid: 666dcda2f16684427a37444855b72823, type: 3}
+  - {fileID: 8300000, guid: 7a4e878be92524144bfeaf030f3f61b8, type: 3}
+  isGuilty: 1
+  punishmentType: 2

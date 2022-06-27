@@ -1,0 +1,24 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4ebadc5247e29264fa0a52da54dbb6b7, type: 3}
+  m_Name: Visitor1_lvl1
+  m_EditorClassIdentifier: 
+  dialogues:
+  - 'What! Clea you''re innocent. It''s time to come home. '
+  - Yuck, the Warden is so old. Don't throw your life away
+  statementText: Help my sister get out of prison please!
+  isGuilty: 0
+  vCamera: 0
+  aud_dialogs:
+  - {fileID: 8300000, guid: e0ee3100cd0fa4c5294f2532dafd553c, type: 3}
+  - {fileID: 8300000, guid: b4655de0b36854101b403dcf8c5cc772, type: 3}
+  aud_statement: {fileID: 8300000, guid: dff2ef00cfe3946a3934d5d40494b2af, type: 3}

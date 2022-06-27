@@ -1,0 +1,28 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f90a1a83005db4d449186801fdca17dc, type: 3}
+  m_Name: JailEntry3
+  m_EditorClassIdentifier: 
+  prisoner: {fileID: 11400000, guid: 5d473ec73ce56274d8fc383b1027efe1, type: 2}
+  firstDialogue: I'm Servant number 2. Here to serve Giorgio's needs.
+  aud_firstDialogue: {fileID: 8300000, guid: 9d99567e8c3ae44db901cd1ac3fa42fb, type: 3}
+  listHiddenObjects:
+  - {fileID: 956099113840017361, guid: 482e33dd2a9884347960f5317283c27c, type: 3}
+  - {fileID: 956099113840017361, guid: 482e33dd2a9884347960f5317283c27c, type: 3}
+  caughtDialogue: Take it sir, I will blame the first servant
+  copResponse: You may go
+  aud_caughtDialogue: {fileID: 8300000, guid: 219797667e9f64b72826981e807a5ea1, type: 3}
+  aud_copResponse: {fileID: 0}
+  punishmentType1: 6
+  hidePos: 0100000002000000
+  scanImage: {fileID: 21300000, guid: a8a9b8624a1d04a958166f5b995cafb1, type: 3}
+  isGuilty: 1

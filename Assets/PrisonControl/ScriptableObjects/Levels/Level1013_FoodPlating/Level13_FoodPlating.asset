@@ -1,0 +1,37 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b652e8311fd824d12be8b02faa5e0178, type: 3}
+  m_Name: Level13_FoodPlating
+  m_EditorClassIdentifier: 
+  totalMiniLevels: 1
+  levelTypes: 08000000
+  iDCheckInfo: []
+  lunchBoxInfo: []
+  bribeBoxInfo: []
+  vistorsInfo: []
+  visitorInmatePairs: []
+  interrogation_SO: {fileID: 0}
+  warden_so: {fileID: 0}
+  jailEntry_so: []
+  foodPlating_SO:
+  - {fileID: 11400000, guid: 495e8184a6fa7384dad7cf61d06e1641, type: 2}
+  - {fileID: 11400000, guid: 129326189a69d1244b8c89ad66903760, type: 2}
+  - {fileID: 11400000, guid: b8fc21106fc8c794e8f11436c2369aca, type: 2}
+  mugshot_so: {fileID: 0}
+  prisonYard_so: {fileID: 0}
+  cCTVMonitor_SO: {fileID: 0}
+  slapAndRun_SO: {fileID: 0}
+  cellChec_SO: {fileID: 0}
+  guests: []
+  badResponse: Failed to arrest Kid in mads outfit
+  goodResponse: Kid in mans outfit taken in for questioning
+  commonResponse: Spied on 3 conversations, Naughty!

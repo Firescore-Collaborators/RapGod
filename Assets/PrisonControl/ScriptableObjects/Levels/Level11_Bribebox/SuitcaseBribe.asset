@@ -1,0 +1,20 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4bc1839c31cae44b3b8273f81abaa56b, type: 3}
+  m_Name: SuitcaseBribe
+  m_EditorClassIdentifier: 
+  suitcase: {fileID: 1851047466741661881, guid: fd9889e171b554b699800358747eed41,
+    type: 3}
+  bribeType: 0
+  msg: Pssst...Can you help my friend escape tonight?
+  totalBundles: 14
+  aud_intro: {fileID: 8300000, guid: a964d69bde9d447c0a366aa75d7fcaf3, type: 3}

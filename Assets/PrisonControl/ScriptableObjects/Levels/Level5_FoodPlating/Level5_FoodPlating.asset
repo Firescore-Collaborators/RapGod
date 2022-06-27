@@ -1,0 +1,37 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b652e8311fd824d12be8b02faa5e0178, type: 3}
+  m_Name: Level5_FoodPlating
+  m_EditorClassIdentifier: 
+  totalMiniLevels: 1
+  levelTypes: 08000000
+  iDCheckInfo: []
+  lunchBoxInfo: []
+  bribeBoxInfo: []
+  vistorsInfo: []
+  visitorInmatePairs: []
+  interrogation_SO: {fileID: 0}
+  warden_so: {fileID: 0}
+  jailEntry_so: []
+  foodPlating_SO:
+  - {fileID: 11400000, guid: ee35a02cdad274c0c81b0434a84fece5, type: 2}
+  - {fileID: 11400000, guid: 0352ba925767345fcb87de2e55f511c3, type: 2}
+  - {fileID: 11400000, guid: c98b2c5ff0bbb4c0ab2cc5ddf8ba3507, type: 2}
+  mugshot_so: {fileID: 0}
+  prisonYard_so: {fileID: 0}
+  cCTVMonitor_SO: {fileID: 0}
+  slapAndRun_SO: {fileID: 0}
+  cellChec_SO: {fileID: 0}
+  guests: []
+  badResponse: Hungry inmate starts riot. Mass violence ensues.
+  goodResponse: Inmate admitted to emergency room for overeating
+  commonResponse: Inmate admitted to emergency room for overeating

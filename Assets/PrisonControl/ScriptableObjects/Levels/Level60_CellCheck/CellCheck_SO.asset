@@ -1,0 +1,25 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c4b12906989614621b40834665241ba5, type: 3}
+  m_Name: CellCheck_SO
+  m_EditorClassIdentifier: 
+  pf_cell: {fileID: 9184803851989732639, guid: bba282f47ae5b447ebf73bd545adf50a, type: 3}
+  pf_hiddenObject: {fileID: 5155017571911049492, guid: 5aed53fc366224c00b02dae7b48454b1,
+    type: 3}
+  prisoner: {fileID: 6060718718148627200, guid: 6d5d485fa60be465484d837ba565bd75,
+    type: 3}
+  prisonerDialogue: What are you looking for gorgeous? I'll give you whatever you
+    want
+  prisonerExitDialogue: That's so hot detective, don't you want to search me also?
+  audDialogue: {fileID: 8300000, guid: 95110d2ee80c84b1996feb5e35e40805, type: 3}
+  audDialogueExit: {fileID: 8300000, guid: c6522f30c5e4f4470b9a161f2aaee936, type: 3}
+  punishment: 7

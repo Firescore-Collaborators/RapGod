@@ -1,0 +1,44 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0d1cc080c2b524fa8beab593da00fd8c, type: 3}
+  m_Name: Interrogation
+  m_EditorClassIdentifier: 
+  intro: Hey man, I was just minding my business
+  reasonText: You've got to stop messing with Clea
+  conversation:
+  - Just leave me alone man, what I do is none of your business
+  - What does that mean?
+  - Alright, alright man fine. Tell that crazy chick to stay away from me.
+  positiveResponse:
+  - They are tryin to mend their relationship, so just stop
+  - They love each other and you need to stay out of it
+  - Good move, saved  yourself a lot of trouble
+  negetiveResponse:
+  - If you don't stop, you won't be able to have a relationship soon.
+  - I'll throw you over to the boys in gen-pop. Let them explain it to you.
+  - THROW SPIDERS
+  aud_intro: {fileID: 8300000, guid: d029b0da7f4474da58862ce0a572157a, type: 3}
+  aud_reason: {fileID: 8300000, guid: 4c5dee7a918f0407c978f4923e6c70fd, type: 3}
+  aud_conversation:
+  - {fileID: 8300000, guid: 260189637b49a492196e6b06df44da93, type: 3}
+  - {fileID: 8300000, guid: cc5a373ad270049ba919faba28d73bd8, type: 3}
+  - {fileID: 8300000, guid: 45b26ae71367143a3a8b9501ea105c6d, type: 3}
+  aud_positiveResponse:
+  - {fileID: 8300000, guid: da919eaaa1db94a7094ff48aeda12182, type: 3}
+  - {fileID: 8300000, guid: 210be4ec34e184ec2a2f329161cd2e05, type: 3}
+  - {fileID: 8300000, guid: e66246d3300614b2d9a3b014dcb7c61e, type: 3}
+  aud_negetiveResponse:
+  - {fileID: 8300000, guid: 9e549896a14cb4f74b68c4401418ce47, type: 3}
+  - {fileID: 8300000, guid: 8a9baae803b57483a97cb248b64bfff3, type: 3}
+  - {fileID: 8300000, guid: 7a4e878be92524144bfeaf030f3f61b8, type: 3}
+  isGuilty: 1
+  punishmentType: 8

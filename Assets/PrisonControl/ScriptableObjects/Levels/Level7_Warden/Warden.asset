@@ -1,0 +1,50 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1d563ba3bd8734cc28862a0b9f32a8f3, type: 3}
+  m_Name: Warden
+  m_EditorClassIdentifier: 
+  wardenGameType: 2
+  aud_negetiveConv:
+  - {fileID: 8300000, guid: f3de80695994f4774820635f0c458ee8, type: 3}
+  aud_positiveConv:
+  - {fileID: 8300000, guid: 362cea7d7d9cc44be9f0c700554f3ea6, type: 3}
+  - {fileID: 8300000, guid: 7f5ad8f5b992446f5b3bc765b9f7602e, type: 3}
+  aud_positiveResponse:
+  - {fileID: 8300000, guid: 9ba3e723f58604b10a8e6736dbe06fb5, type: 3}
+  - {fileID: 8300000, guid: d34dab65ee0a24a9fbcfc07cfc2105db, type: 3}
+  aud_negetiveResponse:
+  - {fileID: 8300000, guid: d8418fd1b63aa4b22937f9c305600eb3, type: 3}
+  - {fileID: 8300000, guid: a66dc9e14373f4f9491e8a709a4facdd, type: 3}
+  negetive_conversation:
+  - Amen to that son, Amen to that
+  - Ain't nobody got time for YOU!
+  - Sigh. I'm just gonna go.
+  conversation:
+  - I'm glad you're here son, I need your help
+  - I need you to set the bio for my FRNDR profile, here's my phone
+  - Get out there and get to work
+  positiveResponse:
+  - What do you need?
+  - Take Phone
+  - I'll do my best
+  negetiveResponse:
+  - The way things run around here, everyone needs help
+  - Ruin Warden's Career
+  - You get outta here
+  tool: {fileID: 0}
+  isToolUnlock: 0
+  punishmentType: 0
+  positive_anim: 090000000a0000000b0000000c000000
+  negetive_anim: 090000000c00000009000000
+  prisoner_anim: 
+  isFemalePrisoner: 0
+  wardenPos: 2

@@ -1,0 +1,27 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ca7d031a54b8f4e3982b2aa3279e280b, type: 3}
+  m_Name: FoodPlating3
+  m_EditorClassIdentifier: 
+  prisoner: {fileID: 11400000, guid: 0a64764bf76fe4b758ef3c4ad44392f8, type: 2}
+  foodRequest: My lover, give me anything with a bone in it.
+  aud_foodReq: {fileID: 8300000, guid: 7e2e613390ad5438fa72f172dc9e1fbd, type: 3}
+  positiveResponseBtn: NEXT!
+  negetiveResponseBtn: Add More
+  positiveResponse: I'll be waiting for you alone in my cell, Officer Pretty!
+  negetiveResponse: 'You can give me the chicken now and the bone later. '
+  aud_posResponse: {fileID: 8300000, guid: 0f6e41d3f4eea403b91a011a23f3cc74, type: 3}
+  aud_negResponse: {fileID: 8300000, guid: b5a9a83b6a4854fcb8b9af9bea740c08, type: 3}
+  pf_plate: {fileID: 8163181022135966538, guid: 339297b4d609d406da9a3fcb3b4e9a78,
+    type: 3}
+  list_requestFoodItems: 02000000
+  list_displayFoodItems: 090000000800000003000000020000000000000001000000040000000300000005000000070000000a000000

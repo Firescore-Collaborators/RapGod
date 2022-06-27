@@ -1,0 +1,44 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0d1cc080c2b524fa8beab593da00fd8c, type: 3}
+  m_Name: Interrogation
+  m_EditorClassIdentifier: 
+  intro: Officer Pretty...you wanted to see me privately?
+  reasonText: Your ID card was fraudulent
+  conversation:
+  - Do you think it's hot in here?
+  - Officer Pretty...should we meet for coffee later?
+  - Yess! I'm excited
+  positiveResponse:
+  - Must be that light above your head
+  - Sure, but strictly as professionals
+  - I'll see you for that coffee soon
+  negetiveResponse:
+  - You and me in a dimly lit room? Definitely hot
+  - How about dinner, drinks and...
+  - SPIT
+  aud_intro: {fileID: 8300000, guid: 37e4eabbf10fa4f88bf03eafa1103ecd, type: 3}
+  aud_reason: {fileID: 8300000, guid: b2e5ebebe76254197973664118bed25a, type: 3}
+  aud_conversation:
+  - {fileID: 8300000, guid: 49a2c25e1eca9410a8a53011f877c1db, type: 3}
+  - {fileID: 8300000, guid: ccad50b4892aa4874b5836d6c4e11bcd, type: 3}
+  - {fileID: 8300000, guid: ccbbb000276644be3a5791d050c868b4, type: 3}
+  aud_positiveResponse:
+  - {fileID: 8300000, guid: 69be21406e706447899b58d7450ae045, type: 3}
+  - {fileID: 8300000, guid: 0348b210c902c4b32980c19bab2f3d1d, type: 3}
+  - {fileID: 8300000, guid: 0cbe7774b1b334fc3b856d9632f54901, type: 3}
+  aud_negetiveResponse:
+  - {fileID: 8300000, guid: 3fedc83e71f6a45848947b6ee7f9c857, type: 3}
+  - {fileID: 8300000, guid: 2456fdc2fa9104298aea97444f55ec8b, type: 3}
+  - {fileID: 8300000, guid: 7ab4e493f20544d9e836d6e99fc0ab11, type: 3}
+  isGuilty: 1
+  punishmentType: 9

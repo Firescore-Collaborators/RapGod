@@ -1,0 +1,40 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b652e8311fd824d12be8b02faa5e0178, type: 3}
+  m_Name: Level62_PhoneBooth
+  m_EditorClassIdentifier: 
+  totalMiniLevels: 0
+  levelTypes: 03000000
+  iDCheckInfo: []
+  lunchBoxInfo: []
+  bribeBoxInfo: []
+  vistorsInfo:
+  - {fileID: 11400000, guid: 7447815a58d22424f82cae6203793d60, type: 2}
+  - {fileID: 11400000, guid: e2aa89e870ebf4840928d116967671a4, type: 2}
+  - {fileID: 11400000, guid: 03ebabcd1bb854cfa8d0f50985fda32e, type: 2}
+  visitorInmatePairs:
+  - {fileID: 11400000, guid: e93c3a889b5584f3796ef7f68a1aa3e6, type: 2}
+  - {fileID: 11400000, guid: 9a09252c972bc477da035041e5c28336, type: 2}
+  - {fileID: 11400000, guid: b773b63bb00ea4473a36884d59ff76e8, type: 2}
+  interrogation_SO: {fileID: 0}
+  warden_so: {fileID: 0}
+  jailEntry_so: []
+  foodPlating_SO: []
+  mugshot_so: {fileID: 0}
+  prisonYard_so: {fileID: 0}
+  cCTVMonitor_SO: {fileID: 0}
+  slapAndRun_SO: {fileID: 0}
+  cellChec_SO: {fileID: 0}
+  guests: []
+  badResponse: Warden gets poisoned but survives, decreases your wage
+  goodResponse: Warden saved from poisoning, increases your wage
+  commonResponse: Warden saved from poisoning, increases your wage

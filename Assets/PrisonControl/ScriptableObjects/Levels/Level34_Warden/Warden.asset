@@ -1,0 +1,55 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1d563ba3bd8734cc28862a0b9f32a8f3, type: 3}
+  m_Name: Warden
+  m_EditorClassIdentifier: 
+  wardenGameType: 0
+  aud_negetiveConv:
+  - {fileID: 8300000, guid: caf12831c1e96432bb8c0c9983ed4687, type: 3}
+  - {fileID: 8300000, guid: b213d90d05fbf43cf9e741e5d2049ca5, type: 3}
+  - {fileID: 8300000, guid: 190573e4e7f8a4b41af0594d3e29266a, type: 3}
+  aud_positiveConv:
+  - {fileID: 8300000, guid: b69e6c836e217487ea6ec324dd740eed, type: 3}
+  - {fileID: 8300000, guid: d3d759a2a53ac44e0ad8874078a131ba, type: 3}
+  - {fileID: 8300000, guid: 3e416c3558f8b44f48b204db3646766d, type: 3}
+  aud_positiveResponse:
+  - {fileID: 8300000, guid: 2b0d0d71c1f0148478d9bd2a0febec96, type: 3}
+  - {fileID: 8300000, guid: 83f420145d884461a811c675a528eba3, type: 3}
+  - {fileID: 8300000, guid: 3042a6a8fd31b42eebf98ed5391b4f52, type: 3}
+  aud_negetiveResponse:
+  - {fileID: 8300000, guid: 0fecf3d1c19d546408b4a483ab82d1b2, type: 3}
+  - {fileID: 8300000, guid: 512692479d8fd4b2fbf548c792ddeb72, type: 3}
+  - {fileID: 8300000, guid: 3dbf16904c4af4a80a9d9622c783960a, type: 3}
+  negetive_conversation:
+  - Take me out? You mean like Clea?
+  - You're just a rookie, kid. Keep dreaming.
+  - Drama is the secret sauce of this prison
+  conversation:
+  - Listen rookie. That Giorgio is a real piece of work.
+  - I'm not going to let a two-bit come here and undermine my authority.
+  - Anyway, go interrogate Giorgio. Get me the information I need.
+  positiveResponse:
+  - He's got nothing on you
+  - Yes, sir!
+  - Right away sir
+  negetiveResponse:
+  - I think he's here to take you out
+  - Ha. I have more authority than you.
+  - I'm tired of all this drama
+  tool: {fileID: 192275117437176108, guid: f669019aed1d548b88cdb333d0978e89, type: 3}
+  isToolUnlock: 0
+  punishmentType: 0
+  positive_anim: 00000000000000000000000000000000
+  negetive_anim: 00000000000000000000000000000000
+  prisoner_anim: 
+  isFemalePrisoner: 0
+  wardenPos: 0

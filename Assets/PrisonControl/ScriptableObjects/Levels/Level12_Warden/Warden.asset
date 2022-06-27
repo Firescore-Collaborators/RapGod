@@ -1,0 +1,51 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1d563ba3bd8734cc28862a0b9f32a8f3, type: 3}
+  m_Name: Warden
+  m_EditorClassIdentifier: 
+  wardenGameType: 3
+  aud_negetiveConv:
+  - {fileID: 8300000, guid: 952c435d9b6e341eea87d367af76f283, type: 3}
+  aud_positiveConv:
+  - {fileID: 8300000, guid: 44fa6634a606b439cae476dcd6d533cd, type: 3}
+  - {fileID: 8300000, guid: 26f309af845a746ffb1dc54b72cac8e8, type: 3}
+  aud_positiveResponse:
+  - {fileID: 8300000, guid: fca1917e74ee4407f8e2d7b9264b1d2f, type: 3}
+  - {fileID: 8300000, guid: 56eab11e2f3bf43ce9e24b2f0677160b, type: 3}
+  aud_negetiveResponse:
+  - {fileID: 8300000, guid: 4c757cc67827a4584982ac96fc4f5d1c, type: 3}
+  - {fileID: 8300000, guid: efe9d3d6cc6fd4419b9fecd91567e5d6, type: 3}
+  negetive_conversation:
+  - Haha! No one can hide from me, rookie
+  - You're too young to be making threats
+  - Bu-t....I.....arrggggghhhh
+  conversation:
+  - Rookie I saw you take that bribe yesterday, I want my cut
+  - Anyway, your bio was great, and I found my girlfriend. Help me dive into her
+    Dms
+  - Why you still here? Get on with it
+  positiveResponse:
+  - Give cut
+  - Yes Sir.
+  - I'm on it
+  negetiveResponse:
+  - Dammit
+  - Just give me the phone old man
+  - Tase Warden
+  tool: {fileID: 0}
+  isToolUnlock: 0
+  punishmentType: 2
+  positive_anim: 00000000000000000000000000000000
+  negetive_anim: 070000000700000007000000
+  prisoner_anim: 
+  isFemalePrisoner: 0
+  wardenPos: 0

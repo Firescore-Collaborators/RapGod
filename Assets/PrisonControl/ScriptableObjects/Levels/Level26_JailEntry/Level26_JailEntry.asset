@@ -1,0 +1,37 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b652e8311fd824d12be8b02faa5e0178, type: 3}
+  m_Name: Level26_JailEntry
+  m_EditorClassIdentifier: 
+  totalMiniLevels: 1
+  levelTypes: 06000000
+  iDCheckInfo: []
+  lunchBoxInfo: []
+  bribeBoxInfo: []
+  vistorsInfo: []
+  visitorInmatePairs: []
+  interrogation_SO: {fileID: 0}
+  warden_so: {fileID: 0}
+  jailEntry_so:
+  - {fileID: 11400000, guid: 663e6510ab806c347a84f12e0148b274, type: 2}
+  - {fileID: 11400000, guid: 5e699a69fdd9dc34fa0e04131bab4729, type: 2}
+  - {fileID: 11400000, guid: b1f34c4409d64c1458ffb145fe77c31c, type: 2}
+  foodPlating_SO: []
+  mugshot_so: {fileID: 0}
+  prisonYard_so: {fileID: 0}
+  cCTVMonitor_SO: {fileID: 0}
+  slapAndRun_SO: {fileID: 0}
+  cellChec_SO: {fileID: 0}
+  guests: []
+  badResponse: Female servant hospitalised with concussion
+  goodResponse: Girogio Franco Corleone shoots 2 prisoners with the double deagle
+  commonResponse: Girogio Franco Corleone shoots 2 prisoners with the double deagle

@@ -1,0 +1,55 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1d563ba3bd8734cc28862a0b9f32a8f3, type: 3}
+  m_Name: Warden
+  m_EditorClassIdentifier: 
+  wardenGameType: 0
+  aud_negetiveConv:
+  - {fileID: 8300000, guid: e23b86023c3784298898791ae2897e84, type: 3}
+  - {fileID: 8300000, guid: e12b7121e8ef74dadaf47c64d4cd87bb, type: 3}
+  - {fileID: 8300000, guid: 31ba459470d2a4482b009456fb761ca0, type: 3}
+  aud_positiveConv:
+  - {fileID: 8300000, guid: 24359253758f7421f8cedf5dfb8b618c, type: 3}
+  - {fileID: 8300000, guid: 37a96164856f544b68f5e17a2a81395d, type: 3}
+  - {fileID: 8300000, guid: 5ae3487ca1f1345e39acd85f1cfe87be, type: 3}
+  aud_positiveResponse:
+  - {fileID: 8300000, guid: 25c68e92513b248d4b05c7e13b1c747f, type: 3}
+  - {fileID: 8300000, guid: dd8fb22eb04c646aba64ba8c6c592f40, type: 3}
+  - {fileID: 8300000, guid: b074995be7fe4490c979533d8cb1e1eb, type: 3}
+  aud_negetiveResponse:
+  - {fileID: 8300000, guid: 734552b6499d04c0b8343aef4cedf6c2, type: 3}
+  - {fileID: 8300000, guid: 22ce88678bc4c466b9dc3b07a6d4e8d7, type: 3}
+  - {fileID: 8300000, guid: ba52e93e9cab4426f9c5f01ca9fa9cd0, type: 3}
+  negetive_conversation:
+  - No, rookie. She's quite open now.
+  - Fun?? It's the wild west out there
+  - Best of luck rookie, off to your funeral
+  conversation:
+  - I'm afraid there's been some fighting in here
+  - Some prisoners were causing chaos. Brothers fighting each other. Things are crazy.
+  - I think they're in the cafeteria, go check
+  positiveResponse:
+  - That's right, sir
+  - Shall I bring order?
+  - Yes, sir!
+  negetiveResponse:
+  - You talking about you and Clea?
+  - This sounds like fun
+  - Come with me, I'll use you as a shield
+  tool: {fileID: 192275117437176108, guid: f669019aed1d548b88cdb333d0978e89, type: 3}
+  isToolUnlock: 0
+  punishmentType: 0
+  positive_anim: 090000000b0000000900000009000000
+  negetive_anim: 0a0000000b000000090000000c000000
+  prisoner_anim: 
+  isFemalePrisoner: 0
+  wardenPos: 2

@@ -1,0 +1,28 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f90a1a83005db4d449186801fdca17dc, type: 3}
+  m_Name: JailEntry3
+  m_EditorClassIdentifier: 
+  prisoner: {fileID: 11400000, guid: d5ae5397e43f24764ae539699e43c65c, type: 2}
+  firstDialogue: I don't even know why I'm here
+  aud_firstDialogue: {fileID: 8300000, guid: 09739c76bbdcc450e8a2a3ca7bb2d07c, type: 3}
+  listHiddenObjects:
+  - {fileID: 3367653497350004082, guid: 9efb519d87d6845368fdea114f51bae1, type: 3}
+  - {fileID: 3367653497350004082, guid: 9efb519d87d6845368fdea114f51bae1, type: 3}
+  caughtDialogue: I'm just returning those back, they aren't mine
+  copResponse: Carry on
+  aud_caughtDialogue: {fileID: 8300000, guid: 9d2844f6433c44540bff1a268816423f, type: 3}
+  aud_copResponse: {fileID: 0}
+  punishmentType1: 6
+  hidePos: 0000000003000000
+  scanImage: {fileID: 21300000, guid: 82f179667941e4f63af7781fa526b064, type: 3}
+  isGuilty: 0

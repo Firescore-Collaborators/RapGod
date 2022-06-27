@@ -1,0 +1,29 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d2816818dfe3740d7b507d2f471b903c, type: 3}
+  m_Name: Mugshot
+  m_EditorClassIdentifier: 
+  totalPrisnors: 3
+  prisoners:
+  - {fileID: 11400000, guid: 17b88a44673714bd0bf0d8bd4c67120c, type: 2}
+  - {fileID: 11400000, guid: 076d0ed24b9584ed9bac45d43de6bee0, type: 2}
+  - {fileID: 11400000, guid: b775acaf10d3b4ba493963465f24c096, type: 2}
+  positiveResponse:
+  - Say Cheese
+  - Dance!
+  - Happy Thoughts
+  negetiveResponse:
+  - You smell like poop
+  - You suck!
+  - Damn! You ugly
+  positiveAnim: 080000000800000007000000030000000400000005000000
+  negetiveAnim: 090000000b0000000c000000090000000a0000000b000000

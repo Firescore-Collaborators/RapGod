@@ -1,0 +1,27 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ca7d031a54b8f4e3982b2aa3279e280b, type: 3}
+  m_Name: FoodPlating2
+  m_EditorClassIdentifier: 
+  prisoner: {fileID: 11400000, guid: 4b0d1c49f217f4f3cad3395580c587e2, type: 2}
+  foodRequest: Gimme whatever man, but add fries
+  aud_foodReq: {fileID: 8300000, guid: 44fa3b1f821fc4d82b26308ff8fab75c, type: 3}
+  positiveResponseBtn: NEXT!
+  negetiveResponseBtn: Add More
+  positiveResponse: Fries save lives! Thank you.
+  negetiveResponse: You forgot the fries man.
+  aud_posResponse: {fileID: 8300000, guid: f56e8254a9d39472eb9d0d72b35b40c7, type: 3}
+  aud_negResponse: {fileID: 8300000, guid: 3a71c9d5c53434f73862603ca73a0fe7, type: 3}
+  pf_plate: {fileID: 8163181022135966538, guid: 339297b4d609d406da9a3fcb3b4e9a78,
+    type: 3}
+  list_requestFoodItems: 05000000
+  list_displayFoodItems: 090000000800000003000000010000000000000002000000040000000500000006000000070000000a000000

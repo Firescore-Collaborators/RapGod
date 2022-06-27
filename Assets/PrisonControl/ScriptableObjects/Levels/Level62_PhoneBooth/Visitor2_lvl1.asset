@@ -1,0 +1,25 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4ebadc5247e29264fa0a52da54dbb6b7, type: 3}
+  m_Name: Visitor2_lvl1
+  m_EditorClassIdentifier: 
+  dialogues:
+  - Who is this man, I will beat him to a pulp
+  - I'm going to blow him up with the prison. Let's bonnie and clyde this baby girl.
+  statementText: Oh it's you, come outside so you can meet my friends - rock'em and
+    sock'em
+  isGuilty: 1
+  vCamera: 0
+  aud_dialogs:
+  - {fileID: 8300000, guid: 521d6801fff50442492acc16720d2035, type: 3}
+  - {fileID: 8300000, guid: 0d48564d129484bb18116cbb6d85e4c2, type: 3}
+  aud_statement: {fileID: 8300000, guid: 37cd04083a2f94e7fb6cfd6d98e97d3d, type: 3}

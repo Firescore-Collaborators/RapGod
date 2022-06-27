@@ -1,0 +1,28 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f90a1a83005db4d449186801fdca17dc, type: 3}
+  m_Name: JailEntry2
+  m_EditorClassIdentifier: 
+  prisoner: {fileID: 11400000, guid: d656df09b62ac84439c140582ad2c287, type: 2}
+  firstDialogue: I'm Giorgio's servant
+  aud_firstDialogue: {fileID: 8300000, guid: 76ea97f65961d4a4a85588b7b25552f0, type: 3}
+  listHiddenObjects:
+  - {fileID: 3032012162638102155, guid: 0d5f1f877f5994705953131dc9e571d8, type: 3}
+  - {fileID: 2316446238592379511, guid: 3e2c4155234bb412c8a65083afe1fb29, type: 3}
+  caughtDialogue: Please don't take it, Giorgio will kill me
+  copResponse: Get outta here
+  aud_caughtDialogue: {fileID: 8300000, guid: a42d0a76e13c540ebac713e21b4416b7, type: 3}
+  aud_copResponse: {fileID: 0}
+  punishmentType1: 7
+  hidePos: 0100000002000000
+  scanImage: {fileID: 21300000, guid: 15638e5cd27ed486b8be8e4ea994a353, type: 3}
+  isGuilty: 0

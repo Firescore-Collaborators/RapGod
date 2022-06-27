@@ -1,0 +1,55 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1d563ba3bd8734cc28862a0b9f32a8f3, type: 3}
+  m_Name: Warden
+  m_EditorClassIdentifier: 
+  wardenGameType: 0
+  aud_negetiveConv:
+  - {fileID: 8300000, guid: e84119ef8d8554948b06086126881eee, type: 3}
+  - {fileID: 8300000, guid: dbefafdce26de48f2af97c502bbf975c, type: 3}
+  - {fileID: 8300000, guid: 751fbe6fc8ca54ed88247b6318aa2e4c, type: 3}
+  aud_positiveConv:
+  - {fileID: 8300000, guid: 48e6763b381d84b96880075b9233a49f, type: 3}
+  - {fileID: 8300000, guid: eac1fa6cf2d0f4c05a5b9595492f70e6, type: 3}
+  - {fileID: 8300000, guid: 7e69f53e4233d497286bdd04717df30e, type: 3}
+  aud_positiveResponse:
+  - {fileID: 8300000, guid: 175f300917dc94e5ebd646b7b08c2767, type: 3}
+  - {fileID: 8300000, guid: b074995be7fe4490c979533d8cb1e1eb, type: 3}
+  - {fileID: 8300000, guid: b074995be7fe4490c979533d8cb1e1eb, type: 3}
+  aud_negetiveResponse:
+  - {fileID: 8300000, guid: 4a45a925154d9414cabb7902309335a0, type: 3}
+  - {fileID: 8300000, guid: 495566b2b4d6a428f8176ca005d724a1, type: 3}
+  - {fileID: 8300000, guid: 5ea3a239927344623bfef75f51551a7e, type: 3}
+  negetive_conversation:
+  - Never leave a man behind, Captain! It was our motto in the war
+  - As I always say - punish them all
+  - OUCH!
+  conversation:
+  - Rookie, you were on fire! I'm very impressed, I'm promoting you to Captain!
+  - We have new procedures now, even the visitors need to be checked at the entrance
+  - How about you go practice what I preach?
+  positiveResponse:
+  - Thanks Warden, I love my job
+  - Yes, sir!
+  - Yes, Warden
+  negetiveResponse:
+  - Warden, you are a coward! Should have left you to those dogs
+  - Nice, this means I can punish visitors now
+  - HAMMER
+  tool: {fileID: 192275117437176108, guid: f669019aed1d548b88cdb333d0978e89, type: 3}
+  isToolUnlock: 0
+  punishmentType: 6
+  positive_anim: 000000000000000000000000
+  negetive_anim: 000000000000000000000000
+  prisoner_anim: 000000000000000000000000
+  isFemalePrisoner: 0
+  wardenPos: 0

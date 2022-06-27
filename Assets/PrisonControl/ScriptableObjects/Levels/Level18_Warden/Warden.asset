@@ -1,0 +1,55 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1d563ba3bd8734cc28862a0b9f32a8f3, type: 3}
+  m_Name: Warden
+  m_EditorClassIdentifier: 
+  wardenGameType: 0
+  aud_negetiveConv:
+  - {fileID: 8300000, guid: 633bff7f253bb4eaca2f293cef564607, type: 3}
+  - {fileID: 8300000, guid: 1f15166238f3e4165977deef11219616, type: 3}
+  - {fileID: 8300000, guid: 7ed49ec4593a240acb79111eb603f5a9, type: 3}
+  aud_positiveConv:
+  - {fileID: 8300000, guid: bc5e4fd4cffca4ad89c752ac0759c1b5, type: 3}
+  - {fileID: 8300000, guid: 59556f05325cf423e9521faa64bdd076, type: 3}
+  - {fileID: 8300000, guid: a1f54461b1ae34306b735adad71ba106, type: 3}
+  aud_positiveResponse:
+  - {fileID: 8300000, guid: 2a0b75bba426f46a0ac931a26e7f3a9e, type: 3}
+  - {fileID: 8300000, guid: 7a4bf34662b2546579b9decbf4af13fe, type: 3}
+  - {fileID: 8300000, guid: bd7869f72218e4a18a1cd2a87f015b89, type: 3}
+  aud_negetiveResponse:
+  - {fileID: 8300000, guid: a9775abf086f140478a22163794173bb, type: 3}
+  - {fileID: 8300000, guid: 9e340a85bf04d46e6b4598c58b5474c1, type: 3}
+  - {fileID: 8300000, guid: d0e25f3f4d4ec46c9aed15cb7820d1ec, type: 3}
+  negetive_conversation:
+  - She would never do such a thing
+  - Son you better stop making such accusations
+  - YUCK!
+  conversation:
+  - I heard you interrogated Clea, Do you have a death wish
+  - I told you to take care of her, you better straighten up
+  - It's back to the cafeteria for you! go serve the prisoners you low life
+  positiveResponse:
+  - It was a mistake, forgive me!
+  - Got you, I shall do my best
+  - Ok warden, I will do my job well
+  negetiveResponse:
+  - She's cheating on you old fart
+  - Are you dumb? She's cheating on you!
+  - SPIT
+  tool: {fileID: 0}
+  isToolUnlock: 0
+  punishmentType: 9
+  positive_anim: 00000000000000000000000000000000
+  negetive_anim: 070000000700000007000000
+  prisoner_anim: 
+  isFemalePrisoner: 0
+  wardenPos: 0

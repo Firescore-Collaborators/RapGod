@@ -1,0 +1,37 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b652e8311fd824d12be8b02faa5e0178, type: 3}
+  m_Name: Level41_JailEntry
+  m_EditorClassIdentifier: 
+  totalMiniLevels: 1
+  levelTypes: 06000000
+  iDCheckInfo: []
+  lunchBoxInfo: []
+  bribeBoxInfo: []
+  vistorsInfo: []
+  visitorInmatePairs: []
+  interrogation_SO: {fileID: 0}
+  warden_so: {fileID: 0}
+  jailEntry_so:
+  - {fileID: 11400000, guid: a011b72d1569153468dc5fdf3715d51f, type: 2}
+  - {fileID: 11400000, guid: aebeb63ff702d684ea00d3dd1c9e8b84, type: 2}
+  - {fileID: 11400000, guid: 23cded2765fe2274eac608e39b358bb3, type: 2}
+  foodPlating_SO: []
+  mugshot_so: {fileID: 0}
+  prisonYard_so: {fileID: 0}
+  cCTVMonitor_SO: {fileID: 0}
+  slapAndRun_SO: {fileID: 0}
+  cellChec_SO: {fileID: 0}
+  guests: []
+  badResponse: Crispy spiders added to cafeteria menu
+  goodResponse: Crispy spiders added to cafeteria menu
+  commonResponse: Crispy spiders added to cafeteria menu

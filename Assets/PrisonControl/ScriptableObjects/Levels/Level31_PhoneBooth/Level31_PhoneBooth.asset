@@ -1,0 +1,40 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b652e8311fd824d12be8b02faa5e0178, type: 3}
+  m_Name: Level31_PhoneBooth
+  m_EditorClassIdentifier: 
+  totalMiniLevels: 0
+  levelTypes: 03000000
+  iDCheckInfo: []
+  lunchBoxInfo: []
+  bribeBoxInfo: []
+  vistorsInfo:
+  - {fileID: 11400000, guid: ae79eb6a762c34844acb6327e055b0aa, type: 2}
+  - {fileID: 11400000, guid: c89be20b01afa446da4daaac2e7db0be, type: 2}
+  - {fileID: 11400000, guid: 39ab75a5a77174039929089e556139e2, type: 2}
+  visitorInmatePairs:
+  - {fileID: 11400000, guid: 713714963013a4cef92eca2ab3cda753, type: 2}
+  - {fileID: 11400000, guid: 23dfdf16df2c842d89b9181b55fac1bf, type: 2}
+  - {fileID: 11400000, guid: e65307458b4a54c97a2db0a9c16db7a6, type: 2}
+  interrogation_SO: {fileID: 0}
+  warden_so: {fileID: 0}
+  jailEntry_so: []
+  foodPlating_SO: []
+  mugshot_so: {fileID: 0}
+  prisonYard_so: {fileID: 0}
+  cCTVMonitor_SO: {fileID: 0}
+  slapAndRun_SO: {fileID: 0}
+  cellChec_SO: {fileID: 0}
+  guests: []
+  badResponse: 'Prison makes headlines: Visitors complain phones are tapped'
+  goodResponse: 'Prison makes headlines: Visitors complain phones are tapped'
+  commonResponse: 'Prison makes headlines: Visitors complain phones are tapped'
