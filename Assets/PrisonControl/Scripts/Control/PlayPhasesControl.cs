@@ -128,6 +128,11 @@ namespace PrisonControl
                 mPlayPhasesStateMachine.SwitchState(PlayPhase.CellCheck);
             }
             else
+            if(levels[Progress.Instance.CurrentLevel - 1].GetLevelTypes[currentMiniLevel] == Level_SO.LevelTypes.rapBattle)
+            {
+                mPlayPhasesStateMachine.SwitchState(PlayPhase.RapBattle);
+            }
+            else
             if (levels[Progress.Instance.CurrentLevel - 1].GetLevelTypes[currentMiniLevel] == Level_SO.LevelTypes.SlapAndRun)
             {
                 mPlayPhasesStateMachine.SwitchState(PlayPhase.SlapAndRun);
@@ -169,6 +174,7 @@ namespace PrisonControl
             mGameplayUi.SetActive(false);
 
             mPlayPhasesStateMachine = new StateMachine<PlayPhase>(
+                (PlayPhase.RapBattle,GetComponent<RapBattleState>()),
                 (PlayPhase.Warden, GetComponent<WardenState>()),
                 (PlayPhase.IDCheck, GetComponent<IDCheckState>()),
                 (PlayPhase.FoodTray, GetComponent<FoodTrayState>()),
@@ -324,6 +330,7 @@ namespace PrisonControl
         // In order of play
         private static readonly PlayPhase[] PHASES =
         {
+            PlayPhase.RapBattle,
             PlayPhase.Warden,
             PlayPhase.IDCheck,
             PlayPhase.FoodTray,

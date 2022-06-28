@@ -70,6 +70,7 @@ namespace PrisonControl
 
         public enum LevelTypes
         {
+            rapBattle,
             IDCheck,
             LunchBox,   
             BribeBox,
