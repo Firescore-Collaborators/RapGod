@@ -41,9 +41,9 @@ namespace PrisonControl
         {
             if (Progress.Instance.CurrentLevel == 1) {
 
-                //if (!Progress.Instance.IsAvatarSelected)
-                //    mStateMachine.SwitchState(GameState.Avatar);
-                //else
+                if (!Progress.Instance.IsAvatarSelected)
+                    mStateMachine.SwitchState(GameState.Avatar);
+                else
                     mStateMachine.SwitchState(GameState.Play);
             }
             else
