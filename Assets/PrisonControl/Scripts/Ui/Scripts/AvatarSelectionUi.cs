@@ -33,7 +33,7 @@ namespace PrisonControl
             Debug.Log("On Avatar selected");
             responseMsg.SetActive(true);
 
-            Timer.Delay(1, () =>
+            Timer.Delay(2, () =>
             {
                 _OnAvatarSelectionDone?.Invoke();
                 Progress.Instance.IsAvatarSelected = true;

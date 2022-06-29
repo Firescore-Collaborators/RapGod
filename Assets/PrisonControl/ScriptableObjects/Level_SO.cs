@@ -10,60 +10,78 @@ namespace PrisonControl
     [CreateAssetMenu(fileName = "New Level", menuName = "PrisonControl/Level", order = 51)]
     public class Level_SO : ScriptableObject
     {
+        [Foldout("Prison")]
         [SerializeField]
         private int totalMiniLevels;
-
+        [Foldout("Prison")]
         [SerializeField]
         private LevelTypes[] levelTypes;
 
+        [Foldout("Prison")]
         [SerializeField]
         private List<IDCheck_SO> iDCheckInfo;
 
+        [Foldout("Prison")]
         [SerializeField]
         private List<LunchBox_SO> lunchBoxInfo;
 
+        [Foldout("Prison")]
         [SerializeField]
         private List<SuitcaseBribe_SO> bribeBoxInfo;
 
+        [Foldout("Prison")]
         [SerializeField]
         [Expandable]
         private List<VisitorSO> vistorsInfo;
 
+        [Foldout("Prison")]
         [SerializeField]
         [Expandable]
         private List<VisitorInmatePair> visitorInmatePairs;
 
+        [Foldout("Prison")]
         [SerializeField]
         private Interrogation_SO interrogation_SO;
 
+        [Foldout("Prison")]
         [SerializeField]
         private Warden_SO warden_so;
 
+        [Foldout("Prison")]
         [SerializeField]
         private List<JailEntry_SO> jailEntry_so;
 
+        [Foldout("Prison")]
         [SerializeField]
         private List<FoodPlating_SO> foodPlating_SO;
 
+        [Foldout("Prison")]
         [SerializeField]
         private Mugshot_SO mugshot_so;
 
+        [Foldout("Prison")]
         [SerializeField]
         private PrisonYard_SO prisonYard_so;
 
+        [Foldout("Prison")]
         [SerializeField]
         private CCTVMonitor_SO cCTVMonitor_SO;
 
+        [Foldout("Prison")]
         [SerializeField]
         private SlapAndRun_SO slapAndRun_SO;
 
+        [Foldout("Prison")]
         [SerializeField]
         private CellCheck_SO cellChec_SO;
 
+        [Foldout("Prison")]
         [SerializeField]
         private Guest_SO[] guests;
 
-
+        [Foldout("RapBattle")]
+        [SerializeField]
+        private RapBattleDataSO rapBattle_SO;
         public string badResponse;
         public string goodResponse;
         public string commonResponse;

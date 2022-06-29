@@ -18,8 +18,8 @@ public class AudienceManager : MonoBehaviour
     [SerializeField]
     private Text playerFollower_text, EnemyFollower_text;
 
-    [SerializeField]
-    private GameObject EnemyHeadTarget, PlayerHeadTarget;
+    
+    public GameObject EnemyHeadTarget, PlayerHeadTarget;
 
     [SerializeField]
     private Color initialCol;

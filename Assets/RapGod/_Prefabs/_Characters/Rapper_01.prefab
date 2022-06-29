@@ -4180,8 +4180,6 @@ GameObject:
   m_Component:
   - component: {fileID: 7764883114192060644}
   - component: {fileID: 8466301528544553165}
-  - component: {fileID: 5208493897511451728}
-  - component: {fileID: 1505873948072676323}
   m_Layer: 0
   m_Name: Rapper_01
   m_TagString: Untagged
@@ -4225,37 +4223,6 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
---- !u!65 &5208493897511451728
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6956294104391653982}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 0.5501353, y: 1.6478058, z: 1}
-  m_Center: {x: 0.0149954995, y: 0.80375916, z: 5.945852e-17}
---- !u!114 &1505873948072676323
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6956294104391653982}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0b66faccadf1b48e1b9aeac358edaeb7, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  GenderID: 1
-  avatarSelectionState: {fileID: 0}
-  uniform:
-  - {fileID: 2987487924913570847}
-  - {fileID: 8586696300857983447}
-  copManager: {fileID: 0}
 --- !u!1 &7059806448888436011
 GameObject:
   m_ObjectHideFlags: 0
