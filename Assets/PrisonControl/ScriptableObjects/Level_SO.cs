@@ -13,7 +13,6 @@ namespace PrisonControl
         [Foldout("Prison")]
         [SerializeField]
         private int totalMiniLevels;
-        [Foldout("Prison")]
         [SerializeField]
         private LevelTypes[] levelTypes;
 

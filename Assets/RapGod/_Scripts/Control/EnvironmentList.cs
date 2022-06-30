@@ -8,6 +8,13 @@ public class EnvironmentList : MonoBehaviour
 
     public List<RapEnvironment> environments = new List<RapEnvironment>();
     RapEnvironment currentEnvironment;
+    public AudienceManager GetAudienceManager
+    {
+        get{
+            return currentEnvironment.audienceManager;
+        }
+    }
+
     void Awake()
     {
         if (instance == null)
@@ -29,17 +36,19 @@ public class EnvironmentList : MonoBehaviour
         }
         currentEnvironment = environments[(int)environment.environment];
         currentEnvironment.gameObject.SetActive(true);
+        
         switch(environment.position)
         {
             case EnvironmentPosition.Narration:
                 spawnPosition.playerPos = currentEnvironment.playerNarrationPos;
                 spawnPosition.enemyPos = currentEnvironment.enemyNarrationPos;
-                MainCameraController.instance.SetCurrentCamera("DefaultEnvironment_Narration",0);
+                MainCameraController.instance.SetCurrentCamera(currentEnvironment.narrationCam.name,0);
                 break;
             case EnvironmentPosition.Rap:
                 spawnPosition.playerPos = currentEnvironment.playerRapPos;
                 spawnPosition.enemyPos = currentEnvironment.enemyRapPos;
-                MainCameraController.instance.SetCurrentCamera("DefaultEnvironment_Rap",0);
+                MainCameraController.instance.SetCurrentCamera(currentEnvironment.rapCam.name,0);
+                currentEnvironment.audienceManager.gameObject.SetActive(true);
                 break;
         }
         return spawnPosition;
@@ -50,6 +59,7 @@ public class EnvironmentList : MonoBehaviour
         if(currentEnvironment != null)
         {
             currentEnvironment.gameObject.SetActive(false);
+            currentEnvironment.audienceManager.gameObject.SetActive(false);
         }
     }
 }

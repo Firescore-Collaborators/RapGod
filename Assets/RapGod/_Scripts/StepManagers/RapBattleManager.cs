@@ -122,6 +122,7 @@ namespace PrisonControl
             enemy = Utils.spawnGameObject(rapData.enemyCharacter, spawnPosition.enemyPos);
             enemy_anim = enemy.GetComponent<Animator>();
             enemy_anim.runtimeAnimatorController = enemyAnimator;
+            audienceManager = EnvironmentList.instance.GetAudienceManager;
             audienceManager.EnemyHeadTarget = enemy;
             audienceManager.PlayerHeadTarget = player;
         }
@@ -187,10 +188,18 @@ namespace PrisonControl
 
         }
 
-
+        void NextLevel()
+        {
+            if(Input.GetKeyDown(KeyCode.Space))
+            {
+                OnReset();
+                OnLevelEnd();
+            }
+        }
 
         private void Update()
         {
+            NextLevel();
 
             //if (Input.GetMouseButtonDown(1))
             //{

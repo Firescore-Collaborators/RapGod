@@ -37,7 +37,8 @@ namespace PrisonControl
         public override void OnEnter()
         {
             step.SetActive(true);
-            cameraManager.ActivateCamAvatarSelection();
+            //cameraManager.ActivateCamAvatarSelection();
+            MainCameraController.instance.SetCurrentCamera("AvatarSelection",0);
             mAvatarUi.gameObject.SetActive(true);
 
             lightingManager.ActivateAvatarLights();
@@ -70,12 +71,14 @@ namespace PrisonControl
 
             if (Progress.Instance.AvatarGender == 0)
             {
-                cameraManager.ActivateCamAvatar1();
+                //cameraManager.ActivateCamAvatar1();
+                MainCameraController.instance.SetCurrentCamera("Avatar1Cam ",0.5f); 
             }
             //else if (Progress.Instance.AvatarGender == 1)
             else
             {
-                cameraManager.ActivateCamAvatar2();
+                //cameraManager.ActivateCamAvatar2();
+                MainCameraController.instance.SetCurrentCamera("Avatar2Cam ",0.5f); 
             }
 
             mAvatarUi.ActivateUniformSelection();

@@ -174,7 +174,6 @@ namespace PrisonControl
             mGameplayUi.SetActive(false);
 
             mPlayPhasesStateMachine = new StateMachine<PlayPhase>(
-                (PlayPhase.RapBattle,GetComponent<RapBattleState>()),
                 (PlayPhase.Warden, GetComponent<WardenState>()),
                 (PlayPhase.IDCheck, GetComponent<IDCheckState>()),
                 (PlayPhase.FoodTray, GetComponent<FoodTrayState>()),
@@ -187,7 +186,8 @@ namespace PrisonControl
                 (PlayPhase.PrisonYard, GetComponent<PrisonYardState>()),
                 (PlayPhase.CCTVMonitor, GetComponent<CCTVMonitorState>()),
                 (PlayPhase.CellCheck, GetComponent<CellCheckState>()),
-                (PlayPhase.SlapAndRun, GetComponent<SlapAndRunState>())
+                (PlayPhase.SlapAndRun, GetComponent<SlapAndRunState>()),
+                (PlayPhase.RapBattle,GetComponent<RapBattleState>())
             );
         }
 
@@ -330,7 +330,6 @@ namespace PrisonControl
         // In order of play
         private static readonly PlayPhase[] PHASES =
         {
-            PlayPhase.RapBattle,
             PlayPhase.Warden,
             PlayPhase.IDCheck,
             PlayPhase.FoodTray,
@@ -343,7 +342,8 @@ namespace PrisonControl
             PlayPhase.PrisonYard,
             PlayPhase.CCTVMonitor,
             PlayPhase.CellCheck,
-            PlayPhase.SlapAndRun
+            PlayPhase.SlapAndRun,
+            PlayPhase.RapBattle,
         };
     }
 }

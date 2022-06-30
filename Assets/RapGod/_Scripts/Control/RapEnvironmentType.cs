@@ -5,6 +5,7 @@ using UnityEngine;
 public enum EnvironmentType
 {
     defaultEnvironment,
+    streetEnvironment
 }
 [System.Serializable]
 public enum EnvironmentPosition

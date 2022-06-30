@@ -6,6 +6,17 @@ namespace PrisonControl
 {
     public static class ProgressUtils
     {
+        public static bool IsLevelEnd(int level)
+        {
+            for (int i = 0; i < Config.LEVELS_PER_DAYEND.Length; i++)
+            {
+                if (level == Config.LEVELS_PER_DAYEND[i])
+                {
+                    return true;
+                }
+            }
+            return false;
+        }
         public static int GetMilestoneFromLevel(int level)
         {
             Debug.Assert(level > 0);

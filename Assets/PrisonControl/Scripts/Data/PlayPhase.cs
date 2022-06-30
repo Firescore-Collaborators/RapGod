@@ -2,7 +2,6 @@
 {
     public enum PlayPhase
     {
-        RapBattle,
         Warden,
         IDCheck,
         FoodTray,
@@ -15,6 +14,7 @@
         PrisonYard,
         CCTVMonitor,
         CellCheck,
-        SlapAndRun
+        SlapAndRun,
+        RapBattle,
     }
 }

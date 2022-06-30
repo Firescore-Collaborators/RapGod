@@ -79,11 +79,11 @@ namespace PrisonControl
             {
                 _mPlayPhasesControl.BeginNextLevel();
             }
-            else
-            {
-                // On Desk Flow // ID step and Item check
-                OnDeskFlow();
-            }
+            // else
+            // {
+            //     // On Desk Flow // ID step and Item check
+            //     OnDeskFlow();
+            // }
         }
 
         void OnDeskFlow()

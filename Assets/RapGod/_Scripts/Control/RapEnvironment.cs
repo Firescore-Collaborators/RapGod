@@ -6,4 +6,5 @@ public class RapEnvironment : MonoBehaviour
 {
     public Transform playerNarrationPos, enemyNarrationPos, playerRapPos, enemyRapPos;
     public CinemachineVirtualCamera narrationCam, rapCam;
+    public AudienceManager audienceManager;
 }

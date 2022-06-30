@@ -43,7 +43,7 @@ public class MainCameraController : MonoBehaviour
         }
     }
 
-    public void SetCurrentCamera(string camera, int blendSpeed = 1)
+    public void SetCurrentCamera(string camera, float blendSpeed = 1)
     {
         SetCameraZero();
         CinemachineVirtualCamera currentCamera = transform.Find(camera).GetComponent<CinemachineVirtualCamera>();
@@ -51,7 +51,7 @@ public class MainCameraController : MonoBehaviour
         currentCamera.Priority = 15;
     }
 
-    void SetBlendSpeed(int blendSpeed)
+    void SetBlendSpeed(float blendSpeed)
     {
         Camera.main.GetComponent<CinemachineBrain>().m_DefaultBlend.m_Time = blendSpeed;
     }

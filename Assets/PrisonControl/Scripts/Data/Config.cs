@@ -22,6 +22,11 @@ namespace PrisonControl
             (new Item(Punishment.JumpingJack), 67)
         };
 
+        public static readonly int[] LEVELS_PER_DAYEND =
+        {
+            3, 5 , 8 , 11 , 15 , 18 , 21 , 25 , 28 , 32 , 36 , 43 , 47 , 50 , 53 , 58 ,61 , 65 , 68 , 69
+        };
+
         public static readonly int[] INTERIOR_PRICES =
         {
             100, 200, 300
