@@ -48,7 +48,7 @@ public class MainCameraController : MonoBehaviour
         SetCameraZero();
         CinemachineVirtualCamera currentCamera = transform.Find(camera).GetComponent<CinemachineVirtualCamera>();
         SetBlendSpeed(blendSpeed);
-        currentCamera.Priority = 10;
+        currentCamera.Priority = 15;
     }
 
     void SetBlendSpeed(int blendSpeed)

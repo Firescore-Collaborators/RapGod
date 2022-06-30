@@ -7,7 +7,7 @@ public class EnvironmentList : MonoBehaviour
     public static EnvironmentList instance;
 
     public List<RapEnvironment> environments = new List<RapEnvironment>();
-
+    RapEnvironment currentEnvironment;
     void Awake()
     {
         if (instance == null)
@@ -23,7 +23,12 @@ public class EnvironmentList : MonoBehaviour
     public SpawnPosition GetEnvironment(RapEnvironmentType environment)
     {
         SpawnPosition spawnPosition = new SpawnPosition();
-        RapEnvironment currentEnvironment = environments[(int)environment.environment];
+        if(currentEnvironment!= null)
+        {
+           currentEnvironment.gameObject.SetActive(false); 
+        }
+        currentEnvironment = environments[(int)environment.environment];
+        currentEnvironment.gameObject.SetActive(true);
         switch(environment.position)
         {
             case EnvironmentPosition.Narration:
@@ -38,5 +43,13 @@ public class EnvironmentList : MonoBehaviour
                 break;
         }
         return spawnPosition;
+    }
+
+    public void SwitchOffEnvironment()
+    {
+        if(currentEnvironment != null)
+        {
+            currentEnvironment.gameObject.SetActive(false);
+        }
     }
 }

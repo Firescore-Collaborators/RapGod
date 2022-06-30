@@ -7,5 +7,6 @@ using UnityEngine;
 public class RapBattleDataSO : ScriptableObject
 {
     public GameObject enemyCharacter;
+    public EnvironmentSO environment;
     public RapBattleLyricSO rapBattleLyricSO;
 }

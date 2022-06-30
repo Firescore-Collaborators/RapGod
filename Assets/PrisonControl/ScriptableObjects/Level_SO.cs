@@ -80,6 +80,7 @@ namespace PrisonControl
         private Guest_SO[] guests;
 
         [Foldout("RapBattle")]
+        [Expandable]
         [SerializeField]
         private RapBattleDataSO rapBattle_SO;
         public string badResponse;
@@ -241,6 +242,14 @@ namespace PrisonControl
             get
             {
                 return guests;
+            }
+        }
+
+        public RapBattleDataSO GetRapBattleSO
+        {
+            get
+            {
+                return rapBattle_SO;
             }
         }
     }
