@@ -6,10 +6,16 @@ public class PencilMoveScript : MonoBehaviour
 {
     public Vector3 screenPoint;
     public Vector3 offset;
+    public GameObject WinPanel;
+
+    [SerializeField]
+    private int pen_cp, max_cp ;
+    private GameObject[] cp;
+    
     // Start is called before the first frame update
-    void Start()
+    void OnEnable()
     {
-        
+        cp = GameObject.FindGameObjectsWithTag("sign_cp");
     }
     void OnMouseDown()
     {
@@ -34,7 +40,6 @@ public class PencilMoveScript : MonoBehaviour
 
         transform.position = curPosition;
 
-
     }
 
     private void OnTriggerEnter(Collider other)
@@ -42,12 +47,28 @@ public class PencilMoveScript : MonoBehaviour
         if (other.CompareTag("sign_cp"))
         {
             other.GetComponent<MeshRenderer>().material.color = Color.green;
+
+            if (!other.GetComponent<CPChecker>().isSelected)
+            {
+                pen_cp++;
+            }
+            other.GetComponent<CPChecker>().isSelected = true;
+
         }
     }
 
+    IEnumerator ShowWin()
+    {
+        yield return new WaitForSeconds(1);
+        WinPanel.SetActive(true);
+    }
+    
     // Update is called once per frame
     void Update()
     {
-        
+        if(pen_cp >= max_cp)
+        {
+            StartCoroutine(ShowWin());
+        }    
     }
 }
