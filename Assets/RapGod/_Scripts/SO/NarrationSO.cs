@@ -21,7 +21,7 @@ public class NarrationSO : ScriptableObject
         public string[] default_conversation;
 
         public string[] positiveResponse;
-        public string[] negetiveResponse;
+        public string[] negativeResponse;
 
         public NarrationAnimation[] positive_anim;
         public NarrationAnimation[] negetive_anim;

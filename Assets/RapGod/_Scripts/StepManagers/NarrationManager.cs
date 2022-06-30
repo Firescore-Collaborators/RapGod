@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
+using NaughtyAttributes;
 
 namespace PrisonControl
 {
@@ -21,9 +23,14 @@ namespace PrisonControl
 
         [SerializeField]
         private RuntimeAnimatorController playerAnimatorController, enemyAnimatorController;
-
+        [Expandable]
         [SerializeField]
         private NarrationSO narration;
+        [SerializeField]
+        private Text option1, option2;
+
+        [SerializeField]
+        private GameObject optionPanel;
 
         GameObject popUp;
         TypewriterEffect typewriter;
@@ -47,6 +54,7 @@ namespace PrisonControl
             Level_SO level = playPhasesControl.levels[Progress.Instance.CurrentLevel - 1];
             rapBattleData = level.GetRapBattleSO;
             rapEnvironmentType = level.GetRapBattleSO.environment.envType;
+            narration = level.GetNarrationSO;
         }
 
         void Init()
@@ -58,18 +66,76 @@ namespace PrisonControl
             enemy.GetComponent<Animator>().runtimeAnimatorController = enemyAnimatorController;
             popUp = EnvironmentList.instance.GetCurrentEnvironment.popUp;
             typewriter = popUp.transform.GetChild(0).GetComponent<TypewriterEffect>();
+            PlayDialogue(true);
         }
 
-        void PlayDialogue()
+        public void PlayDialogue(bool positive)
         {
-            if (conversation != 0)
-            {
+            optionPanel.SetActive(false);
+            popUp.SetActive(false);
 
-            }
-            //typewriter.ShowTextResponse();
-            popUp.SetActive(true);
+            Timer.Delay(1.5f, () =>
+            {
+                string currentResponse;
+                string currentConversation = narration.default_conversation[conversation];
+                option1.text = narration.positiveResponse[conversation];
+                option2.text = narration.negativeResponse[conversation];
+
+                if (conversation != 0)
+                {
+                    if (positive)
+                    {
+                        currentResponse = narration.positive_conversation[response];
+                    }
+                    else
+                    {
+                        currentResponse = narration.negetive_conversation[response];
+                    }
+                    if (currentResponse != string.Empty)
+                    {
+                        ShowDialogue(currentResponse, () =>
+                        {
+                            Timer.Delay(1.0f, () =>
+                            {
+                                popUp.SetActive(false);
+                                Timer.Delay(1.5f, () =>
+                                {
+                                    ShowDefaultRespone(currentConversation);
+                                });
+                            });
+                        });
+                        response++;
+                        return;
+                    }
+                    response++;
+                }
+                ShowDefaultRespone(currentConversation);
+            });
+
+
         }
+
+        void ShowDialogue(string text, System.Action afterRespone = null)
+        {
+            typewriter.WholeText = text;
+            popUp.SetActive(true);
+            typewriter.ShowTextResponse(afterRespone);
+        }
+
+        void ShowDefaultRespone(string text)
+        {
+            typewriter.WholeText = text;
+            popUp.SetActive(true);
+            typewriter.ShowTextResponse(() =>
+            {
+                optionPanel.SetActive(true);
+            });
+            conversation++;
+        }
+
 
     }
+
+
 }
 

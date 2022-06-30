@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 843607262f07d514bb352422ad27886f, type: 3}
-  m_Name: Lvl 1 Narration
+  m_Name: Lvl 1 NarrationData
   m_EditorClassIdentifier: 
   aud_negetiveConv:
   - {fileID: 8300000, guid: 053e333835f874985a08bfe3a5aad866, type: 3}
@@ -31,7 +31,11 @@ MonoBehaviour:
   - Old man? Who you calling old?
   - Watch your tongue. I'm your boss!!
   - Bu...t.......I...... aaarggghhhh
-  conversation:
+  positive_conversation:
+  - 
+  - Good lad
+  - See ya
+  default_conversation:
   - Howdy, I'm the Warden. Welcome.
   - So you're the new Prison Guard?
   - "Here\u2019s a TASER to help you keep order. "
@@ -39,7 +43,7 @@ MonoBehaviour:
   - Hello, Warden
   - Yes, sir!
   - Try it later
-  negetiveResponse:
+  negativeResponse:
   - What's up, old man?
   - Duhh, you hired me! You should know.
   - Test Taser
