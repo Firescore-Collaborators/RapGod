@@ -137,6 +137,11 @@ namespace PrisonControl
             {
                 mPlayPhasesStateMachine.SwitchState(PlayPhase.SlapAndRun);
             }
+            else
+            if (levels[Progress.Instance.CurrentLevel - 1].GetLevelTypes[currentMiniLevel] == Level_SO.LevelTypes.Narration)
+            {
+                mPlayPhasesStateMachine.SwitchState(PlayPhase.Narration);
+            }
         }
 
         public override void OnExit()
@@ -187,7 +192,8 @@ namespace PrisonControl
                 (PlayPhase.CCTVMonitor, GetComponent<CCTVMonitorState>()),
                 (PlayPhase.CellCheck, GetComponent<CellCheckState>()),
                 (PlayPhase.SlapAndRun, GetComponent<SlapAndRunState>()),
-                (PlayPhase.RapBattle,GetComponent<RapBattleState>())
+                (PlayPhase.RapBattle,GetComponent<RapBattleState>()),
+                (PlayPhase.Narration, GetComponent<NarrationState>())
             );
         }
 
@@ -344,6 +350,7 @@ namespace PrisonControl
             PlayPhase.CellCheck,
             PlayPhase.SlapAndRun,
             PlayPhase.RapBattle,
+            PlayPhase.Narration,
         };
     }
 }

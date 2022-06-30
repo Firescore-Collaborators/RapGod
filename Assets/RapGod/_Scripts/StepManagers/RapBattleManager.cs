@@ -25,6 +25,8 @@ namespace PrisonControl
 
         public PlayPhasesControl m_playPhaseControl;
 
+        public AudioSource lyricsAudioSource,bgmAudioSource;
+
         [SerializeField]
         private GameObject OptionPanle, PopUpPanle, winnerConfitti, initialPopUpPos;
 
@@ -86,6 +88,7 @@ namespace PrisonControl
         String answer;
         bool removedLetter;
         Vector3 popUpPos;
+        int currentLyric; 
 
         private void OnEnable()
         {
@@ -114,7 +117,7 @@ namespace PrisonControl
             // enemy = Utils.spawnGameObject(enemy, enemyPos);
             // enemy_anim = enemy.GetComponent<Animator>();
             // 
-
+            //Spawn Character and Assing animator
             spawnPosition = EnvironmentList.instance.GetEnvironment(environmentType);
             player = characterList.SpawnCharacter(spawnPosition.playerPos);
             player.GetComponent<Animator>().runtimeAnimatorController = playerAnimator;
@@ -122,9 +125,15 @@ namespace PrisonControl
             enemy = Utils.spawnGameObject(rapData.enemyCharacter, spawnPosition.enemyPos);
             enemy_anim = enemy.GetComponent<Animator>();
             enemy_anim.runtimeAnimatorController = enemyAnimator;
+
+            //Get Audience reference
             audienceManager = EnvironmentList.instance.GetAudienceManager;
             audienceManager.EnemyHeadTarget = enemy;
             audienceManager.PlayerHeadTarget = player;
+
+            //Set BGM
+            bgmAudioSource.clip = rapData.rapBattleLyricSO.bgm;
+            bgmAudioSource.Play();
         }
 
         void InitLevelData()
@@ -229,7 +238,7 @@ namespace PrisonControl
             if (print && textNo < rapChar.Count)
             {
                 duration += Time.deltaTime;
-                if (duration > 0.1f)
+                if (duration > 0.05f)
                 {
                     char letter = rapChar[textNo];
                     String Tempremaningtext = "";
@@ -327,12 +336,14 @@ namespace PrisonControl
             if (sideNo == 1)
             {
                 _Answer.transform.parent.gameObject.GetComponent<Image>().sprite = sprites_btn[0];
+                PlayAudio(true);
                 //Conffiti_btn.SetActive(true);
             }
             else
             {
                 //  ConffitiWrong_btn.SetActive(true);
                 _Answer.transform.parent.gameObject.GetComponent<Image>().sprite = sprites_btn[1];
+                PlayAudio(false);
             }
         }
 
@@ -490,6 +501,19 @@ namespace PrisonControl
             Destroy(spawnPosition.playerPos.transform.GetChild(0).gameObject);
         }
 
+        void PlayAudio(bool correct)
+        {
+            if (lyricsAudioSource.isPlaying)
+            {
+                lyricsAudioSource.Stop();
+            }
+            lyricsAudioSource.clip = correct == true ? rapData.rapBattleLyricSO.rapLyricsAudio[currentLyric].correctLyrics: rapData.rapBattleLyricSO.rapLyricsAudio[currentLyric].wrongLyrics;
+            Timer.Delay(1.5f, () =>
+            {
+                lyricsAudioSource.Play();
+            });
+            currentLyric++;
+        }
         // public void OnNextLevelLoad()
         // {
         //     Application.LoadLevel(0);

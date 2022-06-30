@@ -82,6 +82,12 @@ namespace PrisonControl
         [Expandable]
         [SerializeField]
         private RapBattleDataSO rapBattle_SO;
+
+        [Foldout("RapBattle")]
+        [Expandable]
+        [SerializeField]
+        private NarrationSO narration_SO;
+
         public string badResponse;
         public string goodResponse;
         public string commonResponse;
@@ -89,6 +95,7 @@ namespace PrisonControl
         public enum LevelTypes
         {
             rapBattle,
+            Narration,
             IDCheck,
             LunchBox,   
             BribeBox,
@@ -249,6 +256,14 @@ namespace PrisonControl
             get
             {
                 return rapBattle_SO;
+            }
+        }
+
+        public NarrationSO GetNarrationSO
+        {
+            get
+            {
+                return narration_SO;
             }
         }
     }

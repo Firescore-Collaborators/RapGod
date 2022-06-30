@@ -15,6 +15,13 @@ public class EnvironmentList : MonoBehaviour
         }
     }
 
+    public RapEnvironment GetCurrentEnvironment
+    {
+        get{
+            return currentEnvironment;
+        }
+    }
+
     void Awake()
     {
         if (instance == null)

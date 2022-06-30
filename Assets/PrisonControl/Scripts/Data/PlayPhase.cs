@@ -16,5 +16,6 @@
         CellCheck,
         SlapAndRun,
         RapBattle,
+        Narration,
     }
 }

@@ -7,4 +7,12 @@ public class RapEnvironment : MonoBehaviour
     public Transform playerNarrationPos, enemyNarrationPos, playerRapPos, enemyRapPos;
     public CinemachineVirtualCamera narrationCam, rapCam;
     public AudienceManager audienceManager;
+    public GameObject popUp;
+    public TypewriterEffect typewriter
+    {
+        get
+        {
+            return popUp.transform.GetChild(0).GetComponent<TypewriterEffect>();
+        }
+    }
 }

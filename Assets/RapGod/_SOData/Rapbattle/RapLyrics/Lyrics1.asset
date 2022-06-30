@@ -1,0 +1,88 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cea2552ad22dd1a4aafb532f8d0c59e5, type: 3}
+  m_Name: Lyrics1
+  m_EditorClassIdentifier: 
+  leveldata:
+  - RapString: 'I''m a up an coming rapper, a superstar ______ '
+    OptionA: trapper
+    OptionB: strong
+    MarkWord: rapper
+    CorrectAnswer: 1
+  - RapString: 'When you see me on the street, you ______  looking dapper '
+    OptionA: noodles
+    OptionB: see me
+    MarkWord: see me
+    CorrectAnswer: 2
+  - RapString: 'Rodgers, is a packer, anonymous is a  ______ '
+    OptionA: hacker
+    OptionB: in
+    MarkWord: packer
+    CorrectAnswer: 1
+  - RapString: 'All you mumble rap boys can put your music in the ______ '
+    OptionA: crying
+    OptionB: crapper
+    MarkWord: ' '
+    CorrectAnswer: 2
+  - RapString: 'I''m the real deal baby, a real threat, ______ '
+    OptionA: crying
+    OptionB: shady
+    MarkWord: baby
+    CorrectAnswer: 2
+  - RapString: 'Throwing them ______  , real skill, Brady '
+    OptionA: crying
+    OptionB: touchdowns
+    MarkWord: ' '
+    CorrectAnswer: 2
+  - RapString: 'I ball like mcgrady, idolise the man,  ______ '
+    OptionA: jay Z
+    OptionB: crapper
+    MarkWord: mcgrady
+    CorrectAnswer: 1
+  - RapString: 'You''ll get bitten if you bark, no cap, ______ '
+    OptionA: crying
+    OptionB: rabies
+    MarkWord: ' '
+    CorrectAnswer: 2
+  - RapString: 'Babies, ______  , moray eels and ray beams '
+    OptionA: ladies
+    OptionB: crapper
+    MarkWord: ' '
+    CorrectAnswer: 1
+  - RapString: 'Crazy how late teens are living with the  ______ '
+    OptionA: frailties
+    OptionB: crapper
+    MarkWord: teens
+    CorrectAnswer: 1
+  - RapString: 'Let me just alay these, ______ that you''ll have '
+    OptionA: crying
+    OptionB: fears
+    MarkWord: these
+    CorrectAnswer: 2
+  - RapString: 'Listen to my rap, it''ll help you  ______ '
+    OptionA: combat
+    OptionB: rabies
+    MarkWord: rap
+    CorrectAnswer: 1
+  - RapString: 'All the difficulties, in this life that you  ______ '
+    OptionA: crying
+    OptionB: face
+    MarkWord: ' '
+    CorrectAnswer: 2
+  - RapString: 'Don''t worry little one, this just the starting of my ______ '
+    OptionA: race
+    OptionB: rabies
+    MarkWord: ' '
+    CorrectAnswer: 1
+  rapLyricsAudio:
+  - correctLyrics: {fileID: 0}
+    wrongLyrics: {fileID: 0}

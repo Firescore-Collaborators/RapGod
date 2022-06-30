@@ -3,10 +3,12 @@ using System.Collections.Generic;
 using UnityEngine;
 
 
+
 [CreateAssetMenu(fileName = "RapBattleDataSO", menuName = "RapBattle/RapBattle/RapBattleDataSO", order = 1)]
 public class RapBattleDataSO : ScriptableObject
 {
     public GameObject enemyCharacter;
     public EnvironmentSO environment;
     public RapBattleLyricSO rapBattleLyricSO;
+
 }
