@@ -480,7 +480,7 @@ MonoBehaviour:
   connector:
     hitSpacing: 0
     hitLimit: 30
-    connectHits: 0
+    connectHits: 1
   lastPosition: {x: 0, y: 0, z: 0}
 --- !u!114 &346290181
 MonoBehaviour:
@@ -512,7 +512,7 @@ MonoBehaviour:
   angle: 0
   scale: {x: 0.1, y: 5, z: 0.1}
   radius: 0.08
-  hardness: 100
+  hardness: 10
   tileTexture: {fileID: 0}
   tileTransform: {fileID: 0}
   tileOpacity: 1
