@@ -12,6 +12,7 @@ public enum NarrationAnimation
 public class NarrationSO : ScriptableObject
 {
     public AudioClip[] aud_negetiveConv;
+        public AudioClip[] aud_defaultConv;
         public AudioClip[] aud_positiveConv;
         public AudioClip[] aud_positiveResponse;
         public AudioClip[] aud_negetiveResponse;
@@ -24,6 +25,7 @@ public class NarrationSO : ScriptableObject
         public string[] negativeResponse;
 
         public NarrationAnimation[] positive_anim;
+        public NarrationAnimation[] default_anim;
         public NarrationAnimation[] negetive_anim;
 
 }
