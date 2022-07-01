@@ -3,11 +3,11 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
-public class UIMoveScript : MonoBehaviour, IPointerDownHandler, IBeginDragHandler, IEndDragHandler, IDragHandler, IDropHandler
+public class UIMoveScript : MonoBehaviour, IPointerDownHandler, IBeginDragHandler, IEndDragHandler, IDragHandler
 {
     [SerializeField] private Canvas canvas;
-    private RectTransform rectTransform;
-    private CanvasGroup canvasGroup;
+    [SerializeField] private RectTransform rectTransform;
+    [SerializeField]private CanvasGroup canvasGroup;
 
     private void Awake()
     {
@@ -23,12 +23,13 @@ public class UIMoveScript : MonoBehaviour, IPointerDownHandler, IBeginDragHandle
     public void OnDrag(PointerEventData eventData)
     {
         rectTransform.anchoredPosition += eventData.delta / canvas.scaleFactor;
+        
     }
 
     public void OnEndDrag(PointerEventData eventData)
     {
-        Debug.Log("EndDrag");
         canvasGroup.blocksRaycasts = true;
+        
     }
 
     public void OnPointerDown(PointerEventData eventData)
@@ -36,8 +37,5 @@ public class UIMoveScript : MonoBehaviour, IPointerDownHandler, IBeginDragHandle
         
     }
 
-    public void OnDrop(PointerEventData eventData)
-    {
-        
-    }
+    
 }

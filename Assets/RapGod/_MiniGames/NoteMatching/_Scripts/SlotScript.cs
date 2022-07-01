@@ -8,5 +8,6 @@ public class SlotScript : MonoBehaviour, IDropHandler
     public void OnDrop(PointerEventData eventData)
     {
         Debug.Log("Ondrop");
+        
     }
 }
