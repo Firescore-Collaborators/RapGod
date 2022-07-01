@@ -88,6 +88,11 @@ namespace PrisonControl
         [SerializeField]
         private NarrationSO narration_SO;
 
+        [Foldout("RapBattle")]
+        [Expandable]
+        [SerializeField]
+        private ProfileDpSO profileDp_SO;
+
         public string badResponse;
         public string goodResponse;
         public string commonResponse;
@@ -96,6 +101,7 @@ namespace PrisonControl
         {
             rapBattle,
             Narration,
+            ProfileDp,
             IDCheck,
             LunchBox,   
             BribeBox,
@@ -264,6 +270,14 @@ namespace PrisonControl
             get
             {
                 return narration_SO;
+            }
+        }
+
+        public ProfileDpSO GetProfileDpSO
+        {
+            get
+            {
+                return profileDp_SO;
             }
         }
     }

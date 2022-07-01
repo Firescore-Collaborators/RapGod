@@ -92,7 +92,7 @@ namespace PrisonControl
                 if (conversation != 0)
                 {
                     //Play player audio response
-                    PlayAudio(positive ? GetAudioClip(narration.aud_positiveResponse,response) : GetAudioClip(narration.aud_negetiveResponse,response));
+                    //PlayAudio(positive ? GetAudioClip(narration.aud_positiveResponse,response) : GetAudioClip(narration.aud_negetiveResponse,response));
                     if (positive)
                     {
                         currentResponse = narration.positive_conversation[response];
@@ -148,7 +148,7 @@ namespace PrisonControl
             //Play enemy response anim
             PlayAnim(positive ? narration.positive_anim[response] : narration.negetive_anim[response]);
             //Play audio response
-            PlayAudio(positive ? GetAudioClip(narration.aud_positiveConv, response) : GetAudioClip(narration.aud_negetiveConv, response));
+            //PlayAudio(positive ? GetAudioClip(narration.aud_positiveConv, response) : GetAudioClip(narration.aud_negetiveConv, response));
         }
 
         void ShowDefaultRespone(string text)
@@ -162,7 +162,7 @@ namespace PrisonControl
             //play enemy def anim
             PlayAnim(narration.default_anim[conversation]);
             //play audio def conv
-            PlayAudio(GetAudioClip(narration.aud_defaultConv, conversation));
+            //PlayAudio(GetAudioClip(narration.aud_defaultConv, conversation));
             conversation++;
         }
 

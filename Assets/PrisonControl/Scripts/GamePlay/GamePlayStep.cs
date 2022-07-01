@@ -84,6 +84,11 @@ namespace PrisonControl
             {
                 _mPlayPhasesControl.BeginNextLevel();
             }
+            else
+            if (_mPlayPhasesControl.levels[Progress.Instance.CurrentLevel - 1].GetLevelTypes[0] == Level_SO.LevelTypes.ProfileDp)
+            {
+                _mPlayPhasesControl.BeginNextLevel();
+            }
             // else
             // {
             //     // On Desk Flow // ID step and Item check

@@ -36,6 +36,44 @@ namespace PrisonControl
             return (Currency >= price);
         }
 
+        //RapBattle
+        public string SocialHandleName{
+            get => mData.socialHandleName;
+            set
+            {
+                mData.socialHandleName = value;
+                Save();
+            }
+        }
+
+        public string DisplayPic
+        {
+            get => mData.displayPic;
+            set
+            {
+                mData.displayPic = value;
+                Save();
+            }
+        }
+        public Vector2 DisplayPicSize
+        {
+            get => mData.dpSize;
+            set
+            {
+                mData.dpSize = value;
+                Save();
+            }
+        }
+        public int FollowerCount
+        {
+            get => mData.followers;
+            set
+            {
+                mData.followers = value;
+                Save();
+            }
+        }
+
         public int CurrentLevel
         {
             get => mData.currentLevel;
@@ -386,6 +424,12 @@ namespace PrisonControl
         public int currency;
         public int currentLevel = 1;
         public int level_multiplier = 0;
+
+        //RapBattle
+        public string socialHandleName = "RockMyWorld";
+        public int followers = 0;
+        public string displayPic = string.Empty;
+        public Vector2 dpSize = new Vector2(1, 1);
 
         // Salon upgrade level
         public int interiorLevel = 1;

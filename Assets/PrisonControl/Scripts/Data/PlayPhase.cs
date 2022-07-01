@@ -17,5 +17,6 @@
         SlapAndRun,
         RapBattle,
         Narration,
+        ProfileDp,
     }
 }
