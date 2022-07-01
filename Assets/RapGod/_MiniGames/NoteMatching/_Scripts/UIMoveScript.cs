@@ -8,6 +8,8 @@ public class UIMoveScript : MonoBehaviour, IPointerDownHandler, IBeginDragHandle
     [SerializeField] private Canvas canvas;
     [SerializeField] private RectTransform rectTransform;
     [SerializeField]private CanvasGroup canvasGroup;
+    public Vector3 StartPosition;
+    public int boxCode;
 
     private void Awake()
     {
@@ -17,7 +19,8 @@ public class UIMoveScript : MonoBehaviour, IPointerDownHandler, IBeginDragHandle
     }
     public void OnBeginDrag(PointerEventData eventData)
     {
-        canvasGroup.blocksRaycasts = false; 
+        canvasGroup.blocksRaycasts = false;
+        StartPosition = rectTransform.position;
     }
 
     public void OnDrag(PointerEventData eventData)
@@ -29,7 +32,11 @@ public class UIMoveScript : MonoBehaviour, IPointerDownHandler, IBeginDragHandle
     public void OnEndDrag(PointerEventData eventData)
     {
         canvasGroup.blocksRaycasts = true;
-        
+        if(rectTransform.position.x <= Notes_Manager.instance.endpoint1.position.x || rectTransform.position.y <= Notes_Manager.instance.endpoint1.position.y
+            || rectTransform.position.x >= Notes_Manager.instance.endpoint2.position.x || rectTransform.position.y >= Notes_Manager.instance.endpoint2.position.y)
+        {
+            rectTransform.position = StartPosition;
+        }
     }
 
     public void OnPointerDown(PointerEventData eventData)
