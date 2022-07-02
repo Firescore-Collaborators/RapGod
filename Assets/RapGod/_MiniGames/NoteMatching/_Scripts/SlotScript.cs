@@ -6,8 +6,7 @@ using UnityEngine.EventSystems;
 public class SlotScript : MonoBehaviour, IDropHandler
 {
     public int SlotCode;
-    public int[,] GridArray;
-
+ 
     public void OnDrop(PointerEventData eventData)
     {
         Debug.Log("Ondrop");
@@ -15,6 +14,12 @@ public class SlotScript : MonoBehaviour, IDropHandler
         {
             eventData.pointerDrag.GetComponent<RectTransform>().anchoredPosition
                 = GetComponent<RectTransform>().anchoredPosition;
+
+            Notes_Manager.instance.CubeCheck();
+            if (Notes_Manager.instance.sum < Notes_Manager.instance.box.Length)
+            {
+                Notes_Manager.instance.sum = 1;
+            }
         }
         else if(eventData.pointerDrag == null)
         {
