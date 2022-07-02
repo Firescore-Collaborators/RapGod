@@ -7,6 +7,7 @@ public class Notes_Manager : MonoBehaviour
 {
     public static Notes_Manager instance;
     public Transform endpoint1, endpoint2;
+    public GameObject WinPanel;
 
     public GameObject[] grid, box;
 
@@ -40,5 +41,16 @@ public class Notes_Manager : MonoBehaviour
                 }
             }
         }
+    }
+
+    IEnumerator ShowWinPanel()
+    {
+        yield return new WaitForSeconds(2);
+        WinPanel.SetActive(true);
+    }
+
+    public void showPanel()
+    {
+        StartCoroutine(ShowWinPanel());
     }
 }

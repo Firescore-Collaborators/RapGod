@@ -20,12 +20,18 @@ public class SlotScript : MonoBehaviour, IDropHandler
             {
                 Notes_Manager.instance.sum = 1;
             }
+            if(Notes_Manager.instance.sum == Notes_Manager.instance.box.Length)
+            {
+                Notes_Manager.instance.showPanel();
+            }
         }
         else if(eventData.pointerDrag == null)
         {
             Debug.Log("null");
             eventData.pointerDrag.GetComponent<RectTransform>().anchoredPosition =
-                eventData.pointerDrag.GetComponent<UIMoveScript>().StartPosition;
+            eventData.pointerDrag.GetComponent<UIMoveScript>().StartPosition;
         }
     }
+
+    
 }
