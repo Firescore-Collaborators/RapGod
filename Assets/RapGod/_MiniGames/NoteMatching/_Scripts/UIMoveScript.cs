@@ -43,6 +43,4 @@ public class UIMoveScript : MonoBehaviour, IPointerDownHandler, IBeginDragHandle
     {
         
     }
-
-    
 }
