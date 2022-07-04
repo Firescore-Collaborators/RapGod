@@ -8,6 +8,7 @@ public enum TouchInputType
     swipeLeft,
     swipeUp,
     swipeDown,
+    multiTap
 }
 public class TouchInputs : MonoBehaviour
 {
@@ -15,10 +16,17 @@ public class TouchInputs : MonoBehaviour
     public event System.Action swipeLeft;
     public event System.Action swipeUp;
     public event System.Action swipeDown;
+    public event System.Action multiTapOver;
+    public event System.Action<float> multiTaping;
     [SerializeField] Vector3 startMousePos;
     [SerializeField] Vector3 currentMousePos;
     bool onHeld;
+    bool toCheckMultiTap = false;
     public float swipeThreshold = 100f;
+    public float multiTapLimit = 10f;
+    [SerializeField] float currentTapScore = 0;
+
+
     void Update()
     {
         if (Input.GetMouseButtonDown(0))
@@ -37,6 +45,7 @@ public class TouchInputs : MonoBehaviour
         CheckSwipeLeft();
         CheckSwipeUp();
         CheckSwipeDown();
+        CheckMultiTap();
     }
 
     void CheckSwipeRight()
@@ -77,5 +86,31 @@ public class TouchInputs : MonoBehaviour
             onHeld = false;
             swipeDown?.Invoke();
         }
+    }
+
+    void CheckMultiTap()
+    {
+        if (!toCheckMultiTap) return;
+
+        if (Input.GetMouseButtonDown(0))
+        {
+            currentTapScore += 1f;
+        }
+
+        if (currentTapScore >= multiTapLimit)
+        {
+            onHeld = false;
+            toCheckMultiTap = false;
+            multiTapOver?.Invoke();
+            return;
+        }
+        multiTaping?.Invoke(currentTapScore);
+
+    }
+
+    public void StartMultiTap()
+    {
+        toCheckMultiTap = true;
+        currentTapScore = 0;
     }
 }

@@ -15,4 +15,5 @@ public class HandShakeSO : ScriptableObject
     public List<HandShakeType> player = new List<HandShakeType>();
     public List<HandShakeType> enemy = new List<HandShakeType>();
     public InputSequenceSO inputSequence;
+    public float multiTapLimit = 10f; 
 }

@@ -6,11 +6,12 @@ using NaughtyAttributes;
 [RequireComponent(typeof(TouchInputs))]
 public class MultiTouchManager : MonoBehaviour
 {
-    public event System.Action onInputRaised;
+    public System.Action onInputRaised;
     public event System.Action onSequenceComplete;
     public event System.Action<TouchInputType> onInputAssignedWithType;
     public event System.Action<TouchInputType> onInputRemovedWithType;
-    public event System.Action<int> onInputRaisedWithIndex;
+    //public event System.Action<int> onInputRaisedWithIndex;
+    public event System.Action<float> onMultiTaping;
 
     [Expandable]
     public InputSequenceSO inputSequence;
@@ -21,13 +22,13 @@ public class MultiTouchManager : MonoBehaviour
             return GetComponent<TouchInputs>();
         }
     }
-    int currentSequenceIndex = 0;
+    public int currentSequenceIndex = 0;
 
 
     public void Init()
     {
         currentSequenceIndex = 0;
-        onInputRaised += OnCorrectInput;
+        //onInputRaised += OnCorrectInput;
         onInputRaised += IncreaseIndex;
         onInputRaised += AssingCallbacks;
         AssingCallbacks();
@@ -45,7 +46,7 @@ public class MultiTouchManager : MonoBehaviour
 
     void OnCorrectInput()
     {
-        onInputRaisedWithIndex?.Invoke(currentSequenceIndex);
+        //onInputRaisedWithIndex?.Invoke(currentSequenceIndex);
     }
 
     void AssingCallbacks()
@@ -70,6 +71,11 @@ public class MultiTouchManager : MonoBehaviour
             case TouchInputType.swipeDown:
                 touchInputs.swipeDown += onInputRaised;
                 break;
+            case TouchInputType.multiTap:
+                touchInputs.StartMultiTap();
+                touchInputs.multiTaping += onMultiTaping;
+                touchInputs.multiTapOver += onInputRaised;
+                break;
         }
         onInputAssignedWithType?.Invoke(inputSequence.inputSequence[currentSequenceIndex]);
     }
@@ -91,6 +97,10 @@ public class MultiTouchManager : MonoBehaviour
                 break;
             case TouchInputType.swipeDown:
                 touchInputs.swipeDown -= onInputRaised;
+                break;
+            case TouchInputType.multiTap:
+                touchInputs.multiTaping -= onMultiTaping;
+                touchInputs.multiTapOver -= onInputRaised;
                 break;
         }
         onInputRemovedWithType?.Invoke(inputSequence.inputSequence[currentSequenceIndex - 1]);

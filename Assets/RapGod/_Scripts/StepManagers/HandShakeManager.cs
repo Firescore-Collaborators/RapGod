@@ -14,6 +14,8 @@ namespace PrisonControl
         [SerializeField]
         private HandShakeSO handShakeSO;
         [SerializeField]
+        private InputSequenceUISO inputSequenceUI;
+        [SerializeField]
         private MultiTouchManager multiTouchManager
         {
             get
@@ -35,6 +37,17 @@ namespace PrisonControl
         [SerializeField]
         private float animTransitionTime = 0.1f;
         [SerializeField] private Text swipeInstructions;
+        [SerializeField] private Image multiTapMeter;
+        [SerializeField] private Transform inputSequenceUIPanel;
+        private List<GameObject> sequenceUI = new List<GameObject>();
+        bool isMultiTaping = false;
+        int currentSequenceIndex
+        {
+            get
+            {
+                return multiTouchManager.currentSequenceIndex;
+            }
+        }
         void OnEnable()
         {
             InitLevelData();
@@ -47,6 +60,7 @@ namespace PrisonControl
             rapBattleData = level.GetRapBattleSO;
             rapEnvironmentType = level.GetRapBattleSO.environment.envType;
             handShakeSO = level.GetHandShakeSO;
+            GetComponent<TouchInputs>().multiTapLimit = handShakeSO.multiTapLimit;
         }
         void Init()
         {
@@ -56,33 +70,91 @@ namespace PrisonControl
             enemy = Utils.spawnGameObject(rapBattleData.enemyCharacter, spawnPosition.enemyPos);
             enemy.GetComponent<Animator>().runtimeAnimatorController = enemyAnimatorController;
             InitMultiTouchCallback();
-        }
+            SpawnSequenceUI();
 
+        }
 
         void InitMultiTouchCallback()
         {
             multiTouchManager.inputSequence = handShakeSO.inputSequence;
-            multiTouchManager.onInputRaised += Print;
-            multiTouchManager.onSequenceComplete += LevelEnd;
             multiTouchManager.onInputAssignedWithType += InputAssinged;
-            multiTouchManager.onInputRaisedWithIndex += PlayAnim;
+            multiTouchManager.onInputRaised += CorrectInputResult;
+            multiTouchManager.onMultiTaping += OnMultiTap;
+            multiTouchManager.onSequenceComplete += LevelEnd;
+            //multiTouchManager.onInputRaisedWithIndex += PlayAnim;
             multiTouchManager.Init();
         }
 
-        void PlayAnim(int index)
+        void SpawnSequenceUI()
         {
-            player.GetComponent<Animator>().CrossFade(handShakeSO.player[index].ToString(), animTransitionTime, 0, 0f);
-            enemy.GetComponent<Animator>().CrossFade(handShakeSO.enemy[index].ToString(), animTransitionTime, 0, 0f);
+            for (int i = 0; i < handShakeSO.inputSequence.inputSequence.Count; i++)
+            {
+                GameObject toSpawn = new GameObject();
+                switch (handShakeSO.inputSequence.inputSequence[i])
+                {
+                    case TouchInputType.swipeLeft:
+                        toSpawn = inputSequenceUI.leftArrow;
+                        break;
+                    case TouchInputType.swipeRight:
+                        toSpawn = inputSequenceUI.rightArrow;
+                        break;
+                    case TouchInputType.swipeUp:
+                        toSpawn = inputSequenceUI.upArrow;
+                        break;
+                    case TouchInputType.swipeDown:
+                        toSpawn = inputSequenceUI.downArrow;
+                        break;
+                    case TouchInputType.multiTap:
+                        toSpawn = inputSequenceUI.multiTap;
+                        break;
+                }
+                GameObject spawned = Instantiate(toSpawn, inputSequenceUIPanel);
+                sequenceUI.Add(spawned);
+            }
+        }
+
+        void CorrectInputResult()
+        {
+            if (isMultiTaping)
+            {
+                print("MultiTapEnd");
+            }
+            else
+            {
+                player.GetComponent<Animator>().CrossFade(handShakeSO.player[currentSequenceIndex].ToString(), animTransitionTime, 0, 0f);
+                enemy.GetComponent<Animator>().CrossFade(handShakeSO.enemy[currentSequenceIndex].ToString(), animTransitionTime, 0, 0f);
+            }
+
+
+            ColorUI();
+        }
+
+        void OnMultiTap(float currentValue)
+        {
+            multiTapMeter.fillAmount = Remap.remap(currentValue, 0, handShakeSO.multiTapLimit, 0, 1);
         }
 
         void InputAssinged(TouchInputType type)
         {
             swipeInstructions.text = type.ToString();
+            TouchDefaultState();
+            switch (type)
+            {
+                case TouchInputType.multiTap:
+                    multiTapMeter.transform.parent.gameObject.SetActive(true);
+                    isMultiTaping = true;
+                    break;
+            }
         }
 
-        void Print()
+        void TouchDefaultState()
         {
-            Debug.Log("Correct Input");
+            multiTapMeter.transform.parent.gameObject.SetActive(false);
+            isMultiTaping = false;
+        }
+        void ColorUI()
+        {
+            sequenceUI[currentSequenceIndex].transform.GetChild(0).GetComponent<Image>().color = Color.green;
         }
 
         void LevelEnd()
