@@ -14,7 +14,7 @@ namespace PrisonControl
 
         [SerializeField]
         [Foldout("Text")]
-        private Text handleText, followerText, option1, option2;
+        private Text handleText, followerText, followerIncreaseText, option1, option2;
 
         [SerializeField]
         [Foldout("Button")]
@@ -27,17 +27,19 @@ namespace PrisonControl
         private TypewriterEffect typeWriter;
 
         [SerializeField]
-        private GameObject profileListPanel, statusBody, optionPanel,postedStamp;
+        private GameObject profileListPanel, statusBody, optionPanel, postedStamp, followersIncreasePanel;
 
         [SerializeField]
         private ProfileDpSO profileDpSO;
-
+        float currentFollowerCount;
         string postTextDefault = "Type your status...";
+
 
         void OnEnable()
         {
             InitLevelData();
             Init();
+            
         }
 
         void Init()
@@ -52,7 +54,7 @@ namespace PrisonControl
             LoadDp();
             profileDpSO = _mPlayPhasesControl.levels[Progress.Instance.CurrentLevel - 1].GetProfileDpSO;
             AssingDPToUI();
-
+            currentFollowerCount = Progress.Instance.FollowerCount;
             //Enabling dp selection panel
             Timer.Delay(1, () =>
             {
@@ -132,12 +134,12 @@ namespace PrisonControl
             typeWriter.WholeText = positive ? option1.text : option2.text;
             typeWriter.ShowTextResponse(() =>
             {
-                Posted();
+                Posted(positive);
             });
             optionPanel.SetActive(false);
         }
 
-        void Posted()
+        void Posted(bool positive)
         {
             Timer.Delay(1.0f, () =>
             {
@@ -145,8 +147,54 @@ namespace PrisonControl
                 followerText.transform.parent.gameObject.SetActive(false);
                 statusBody.SetActive(false);
                 postedStamp.SetActive(true);
+
+                //New followers
+                Timer.Delay(1.0f, () =>
+                {
+                    postedStamp.SetActive(false);
+                    followersIncreasePanel.SetActive(true);
+                    AddFollowerCount(positive);
+                    IncreaseFollowerCount(Progress.Instance.FollowerCount);
+                });
             });
         }
+
+        void IncreaseFollowerCount(float changedValue)
+        {
+            LerpFloatValue.instance.LerpValue(currentFollowerCount, changedValue, 3.0f, (value) =>
+            {
+                followerIncreaseText.text = ((int)value) + "";
+            }, () =>
+            {
+                Timer.Delay(1.0f, () =>
+                {
+                    LevelEnd();
+                });
+            });
+        }
+
+        void AddFollowerCount(bool positive)
+        {
+            Progress.Instance.FollowerCount += positive ? profileDpSO.followerCount.followerPositive : profileDpSO.followerCount.followerNegative;
+        }
+
+        [Button]
+        void ClearFolloweCount()
+        {
+            Progress.Instance.FollowerCount = 0;
+        }
+
+        void LevelEnd()
+        {
+            handleText.transform.parent.gameObject.SetActive(true);
+            followerText.transform.parent.gameObject.SetActive(true);
+            statusBody.SetActive(true);
+            followersIncreasePanel.SetActive(false);
+            typeWriter.unity_text.text = postTextDefault;
+
+            _mPlayPhasesControl._OnPhaseFinished();
+        }
+
     }
 
 }
