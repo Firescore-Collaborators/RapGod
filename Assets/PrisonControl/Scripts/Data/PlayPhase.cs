@@ -18,5 +18,6 @@
         RapBattle,
         Narration,
         ProfileDp,
+        HandShake,
     }
 }

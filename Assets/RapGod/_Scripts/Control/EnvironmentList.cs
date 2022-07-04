@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using NaughtyAttributes;
 
 public class EnvironmentList : MonoBehaviour
 {
@@ -10,14 +11,16 @@ public class EnvironmentList : MonoBehaviour
     RapEnvironment currentEnvironment;
     public AudienceManager GetAudienceManager
     {
-        get{
+        get
+        {
             return currentEnvironment.audienceManager;
         }
     }
 
     public RapEnvironment GetCurrentEnvironment
     {
-        get{
+        get
+        {
             return currentEnvironment;
         }
     }
@@ -32,30 +35,34 @@ public class EnvironmentList : MonoBehaviour
         {
             Destroy(this);
         }
+        Init();
     }
 
     public SpawnPosition GetEnvironment(RapEnvironmentType environment)
     {
         SpawnPosition spawnPosition = new SpawnPosition();
-        if(currentEnvironment!= null)
+        if (currentEnvironment != null)
         {
-           currentEnvironment.gameObject.SetActive(false); 
+            SwitchOffEnvironment();
         }
         currentEnvironment = environments[(int)environment.environment];
         currentEnvironment.gameObject.SetActive(true);
-        
-        switch(environment.position)
+
+        switch (environment.position)
         {
             case EnvironmentPosition.Narration:
                 spawnPosition.playerPos = currentEnvironment.playerNarrationPos;
                 spawnPosition.enemyPos = currentEnvironment.enemyNarrationPos;
-                MainCameraController.instance.SetCurrentCamera(currentEnvironment.narrationCam.name,0);
+                MainCameraController.instance.SetCurrentCamera(currentEnvironment.narrationCam.name, 0);
                 break;
             case EnvironmentPosition.Rap:
                 spawnPosition.playerPos = currentEnvironment.playerRapPos;
                 spawnPosition.enemyPos = currentEnvironment.enemyRapPos;
-                MainCameraController.instance.SetCurrentCamera(currentEnvironment.rapCam.name,0);
-                currentEnvironment.audienceManager.gameObject.SetActive(true);
+                MainCameraController.instance.SetCurrentCamera(currentEnvironment.rapCam.name, 0);
+                if (currentEnvironment.audienceManager != null)
+                {
+                    currentEnvironment.audienceManager.gameObject.SetActive(true);
+                }
                 break;
         }
         return spawnPosition;
@@ -63,10 +70,19 @@ public class EnvironmentList : MonoBehaviour
 
     public void SwitchOffEnvironment()
     {
-        if(currentEnvironment != null)
+        if (currentEnvironment != null)
         {
             currentEnvironment.gameObject.SetActive(false);
             currentEnvironment.audienceManager.gameObject.SetActive(false);
+        }
+    }
+    [Button]
+    void Init()
+    {
+        environments.Clear();
+        for(int i = 0; i < transform.childCount; i++)
+        {
+            environments.Add(transform.GetChild(i).GetComponent<RapEnvironment>());
         }
     }
 }
