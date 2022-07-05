@@ -17,7 +17,7 @@ public class TouchInputs : MonoBehaviour
     public event System.Action swipeUp;
     public event System.Action swipeDown;
     public event System.Action multiTapOver;
-    public event System.Action<float> multiTaping;
+    public event System.Action<float, bool> multiTaping;
     [SerializeField] Vector3 startMousePos;
     [SerializeField] Vector3 currentMousePos;
     bool onHeld;
@@ -25,7 +25,7 @@ public class TouchInputs : MonoBehaviour
     public float swipeThreshold = 100f;
     public float multiTapLimit = 10f;
     [SerializeField] float currentTapScore = 0;
-
+    float regression = 1f;
 
     void Update()
     {
@@ -95,8 +95,13 @@ public class TouchInputs : MonoBehaviour
         if (Input.GetMouseButtonDown(0))
         {
             currentTapScore += 1f;
+            multiTaping?.Invoke(currentTapScore, true);
         }
-
+        else
+        {
+            currentTapScore -= Time.deltaTime * regression;
+        }
+        currentTapScore = Mathf.Clamp(currentTapScore, 0f, multiTapLimit);
         if (currentTapScore >= multiTapLimit)
         {
             onHeld = false;
@@ -104,7 +109,7 @@ public class TouchInputs : MonoBehaviour
             multiTapOver?.Invoke();
             return;
         }
-        multiTaping?.Invoke(currentTapScore);
+        multiTaping?.Invoke(currentTapScore, false);
 
     }
 

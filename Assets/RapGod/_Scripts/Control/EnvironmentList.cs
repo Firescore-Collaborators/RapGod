@@ -73,7 +73,10 @@ public class EnvironmentList : MonoBehaviour
         if (currentEnvironment != null)
         {
             currentEnvironment.gameObject.SetActive(false);
-            currentEnvironment.audienceManager.gameObject.SetActive(false);
+            if(currentEnvironment.audienceManager != null)
+            {
+                currentEnvironment.audienceManager.gameObject.SetActive(false);
+            }
         }
     }
     [Button]

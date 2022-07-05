@@ -32,6 +32,8 @@ namespace PrisonControl
         private SpawnPosition spawnPosition;
         [SerializeField]
         private GameObject player, enemy;
+        GameObject toSpawn;
+        AnimationClip[] playerClip;
         [SerializeField]
         private RuntimeAnimatorController playerAnimatorController, enemyAnimatorController;
         [SerializeField]
@@ -52,6 +54,7 @@ namespace PrisonControl
         {
             InitLevelData();
             Init();
+            InitAnimatorClips();
         }
 
         void InitLevelData()
@@ -85,11 +88,22 @@ namespace PrisonControl
             multiTouchManager.Init();
         }
 
+        void Reset()
+        {
+            for (int i = 0; i < inputSequenceUIPanel.childCount; i++)
+            {
+                Destroy(inputSequenceUIPanel.GetChild(i).gameObject);
+            }
+            sequenceUI.Clear();
+            Destroy(player);
+            Destroy(enemy);
+
+        }
+
         void SpawnSequenceUI()
         {
             for (int i = 0; i < handShakeSO.inputSequence.inputSequence.Count; i++)
             {
-                GameObject toSpawn = new GameObject();
                 switch (handShakeSO.inputSequence.inputSequence[i])
                 {
                     case TouchInputType.swipeLeft:
@@ -109,6 +123,7 @@ namespace PrisonControl
                         break;
                 }
                 GameObject spawned = Instantiate(toSpawn, inputSequenceUIPanel);
+                spawned.transform.parent = inputSequenceUIPanel.transform;
                 sequenceUI.Add(spawned);
             }
         }
@@ -117,21 +132,52 @@ namespace PrisonControl
         {
             if (isMultiTaping)
             {
-                print("MultiTapEnd");
+                print("MultiTapOver");
+
             }
             else
             {
                 player.GetComponent<Animator>().CrossFade(handShakeSO.player[currentSequenceIndex].ToString(), animTransitionTime, 0, 0f);
                 enemy.GetComponent<Animator>().CrossFade(handShakeSO.enemy[currentSequenceIndex].ToString(), animTransitionTime, 0, 0f);
+                AnimatorStateInfo playerState = player.GetComponent<Animator>().GetCurrentAnimatorStateInfo(0);
+                Timer.Delay(GetClipTime(handShakeSO.player[currentSequenceIndex].ToString()), () =>
+                {
+                    print("AnimationEnd");
+                });
+                OnAnimationPlay(GetClipTime(handShakeSO.player[currentSequenceIndex].ToString()));
             }
 
 
             ColorUI();
         }
 
-        void OnMultiTap(float currentValue)
+        void InitAnimatorClips()
+        {
+            playerClip = playerAnimatorController.animationClips;
+        }
+
+        float GetClipTime(string clipName)
+        {
+            for (int i = 0; i < playerClip.Length; i++)
+            {
+                if (playerClip[i].name == clipName)
+                {
+                    return playerClip[i].length;
+                }
+            }
+            return 0;
+        }
+        void OnMultiTap(float currentValue, bool tapped)
         {
             multiTapMeter.fillAmount = Remap.remap(currentValue, 0, handShakeSO.multiTapLimit, 0, 1);
+            if (tapped)
+            {
+                player.GetComponent<Animator>().Play(handShakeSO.player[currentSequenceIndex].ToString());
+                enemy.GetComponent<Animator>().Play(handShakeSO.enemy[currentSequenceIndex].ToString());
+            }
+            float animationSpeed = Remap.remap(currentValue, 0, handShakeSO.multiTapLimit, 1, handShakeSO.animationMaxSpeed);
+            player.GetComponent<Animator>().speed = animationSpeed;
+            enemy.GetComponent<Animator>().speed = animationSpeed;
         }
 
         void InputAssinged(TouchInputType type)
@@ -151,15 +197,38 @@ namespace PrisonControl
         {
             multiTapMeter.transform.parent.gameObject.SetActive(false);
             isMultiTaping = false;
+            player.GetComponent<Animator>().speed = 1f;
+            enemy.GetComponent<Animator>().speed = 1f;
         }
         void ColorUI()
         {
             sequenceUI[currentSequenceIndex].transform.GetChild(0).GetComponent<Image>().color = Color.green;
         }
 
+        void SetInputStatus(bool status)
+        {
+            GetComponent<TouchInputs>().enabled = status;
+        }
+
+        void OnAnimationPlay(float activateTime)
+        {
+            swipeInstructions.gameObject.SetActive(false);
+            SetInputStatus(false);
+
+            Timer.Delay(activateTime, () =>
+            {
+                swipeInstructions.gameObject.SetActive(true);
+                SetInputStatus(true);
+            });
+        }
+
         void LevelEnd()
         {
-            Debug.Log("Level End");
+            Timer.Delay(1f, () =>
+            {
+                playPhasesControl._OnPhaseFinished();
+                Reset();
+            });
         }
     }
 }

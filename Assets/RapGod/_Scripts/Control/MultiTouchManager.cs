@@ -11,7 +11,7 @@ public class MultiTouchManager : MonoBehaviour
     public event System.Action<TouchInputType> onInputAssignedWithType;
     public event System.Action<TouchInputType> onInputRemovedWithType;
     //public event System.Action<int> onInputRaisedWithIndex;
-    public event System.Action<float> onMultiTaping;
+    public event System.Action<float,bool> onMultiTaping;
 
     [Expandable]
     public InputSequenceSO inputSequence;
