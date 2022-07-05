@@ -33,16 +33,42 @@ public class AgentUIPanel : MonoBehaviour, IBeginDragHandler, IDragHandler, IEnd
     public void OnEndDrag(PointerEventData eventData)
     {
         Debug.Log("Drag Ended");
-        if (drag.x > 0 && PanelNum>=1)
-        {    
-            AgentUIManager.instance.AgentUI[PanelNum].GetComponent<RectTransform>().DOAnchorPos(new Vector2(700, 0), 0.5f);
-            AgentUIManager.instance.AgentUI[PanelNum-1].GetComponent<RectTransform>().DOAnchorPos(new Vector2(0, 0), 0.5f);
+        if (drag.x > 0  /*&& PanelNum>=1*/)
+        {
+            Debug.Log("Right");
+            if(PanelNum == 1)
+            {
+                AgentUIManager.instance.AgentUI[PanelNum+1].GetComponent<RectTransform>().DOAnchorPos(new Vector2(1400, 0), 0.5f);
+                AgentUIManager.instance.AgentUI[PanelNum].GetComponent<RectTransform>().DOAnchorPos(new Vector2(700, 0), 0.5f);
+                AgentUIManager.instance.AgentUI[PanelNum - 1].GetComponent<RectTransform>().DOAnchorPos(new Vector2(0, 0), 0.5f);
+            }
+            if(PanelNum == 2)
+            {
+                AgentUIManager.instance.AgentUI[PanelNum].GetComponent<RectTransform>().DOAnchorPos(new Vector2(700, 0), 0.5f);
+                AgentUIManager.instance.AgentUI[PanelNum - 1].GetComponent<RectTransform>().DOAnchorPos(new Vector2(0, 0), 0.5f);
+                AgentUIManager.instance.AgentUI[PanelNum - 2].GetComponent<RectTransform>().DOAnchorPos(new Vector2(-700, 0), 0.5f);
+
+            }
+            //AgentUIManager.instance.AgentUI[PanelNum].GetComponent<RectTransform>().DOAnchorPos(new Vector2(700, 0), 0.5f);
+            //AgentUIManager.instance.AgentUI[PanelNum-1].GetComponent<RectTransform>().DOAnchorPos(new Vector2(0, 0), 0.5f);
 
         }
-        if (drag.x < 0 && PanelNum<=1)
+        if (drag.x < 0  /*&& PanelNum<=1*/)
         {
-            AgentUIManager.instance.AgentUI[PanelNum].GetComponent<RectTransform>().DOAnchorPos(new Vector2(-700, 0), 0.5f); 
-            AgentUIManager.instance.AgentUI[PanelNum + 1].GetComponent<RectTransform>().DOAnchorPos(new Vector2(0, 0), 0.5f);
+            if (PanelNum == 1)
+            {
+                AgentUIManager.instance.AgentUI[PanelNum - 1].GetComponent<RectTransform>().DOAnchorPos(new Vector2(-1400, 0), 0.5f);
+                AgentUIManager.instance.AgentUI[PanelNum].GetComponent<RectTransform>().DOAnchorPos(new Vector2(-700, 0), 0.5f);
+                AgentUIManager.instance.AgentUI[PanelNum + 1].GetComponent<RectTransform>().DOAnchorPos(new Vector2(0, 0), 0.5f);
+            }
+            if(PanelNum == 0)
+            {
+                AgentUIManager.instance.AgentUI[PanelNum].GetComponent<RectTransform>().DOAnchorPos(new Vector2(-700, 0), 0.5f);
+                AgentUIManager.instance.AgentUI[PanelNum + 1].GetComponent<RectTransform>().DOAnchorPos(new Vector2(0, 0), 0.5f);
+                AgentUIManager.instance.AgentUI[PanelNum + 2].GetComponent<RectTransform>().DOAnchorPos(new Vector2(700, 0), 0.5f);
+            }
+            //AgentUIManager.instance.AgentUI[PanelNum].GetComponent<RectTransform>().DOAnchorPos(new Vector2(-700, 0), 0.5f); 
+            //AgentUIManager.instance.AgentUI[PanelNum + 1].GetComponent<RectTransform>().DOAnchorPos(new Vector2(0, 0), 0.5f);
         }
     }
 
