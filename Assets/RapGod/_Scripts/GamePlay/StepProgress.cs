@@ -49,7 +49,7 @@ public class StepProgress : MonoBehaviour
         currentIndex = 0;
         for (int i = 0; i < progressStep.Count; i++)
         {
-            Destroy(progressStep[i]);
+            Destroy(progressStep[i].transform.parent.gameObject);
         }
         progressStep.Clear();
     }

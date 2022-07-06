@@ -1,0 +1,23 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 55c91730e4923cf48bd2b8f9f6b3d5b4, type: 3}
+  m_Name: Street Rap Lvl 8
+  m_EditorClassIdentifier: 
+  enemyCharacter: {fileID: 6956294104391653982, guid: 4dbc4bd260c97a14fb97a5f9bd73891e, type: 3}
+  environment: {fileID: 11400000, guid: 93044156b67ed684cb5d2b3e55e18ead, type: 2}
+  rapBattleLyricSO: {fileID: 11400000, guid: 30229e4bef0cf5c4fa7b93373a49d96b, type: 2}
+  inputSequence: {fileID: 11400000, guid: 5f80157deb080694a97267cbb17935dc, type: 2}
+  rapAnimation: 0
+  rapPose: 1
+  punchLine: Punch Line Insert
+  tapSmashLimit: 20
+  maxAnimationSpeed: 3

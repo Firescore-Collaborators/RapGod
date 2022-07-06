@@ -549,6 +549,7 @@ namespace PrisonControl
             hintText.transform.parent.gameObject.SetActive(false);
             stepProgress.Reset();
             audienceManager.Reset();
+            rapWordNo = 0;
         }
 
         void PlayAudio(bool correct)
