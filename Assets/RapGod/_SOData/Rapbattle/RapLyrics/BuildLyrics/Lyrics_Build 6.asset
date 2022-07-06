@@ -1,0 +1,49 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cea2552ad22dd1a4aafb532f8d0c59e5, type: 3}
+  m_Name: Lyrics_Build 6
+  m_EditorClassIdentifier: 
+  leveldata:
+  - RapString: 'Figure me out? Nah! you got no ______  '
+    OptionA: Clout
+    OptionB: Passion
+    MarkWord: out
+    CorrectAnswer: 1
+    hintLine: 'Rhyme: Out'
+  - RapString: 'You are non-threatening, a flimsy ______ '
+    OptionA: Waterspout
+    OptionB: Earthquake
+    MarkWord: ' '
+    CorrectAnswer: 1
+    hintLine: 'Meaning: A column of rotating cloud filled wind'
+  - RapString: Got found out, you ______  Shut your stupid mouth
+    OptionA: Pig
+    OptionB: Trout
+    MarkWord: ' '
+    CorrectAnswer: 2
+    hintLine: 'Hint: A freshwater fish'
+  - RapString: "Open it again and I\u2019ll put a ______  in no doubt"
+    OptionA: Sock
+    OptionB: Human
+    MarkWord: ' '
+    CorrectAnswer: 1
+    hintLine: 'Hint: Can be made with cotton'
+  rapLyricsAudio:
+  - correctLyrics: {fileID: 8300000, guid: 6876a2daedebcc7468d13627a35c7e65, type: 3}
+    wrongLyrics: {fileID: 8300000, guid: 43f62d3efe1e890498d95a9d80bc3769, type: 3}
+  - correctLyrics: {fileID: 8300000, guid: 8ac7cd0b51147ef4185965694d0b6171, type: 3}
+    wrongLyrics: {fileID: 8300000, guid: 1230686c510c6ae40a0978bc71cdae71, type: 3}
+  - correctLyrics: {fileID: 8300000, guid: 44d19e0d46df33047bf0c0d9b3fa8441, type: 3}
+    wrongLyrics: {fileID: 8300000, guid: 3a09bcb538b2a294ba872fbf110e422f, type: 3}
+  - correctLyrics: {fileID: 8300000, guid: abbf9405c9815ab42a1ca8ec103c3a49, type: 3}
+    wrongLyrics: {fileID: 8300000, guid: afc398cccce9fb04680d10037ccc71b9, type: 3}
+  bgm: {fileID: 8300000, guid: 9eb3668b5590e1246a3cc9d1547cd138, type: 3}

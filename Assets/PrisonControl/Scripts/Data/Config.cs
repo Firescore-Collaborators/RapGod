@@ -24,7 +24,8 @@ namespace PrisonControl
 
         public static readonly int[] LEVELS_PER_DAYEND =
         {
-            3, 5 , 8 , 11 , 15 , 18 , 21 , 25 , 28 , 32 , 36 , 43 , 47 , 50 , 53 , 58 ,61 , 65 , 68 , 69
+            //3, 5 , 8 , 11 , 15 , 18 , 21 , 25 , 28 , 32 , 36 , 43 , 47 , 50 , 53 , 58 ,61 , 65 , 68 , 69
+            1,2,3,4,5,6,7,8,9,10
         };
 
         public static readonly int[] INTERIOR_PRICES =

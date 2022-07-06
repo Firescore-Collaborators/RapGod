@@ -115,6 +115,22 @@ public class AudienceManager : MonoBehaviour
 
     }
 
+    public void OnGameEnd()
+    {
+        for (int i = 0; i < AudienceContainer.transform.childCount; i++)
+        {
+            AudienceContainer.transform.GetChild(i).gameObject.transform.GetChild(1).GetComponent<Animator>().Play("CheeringLoop");
+        }
+    }
+
+    public void Reset()
+    {
+        for (int i = 0; i < AudienceContainer.transform.childCount; i++)
+        {
+            AudienceContainer.transform.GetChild(i).gameObject.transform.GetChild(1).GetComponent<Animator>().Play("Idle");
+        }
+    }
+
     public void OnShoot()
     {
         StartCoroutine(ThrowObject());

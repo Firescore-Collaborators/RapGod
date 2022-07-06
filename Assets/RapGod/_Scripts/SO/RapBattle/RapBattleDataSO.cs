@@ -9,6 +9,7 @@ public enum RapAnimation
 public enum RapPose
 {
     layingDown,
+    WaveHipHop
 }
 
 [CreateAssetMenu(fileName = "RapBattleDataSO", menuName = "RapBattle/RapBattle/RapBattleDataSO", order = 1)]

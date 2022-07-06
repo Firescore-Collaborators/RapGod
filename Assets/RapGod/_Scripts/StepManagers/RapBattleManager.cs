@@ -494,6 +494,7 @@ namespace PrisonControl
 
         void TapSmash()
         {
+            audienceManager.OnGameEnd();
             tapSmashPanel.gameObject.SetActive(true);
             stepProgress.gameObject.SetActive(false);
             multiTouchManager.onMultiTaping += OnMultiTap;
@@ -516,7 +517,7 @@ namespace PrisonControl
 
         void OnTapOver()
         {
-
+            player_anim.speed = 1;
             player_anim.CrossFade(rapData.rapPose.ToString(), 0.1f);
             //punchline.text = rapData.punchLine;
             //punchline.transform.parent.gameObject.SetActive(true);
@@ -547,6 +548,7 @@ namespace PrisonControl
             currentWrongCount = 0;
             hintText.transform.parent.gameObject.SetActive(false);
             stepProgress.Reset();
+            audienceManager.Reset();
         }
 
         void PlayAudio(bool correct)
