@@ -10,7 +10,7 @@ public class AudienceManager : MonoBehaviour
 
 
     [SerializeField]
-    private GameObject  PlayerContainer, EnemeyContainer;
+    private GameObject PlayerContainer, EnemeyContainer;
 
     [SerializeField]
     private Image progressBar, follower_img;
@@ -18,7 +18,7 @@ public class AudienceManager : MonoBehaviour
     [SerializeField]
     private Text playerFollower_text, EnemyFollower_text;
 
-    
+
     public GameObject EnemyHeadTarget, PlayerHeadTarget;
 
     [SerializeField]
@@ -27,10 +27,10 @@ public class AudienceManager : MonoBehaviour
     [SerializeField]
     private List<GameObject> PlayerAudience, EnemyAudience = new List<GameObject>();
 
-    private float  playerFollowerTarget, enemyFollowerTarget;
+    private float playerFollowerTarget, enemyFollowerTarget;
     float progressbarTarget;
+    bool playerWin;
 
-   
     // Start is called before the first frame update
     void Start()
     {
@@ -51,12 +51,12 @@ public class AudienceManager : MonoBehaviour
 
         playerFollower_text.text = "" + playerFollower.ToString("F1") + " k";
         EnemyFollower_text.text = "" + enemyFollower.ToString("F1") + " k";
-        
+
     }
 
     public void OnMovePlayerSide(int _no)
     {
-        audienceNo++;
+        //audienceNo++;
         for (int i = 0; i < AudienceContainer.transform.childCount; i++)
         {
             AudienceContainer.transform.GetChild(i).gameObject.transform.GetChild(1).GetComponent<Animator>().SetTrigger("Cheering");
@@ -77,17 +77,17 @@ public class AudienceManager : MonoBehaviour
         //}
 
         //  progressbarTarget = ((float)playerNo) / ((float)(playerNo + enemyNo));
-        progressbarTarget = progressbarTarget + 0.1f;
-        playerFollowerTarget = progressbarTarget * 100;
-        enemyFollowerTarget = (1 -progressbarTarget ) * 100;
+        // progressbarTarget = progressbarTarget + 0.1f;
+        // playerFollowerTarget = progressbarTarget * 100;
+        // enemyFollowerTarget = (1 -progressbarTarget ) * 100;
 
-        StartCoroutine(OnFollowerChange(Color.green));
+        // StartCoroutine(OnFollowerChange(Color.green));
 
     }
-    
+
     public void OnMoveEnemySide(int _no)
     {
-        audienceNo++;
+        //audienceNo++;
         //for (int i = 0; i < AudienceContainer.transform.childCount; i++)
         //{
         //    AudienceContainer.transform.GetChild(i).gameObject.transform.GetChild(1).GetComponent<Animator>().SetTrigger("Cheering");
@@ -107,12 +107,12 @@ public class AudienceManager : MonoBehaviour
         //}
 
         //   progressbarTarget = ((float)playerNo) / ((float)(playerNo + enemyNo));
-        progressbarTarget = progressbarTarget - 0.1f;
-        playerFollowerTarget = progressbarTarget * 100;
-        enemyFollowerTarget = (1 - progressbarTarget) * 100;
+        // progressbarTarget = progressbarTarget - 0.1f;
+        // playerFollowerTarget = progressbarTarget * 100;
+        // enemyFollowerTarget = (1 - progressbarTarget) * 100;
 
-        StartCoroutine(OnFollowerChange(Color.white));
-       
+        // StartCoroutine(OnFollowerChange(Color.white));
+
     }
 
     public void OnShoot()
@@ -121,10 +121,11 @@ public class AudienceManager : MonoBehaviour
     }
 
 
-    public bool CheckWinner()
+    public bool CheckWinner(bool _playerWin)
     {
+        playerWin = _playerWin;
 
-        if (playerFollower > enemyFollower)
+        if (playerWin)
         {
             Invoke("OnShoot", 2f);
         }
@@ -133,36 +134,22 @@ public class AudienceManager : MonoBehaviour
             Invoke("OnShoot", 0.0f);
         }
         return true;
-       
+
     }
 
     IEnumerator ThrowObject()
     {
         // GameObject target = null;
 
-        if (playerFollower > enemyFollower)
+        for (int i = 0; i < 15; i++)
         {
-            for (int i = 0; i < 15; i++)
-            {
-
-                AudienceContainer.transform.GetChild(i).GetComponent<Audience>().OnShoot(EnemyHeadTarget);
-                //  Instantiate(throwablePrefab,)
-                yield return new WaitForSeconds(0.1f);
-            }
-        }
-        else
-        {
-            for (int i = 0; i < 15; i++)
-            {
-
-                AudienceContainer.transform.GetChild(i).GetComponent<Audience>().OnShoot(PlayerHeadTarget);
-                //  Instantiate(throwablePrefab,)
-                yield return new WaitForSeconds(0.1f);
-            }
+            AudienceContainer.transform.GetChild(i).GetComponent<Audience>().OnShoot(playerWin ? EnemyHeadTarget : PlayerHeadTarget);
+            //  Instantiate(throwablePrefab,)
+            yield return new WaitForSeconds(0.1f);
         }
     }
 
-    IEnumerator OnFollowerChange( Color _col)
+    IEnumerator OnFollowerChange(Color _col)
     {
         playerFollower_text.color = _col;
         // follower_img.transform.localScale;

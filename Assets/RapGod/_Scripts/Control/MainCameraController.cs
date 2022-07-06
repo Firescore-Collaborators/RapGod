@@ -9,7 +9,15 @@ public class MainCameraController : MonoBehaviour
 
     public static MainCameraController instance;
     public List<CinemachineVirtualCamera> cameras = new List<CinemachineVirtualCamera> ();
+    private CinemachineVirtualCamera currentCamera;
 
+    public CinemachineVirtualCamera CurrentCamera
+    {
+        get
+        {
+            return currentCamera;
+        }
+    }
 
     private void Awake() {
         if(instance == null) {
@@ -46,9 +54,10 @@ public class MainCameraController : MonoBehaviour
     public void SetCurrentCamera(string camera, float blendSpeed = 1)
     {
         SetCameraZero();
-        CinemachineVirtualCamera currentCamera = transform.Find(camera).GetComponent<CinemachineVirtualCamera>();
+        currentCamera = transform.Find(camera).GetComponent<CinemachineVirtualCamera>();
         SetBlendSpeed(blendSpeed);
         currentCamera.Priority = 15;
+
     }
 
     void SetBlendSpeed(float blendSpeed)

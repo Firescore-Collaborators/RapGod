@@ -25,7 +25,7 @@ namespace PrisonControl
 
         public PlayPhasesControl m_playPhaseControl;
 
-        public AudioSource lyricsAudioSource,bgmAudioSource;
+        public AudioSource lyricsAudioSource, bgmAudioSource;
 
         [SerializeField]
         private GameObject OptionPanle, PopUpPanle, winnerConfitti, initialPopUpPos;
@@ -72,6 +72,17 @@ namespace PrisonControl
         private GameObject homePanle, rewardPanle;
 
         public RapBattleDataSO rapData;
+        public Transform tapSmashPanel;
+        public Text punchline;
+        public Image hypeMeter;
+        public StepProgress stepProgress;
+        MultiTouchManager multiTouchManager
+        {
+            get
+            {
+                return GetComponent<MultiTouchManager>();
+            }
+        }
 
         // [SerializeField]
         // private Color[] FogColor, lightColor, planeColor;
@@ -84,11 +95,13 @@ namespace PrisonControl
         int rapWordNo;
         bool print = false;
         float duration, durationTarget;
+        int currentCorrectCount;
+        int currentWrongCount;
         int sideNo;
         String answer;
         bool removedLetter;
         Vector3 popUpPos;
-        int currentLyric; 
+        int currentLyric;
 
         private void OnEnable()
         {
@@ -138,9 +151,12 @@ namespace PrisonControl
 
         void InitLevelData()
         {
-            Level_SO level = m_playPhaseControl.levels[Progress.Instance.CurrentLevel-1];
+            Level_SO level = m_playPhaseControl.levels[Progress.Instance.CurrentLevel - 1];
             rapData = level.GetRapBattleSO;
             environmentType = level.GetRapBattleSO.environment.envType;
+            multiTouchManager.inputSequence = level.GetRapBattleSO.inputSequence;
+            GetComponent<TouchInputs>().multiTapLimit = level.GetRapBattleSO.tapSmashLimit;
+            stepProgress.Init(rapData.rapBattleLyricSO.leveldata.Count);
         }
         public void OnNextRapWord()
         {
@@ -155,6 +171,7 @@ namespace PrisonControl
 
             MakeColorText(DummyText, rapData.rapBattleLyricSO.leveldata[rapWordNo].MarkWord);
             PopUpPanle.SetActive(true);
+            stepProgress.ActivateCurrentStep();
         }
 
         void MakeColorText(TMP_Text _text, string _word)
@@ -199,7 +216,7 @@ namespace PrisonControl
 
         void NextLevel()
         {
-            if(Input.GetKeyDown(KeyCode.Space))
+            if (Input.GetKeyDown(KeyCode.Space))
             {
                 OnReset();
                 OnLevelEnd();
@@ -209,32 +226,15 @@ namespace PrisonControl
         private void Update()
         {
             NextLevel();
+            if (Input.GetKeyDown(KeyCode.F1))
+            {
+                StartTapSmash();
+            }
+            PrintTextEffect();
+        }
 
-            //if (Input.GetMouseButtonDown(1))
-            //{
-            //    hand[0].gameObject.SetActive(true);
-
-            //}
-
-            //if (Input.GetMouseButtonDown(0))
-            //{
-            //    hand[0].gameObject.SetActive(false);
-            //    hand[1].gameObject.SetActive(true);
-
-            //}
-
-            //if (Input.GetMouseButtonUp(0))
-            //{
-            //    hand[1].gameObject.SetActive(false);
-
-            //}
-
-            //Vector2 mousePosition = Input.mousePosition;
-            //hand[0].transform.position = mousePosition;
-            //hand[1].transform.position = mousePosition;
-
-
-
+        void PrintTextEffect()
+        {
             if (print && textNo < rapChar.Count)
             {
                 duration += Time.deltaTime;
@@ -287,14 +287,15 @@ namespace PrisonControl
                     if (textNo == rapChar.Count - 1)
                     {
                         print = false;
+                        stepProgress.UpdateStep(sideNo == 1 ? true : false);
                         if (sideNo == 1)
                         {
-
+                            currentCorrectCount++;
                             audienceManager.OnMovePlayerSide(0);
                         }
                         else
                         {
-
+                            currentWrongCount++;
                             audienceManager.OnMoveEnemySide(0);
                         }
                         Invoke("OnReset", 1f);
@@ -428,27 +429,13 @@ namespace PrisonControl
             removedLetter = false;
             textNo = 0;
             PopUpPanle.SetActive(false);
-            
+
 
             if (rapData.rapBattleLyricSO.leveldata.Count <= rapWordNo)
             {
                 rapWordNo = 0;
-
-                /*int no = PlayerPrefs.GetInt("LevelNo", 1);
-                no++;
-                PlayerPrefs.SetInt("LevelNo", no);
-
-                levelNo = PlayerPrefs.GetInt("Level", 0);
-                levelNo++;
-
-                if (levelNo >= levels.Count)
-                {
-                    levelNo = 0;
-                }
-                PlayerPrefs.SetInt("Level", levelNo);
-                */
-
-                if (!audienceManager.CheckWinner())
+                bool playerWin = currentCorrectCount >= currentWrongCount ? true : false;
+                if (!audienceManager.CheckWinner(playerWin))
                 {
 
                 }
@@ -456,7 +443,7 @@ namespace PrisonControl
                 {
                     ui_anim.enabled = true;
 
-                    if (audienceManager.playerFollower > audienceManager.enemyFollower)
+                    if (playerWin)
                     {
                         ui_anim.SetTrigger("win");
                         winnerConfitti.SetActive(true);
@@ -477,7 +464,7 @@ namespace PrisonControl
                     }
                 }
 
-                Invoke("OnLevelEnd", 6f);
+                Invoke("TapSmash", 6f);
             }
             else
             {
@@ -485,6 +472,45 @@ namespace PrisonControl
             }
         }
 
+        void StartTapSmash()
+        {
+            rapWordNo = 100;
+            OnReset();
+        }
+
+        void TapSmash()
+        {
+            tapSmashPanel.gameObject.SetActive(true);
+            stepProgress.gameObject.SetActive(false);
+            multiTouchManager.onMultiTaping += OnMultiTap;
+            multiTouchManager.onInputRaised += OnTapOver;
+            multiTouchManager.Init();
+        }
+
+        void OnMultiTap(float value, bool tapped)
+        {
+            hypeMeter.fillAmount = Remap.remap(value, 0, rapData.tapSmashLimit, 0, 1);
+            player_anim.speed = Remap.remap(value, 0, rapData.tapSmashLimit, 1, rapData.maxAnimationSpeed);
+            if (tapped)
+            {
+                player_anim.Play(rapData.rapAnimation.ToString());
+                //print(MainCameraController.instance.CurrentCamera.transform);
+                GetComponent<CameraShake>().Shake(MainCameraController.instance.CurrentCamera.transform);
+            }
+        }
+
+        void OnTapOver()
+        {
+            player_anim.CrossFade(rapData.rapPose.ToString(), 0.1f);
+            punchline.text = rapData.punchLine;
+            punchline.transform.parent.gameObject.SetActive(true);
+            hypeMeter.fillAmount = 0;
+            tapSmashPanel.gameObject.SetActive(false);
+            Timer.Delay(6f, () =>
+            {
+                OnLevelEnd();
+            });
+        }
 
         void OnLevelEnd()
         {
@@ -499,6 +525,10 @@ namespace PrisonControl
             EnvironmentList.instance.SwitchOffEnvironment();
             Destroy(spawnPosition.enemyPos.transform.GetChild(0).gameObject);
             Destroy(spawnPosition.playerPos.transform.GetChild(0).gameObject);
+            punchline.transform.parent.gameObject.SetActive(false);
+            currentCorrectCount = 0;
+            currentWrongCount = 0;
+            stepProgress.Reset();
         }
 
         void PlayAudio(bool correct)
@@ -507,7 +537,7 @@ namespace PrisonControl
             {
                 lyricsAudioSource.Stop();
             }
-            lyricsAudioSource.clip = correct == true ? rapData.rapBattleLyricSO.rapLyricsAudio[currentLyric].correctLyrics: rapData.rapBattleLyricSO.rapLyricsAudio[currentLyric].wrongLyrics;
+            lyricsAudioSource.clip = correct == true ? rapData.rapBattleLyricSO.rapLyricsAudio[currentLyric].correctLyrics : rapData.rapBattleLyricSO.rapLyricsAudio[currentLyric].wrongLyrics;
             Timer.Delay(1.5f, () =>
             {
                 lyricsAudioSource.Play();

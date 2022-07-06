@@ -1,0 +1,65 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cea2552ad22dd1a4aafb532f8d0c59e5, type: 3}
+  m_Name: Lyrics2
+  m_EditorClassIdentifier: 
+  leveldata:
+  - RapString: 'I''m a up an coming rapper, a superstar ______ '
+    OptionA: trapper
+    OptionB: strong
+    MarkWord: rapper
+    CorrectAnswer: 1
+  - RapString: 'When you see me on the street, you ______  looking dapper '
+    OptionA: noodles
+    OptionB: see me
+    MarkWord: see me
+    CorrectAnswer: 2
+  - RapString: 'Rodgers, is a packer, anonymous is a  ______ '
+    OptionA: hacker
+    OptionB: in
+    MarkWord: packer
+    CorrectAnswer: 1
+  - RapString: 'All you mumble rap boys can put your music in the ______ '
+    OptionA: crying
+    OptionB: crapper
+    MarkWord: ' '
+    CorrectAnswer: 2
+  rapLyricsAudio:
+  - correctLyrics: {fileID: 8300000, guid: ccf7b74eb72b56a478906a3881da8f50, type: 3}
+    wrongLyrics: {fileID: 0}
+  - correctLyrics: {fileID: 8300000, guid: e0e5f9538390b6e4db88bd04d69825bc, type: 3}
+    wrongLyrics: {fileID: 0}
+  - correctLyrics: {fileID: 8300000, guid: f35d842ee7595d04b81ec8c2b38e35fe, type: 3}
+    wrongLyrics: {fileID: 0}
+  - correctLyrics: {fileID: 8300000, guid: 17312057820408844a0512ce41d33003, type: 3}
+    wrongLyrics: {fileID: 0}
+  - correctLyrics: {fileID: 8300000, guid: b2b827a4b3cb35049b945002295fca94, type: 3}
+    wrongLyrics: {fileID: 0}
+  - correctLyrics: {fileID: 8300000, guid: 1d6631ebf81466f4db829b3dde85db5f, type: 3}
+    wrongLyrics: {fileID: 0}
+  - correctLyrics: {fileID: 8300000, guid: 29527886a492d414188b926ba1189452, type: 3}
+    wrongLyrics: {fileID: 0}
+  - correctLyrics: {fileID: 8300000, guid: 9f74cfd222080c94f9e21267dc4db77c, type: 3}
+    wrongLyrics: {fileID: 0}
+  - correctLyrics: {fileID: 8300000, guid: c2b0eed75f617354dae95854423a5263, type: 3}
+    wrongLyrics: {fileID: 0}
+  - correctLyrics: {fileID: 8300000, guid: 3f342377524b91849a4b5b5b93902a53, type: 3}
+    wrongLyrics: {fileID: 0}
+  - correctLyrics: {fileID: 8300000, guid: 529d1315e6860804baf6efdffc0837c7, type: 3}
+    wrongLyrics: {fileID: 0}
+  - correctLyrics: {fileID: 8300000, guid: fe47af3544b87ee4ebbf44dd3acb3606, type: 3}
+    wrongLyrics: {fileID: 0}
+  - correctLyrics: {fileID: 8300000, guid: fc7a78d2ee5c2794a9b1123cea29a185, type: 3}
+    wrongLyrics: {fileID: 0}
+  - correctLyrics: {fileID: 8300000, guid: dd445a65efba2d6478c1d8c703013ca4, type: 3}
+    wrongLyrics: {fileID: 0}
+  bgm: {fileID: 8300000, guid: f8c18f21a37004b4fa86874bb1748b18, type: 3}

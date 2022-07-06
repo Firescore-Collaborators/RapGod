@@ -34,6 +34,10 @@ public static class Utils
             selectedCharList = charList.maleCharacterList;
         }
         return Utils.SpawnChar(selectedCharList[0], Progress.Instance.AvatarType, pos);
+    }
 
+    public static Sprite NewSprite(Texture2D texture)
+    {
+        return Sprite.Create(texture, new Rect(0.0f, 0.0f, texture.width, texture.height), new Vector2(0.5f, 0.5f));
     }
 }

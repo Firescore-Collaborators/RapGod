@@ -18,8 +18,8 @@ public class TouchInputs : MonoBehaviour
     public event System.Action swipeDown;
     public event System.Action multiTapOver;
     public event System.Action<float, bool> multiTaping;
-    [SerializeField] Vector3 startMousePos;
-    [SerializeField] Vector3 currentMousePos;
+    Vector3 startMousePos;
+    Vector3 currentMousePos;
     bool onHeld;
     bool toCheckMultiTap = false;
     public float swipeThreshold = 100f;
