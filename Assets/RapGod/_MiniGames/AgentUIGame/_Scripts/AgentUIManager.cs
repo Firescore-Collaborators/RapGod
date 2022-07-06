@@ -8,6 +8,7 @@ public class AgentUIManager : MonoBehaviour
     public static AgentUIManager instance;
 
     public GameObject[] AgentUI;
+    public Transform CenterScreen;
 
     [SerializeField]
     public int AgentNum;
