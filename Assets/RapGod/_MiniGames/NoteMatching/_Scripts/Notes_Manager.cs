@@ -7,15 +7,28 @@ public class Notes_Manager : MonoBehaviour
 {
     public static Notes_Manager instance;
     public Transform endpoint1, endpoint2;
-    public GameObject WinPanel;
+    public GameObject WinPanel, squareParent;
 
     public GameObject[] grid, box;
+    public Tiles_SO tiles_SO;
 
     private void Awake()
     {
         if(instance == null)
         {
             instance = this;
+        }
+    }
+    int j;
+    private void OnEnable()
+    {
+        for (int i = 0; i < grid.Length; i++)
+        {
+            if (tiles_SO.box[i] != null)
+            {
+                box[j] = Instantiate(tiles_SO.box[i], grid[i].transform.position, Quaternion.identity, squareParent.transform);
+                j++;
+            }
         }
     }
 
