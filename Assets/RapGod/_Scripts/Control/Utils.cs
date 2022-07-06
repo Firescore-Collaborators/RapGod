@@ -36,6 +36,29 @@ public static class Utils
         return Utils.SpawnChar(selectedCharList[0], Progress.Instance.AvatarType, pos);
     }
 
+    public static GameObject SpawnEfx(Transform spawnPos, GameObject fx, bool onlyOne = false)
+    {
+        if (onlyOne)
+        {
+            if (spawnPos.childCount > 0)
+            {
+                GameObject.Destroy(spawnPos.GetChild(0).gameObject);
+            }
+        }
+
+        GameObject fxInstance = Utils.spawnGameObject(fx, spawnPos);
+        fxInstance.transform.parent = spawnPos;
+        //spawnedEfx.Add(fxInstance);
+        return fxInstance;
+    }
+
+    public static GameObject SpawnEfxWithDestroy(Transform spawnPos, GameObject fx, float destroyTime, bool onlyOne = false)
+    {
+        GameObject spawnedfx = SpawnEfx(spawnPos, fx, onlyOne);
+        GameObject.Destroy(spawnedfx, destroyTime);
+        return spawnedfx;
+    }
+
     public static Sprite NewSprite(Texture2D texture)
     {
         return Sprite.Create(texture, new Rect(0.0f, 0.0f, texture.width, texture.height), new Vector2(0.5f, 0.5f));

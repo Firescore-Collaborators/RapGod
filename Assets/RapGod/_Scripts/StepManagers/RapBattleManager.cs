@@ -24,6 +24,13 @@ namespace PrisonControl
         GameObject player, enemy;
 
         public PlayPhasesControl m_playPhaseControl;
+        HypeMeterFxController m_hypeMeterFxController
+        {
+            get
+            {
+                return GetComponent<HypeMeterFxController>();
+            }
+        }
 
         public AudioSource lyricsAudioSource, bgmAudioSource;
 
@@ -503,14 +510,17 @@ namespace PrisonControl
                 player_anim.Play(rapData.rapAnimation.ToString());
                 //print(MainCameraController.instance.CurrentCamera.transform);
                 GetComponent<CameraShake>().Shake(MainCameraController.instance.CurrentCamera.transform);
+                m_hypeMeterFxController.SpawnHypeAnimEndFx(1.5f);
             }
         }
 
         void OnTapOver()
         {
+
             player_anim.CrossFade(rapData.rapPose.ToString(), 0.1f);
-            punchline.text = rapData.punchLine;
-            punchline.transform.parent.gameObject.SetActive(true);
+            //punchline.text = rapData.punchLine;
+            //punchline.transform.parent.gameObject.SetActive(true);
+            m_hypeMeterFxController.SpawnFountainFx();
             hypeMeter.fillAmount = 0;
             tapSmashPanel.gameObject.SetActive(false);
             Timer.Delay(6f, () =>
