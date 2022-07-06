@@ -12,6 +12,10 @@ public class EqualizerManager : MonoBehaviour
 
     public GameObject[] Limit;
 
+    public bool GameOver;
+
+    int counter;
+
     private void Awake()
     {
         if(instance == null)
@@ -29,6 +33,24 @@ public class EqualizerManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        if (GameOver)
+            return;
+
+        counter = 0;
+
+        for (int i = 0; i < squares.Length; i++)
+        {
+            if (squares[i].GetComponent<SliderScript>().isMatched)
+            {
+                counter++;
+            }
+
+            if (counter == 5)
+            {
+                Debug.Log("Success");
+                GameOver = true;
+            }
+        }        
     }
+
 }

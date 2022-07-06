@@ -11,7 +11,7 @@ public class SliderScript : MonoBehaviour
 
     [SerializeField]
     public GameObject slider;
-    public bool onObject;
+    public bool onObject, isMatched;
     public int Reading;
 
     void OnMouseDown()
@@ -55,6 +55,9 @@ public class SliderScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (EqualizerManager.instance.GameOver)
+            return;
+
         if (!onObject)
             return;
 
@@ -65,17 +68,21 @@ public class SliderScript : MonoBehaviour
                 slider.transform.GetChild(i).GetComponent<Graphic>().color = Color.red;
                 currentIndex = i;
 
-                if(currentIndex == Reading)
+                if (currentIndex == Reading)
                 {
                     for (int j = 0; j <= i; j++)
                     {
                         slider.transform.GetChild(j).GetComponent<Graphic>().color = Color.green;
                     }
+                    isMatched = true;
                 }
                 else
                 {
                     for (int j = 0; j <= i; j++)
+                    {
                         slider.transform.GetChild(j).GetComponent<Graphic>().color = Color.red;
+                    }
+                    isMatched = false;
                 }
             }
 
