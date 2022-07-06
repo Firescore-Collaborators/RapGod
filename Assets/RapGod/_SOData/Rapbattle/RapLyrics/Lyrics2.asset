@@ -18,21 +18,25 @@ MonoBehaviour:
     OptionB: strong
     MarkWord: rapper
     CorrectAnswer: 1
+    hintLine: 'Rhyme : rapper'
   - RapString: 'When you see me on the street, you ______  looking dapper '
     OptionA: noodles
     OptionB: see me
     MarkWord: see me
     CorrectAnswer: 2
+    hintLine: See who?
   - RapString: 'Rodgers, is a packer, anonymous is a  ______ '
     OptionA: hacker
     OptionB: in
     MarkWord: packer
     CorrectAnswer: 1
+    hintLine: 'Rhyme : packer'
   - RapString: 'All you mumble rap boys can put your music in the ______ '
     OptionA: crying
     OptionB: crapper
     MarkWord: ' '
     CorrectAnswer: 2
+    hintLine: 'Synonym : toilet'
   rapLyricsAudio:
   - correctLyrics: {fileID: 8300000, guid: ccf7b74eb72b56a478906a3881da8f50, type: 3}
     wrongLyrics: {fileID: 0}

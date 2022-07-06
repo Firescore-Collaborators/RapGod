@@ -11,6 +11,7 @@ public class Levels
     public string OptionB;
     public String MarkWord;
     public int CorrectAnswer;
+    public string hintLine;
 }
 [Serializable]
 public class LevelData

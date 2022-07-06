@@ -73,7 +73,7 @@ namespace PrisonControl
 
         public RapBattleDataSO rapData;
         public Transform tapSmashPanel;
-        public Text punchline;
+        public Text punchline,hintText;
         public Image hypeMeter;
         public StepProgress stepProgress;
         MultiTouchManager multiTouchManager
@@ -168,7 +168,7 @@ namespace PrisonControl
             levelNo = PlayerPrefs.GetInt("Level", 0);
             popUp_text.text = "" + rapData.rapBattleLyricSO.leveldata[rapWordNo].RapString;
             DummyText.text = "<#161616>" + rapData.rapBattleLyricSO.leveldata[rapWordNo].RapString + "</color>";
-
+            hintText.text = rapData.rapBattleLyricSO.leveldata[rapWordNo].hintLine;
             MakeColorText(DummyText, rapData.rapBattleLyricSO.leveldata[rapWordNo].MarkWord);
             PopUpPanle.SetActive(true);
             stepProgress.ActivateCurrentStep();
