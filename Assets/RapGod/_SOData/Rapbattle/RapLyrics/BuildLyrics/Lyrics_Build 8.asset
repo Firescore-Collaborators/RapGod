@@ -43,13 +43,25 @@ MonoBehaviour:
     MarkWord: ' '
     CorrectAnswer: 1
     hintLine: 'Relate: Budwiser'
-  rapLyricsAudio:
-  - correctLyrics: {fileID: 8300000, guid: 6876a2daedebcc7468d13627a35c7e65, type: 3}
-    wrongLyrics: {fileID: 8300000, guid: 43f62d3efe1e890498d95a9d80bc3769, type: 3}
-  - correctLyrics: {fileID: 8300000, guid: 8ac7cd0b51147ef4185965694d0b6171, type: 3}
-    wrongLyrics: {fileID: 8300000, guid: 1230686c510c6ae40a0978bc71cdae71, type: 3}
-  - correctLyrics: {fileID: 8300000, guid: 44d19e0d46df33047bf0c0d9b3fa8441, type: 3}
-    wrongLyrics: {fileID: 8300000, guid: 3a09bcb538b2a294ba872fbf110e422f, type: 3}
-  - correctLyrics: {fileID: 8300000, guid: abbf9405c9815ab42a1ca8ec103c3a49, type: 3}
-    wrongLyrics: {fileID: 8300000, guid: afc398cccce9fb04680d10037ccc71b9, type: 3}
-  bgm: {fileID: 8300000, guid: 9eb3668b5590e1246a3cc9d1547cd138, type: 3}
+  - RapString: "I ______  and laughed cause he didn\u2019t know, that his wife was
+      also in my bed."
+    OptionA: ran
+    OptionB: running
+    MarkWord: ' '
+    CorrectAnswer: 1
+    hintLine: 'Hint: Past tense of run'
+  correctLyrics:
+  - {fileID: 8300000, guid: d215812a2fcf65647ad9e9d942fbc396, type: 3}
+  - {fileID: 8300000, guid: 188d9aad14287f1419814890d1c12aa6, type: 3}
+  - {fileID: 8300000, guid: 3dc5830c9bf5c2d4189c6aebaf599a37, type: 3}
+  - {fileID: 8300000, guid: 4a8e1d9074609b24bb88f8813f76e842, type: 3}
+  - {fileID: 8300000, guid: f505315078e77cc479f75e0b148ec9d4, type: 3}
+  - {fileID: 8300000, guid: 0f7858a9cc56fc1469c12b8a1a66171a, type: 3}
+  wrongLyrics:
+  - {fileID: 8300000, guid: 55f64ca88ea94aa4d971ed4b88f09dce, type: 3}
+  - {fileID: 8300000, guid: 2998e7e91fc5e87468910f2587299261, type: 3}
+  - {fileID: 8300000, guid: cb348280f968e624c9e74f8fae66f9e0, type: 3}
+  - {fileID: 8300000, guid: 72f83db52118c6449bc8917b0caad953, type: 3}
+  - {fileID: 8300000, guid: 4a5a5ba2053a12b4986053552ffff2c5, type: 3}
+  - {fileID: 8300000, guid: eca0c171257181447b79a9241a6ad083, type: 3}
+  bgm: {fileID: 8300000, guid: 89449ac582aed1746976efd76d82aeb6, type: 3}

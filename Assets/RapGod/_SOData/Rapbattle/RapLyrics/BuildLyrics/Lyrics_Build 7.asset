@@ -31,13 +31,12 @@ MonoBehaviour:
     MarkWord: ' '
     CorrectAnswer: 2
     hintLine: 'Hint: Tornado'
-  rapLyricsAudio:
-  - correctLyrics: {fileID: 8300000, guid: 6876a2daedebcc7468d13627a35c7e65, type: 3}
-    wrongLyrics: {fileID: 8300000, guid: 43f62d3efe1e890498d95a9d80bc3769, type: 3}
-  - correctLyrics: {fileID: 8300000, guid: 8ac7cd0b51147ef4185965694d0b6171, type: 3}
-    wrongLyrics: {fileID: 8300000, guid: 1230686c510c6ae40a0978bc71cdae71, type: 3}
-  - correctLyrics: {fileID: 8300000, guid: 44d19e0d46df33047bf0c0d9b3fa8441, type: 3}
-    wrongLyrics: {fileID: 8300000, guid: 3a09bcb538b2a294ba872fbf110e422f, type: 3}
-  - correctLyrics: {fileID: 8300000, guid: abbf9405c9815ab42a1ca8ec103c3a49, type: 3}
-    wrongLyrics: {fileID: 8300000, guid: afc398cccce9fb04680d10037ccc71b9, type: 3}
-  bgm: {fileID: 8300000, guid: 9eb3668b5590e1246a3cc9d1547cd138, type: 3}
+  correctLyrics:
+  - {fileID: 8300000, guid: 39df67b5bd22a574a81858b759891982, type: 3}
+  - {fileID: 8300000, guid: 53f7786252494a241b1e0e0985f81bb2, type: 3}
+  - {fileID: 8300000, guid: 0f65615c5cc2ee044abb8e3c5216ac55, type: 3}
+  wrongLyrics:
+  - {fileID: 8300000, guid: 6252627406fc3c548b479e1c68f83912, type: 3}
+  - {fileID: 8300000, guid: 448836e2fbb49ad4b88ffbb79e6ceac4, type: 3}
+  - {fileID: 8300000, guid: 7f30e765db7b802478e33b8c2ac692b4, type: 3}
+  bgm: {fileID: 8300000, guid: 7007b88c9590f454da12cf4ffe312226, type: 3}

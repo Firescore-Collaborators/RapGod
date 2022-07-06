@@ -37,13 +37,14 @@ MonoBehaviour:
     MarkWord: ' '
     CorrectAnswer: 2
     hintLine: 'Hint: Other name for jester'
-  rapLyricsAudio:
-  - correctLyrics: {fileID: 8300000, guid: 6876a2daedebcc7468d13627a35c7e65, type: 3}
-    wrongLyrics: {fileID: 8300000, guid: 43f62d3efe1e890498d95a9d80bc3769, type: 3}
-  - correctLyrics: {fileID: 8300000, guid: 8ac7cd0b51147ef4185965694d0b6171, type: 3}
-    wrongLyrics: {fileID: 8300000, guid: 1230686c510c6ae40a0978bc71cdae71, type: 3}
-  - correctLyrics: {fileID: 8300000, guid: 44d19e0d46df33047bf0c0d9b3fa8441, type: 3}
-    wrongLyrics: {fileID: 8300000, guid: 3a09bcb538b2a294ba872fbf110e422f, type: 3}
-  - correctLyrics: {fileID: 8300000, guid: abbf9405c9815ab42a1ca8ec103c3a49, type: 3}
-    wrongLyrics: {fileID: 8300000, guid: afc398cccce9fb04680d10037ccc71b9, type: 3}
-  bgm: {fileID: 8300000, guid: 9eb3668b5590e1246a3cc9d1547cd138, type: 3}
+  correctLyrics:
+  - {fileID: 8300000, guid: 39fb6daced921f84ebfcd13f4797714b, type: 3}
+  - {fileID: 8300000, guid: 61e2b953fc8225a4890872553e502c46, type: 3}
+  - {fileID: 8300000, guid: 5646f7861f94a6b41891ae11b11c37a5, type: 3}
+  - {fileID: 8300000, guid: 1c051ee9b4ce59947af4fa1013798fa0, type: 3}
+  wrongLyrics:
+  - {fileID: 8300000, guid: a5676ce2706e7124abb5adae0b70967e, type: 3}
+  - {fileID: 8300000, guid: 21688f4ea2434ab49a87facd1017be78, type: 3}
+  - {fileID: 8300000, guid: d82681db813802f43af75eec46017d24, type: 3}
+  - {fileID: 8300000, guid: c13fabae4c2196d4c976a0f327ebe8c7, type: 3}
+  bgm: {fileID: 8300000, guid: 1671ef80307837c4ea174b6544c9d8d1, type: 3}

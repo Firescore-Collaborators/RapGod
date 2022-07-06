@@ -37,13 +37,14 @@ MonoBehaviour:
     MarkWord: ' '
     CorrectAnswer: 1
     hintLine: 'Hint: Stan Lee worked here'
-  rapLyricsAudio:
-  - correctLyrics: {fileID: 8300000, guid: 6876a2daedebcc7468d13627a35c7e65, type: 3}
-    wrongLyrics: {fileID: 8300000, guid: 43f62d3efe1e890498d95a9d80bc3769, type: 3}
-  - correctLyrics: {fileID: 8300000, guid: 8ac7cd0b51147ef4185965694d0b6171, type: 3}
-    wrongLyrics: {fileID: 8300000, guid: 1230686c510c6ae40a0978bc71cdae71, type: 3}
-  - correctLyrics: {fileID: 8300000, guid: 44d19e0d46df33047bf0c0d9b3fa8441, type: 3}
-    wrongLyrics: {fileID: 8300000, guid: 3a09bcb538b2a294ba872fbf110e422f, type: 3}
-  - correctLyrics: {fileID: 8300000, guid: abbf9405c9815ab42a1ca8ec103c3a49, type: 3}
-    wrongLyrics: {fileID: 8300000, guid: afc398cccce9fb04680d10037ccc71b9, type: 3}
-  bgm: {fileID: 8300000, guid: 9eb3668b5590e1246a3cc9d1547cd138, type: 3}
+  correctLyrics:
+  - {fileID: 8300000, guid: 8734674ab0bf04e41964be1acf431bff, type: 3}
+  - {fileID: 8300000, guid: e0a84c7412cfb2b4a9dd0de53bcd23cd, type: 3}
+  - {fileID: 8300000, guid: a8e07ee9cadc2c54db1228dbaf7eaa78, type: 3}
+  - {fileID: 8300000, guid: b004cc97d56159e44b33a7bbecbf93db, type: 3}
+  wrongLyrics:
+  - {fileID: 8300000, guid: 05da0368df6db4c42be76e54bdcc8739, type: 3}
+  - {fileID: 8300000, guid: 1f99498706aba09489ecd0e740de70ab, type: 3}
+  - {fileID: 8300000, guid: 58af7793050c50e45975a17f7d3a8cb6, type: 3}
+  - {fileID: 8300000, guid: ccdb1a8f7fa0db44190cdc30be5832b6, type: 3}
+  bgm: {fileID: 8300000, guid: 8a5fbfa4d6f798843a28fc8ef776b457, type: 3}

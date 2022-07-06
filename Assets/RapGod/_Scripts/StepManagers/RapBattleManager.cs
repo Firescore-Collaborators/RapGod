@@ -557,7 +557,7 @@ namespace PrisonControl
             {
                 lyricsAudioSource.Stop();
             }
-            lyricsAudioSource.clip = correct == true ? rapData.rapBattleLyricSO.rapLyricsAudio[currentLyric].correctLyrics : rapData.rapBattleLyricSO.rapLyricsAudio[currentLyric].wrongLyrics;
+            lyricsAudioSource.clip = correct == true ? rapData.rapBattleLyricSO.correctLyrics[currentLyric] : rapData.rapBattleLyricSO.wrongLyrics[currentLyric];
             Timer.Delay(1.5f, () =>
             {
                 lyricsAudioSource.Play();

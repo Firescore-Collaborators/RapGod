@@ -37,13 +37,14 @@ MonoBehaviour:
     MarkWord: ' '
     CorrectAnswer: 1
     hintLine: 'Hint: Can be made with cotton'
-  rapLyricsAudio:
-  - correctLyrics: {fileID: 8300000, guid: 6876a2daedebcc7468d13627a35c7e65, type: 3}
-    wrongLyrics: {fileID: 8300000, guid: 43f62d3efe1e890498d95a9d80bc3769, type: 3}
-  - correctLyrics: {fileID: 8300000, guid: 8ac7cd0b51147ef4185965694d0b6171, type: 3}
-    wrongLyrics: {fileID: 8300000, guid: 1230686c510c6ae40a0978bc71cdae71, type: 3}
-  - correctLyrics: {fileID: 8300000, guid: 44d19e0d46df33047bf0c0d9b3fa8441, type: 3}
-    wrongLyrics: {fileID: 8300000, guid: 3a09bcb538b2a294ba872fbf110e422f, type: 3}
-  - correctLyrics: {fileID: 8300000, guid: abbf9405c9815ab42a1ca8ec103c3a49, type: 3}
-    wrongLyrics: {fileID: 8300000, guid: afc398cccce9fb04680d10037ccc71b9, type: 3}
-  bgm: {fileID: 8300000, guid: 9eb3668b5590e1246a3cc9d1547cd138, type: 3}
+  correctLyrics:
+  - {fileID: 8300000, guid: 080a012dea9303b468c76a03343d59ba, type: 3}
+  - {fileID: 8300000, guid: 1d0553c41fb385643a8909c1c4268751, type: 3}
+  - {fileID: 8300000, guid: dc421d460a2c48e469311f0a5170b0f4, type: 3}
+  - {fileID: 8300000, guid: 92c8730408ae2104ea1aebbd2a365cc8, type: 3}
+  wrongLyrics:
+  - {fileID: 8300000, guid: 1a1f1c67d35fa3a488c48df916360da8, type: 3}
+  - {fileID: 8300000, guid: a0daff66b4e5c114db8514e000d14866, type: 3}
+  - {fileID: 8300000, guid: a013a0a0413a0c34f8fbc55d0fc79b08, type: 3}
+  - {fileID: 8300000, guid: e2dfc6a081041f943823dcf73f2f88e0, type: 3}
+  bgm: {fileID: 8300000, guid: 117c5a0696ccd5d46ac3a4d8a3a4e520, type: 3}

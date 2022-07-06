@@ -37,13 +37,14 @@ MonoBehaviour:
     MarkWord: ' '
     CorrectAnswer: 1
     hintLine: 'Hint: Preposition'
-  rapLyricsAudio:
-  - correctLyrics: {fileID: 8300000, guid: 6876a2daedebcc7468d13627a35c7e65, type: 3}
-    wrongLyrics: {fileID: 8300000, guid: 43f62d3efe1e890498d95a9d80bc3769, type: 3}
-  - correctLyrics: {fileID: 8300000, guid: 8ac7cd0b51147ef4185965694d0b6171, type: 3}
-    wrongLyrics: {fileID: 8300000, guid: 1230686c510c6ae40a0978bc71cdae71, type: 3}
-  - correctLyrics: {fileID: 8300000, guid: 44d19e0d46df33047bf0c0d9b3fa8441, type: 3}
-    wrongLyrics: {fileID: 8300000, guid: 3a09bcb538b2a294ba872fbf110e422f, type: 3}
-  - correctLyrics: {fileID: 8300000, guid: abbf9405c9815ab42a1ca8ec103c3a49, type: 3}
-    wrongLyrics: {fileID: 8300000, guid: afc398cccce9fb04680d10037ccc71b9, type: 3}
-  bgm: {fileID: 8300000, guid: 9eb3668b5590e1246a3cc9d1547cd138, type: 3}
+  correctLyrics:
+  - {fileID: 8300000, guid: 7ed8738e419a8d849b6dfcb2898c1dea, type: 3}
+  - {fileID: 8300000, guid: c0a311b609f0016499698ca4d32e88c8, type: 3}
+  - {fileID: 8300000, guid: d0ed30bd26565c748bccd73b438dc73d, type: 3}
+  - {fileID: 8300000, guid: 623bc804c1ba6184888e185495fb1cc9, type: 3}
+  wrongLyrics:
+  - {fileID: 8300000, guid: 54b699ce4b9f5d548bbac8ab28726234, type: 3}
+  - {fileID: 8300000, guid: 6c8b29ec7d10f1a4aaa87527abaf64a1, type: 3}
+  - {fileID: 8300000, guid: 79b9dac9957115943a2fcf480db494e7, type: 3}
+  - {fileID: 8300000, guid: 09aaace8fafc2f147b912214ddfefa12, type: 3}
+  bgm: {fileID: 8300000, guid: 78e643260d1dda948bcefd9bd49fe51c, type: 3}

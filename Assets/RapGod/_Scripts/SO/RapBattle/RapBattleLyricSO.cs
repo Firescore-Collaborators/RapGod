@@ -30,7 +30,9 @@ public class RapLyricsAudio
 public class RapBattleLyricSO : ScriptableObject
 {
     public List<Levels> leveldata;
-    public List<RapLyricsAudio> rapLyricsAudio;
+    //public List<RapLyricsAudio> rapLyricsAudio;
+    public List<AudioClip> correctLyrics;
+    public List<AudioClip> wrongLyrics;
     public AudioClip bgm;
 
 }
