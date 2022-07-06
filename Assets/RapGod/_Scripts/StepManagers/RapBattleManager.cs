@@ -73,7 +73,7 @@ namespace PrisonControl
 
         public RapBattleDataSO rapData;
         public Transform tapSmashPanel;
-        public Text punchline,hintText;
+        public Text punchline, hintText;
         public Image hypeMeter;
         public StepProgress stepProgress;
         MultiTouchManager multiTouchManager
@@ -169,6 +169,10 @@ namespace PrisonControl
             popUp_text.text = "" + rapData.rapBattleLyricSO.leveldata[rapWordNo].RapString;
             DummyText.text = "<#161616>" + rapData.rapBattleLyricSO.leveldata[rapWordNo].RapString + "</color>";
             hintText.text = rapData.rapBattleLyricSO.leveldata[rapWordNo].hintLine;
+            Timer.Delay(1f, () =>
+            {
+                hintText.transform.parent.gameObject.SetActive(true);
+            });
             MakeColorText(DummyText, rapData.rapBattleLyricSO.leveldata[rapWordNo].MarkWord);
             PopUpPanle.SetActive(true);
             stepProgress.ActivateCurrentStep();
@@ -176,7 +180,7 @@ namespace PrisonControl
 
         void MakeColorText(TMP_Text _text, string _word)
         {
-            _text.text = _text.text.Replace(_word, "<#01FF00>" + _word + " </color>");
+            _text.text = _text.text.Replace(_word, "<#0ec005>" + _word + " </color>");
         }
 
         public void OnRequestShowOption()
@@ -346,6 +350,7 @@ namespace PrisonControl
                 _Answer.transform.parent.gameObject.GetComponent<Image>().sprite = sprites_btn[1];
                 PlayAudio(false);
             }
+            hintText.transform.parent.gameObject.SetActive(false);
         }
 
         public void OnSelectAnswer(TMP_Text _Answer)
@@ -367,7 +372,7 @@ namespace PrisonControl
 
             if (sideNo == 1)
             {
-                DummyText.text = DummyText.text.Replace("______", "<#01FF00>" + _Answer.text + " </color>");
+                DummyText.text = DummyText.text.Replace("______", "<#0ec005>" + _Answer.text + " </color>");
                 //_Answer.transform.parent.gameObject.GetComponent<Image>().sprite = sprites_btn[0];
                 Conffiti_btn.SetActive(true);
             }
@@ -386,8 +391,8 @@ namespace PrisonControl
             // string tempText = popUp_text.text;
             if (sideNo == 1)
             {
-                //  tempText = tempText.Replace("______", "<#01FF00>" + _Answer.text + " </color>");
-                answer = "<#01FF00>" + _Answer.text + " </color>";
+                //  tempText = tempText.Replace("______", "<#0ec005>" + _Answer.text + " </color>");
+                answer = "<#0ec005>" + _Answer.text + " </color>";
                 // audienceManager.OnMovePlayerSide(_Answer.text.Length);
             }
             else
@@ -406,6 +411,8 @@ namespace PrisonControl
             _Answer.gameObject.SetActive(true);
             OptionPanle.transform.GetChild(0).gameObject.SetActive(false);
             OptionPanle.transform.GetChild(1).gameObject.SetActive(false);
+            
+
             StopCoroutine("WaitAndPrint");
 
 
@@ -528,6 +535,7 @@ namespace PrisonControl
             punchline.transform.parent.gameObject.SetActive(false);
             currentCorrectCount = 0;
             currentWrongCount = 0;
+            hintText.transform.parent.gameObject.SetActive(false);
             stepProgress.Reset();
         }
 

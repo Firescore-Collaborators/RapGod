@@ -15,26 +15,27 @@ public class StepProgress : MonoBehaviour
         for (int i = 0; i < count; i++)
         {
             GameObject step = Instantiate(progressStepPrefab, transform);
-            if (i == 0)
-            {
-                step.transform.GetChild(0).GetComponent<Image>().sprite = Utils.NewSprite(progressStepUISO.leftTexture);
-            }
-            else
-            if (i == count - 1)
-            {
-                step.transform.GetChild(0).GetComponent<Image>().sprite = Utils.NewSprite(progressStepUISO.rightTexture);
-            }
-            else
-            {
-                step.transform.GetChild(0).GetComponent<Image>().sprite = Utils.NewSprite(progressStepUISO.centerTexture);
-            }
+            // if (i == 0)
+            // {
+            //     step.transform.GetChild(0).GetComponent<Image>().sprite = Utils.NewSprite(progressStepUISO.leftTexture);
+            // }
+            // else
+            // if (i == count - 1)
+            // {
+            //     step.transform.GetChild(0).GetComponent<Image>().sprite = Utils.NewSprite(progressStepUISO.rightTexture);
+            // }
+            // else
+            // {
+            //     step.transform.GetChild(0).GetComponent<Image>().sprite = Utils.NewSprite(progressStepUISO.centerTexture);
+            // }
             progressStep.Add(step.transform.GetChild(0).gameObject);
         }
     }
 
     public void UpdateStep(bool correct)
     {
-        progressStep[currentIndex].transform.GetChild(0).GetComponent<Image>().color = correct ?  correctColor : wrongColor;
+        //progressStep[currentIndex].transform.GetChild(0).GetComponent<Image>().color = correct ?  correctColor : wrongColor;
+        progressStep[currentIndex].transform.GetChild(correct ? 0 : 1).gameObject.SetActive(true);
         currentIndex++;
     }
 
@@ -46,7 +47,7 @@ public class StepProgress : MonoBehaviour
     public void Reset()
     {
         currentIndex = 0;
-        for(int i = 0; i < progressStep.Count; i++)
+        for (int i = 0; i < progressStep.Count; i++)
         {
             Destroy(progressStep[i]);
         }
