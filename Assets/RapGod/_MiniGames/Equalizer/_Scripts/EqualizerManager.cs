@@ -13,6 +13,7 @@ public class EqualizerManager : MonoBehaviour
     public GameObject[] Limit;
 
     public bool GameOver;
+    public GameObject WinPanel;
 
     int counter;
 
@@ -48,6 +49,7 @@ public class EqualizerManager : MonoBehaviour
             if (counter == 5)
             {
                 Debug.Log("Success");
+                WinPanel.SetActive(true);
                 GameOver = true;
             }
         }        
