@@ -1,0 +1,82 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cea2552ad22dd1a4aafb532f8d0c59e5, type: 3}
+  m_Name: Lyrics_Build 13
+  m_EditorClassIdentifier: 
+  leveldata:
+  - RapString: "This is ______ , a new rap it\u2019s chronic"
+    OptionA: Bad
+    OptionB: Iconic
+    MarkWord: ' '
+    CorrectAnswer: 2
+    hintLine: 'Rhyme: Tonic'
+  - RapString: ______ eyes and good laughs, getting you platonic
+    OptionA: Bread
+    OptionB: 'Red '
+    MarkWord: ' '
+    CorrectAnswer: 2
+    hintLine: 'Hint: A colour'
+  - RapString: You know you ______ it, and to keep us keep on it
+    OptionA: Want
+    OptionB: Got
+    MarkWord: ' '
+    CorrectAnswer: 1
+    hintLine: 'Rhyme: Taunt'
+  - RapString: Keep playing this ______ to day one and beyond it
+    OptionA: Game
+    OptionB: Book
+    MarkWord: ' '
+    CorrectAnswer: 1
+    hintLine: 'Hint: What you are playing'
+  - RapString: We be on it like ______ , writing them sonnets
+    OptionA: Monnet
+    OptionB: Shakespeare
+    MarkWord: ' '
+    CorrectAnswer: 2
+    hintLine: 'Hint: 16th century english playwright'
+  - RapString: 'Not take a break here, and keep it real ______ '
+    OptionA: Honest
+    OptionB: Lies
+    MarkWord: ' '
+    CorrectAnswer: 1
+    hintLine: 'Hint: keeping it 100'
+  - RapString: You do your ______ and keep playing this game
+    OptionA: Art
+    OptionB: Song
+    MarkWord: ' '
+    CorrectAnswer: 1
+    hintLine: 'Hint: Painting is an ____'
+  - RapString: "You\u2019ll see yourself with ______ , Chilling in fame. "
+    OptionA: Pusha-T
+    OptionB: Diddy
+    MarkWord: ' '
+    CorrectAnswer: 2
+    hintLine: Real name is Sean Combs
+  correctLyrics:
+  - {fileID: 8300000, guid: b9629eace00a7c14bb624ae9e7992005, type: 3}
+  - {fileID: 8300000, guid: b2d11d5e9cf9df34bb9eb784cbe497e9, type: 3}
+  - {fileID: 8300000, guid: df442b0a29046954ba9000fc61324300, type: 3}
+  - {fileID: 8300000, guid: 32bc4b2e9398c37429261eb25e3f5aa0, type: 3}
+  - {fileID: 8300000, guid: 707c0b59822987a43b0ebf627aa14415, type: 3}
+  - {fileID: 8300000, guid: 4a69726c7598f7a4d91257647248a486, type: 3}
+  - {fileID: 8300000, guid: 17e57423b664a0e41a19243fd17fadee, type: 3}
+  - {fileID: 8300000, guid: 9c3fbe55a4909e74f944f08174033f76, type: 3}
+  wrongLyrics:
+  - {fileID: 8300000, guid: d6cd105474499c54eae411c0eb5511a6, type: 3}
+  - {fileID: 8300000, guid: 673d036e395071b43b68d9d26d3e8008, type: 3}
+  - {fileID: 8300000, guid: 164b1f19b2eca044e89942307273cf18, type: 3}
+  - {fileID: 8300000, guid: 31b67daed68c67f46a65e5a1d58946f8, type: 3}
+  - {fileID: 8300000, guid: 2694b3ef2b9ed9042b576066189a3f6a, type: 3}
+  - {fileID: 8300000, guid: cadd107a443a0644e86169e2ab0a363c, type: 3}
+  - {fileID: 8300000, guid: 0c44f5eff7918f04e8e28deeae662abe, type: 3}
+  - {fileID: 8300000, guid: bc8209e1004ea5643a707ea8060781ff, type: 3}
+  bgm: {fileID: 8300000, guid: 451ed362f2df75245971f35259eb024c, type: 3}

@@ -1,0 +1,50 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cea2552ad22dd1a4aafb532f8d0c59e5, type: 3}
+  m_Name: Lyrics_Build 12
+  m_EditorClassIdentifier: 
+  leveldata:
+  - RapString: Self ______ Connecting words
+    OptionA: Obsessed
+    OptionB: Possessed
+    MarkWord: ' '
+    CorrectAnswer: 1
+    hintLine: 'Past tense: Obsess'
+  - RapString: Self ______ respecting her
+    OptionA: Expect
+    OptionB: Respect
+    MarkWord: ' '
+    CorrectAnswer: 2
+    hintLine: 'Present tense: Respected'
+  - RapString: 'Self concept a psychology ______ '
+    OptionA: Term
+    OptionB: Trick
+    MarkWord: ' '
+    CorrectAnswer: 1
+    hintLine: 'Rhyme: worm'
+  - RapString: Self ______ one day you'll learn
+    OptionA: Deceit
+    OptionB: Love
+    MarkWord: ' '
+    CorrectAnswer: 1
+    hintLine: 'Meaning: Dishonest Behaviour'
+  correctLyrics:
+  - {fileID: 8300000, guid: 4576a38fbab4f114cbb9dc4c7fb0683f, type: 3}
+  - {fileID: 8300000, guid: fd19d80a40a58454aa87709eda5a597d, type: 3}
+  - {fileID: 8300000, guid: a12fc31813b44f84dad24a36925cae3f, type: 3}
+  - {fileID: 8300000, guid: 5a2893729a06e8e4eb8ca6695d53f420, type: 3}
+  wrongLyrics:
+  - {fileID: 8300000, guid: 7ebe28f7a0ee091458503612b3989258, type: 3}
+  - {fileID: 8300000, guid: 64444367c95d5ef41820645ee9a39bd8, type: 3}
+  - {fileID: 8300000, guid: 2d1554ab776d3c944976ec1b4e89e5ee, type: 3}
+  - {fileID: 8300000, guid: ceeac51991f97c641985ee50c4f074f7, type: 3}
+  bgm: {fileID: 8300000, guid: cb1c8fdc65001a1428da2ce049327baf, type: 3}

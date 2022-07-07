@@ -15,6 +15,8 @@ namespace PrisonControl
         [SerializeField]
         private CharacterListSO characterList;
         [SerializeField]
+        private VFXSO vFXSO;
+        [SerializeField]
         private SpawnPosition spawnPosition;
 
         [SerializeField]
@@ -32,7 +34,7 @@ namespace PrisonControl
             }
         }
 
-        public AudioSource lyricsAudioSource, bgmAudioSource;
+        public AudioSource lyricsAudioSource, bgmAudioSource, sfx;
 
         [SerializeField]
         private GameObject OptionPanle, PopUpPanle, winnerConfitti, initialPopUpPos;
@@ -76,7 +78,7 @@ namespace PrisonControl
         private Sprite[] popUp_sprite;
 
         [SerializeField]
-        private GameObject homePanle, rewardPanle;
+        private GameObject homePanle, rewardPanle, rapFinishPanel;
 
         public RapBattleDataSO rapData;
         public Transform tapSmashPanel;
@@ -90,14 +92,16 @@ namespace PrisonControl
                 return GetComponent<MultiTouchManager>();
             }
         }
-        public RespondMessageController respondMessage;
+        public RespondMessageController respondMessageController;
 
         // [SerializeField]
         // private Color[] FogColor, lightColor, planeColor;
+        [NaughtyAttributes.Foldout("Audio")]
+        public AudioClip audienceCorrect, audienceWrong, answerCorrect, answerWrong, applauseLoop;
 
         [SerializeField]
         private MeshRenderer lightLObj, lightRObj, planeObj, stageObj, stageLightObj;
-
+        public static event  System.Action onTapped;
         int levelNo;
         int textNo;
         int rapWordNo;
@@ -189,7 +193,7 @@ namespace PrisonControl
             PopUpPanle.SetActive(true);
             stepProgress.ActivateCurrentStep();
         }
-        
+
         void MakeColorText(TMP_Text _text, string _word)
         {
             _text.text = _text.text.Replace(_word, "<#0ec005>" + _word + " </color>");
@@ -356,7 +360,7 @@ namespace PrisonControl
             if (sideNo == 1)
             {
                 _Answer.transform.parent.gameObject.GetComponent<Image>().sprite = sprites_btn[0];
-                respondMessage.ShowCorrectResponse();
+                respondMessageController.ShowCorrectResponse();
                 //PlayAudio(true);
                 //Conffiti_btn.SetActive(true);
             }
@@ -364,7 +368,7 @@ namespace PrisonControl
             {
                 //  ConffitiWrong_btn.SetActive(true);
                 _Answer.transform.parent.gameObject.GetComponent<Image>().sprite = sprites_btn[1];
-                respondMessage.ShowWrongResponse();
+                respondMessageController.ShowWrongResponse();
                 //PlayAudio(false);
             }
         }
@@ -379,12 +383,12 @@ namespace PrisonControl
             StartCoroutine(CheckAnswer(_Answer));
             PlayAudio(sideNo == 1 ? true : false);
             hintText.transform.parent.gameObject.SetActive(false);
-
+            PlaySfx(sideNo == 1 ? answerCorrect : answerWrong);
         }
 
         IEnumerator CheckAnswer(TMP_Text _Answer)
         {
-            
+
             LeanTween.move(PopUP_rect.gameObject, popUpPos, 1f);
 
             if (sideNo == 1)
@@ -423,12 +427,16 @@ namespace PrisonControl
 
             // _anim.SetBool("OnClicked",true);
             yield return new WaitForSeconds(0.7f);
+            Utils.SpawnEfxWithDestroy(EnvironmentList.instance.GetCurrentEnvironment.multiTapFx[0],vFXSO.musicNote1, 3f);
             textAnswer_anim[levelNo].gameObject.SetActive(false);
             OptionPanle.SetActive(false);
             _Answer.gameObject.SetActive(true);
             OptionPanle.transform.GetChild(0).gameObject.SetActive(false);
             OptionPanle.transform.GetChild(1).gameObject.SetActive(false);
-
+            Timer.Delay(1f, () =>
+            {
+                PlaySfx(sideNo == 1 ? audienceCorrect : audienceWrong);
+            });
 
             StopCoroutine("WaitAndPrint");
 
@@ -476,6 +484,7 @@ namespace PrisonControl
                         remarks.gameObject.SetActive(true);
                         player_anim.SetBool("win", true);
                         enemy_anim.SetBool("loose", true);
+                        respondMessageController.ShowCorrectRespone("WINNER MENTALITY !");
                     }
                     else
                     {
@@ -485,6 +494,7 @@ namespace PrisonControl
                         remarks.gameObject.SetActive(true);
                         player_anim.SetBool("loose", true);
                         enemy_anim.SetBool("win", true);
+                        respondMessageController.ShowWrongResponse("NO HYPE");
                     }
                 }
 
@@ -510,6 +520,8 @@ namespace PrisonControl
             multiTouchManager.onMultiTaping += OnMultiTap;
             multiTouchManager.onInputRaised += OnTapOver;
             multiTouchManager.Init();
+            onTapped+=Tapped;
+            m_hypeMeterFxController.InitParticleAndCount();
         }
 
         void OnMultiTap(float value, bool tapped)
@@ -518,19 +530,27 @@ namespace PrisonControl
             player_anim.speed = Remap.remap(value, 0, rapData.tapSmashLimit, 1, rapData.maxAnimationSpeed);
             if (tapped)
             {
-                player_anim.Play(rapData.rapAnimation.ToString());
-                //print(MainCameraController.instance.CurrentCamera.transform);
-                GetComponent<CameraShake>().Shake(MainCameraController.instance.CurrentCamera.transform);
-                m_hypeMeterFxController.SpawnHypeAnimEndFx(1.5f);
+                onTapped?.Invoke();
+                //Tapped();
             }
         }
 
+        void Tapped()
+        {
+            player_anim.Play(rapData.rapAnimation.ToString());
+            //print(MainCameraController.instance.CurrentCamera.transform);
+            GetComponent<CameraShake>().Shake(MainCameraController.instance.CurrentCamera.transform);
+            m_hypeMeterFxController.SpawnHypeAnimEndFx(1.5f);
+            if (sfx.isPlaying) { return; }
+            PlaySfx(applauseLoop);
+        }
         void OnTapOver()
         {
             player_anim.speed = 1;
             player_anim.CrossFade(rapData.rapPose.ToString(), 0.1f);
             //punchline.text = rapData.punchLine;
             //punchline.transform.parent.gameObject.SetActive(true);
+            rapFinishPanel.SetActive(true);
             m_hypeMeterFxController.SpawnFountainFx();
             hypeMeter.fillAmount = 0;
             tapSmashPanel.gameObject.SetActive(false);
@@ -563,6 +583,8 @@ namespace PrisonControl
             rapWordNo = 0;
             currentLyric = 0;
             multiTouchManager.Reset();
+            rapFinishPanel.SetActive(false);
+            onTapped = null;
         }
 
         void PlayAudio(bool correct)
@@ -577,6 +599,16 @@ namespace PrisonControl
                 lyricsAudioSource.Play();
             });
             currentLyric++;
+        }
+
+        void PlaySfx(AudioClip clip)
+        {
+            if (sfx.isPlaying)
+            {
+                sfx.Stop();
+            }
+            sfx.clip = clip;
+            sfx.Play();
         }
         // public void OnNextLevelLoad()
         // {

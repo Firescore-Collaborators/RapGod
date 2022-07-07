@@ -4,11 +4,10 @@ using UnityEngine;
 
 public class ParticleCountSpawn : MonoBehaviour
 {
-    [HideInInspector]
     public int count;
     [HideInInspector]
     public GameObject particlePrefab;
-    public Transform spawnPos;
+    public List<Transform> spawnPos;
     int currentCount = 0;
 
 
@@ -18,13 +17,15 @@ public class ParticleCountSpawn : MonoBehaviour
         this.particlePrefab = particlePrefab;
     }
 
-    void IncreaseCount()
+    public void IncreaseCount()
     {
         currentCount++;
-        if (currentCount < count)
+        if (currentCount >= count)
         {
-            GameObject efx = Utils.SpawnEfxWithDestroy(spawnPos, particlePrefab, 3f);
+            Transform toSpawn = spawnPos[Random.Range(0, spawnPos.Count)];
+            GameObject efx = Utils.SpawnEfxWithDestroy(toSpawn, particlePrefab, 3f);
             currentCount = 0;
         }
+        print("ParticleTapped : " + currentCount);
     }
 }

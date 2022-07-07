@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using PrisonControl;
 
 [System.Serializable]
 public class ParticleAndCount
@@ -24,7 +25,7 @@ public class HypeMeterFxController : MonoBehaviour
     public List<ParticleAndCount> onHypeParticles = new List<ParticleAndCount>();
     List<GameObject> endFountainFxList = new List<GameObject>();
     public List<GameObject> spawnedEfx = new List<GameObject>();
-
+    List<ParticleCountSpawn> particleCountSpawns = new List<ParticleCountSpawn>();
     void Start()
     {
         Init();
@@ -62,6 +63,24 @@ public class HypeMeterFxController : MonoBehaviour
         {
             Destroy(spawnedEfx[i].gameObject);
         }
+        for(int i = 0; i < particleCountSpawns.Count; i++)
+        {
+            Destroy(particleCountSpawns[i]);
+        }
+        particleCountSpawns.Clear();
+        spawnedEfx.Clear();
     }
 
+    public void InitParticleAndCount()
+    {
+        for(int i = 0; i < onHypeParticles.Count; i++)
+        {
+            ParticleCountSpawn pfx = gameObject.AddComponent<ParticleCountSpawn>();
+            pfx.count = onHypeParticles[i].count;
+            pfx.spawnPos = EnvironmentList.instance.GetCurrentEnvironment.multiTapFx;
+            pfx.particlePrefab = onHypeParticles[i].particlePrefab;
+            RapBattleManager.onTapped += pfx.IncreaseCount;
+            particleCountSpawns.Add(pfx);
+        }
+    }
 }

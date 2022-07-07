@@ -1,0 +1,50 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cea2552ad22dd1a4aafb532f8d0c59e5, type: 3}
+  m_Name: Lyrics_Build 11
+  m_EditorClassIdentifier: 
+  leveldata:
+  - RapString: 'Aww, you think i''m ______ '
+    OptionA: Proactive
+    OptionB: Mean
+    MarkWord: ' '
+    CorrectAnswer: 2
+    hintLine: 'Hint: _____ girls was a movie'
+  - RapString: Its ______ though, you're not meant to be seen
+    OptionA: True
+    OptionB: 'Untrue '
+    MarkWord: ' '
+    CorrectAnswer: 1
+    hintLine: 'Opposite: False'
+  - RapString: 'Just like the Khaby the innovative ______ '
+    OptionA: Influencer
+    OptionB: Sportsperson
+    MarkWord: ' '
+    CorrectAnswer: 1
+    hintLine: 'Hint: Charlie D''Amelio'
+  - RapString: 'I''m the real deal selling them ______ '
+    OptionA: Snaps
+    OptionB: Reels
+    MarkWord: ' '
+    CorrectAnswer: 2
+    hintLine: 'Hint: Found on Tik Tok and Instagram'
+  correctLyrics:
+  - {fileID: 8300000, guid: 8729001a9c7598948aea1d65e69153c6, type: 3}
+  - {fileID: 8300000, guid: 2fa3d8379a071d44c88153198e4dedcd, type: 3}
+  - {fileID: 8300000, guid: 33b68a509a9f54248ba5b6b731f25ecc, type: 3}
+  - {fileID: 8300000, guid: e65a5ffe35bb8d64da440361df9d873b, type: 3}
+  wrongLyrics:
+  - {fileID: 8300000, guid: 1b8a1462c53005a44afe77e5c8f489d4, type: 3}
+  - {fileID: 8300000, guid: 55e5b75a7d6641e4d82f251943c35dc2, type: 3}
+  - {fileID: 8300000, guid: 250fe114bc59045478ad7520924bd32d, type: 3}
+  - {fileID: 8300000, guid: 107eb27a0aef41944bdd2cfdeb032622, type: 3}
+  bgm: {fileID: 8300000, guid: d8828daa46dd6b847b14ce2884b02eed, type: 3}

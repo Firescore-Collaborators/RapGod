@@ -1,0 +1,82 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cea2552ad22dd1a4aafb532f8d0c59e5, type: 3}
+  m_Name: Lyrics_Build 10
+  m_EditorClassIdentifier: 
+  leveldata:
+  - RapString: If you ______  your favourite rapper
+    OptionA: hate
+    OptionB: idolise
+    MarkWord: ' '
+    CorrectAnswer: 2
+    hintLine: 'Hint: when you look upto someone'
+  - RapString: 'And you see us in a ______ '
+    OptionA: Morgue
+    OptionB: Club
+    MarkWord: ' '
+    CorrectAnswer: 2
+    hintLine: 'Hint: A place where people party'
+  - RapString: "Don\u2019t run up and ______ on us"
+    OptionA: Jump
+    OptionB: Lick
+    MarkWord: ' '
+    CorrectAnswer: 1
+    hintLine: 'Hint: Opposite of Duck'
+  - RapString: "You\u2019ll get a ______ and turn to dust"
+    OptionA: Fist
+    OptionB: Kiss
+    MarkWord: ' '
+    CorrectAnswer: 1
+    hintLine: 'Hint: Fingers closed tightly together'
+  - RapString: "It ain\u2019t fame that is the ______ "
+    OptionA: Tissue
+    OptionB: Issue
+    MarkWord: ' '
+    CorrectAnswer: 2
+    hintLine: 'Hint: A problem'
+  - RapString: "It\u2019s the ridiculous ______ "
+    OptionA: Behaviour
+    OptionB: Crying
+    MarkWord: ' '
+    CorrectAnswer: 1
+    hintLine: 'Meaning: The way you act'
+  - RapString: ______ what you would do
+    OptionA: Wonder
+    OptionB: Dirt
+    MarkWord: ' '
+    CorrectAnswer: 1
+    hintLine: 'Hint: Taj mahal'
+  - RapString: 'If some1 jumped your ______ '
+    OptionA: Chair
+    OptionB: Table
+    MarkWord: ' '
+    CorrectAnswer: 1
+    hintLine: 'Hint: Desk'
+  correctLyrics:
+  - {fileID: 8300000, guid: 9b9343fa0c215194182fa37e2e130ef1, type: 3}
+  - {fileID: 8300000, guid: 0a3f929d1b7f268418b0426edd4a707a, type: 3}
+  - {fileID: 8300000, guid: 8e22adfe59b4f214ea1c62b2ac05bda6, type: 3}
+  - {fileID: 8300000, guid: f1d3c8328e003db4aa036a91a8311787, type: 3}
+  - {fileID: 8300000, guid: 9ef0c7a944cad944da4f7cafb52cc291, type: 3}
+  - {fileID: 8300000, guid: 01fffd350fc50db42b9cd18da17268f1, type: 3}
+  - {fileID: 8300000, guid: d70e75b1a4fedaa47a65499e1d797b65, type: 3}
+  - {fileID: 8300000, guid: 811feab661a2e544887c31a11e969390, type: 3}
+  wrongLyrics:
+  - {fileID: 8300000, guid: abdc26212a49f8347a26630b42673526, type: 3}
+  - {fileID: 8300000, guid: d19ac4201fa06c44fad745e8cc5baf5a, type: 3}
+  - {fileID: 8300000, guid: 3a6a051b88a11a641bf85dc321574729, type: 3}
+  - {fileID: 8300000, guid: 0b153ae49d235f444b26a21e5acfdeb9, type: 3}
+  - {fileID: 8300000, guid: 6dbd640944de21741a37f7e427c8d01d, type: 3}
+  - {fileID: 8300000, guid: 2e9012c3e63e5a145bc371703b27877b, type: 3}
+  - {fileID: 8300000, guid: dbf051b6fe9491d4eabdfdcfbde9a3dd, type: 3}
+  - {fileID: 8300000, guid: 441ed31d85f0ca24fbe8572015abbaa0, type: 3}
+  bgm: {fileID: 8300000, guid: d99813362f44e894fbb84f3d786313cc, type: 3}
