@@ -6,4 +6,5 @@ using UnityEngine;
 public class Lyrics_SO : ScriptableObject
 {
     public string Question, RightAnswer;
+
 }

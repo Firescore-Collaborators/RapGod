@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using System;
@@ -12,6 +10,7 @@ public class LyricsManager : MonoBehaviour
     public GameObject WinPanel, LosePanel;
     public TMP_InputField IF;
     public Lyrics_SO[] lyrics_SO;
+    public TouchScreenKeyboard KB;
 
     [SerializeField]
     private int LyricsNo;
@@ -20,13 +19,16 @@ public class LyricsManager : MonoBehaviour
     void OnEnable()
     {
         Question.text = lyrics_SO[LyricsNo].Question;
-
         IF.onEndEdit.AddListener(delegate { CheckInput(); });
 
-        IF.ActivateInputField();
-        TouchScreenKeyboard.Open("");
-    }
+        Invoke("ShowKB", 0.01f);
 
+    }
+    public void ShowKB()
+    {
+        TouchScreenKeyboard.Open("");
+        IF.ActivateInputField();
+    }
     public void Celebrate()
     {
         WinPanel.SetActive(true);
@@ -46,11 +48,13 @@ public class LyricsManager : MonoBehaviour
         if (LyricsNo < lyrics_SO.Length)
         {
             Question.text = lyrics_SO[LyricsNo].Question;
+            ShowKB();
         }
     }
     public void OnRetryClick()
     {
         LosePanel.SetActive(false);
+        ShowKB();
     }
 
     public void CheckInput()
@@ -65,4 +69,6 @@ public class LyricsManager : MonoBehaviour
             Invoke("RetryPanel", 1);
         }
     }
+
+    
 }
