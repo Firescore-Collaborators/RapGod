@@ -10,6 +10,7 @@ namespace PrisonControl
         public override void OnEnter()
         {
             ui.SetActive(true);
+            print("RapBatttleState : "+ui.activeSelf);
             step.SetActive(true);
         }
         public override void OnExit()

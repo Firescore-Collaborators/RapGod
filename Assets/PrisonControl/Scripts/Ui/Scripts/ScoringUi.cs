@@ -73,21 +73,6 @@ namespace PrisonControl
 
             copRatingStarted = true;
 
-            if (_mPlayPhasesControl.levels[Progress.Instance.CurrentLevel - 1].GetLevelTypes[0] == Level_SO.LevelTypes.IDCheck ||
-                _mPlayPhasesControl.levels[Progress.Instance.CurrentLevel - 1].GetLevelTypes[0] == Level_SO.LevelTypes.LunchBox ||
-                _mPlayPhasesControl.levels[Progress.Instance.CurrentLevel - 1].GetLevelTypes[0] == Level_SO.LevelTypes.BribeBox)
-            {
-                RenderSettings.fogDensity = 0.08f;
-            }else
-            if (_mPlayPhasesControl.levels[Progress.Instance.CurrentLevel - 1].GetLevelTypes[0] == Level_SO.LevelTypes.JailEntry)
-            {
-                RenderSettings.fogDensity = 0.04f;
-            }
-            else
-            {
-                RenderSettings.fogDensity = 0;
-            }
-
             audioSource.clip = aud_levelEnd;
             audioSource.Play();
 
@@ -149,16 +134,6 @@ namespace PrisonControl
             else
             {
                 level = Progress.Instance.CurrentLevel;
-            }
-
-            if (Progress.Instance.WasBadDecision)
-                txt_comment.text = _mPlayPhasesControl.levels[level - 1 - level_subtractAmt].badResponse;
-            else
-            {
-                if (Random.Range(0, 2) == 0)
-                    txt_comment.text = _mPlayPhasesControl.levels[level - 1 - level_subtractAmt].goodResponse;
-                else
-                    txt_comment.text = _mPlayPhasesControl.levels[level - 1 - level_subtractAmt].commonResponse;
             }
 
         }

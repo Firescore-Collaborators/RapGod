@@ -63,79 +63,9 @@ namespace PrisonControl
         void DisplayLevelData()
         {
             // Check for ID Step
-            if (levels[Progress.Instance.CurrentLevel - 1].GetLevelTypes[currentMiniLevel] == Level_SO.LevelTypes.IDCheck)
-            {
-                idCheck_cursr++;
-                mPlayPhasesStateMachine.SwitchState(PlayPhase.IDCheck);
-               // iDStepManager.AssignData();
-            }
-            else
-            // Check for LunchBox step
-            if (levels[Progress.Instance.CurrentLevel - 1].GetLevelTypes[currentMiniLevel] == Level_SO.LevelTypes.LunchBox)
-            {
-                lunchBox_cursr++;
-                mPlayPhasesStateMachine.SwitchState(PlayPhase.FoodTray);
-            }
-            else
-            // Check for BribeBox step
-            if (levels[Progress.Instance.CurrentLevel - 1].GetLevelTypes[currentMiniLevel] == Level_SO.LevelTypes.BribeBox)
-            {
-                bribeBox_cursr++;
-                mPlayPhasesStateMachine.SwitchState(PlayPhase.BribeBox);
-            }else
-            if (levels[Progress.Instance.CurrentLevel - 1].GetLevelTypes[currentMiniLevel] == Level_SO.LevelTypes.PhoneBooth)
-            {
-                mPlayPhasesStateMachine.SwitchState(PlayPhase.PhoneBooth);
-            }
-            else
-            if (levels[Progress.Instance.CurrentLevel - 1].GetLevelTypes[currentMiniLevel] == Level_SO.LevelTypes.Interrogation)
-            {
-                mPlayPhasesStateMachine.SwitchState(PlayPhase.Interrogation);
-            }
-            else
-            if (levels[Progress.Instance.CurrentLevel - 1].GetLevelTypes[currentMiniLevel] == Level_SO.LevelTypes.Warden)
-            {
-                mPlayPhasesStateMachine.SwitchState(PlayPhase.Warden);
-            }
-            else
-            if (levels[Progress.Instance.CurrentLevel - 1].GetLevelTypes[currentMiniLevel] == Level_SO.LevelTypes.MugShot)
-            {
-                mPlayPhasesStateMachine.SwitchState(PlayPhase.MugShot);
-            }
-            else
-            if (levels[Progress.Instance.CurrentLevel - 1].GetLevelTypes[currentMiniLevel] == Level_SO.LevelTypes.JailEntry)
-            {
-                mPlayPhasesStateMachine.SwitchState(PlayPhase.JailEntry);
-            }
-            else
-            if (levels[Progress.Instance.CurrentLevel - 1].GetLevelTypes[currentMiniLevel] == Level_SO.LevelTypes.FoodPlating)
-            {
-                mPlayPhasesStateMachine.SwitchState(PlayPhase.FoodPlating);
-            }
-            else
-            if (levels[Progress.Instance.CurrentLevel - 1].GetLevelTypes[currentMiniLevel] == Level_SO.LevelTypes.PrisonYard)
-            {
-                mPlayPhasesStateMachine.SwitchState(PlayPhase.PrisonYard);
-            }
-            else
-            if (levels[Progress.Instance.CurrentLevel - 1].GetLevelTypes[currentMiniLevel] == Level_SO.LevelTypes.CCTVMonitor)
-            {
-                mPlayPhasesStateMachine.SwitchState(PlayPhase.CCTVMonitor);
-            }
-            else
-            if (levels[Progress.Instance.CurrentLevel - 1].GetLevelTypes[currentMiniLevel] == Level_SO.LevelTypes.CellCheck)
-            {
-                mPlayPhasesStateMachine.SwitchState(PlayPhase.CellCheck);
-            }
-            else
-            if(levels[Progress.Instance.CurrentLevel - 1].GetLevelTypes[currentMiniLevel] == Level_SO.LevelTypes.rapBattle)
+            if (levels[Progress.Instance.CurrentLevel - 1].GetLevelTypes[currentMiniLevel] == Level_SO.LevelTypes.rapBattle)
             {
                 mPlayPhasesStateMachine.SwitchState(PlayPhase.RapBattle);
-            }
-            else
-            if (levels[Progress.Instance.CurrentLevel - 1].GetLevelTypes[currentMiniLevel] == Level_SO.LevelTypes.SlapAndRun)
-            {
-                mPlayPhasesStateMachine.SwitchState(PlayPhase.SlapAndRun);
             }
             else
             if (levels[Progress.Instance.CurrentLevel - 1].GetLevelTypes[currentMiniLevel] == Level_SO.LevelTypes.Narration)
@@ -189,19 +119,6 @@ namespace PrisonControl
             mGameplayUi.SetActive(false);
 
             mPlayPhasesStateMachine = new StateMachine<PlayPhase>(
-                (PlayPhase.Warden, GetComponent<WardenState>()),
-                (PlayPhase.IDCheck, GetComponent<IDCheckState>()),
-                (PlayPhase.FoodTray, GetComponent<FoodTrayState>()),
-                (PlayPhase.BribeBox, GetComponent<BribeBoxState>()),
-                (PlayPhase.PhoneBooth, GetComponent<PhoneBoothState>()),
-                (PlayPhase.Interrogation, GetComponent<InterrogationState>()),
-                (PlayPhase.JailEntry, GetComponent<JailEntryState>()),
-                (PlayPhase.MugShot, GetComponent<MugShotState>()),
-                (PlayPhase.FoodPlating, GetComponent<FoodPlatingState>()),
-                (PlayPhase.PrisonYard, GetComponent<PrisonYardState>()),
-                (PlayPhase.CCTVMonitor, GetComponent<CCTVMonitorState>()),
-                (PlayPhase.CellCheck, GetComponent<CellCheckState>()),
-                (PlayPhase.SlapAndRun, GetComponent<SlapAndRunState>()),
                 (PlayPhase.RapBattle,GetComponent<RapBattleState>()),
                 (PlayPhase.Narration, GetComponent<NarrationState>()),
                 (PlayPhase.ProfileDp, GetComponent<ProfileDPState>()),
@@ -239,25 +156,6 @@ namespace PrisonControl
             mGameplayUi.SetActive(true);
 
         }
-        public void _OnMiniLevelFinished()
-        {
-            currentMiniLevel++;
-
-            if(currentMiniLevel >= totalMiniLevels){
-               
-                gamePlay.LastGuest(() => {
-                    gamePlay.gameObject.SetActive(false);
-
-                    mGameplayUi.SetActive(false);
-                    mPlayPhasesStateMachine.Reset();
-                    OnAllPhasesComplete?.Invoke();
-                });
-            }
-            else
-            {
-                gamePlay.NextGuest(false);
-            }
-        }
 
         public void _OnMiniLevelFinished2()
         {
@@ -270,10 +168,6 @@ namespace PrisonControl
                 mGameplayUi.SetActive(false);
                 mPlayPhasesStateMachine.Reset();
                 OnAllPhasesComplete?.Invoke();
-            }
-            else
-            {
-                gamePlay.NextGuest(true);
             }
         }
 
@@ -325,9 +219,6 @@ namespace PrisonControl
         [SerializeField]
         GamePlayStep gamePlay;
 
-        [SerializeField]
-        IDStepManager iDStepManager;
-
         private StateMachine<PlayPhase> mPlayPhasesStateMachine;
         private int mTotalPhaseCount;
         private int mCurrentPhaseNumber;
@@ -348,19 +239,6 @@ namespace PrisonControl
         // In order of play
         private static readonly PlayPhase[] PHASES =
         {
-            PlayPhase.Warden,
-            PlayPhase.IDCheck,
-            PlayPhase.FoodTray,
-            PlayPhase.BribeBox,
-            PlayPhase.PhoneBooth,
-            PlayPhase.Interrogation,
-            PlayPhase.JailEntry,
-            PlayPhase.MugShot,
-            PlayPhase.FoodPlating,
-            PlayPhase.PrisonYard,
-            PlayPhase.CCTVMonitor,
-            PlayPhase.CellCheck,
-            PlayPhase.SlapAndRun,
             PlayPhase.RapBattle,
             PlayPhase.Narration,
             PlayPhase.ProfileDp,

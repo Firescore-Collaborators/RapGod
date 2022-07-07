@@ -17,9 +17,6 @@ namespace PrisonControl
         [SerializeField]
         private GameObject [] uniform;
 
-        [SerializeField]
-        private CopManager copManager;
-
         public void OnAvatarNext()
         {
             Progress.Instance.AvatarType++;
