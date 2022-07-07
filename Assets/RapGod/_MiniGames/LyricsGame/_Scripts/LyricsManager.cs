@@ -22,6 +22,9 @@ public class LyricsManager : MonoBehaviour
         Question.text = lyrics_SO[LyricsNo].Question;
 
         IF.onEndEdit.AddListener(delegate { CheckInput(); });
+
+        IF.ActivateInputField();
+        TouchScreenKeyboard.Open("");
     }
 
     public void Celebrate()
