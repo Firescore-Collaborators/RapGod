@@ -72,7 +72,10 @@ public class SliderScript : MonoBehaviour
                 {
                     for (int j = 0; j <= i; j++)
                     {
+                        slider.transform.GetChild(j).GetComponent<Animator>().SetBool("Blip", true);
                         slider.transform.GetChild(j).GetComponent<Graphic>().color = Color.green;
+                        //slider.transform.GetChild(j).GetComponent<Animator>().enabled = true;
+                        
                     }
                     isMatched = true;
                 }
@@ -80,7 +83,11 @@ public class SliderScript : MonoBehaviour
                 {
                     for (int j = 0; j <= i; j++)
                     {
+                        
+                        //slider.transform.GetChild(j).GetComponent<Animator>().enabled = false;
                         slider.transform.GetChild(j).GetComponent<Graphic>().color = Color.red;
+                        slider.transform.GetChild(j).GetComponent<Animator>().SetBool("Blip", false);
+
                     }
                     isMatched = false;
                 }
