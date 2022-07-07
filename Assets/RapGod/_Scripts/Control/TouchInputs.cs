@@ -107,6 +107,7 @@ public class TouchInputs : MonoBehaviour
             onHeld = false;
             toCheckMultiTap = false;
             multiTapOver?.Invoke();
+            print(toCheckMultiTap + "ToCheckMultiTap");
             return;
         }
         multiTaping?.Invoke(currentTapScore, false);

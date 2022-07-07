@@ -84,6 +84,7 @@ public class MultiTouchManager : MonoBehaviour
     void UnsubscribeCallbacks()
     {
         if (currentSequenceIndex == 0) { return; }
+        print("UnsubscribeCallbacks");
         switch (inputSequence.inputSequence[currentSequenceIndex - 1])
         {
             case TouchInputType.swipeRight:
@@ -106,6 +107,15 @@ public class MultiTouchManager : MonoBehaviour
         onInputRemovedWithType?.Invoke(inputSequence.inputSequence[currentSequenceIndex - 1]);
     }
 
+    public void Reset()
+    {
+        currentSequenceIndex = 0;
+        onInputRaised = null;
+        onSequenceComplete = null;
+        onInputAssignedWithType = null;
+        onInputRemovedWithType = null;
+        onMultiTaping = null;
+    }
 
 
 }

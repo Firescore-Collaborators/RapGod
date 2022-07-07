@@ -90,6 +90,7 @@ namespace PrisonControl
                 return GetComponent<MultiTouchManager>();
             }
         }
+        public RespondMessageController respondMessage;
 
         // [SerializeField]
         // private Color[] FogColor, lightColor, planeColor;
@@ -108,7 +109,7 @@ namespace PrisonControl
         String answer;
         bool removedLetter;
         Vector3 popUpPos;
-        int currentLyric;
+        [SerializeField] int currentLyric;
 
         private void OnEnable()
         {
@@ -154,6 +155,8 @@ namespace PrisonControl
             //Set BGM
             bgmAudioSource.clip = rapData.rapBattleLyricSO.bgm;
             bgmAudioSource.Play();
+
+            stepProgress.gameObject.SetActive(true);
         }
 
         void InitLevelData()
@@ -186,7 +189,7 @@ namespace PrisonControl
             PopUpPanle.SetActive(true);
             stepProgress.ActivateCurrentStep();
         }
-
+        
         void MakeColorText(TMP_Text _text, string _word)
         {
             _text.text = _text.text.Replace(_word, "<#0ec005>" + _word + " </color>");
@@ -201,6 +204,9 @@ namespace PrisonControl
         {
             optionA_text.text = rapData.rapBattleLyricSO.leveldata[rapWordNo].OptionA.ToString();
             optionB_text.text = rapData.rapBattleLyricSO.leveldata[rapWordNo].OptionB.ToString();
+            optionA_text.transform.parent.GetComponent<Button>().interactable = true;
+            optionB_text.transform.parent.GetComponent<Button>().interactable = true;
+
 
             answer = "<#161616>" + "______" + "</color>";
 
@@ -350,33 +356,35 @@ namespace PrisonControl
             if (sideNo == 1)
             {
                 _Answer.transform.parent.gameObject.GetComponent<Image>().sprite = sprites_btn[0];
-                PlayAudio(true);
+                respondMessage.ShowCorrectResponse();
+                //PlayAudio(true);
                 //Conffiti_btn.SetActive(true);
             }
             else
             {
                 //  ConffitiWrong_btn.SetActive(true);
                 _Answer.transform.parent.gameObject.GetComponent<Image>().sprite = sprites_btn[1];
-                PlayAudio(false);
+                respondMessage.ShowWrongResponse();
+                //PlayAudio(false);
             }
-            hintText.transform.parent.gameObject.SetActive(false);
         }
 
         public void OnSelectAnswer(TMP_Text _Answer)
         {
-
-
-
+            _Answer.transform.parent.GetComponent<Button>().interactable = false;
             Conffiti_btn.SetActive(false);
             ConffitiWrong_btn.SetActive(false);
             // _Answer.gameObject.SetActive(false);
             //  textAnswer_anim[LevelNo].gameObject.SetActive(true);
             StartCoroutine(CheckAnswer(_Answer));
+            PlayAudio(sideNo == 1 ? true : false);
+            hintText.transform.parent.gameObject.SetActive(false);
+
         }
 
         IEnumerator CheckAnswer(TMP_Text _Answer)
         {
-
+            
             LeanTween.move(PopUP_rect.gameObject, popUpPos, 1f);
 
             if (sideNo == 1)
@@ -551,7 +559,10 @@ namespace PrisonControl
             hintText.transform.parent.gameObject.SetActive(false);
             stepProgress.Reset();
             audienceManager.Reset();
+            m_hypeMeterFxController.Reset();
             rapWordNo = 0;
+            currentLyric = 0;
+            multiTouchManager.Reset();
         }
 
         void PlayAudio(bool correct)

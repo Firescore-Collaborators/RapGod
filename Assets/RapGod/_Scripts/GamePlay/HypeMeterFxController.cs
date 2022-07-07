@@ -23,7 +23,7 @@ public class HypeMeterFxController : MonoBehaviour
     }
     public List<ParticleAndCount> onHypeParticles = new List<ParticleAndCount>();
     List<GameObject> endFountainFxList = new List<GameObject>();
-    List<GameObject> spawnedEfx = new List<GameObject>();
+    public List<GameObject> spawnedEfx = new List<GameObject>();
 
     void Start()
     {
