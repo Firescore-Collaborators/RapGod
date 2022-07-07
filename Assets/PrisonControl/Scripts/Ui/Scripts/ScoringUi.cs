@@ -186,7 +186,7 @@ namespace PrisonControl
 
             yield return new WaitForSeconds(1);
 
-            SpawnCoins();
+            //SpawnCoins();
 
             yield return new WaitForSeconds(1f);
 

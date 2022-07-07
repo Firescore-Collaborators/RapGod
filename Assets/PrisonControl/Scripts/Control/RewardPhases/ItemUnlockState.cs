@@ -16,11 +16,11 @@ namespace PrisonControl
 
         public override void OnEnter()
         {
-            Item unlockedItem = ProgressUtils.GetItemToUnlockOnLevel((Progress.Instance.CurrentLevel - 1), Progress.Instance.LevelMultiplier);
-            if (unlockedItem.IsValid())
-                mItemUnlockUi.SetActive(true);
-            else
-                mRewardPhasesControl._OnPhaseComplete();
+            // Item unlockedItem = ProgressUtils.GetItemToUnlockOnLevel((Progress.Instance.CurrentLevel - 1), Progress.Instance.LevelMultiplier);
+            // if (unlockedItem.IsValid())
+            //     mItemUnlockUi.SetActive(true);
+            // else
+            mRewardPhasesControl._OnPhaseComplete();
         }
 
         public override void OnExit()

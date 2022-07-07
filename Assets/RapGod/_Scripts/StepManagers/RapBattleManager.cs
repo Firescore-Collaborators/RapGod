@@ -169,7 +169,7 @@ namespace PrisonControl
         {
             if (player_anim != null)
                 player_anim.SetBool("Idle", true);
-                
+
             PopUP_rect.gameObject.GetComponent<Image>().sprite = popUp_sprite[0];
 
             PopUP_rect.transform.position = initialPopUpPos.transform.position;
@@ -480,7 +480,7 @@ namespace PrisonControl
                     }
                 }
 
-                Invoke("TapSmash", 6f);
+                Invoke("TapSmash", 1f);
             }
             else
             {

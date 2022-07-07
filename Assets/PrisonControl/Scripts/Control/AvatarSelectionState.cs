@@ -42,6 +42,7 @@ namespace PrisonControl
             mAvatarUi.gameObject.SetActive(true);
 
             lightingManager.ActivateAvatarLights();
+            SkipGenderSelect();
         }
 
         public override void OnExit()
@@ -72,13 +73,13 @@ namespace PrisonControl
             if (Progress.Instance.AvatarGender == 0)
             {
                 //cameraManager.ActivateCamAvatar1();
-                MainCameraController.instance.SetCurrentCamera("Avatar1Cam ",0.5f); 
+                MainCameraController.instance.SetCurrentCamera("Avatar1Cam ",0); 
             }
             //else if (Progress.Instance.AvatarGender == 1)
             else
             {
                 //cameraManager.ActivateCamAvatar2();
-                MainCameraController.instance.SetCurrentCamera("Avatar2Cam ",0.5f); 
+                MainCameraController.instance.SetCurrentCamera("Avatar2Cam ",0); 
             }
 
             mAvatarUi.ActivateUniformSelection();
@@ -96,7 +97,7 @@ namespace PrisonControl
 
         public void OnAvatarClicked(int avatarGender)
         {
-            Debug.Log("avatar clicked");
+            Debug.Log("avatar clicked :" + avatarGender);
 
             audioManager.PlayAudio(aud_avatarClicked);
 
@@ -105,7 +106,12 @@ namespace PrisonControl
             avatarSelection.SelectAvatar(avatarGender);
         }
 
-       
+        void SkipGenderSelect()
+        {
+            Progress.Instance.AvatarGender = 1;
+            avatarSelection.SelectAvatar(1);
+            OnGenderSelectionDone();
+        }
 
         private GameFlow mGameFlow;
 

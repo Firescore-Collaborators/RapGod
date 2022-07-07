@@ -436,7 +436,7 @@ namespace PrisonControl
         public int wallLevel = 1;
         public int floorLevel = 1;
 
-        public int avatarGender = 0;       // 0 - Female, 1 - Male
+        public int avatarGender = 1;       // 0 - Female, 1 - Male
         public int avatarType = 1;
         public bool isAvatarSelected = false;
 

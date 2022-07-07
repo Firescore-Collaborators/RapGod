@@ -45,7 +45,7 @@ namespace PrisonControl
         {
             _OnAvatarNext?.Invoke();
 
-            if (Progress.Instance.AvatarType >= 3)
+            if (Progress.Instance.AvatarType >= 2)
             {
                 btnNext.interactable = false;
             }

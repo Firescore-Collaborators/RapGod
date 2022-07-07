@@ -8,13 +8,13 @@ namespace PrisonControl
     {
         public static readonly int[] LEVELS_PER_MILESTONE =
         {
-             3, 3, 4, 5 // 5, 5, 5...
+            3, 3, 4, 5 // 5, 5, 5...
         };
 
         // Must be in ascending order!
         public static readonly (Item, int)[] ITEM_UNLOCK_LEVELS =
         {
-            (new Item(Punishment.SpiderBucket), 6),
+            (new Item(Punishment.SpiderBucket), 1),
             (new Item(Punishment.Spit), 10),
             (new Item(Punishment.LowBlow), 16),
             (new Item(Punishment.HammerHit), 26),

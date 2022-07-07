@@ -40,6 +40,7 @@ public class AudienceManager : MonoBehaviour
 
         playerNo = 0;
         enemyNo = 0;
+        OnGameEnd();
     }
 
     // Update is called once per frame
@@ -143,11 +144,11 @@ public class AudienceManager : MonoBehaviour
 
         if (playerWin)
         {
-            Invoke("OnShoot", 2f);
+            //Invoke("OnShoot", 2f);
         }
         else
         {
-            Invoke("OnShoot", 0.0f);
+            //Invoke("OnShoot", 0.0f);
         }
         return true;
 
