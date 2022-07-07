@@ -167,7 +167,9 @@ namespace PrisonControl
         }
         public void OnNextRapWord()
         {
-            player_anim.SetBool("Idle", true);
+            if (player_anim != null)
+                player_anim.SetBool("Idle", true);
+                
             PopUP_rect.gameObject.GetComponent<Image>().sprite = popUp_sprite[0];
 
             PopUP_rect.transform.position = initialPopUpPos.transform.position;
@@ -418,7 +420,7 @@ namespace PrisonControl
             _Answer.gameObject.SetActive(true);
             OptionPanle.transform.GetChild(0).gameObject.SetActive(false);
             OptionPanle.transform.GetChild(1).gameObject.SetActive(false);
-            
+
 
             StopCoroutine("WaitAndPrint");
 
