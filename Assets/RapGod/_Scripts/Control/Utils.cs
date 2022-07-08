@@ -59,6 +59,13 @@ public static class Utils
         return spawnedfx;
     }
 
+    public static GameObject SpawnEfxWithDestroy(Vector3 spawnPos,Transform parent, GameObject fx, float destroyTime, bool onlyOne = false)
+    {
+        GameObject spawnedfx = GameObject.Instantiate(fx, parent);
+        spawnedfx.transform.position = spawnPos;
+        GameObject.Destroy(spawnedfx, destroyTime);
+        return spawnedfx;
+    }
     public static Sprite NewSprite(Texture2D texture)
     {
         return Sprite.Create(texture, new Rect(0.0f, 0.0f, texture.width, texture.height), new Vector2(0.5f, 0.5f));

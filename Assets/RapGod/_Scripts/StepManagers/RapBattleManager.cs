@@ -23,7 +23,7 @@ namespace PrisonControl
         private RuntimeAnimatorController playerAnimator, enemyAnimator;
 
         [SerializeField]
-        GameObject player, enemy, handUI;
+        GameObject player, enemy, handUI,tapFx;
 
         public PlayPhasesControl m_playPhaseControl;
         HypeMeterFxController m_hypeMeterFxController
@@ -92,6 +92,7 @@ namespace PrisonControl
                 return GetComponent<MultiTouchManager>();
             }
         }
+
         public RespondMessageController respondMessageController;
 
         // [SerializeField]
@@ -546,6 +547,7 @@ namespace PrisonControl
             //print(MainCameraController.instance.CurrentCamera.transform);
             GetComponent<CameraShake>().Shake(MainCameraController.instance.CurrentCamera.transform);
             m_hypeMeterFxController.SpawnHypeAnimEndFx(1.5f);
+            Utils.SpawnEfxWithDestroy(Input.mousePosition,tapSmashPanel,tapFx,2f);
             if (sfx.isPlaying) { return; }
             PlaySfx(applauseLoop);
         }
