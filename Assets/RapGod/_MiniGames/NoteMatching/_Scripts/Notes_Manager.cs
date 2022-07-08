@@ -2,12 +2,14 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-
 public class Notes_Manager : MonoBehaviour
 {
     public static Notes_Manager instance;
     public Transform endpoint1, endpoint2;
     public GameObject WinPanel, squareParent;
+
+    public AudioSource SRC;
+    public AudioClip clip1, clip2, clip3;
 
     public GameObject[] grid, box;
     public Tiles_SO tiles_SO;

@@ -24,6 +24,28 @@ public class SlotScript : MonoBehaviour, IDropHandler
             {
                 Notes_Manager.instance.showPanel();
             }
+
+            if(SlotCode == eventData.pointerDrag.transform.GetComponent<UIMoveScript>().boxCode)
+            {
+                Debug.Log("shine");
+                eventData.pointerDrag.transform.GetChild(0).GetComponent<ParticleSystem>().Play();
+            }
+
+            if (eventData.pointerDrag.transform.GetComponent<UIMoveScript>().boxCode == 3)
+            {
+                Notes_Manager.instance.SRC.clip = Notes_Manager.instance.clip1;
+                Notes_Manager.instance.SRC.Play();
+            }
+            if (eventData.pointerDrag.transform.GetComponent<UIMoveScript>().boxCode == 2)
+            {
+                Notes_Manager.instance.SRC.clip = Notes_Manager.instance.clip2;
+                Notes_Manager.instance.SRC.Play();
+            }
+            if (eventData.pointerDrag.transform.GetComponent<UIMoveScript>().boxCode == 1)
+            {
+                Notes_Manager.instance.SRC.clip = Notes_Manager.instance.clip3;
+                Notes_Manager.instance.SRC.Play();
+            }
         }
         else if(eventData.pointerDrag == null)
         {
