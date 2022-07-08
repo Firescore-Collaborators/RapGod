@@ -6,7 +6,8 @@ public enum EnvironmentType
 {
     defaultEnvironment,
     streetEnvironment,
-    houseEnvironment
+    houseEnvironment,
+    barEnvironment
 }
 [System.Serializable]
 public enum EnvironmentPosition
