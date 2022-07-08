@@ -74,6 +74,16 @@ namespace PrisonControl
             }
         }
 
+        public bool TapSmashTut
+        {
+            get => mData.tapSmashTut;
+            set
+            {
+                mData.tapSmashTut = value;
+                Save();
+            }
+        }
+
         public int CurrentLevel
         {
             get => mData.currentLevel;
@@ -430,6 +440,8 @@ namespace PrisonControl
         public int followers = 0;
         public string displayPic = string.Empty;
         public Vector2 dpSize = new Vector2(1, 1);
+
+        public bool tapSmashTut = false;
 
         // Salon upgrade level
         public int interiorLevel = 1;

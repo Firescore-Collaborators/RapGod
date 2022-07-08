@@ -23,7 +23,7 @@ namespace PrisonControl
         private RuntimeAnimatorController playerAnimator, enemyAnimator;
 
         [SerializeField]
-        GameObject player, enemy;
+        GameObject player, enemy, handUI;
 
         public PlayPhasesControl m_playPhaseControl;
         HypeMeterFxController m_hypeMeterFxController
@@ -101,7 +101,7 @@ namespace PrisonControl
 
         [SerializeField]
         private MeshRenderer lightLObj, lightRObj, planeObj, stageObj, stageLightObj;
-        public static event  System.Action onTapped;
+        public static event System.Action onTapped;
         int levelNo;
         int textNo;
         int rapWordNo;
@@ -427,7 +427,7 @@ namespace PrisonControl
 
             // _anim.SetBool("OnClicked",true);
             yield return new WaitForSeconds(0.7f);
-            Utils.SpawnEfxWithDestroy(EnvironmentList.instance.GetCurrentEnvironment.multiTapFx[0],vFXSO.musicNote1, 3f);
+            Utils.SpawnEfxWithDestroy(EnvironmentList.instance.GetCurrentEnvironment.multiTapFx[0], vFXSO.musicNote1, 3f);
             textAnswer_anim[levelNo].gameObject.SetActive(false);
             OptionPanle.SetActive(false);
             _Answer.gameObject.SetActive(true);
@@ -520,8 +520,12 @@ namespace PrisonControl
             multiTouchManager.onMultiTaping += OnMultiTap;
             multiTouchManager.onInputRaised += OnTapOver;
             multiTouchManager.Init();
-            onTapped+=Tapped;
+            onTapped += Tapped;
             m_hypeMeterFxController.InitParticleAndCount();
+
+            if (Progress.Instance.TapSmashTut) return;
+            handUI.SetActive(true);
+            Progress.Instance.TapSmashTut = true;
         }
 
         void OnMultiTap(float value, bool tapped)
@@ -537,6 +541,7 @@ namespace PrisonControl
 
         void Tapped()
         {
+            handUI.SetActive(false);
             player_anim.Play(rapData.rapAnimation.ToString());
             //print(MainCameraController.instance.CurrentCamera.transform);
             GetComponent<CameraShake>().Shake(MainCameraController.instance.CurrentCamera.transform);
@@ -609,6 +614,11 @@ namespace PrisonControl
             }
             sfx.clip = clip;
             sfx.Play();
+        }
+        [NaughtyAttributes.Button]
+        void ResetTutorial()
+        {
+            Progress.Instance.TapSmashTut = false;
         }
         // public void OnNextLevelLoad()
         // {
