@@ -7,7 +7,7 @@ public class LyricsManager : MonoBehaviour
 {
     public TMP_Text Question;
     public string Hint;
-    public GameObject WinPanel, LosePanel;
+    public GameObject WinPanel, LosePanel, ParentQP;
     public TMP_InputField IF;
     public Lyrics_SO[] lyrics_SO;
     public TouchScreenKeyboard KB;
@@ -22,22 +22,24 @@ public class LyricsManager : MonoBehaviour
         IF.onEndEdit.AddListener(delegate { CheckInput(); });
 
         Invoke("ShowKB", 0.01f);
-
     }
     public void ShowKB()
     {
         TouchScreenKeyboard.Open("");
         IF.ActivateInputField();
+        ParentQP.GetComponent<Animator>().SetTrigger("show");
     }
     public void Celebrate()
     {
         WinPanel.SetActive(true);
+        ParentQP.GetComponent<Animator>().SetTrigger("hide");
     }
 
     public void RetryPanel()
     {
         IF.text = "";
         LosePanel.SetActive(true);
+
     }
     public void OnWinClick()
     {
@@ -50,11 +52,17 @@ public class LyricsManager : MonoBehaviour
             Question.text = lyrics_SO[LyricsNo].Question;
             ShowKB();
         }
+        else
+        {
+            IF.enabled = false;
+            ParentQP.SetActive(false);
+        }
     }
     public void OnRetryClick()
     {
         LosePanel.SetActive(false);
         ShowKB();
+
     }
 
     public void CheckInput()
