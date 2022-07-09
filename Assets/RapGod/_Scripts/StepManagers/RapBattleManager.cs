@@ -524,9 +524,8 @@ namespace PrisonControl
             onTapped += Tapped;
             m_hypeMeterFxController.InitParticleAndCount();
 
-            if (Progress.Instance.TapSmashTut) return;
             handUI.SetActive(true);
-            Progress.Instance.TapSmashTut = true;
+            //Progress.Instance.TapSmashTut = true;
         }
 
         void OnMultiTap(float value, bool tapped)
