@@ -1,0 +1,82 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cea2552ad22dd1a4aafb532f8d0c59e5, type: 3}
+  m_Name: Lyrics_Build 15
+  m_EditorClassIdentifier: 
+  leveldata:
+  - RapString: 'Yo yo yo yo yo, check it ______ '
+    OptionA: Mouth
+    OptionB: Out
+    MarkWord: ' '
+    CorrectAnswer: 2
+    hintLine: 'Opposite: IN'
+  - RapString: You just a bell hop, I got all the ______ ,
+    OptionA: Bags
+    OptionB: Clout
+    MarkWord: ' '
+    CorrectAnswer: 2
+    hintLine: 'Rhyme: Doubt'
+  - RapString: I drive in my Ferrari, you still play ______ ,
+    OptionA: Atari
+    OptionB: Diwali
+    MarkWord: ' '
+    CorrectAnswer: 1
+    hintLine: 'Hint: Gaming company'
+  - RapString: "I\u2019mma be a rap god, you\u2019re just a rap ______ "
+    OptionA: Fraud
+    OptionB: Flake
+    MarkWord: god
+    CorrectAnswer: 1
+    hintLine: 'Rhyme: God'
+  - RapString: 'People call me papa, they call you a ______ '
+    OptionA: Baby
+    OptionB: Kid
+    MarkWord: ' '
+    CorrectAnswer: 1
+    hintLine: 'Rhyme: Crazy'
+  - RapString: "I\u2019m ______ referred to as the next Slim Shady"
+    OptionA: Commonly
+    OptionB: Common
+    MarkWord: ' '
+    CorrectAnswer: 1
+    hintLine: 'Hint: Adverb'
+  - RapString: "Ladies love me, I\u2019m a player and a ______ "
+    OptionA: Slayer
+    OptionB: Winner
+    MarkWord: player
+    CorrectAnswer: 1
+    hintLine: 'Rhyme: Player'
+  - RapString: "You\u2019re just a hater, and the world\u2019s biggest master ______ "
+    OptionA: Baiter
+    OptionB: Fighter
+    MarkWord: hater
+    CorrectAnswer: 1
+    hintLine: 'Rhyme: Hater'
+  correctLyrics:
+  - {fileID: 8300000, guid: ac3ef465c6a3eee4a857acbbb15fd346, type: 3}
+  - {fileID: 8300000, guid: 53e01a3626074db47835a8fb698dac4a, type: 3}
+  - {fileID: 8300000, guid: d5d2896c45d80b043b2a00c562ffd092, type: 3}
+  - {fileID: 8300000, guid: a41953b80fc2920489069ed3eae4069c, type: 3}
+  - {fileID: 8300000, guid: f4513f0f7a28c904a8e373748f50f34b, type: 3}
+  - {fileID: 8300000, guid: e47ec9204f8305341ac0b4c2d1ce0e71, type: 3}
+  - {fileID: 8300000, guid: 4081d765f1e8b294d9c0d3bb63f75857, type: 3}
+  - {fileID: 8300000, guid: 8680a9ab246c7fc4d89c9c2e584acfd1, type: 3}
+  wrongLyrics:
+  - {fileID: 8300000, guid: b88e72a061c642e4eba1e41e0be63c18, type: 3}
+  - {fileID: 8300000, guid: cc001f1956dff4f4aa216baa65844fe3, type: 3}
+  - {fileID: 8300000, guid: 0c1be87beeb925341b263c9ce4050164, type: 3}
+  - {fileID: 8300000, guid: 1c3f2359491b0fd4a9125d6165be98dd, type: 3}
+  - {fileID: 8300000, guid: d61d545e4430b9748a37468354eb4a47, type: 3}
+  - {fileID: 8300000, guid: fb1ac89335ab4d846b16fde34edcc1de, type: 3}
+  - {fileID: 8300000, guid: 648820b69578f3847922b77dd5b37504, type: 3}
+  - {fileID: 8300000, guid: ce9edf15a02b3e149977f594c15f0635, type: 3}
+  bgm: {fileID: 8300000, guid: 7eed60646b3515149844db3281434dda, type: 3}

@@ -1,0 +1,82 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cea2552ad22dd1a4aafb532f8d0c59e5, type: 3}
+  m_Name: Lyrics_Build 14
+  m_EditorClassIdentifier: 
+  leveldata:
+  - RapString: ______ , ladies, bling and bros,
+    OptionA: Money
+    OptionB: Honey
+    MarkWord: ' '
+    CorrectAnswer: 1
+    hintLine: 'Hint: Cash'
+  - RapString: We got ______ words, and lots of those,
+    OptionA: Wicked
+    OptionB: Lick-It
+    MarkWord: ' '
+    CorrectAnswer: 1
+    hintLine: 'Hint: Morally bad/evil'
+  - RapString: I got the chance to ______ , and make you move,
+    OptionA: Dance
+    OptionB: France
+    MarkWord: ' '
+    CorrectAnswer: 1
+    hintLine: 'Hint: Samba'
+  - RapString: 'We got the place trippin, its time to ______ '
+    OptionA: Jive
+    OptionB: Groove
+    MarkWord: ' '
+    CorrectAnswer: 2
+    hintLine: 'Rhyme: Move'
+  - RapString: Show me your ______ , let that hair loose!
+    OptionA: Moves
+    OptionB: Ass
+    MarkWord: ' '
+    CorrectAnswer: 1
+    hintLine: 'Rhyme: Hooves'
+  - RapString: "It\u2019s a party tonight, music and ______ ,"
+    OptionA: Food
+    OptionB: Booze
+    MarkWord: ' '
+    CorrectAnswer: 2
+    hintLine: 'Hint: Alcohol'
+  - RapString: Time to get ______ , hazy, like JayZ,
+    OptionA: Crazy
+    OptionB: Happy
+    MarkWord: ' '
+    CorrectAnswer: 1
+    hintLine: 'Hint: Foolish'
+  - RapString: Let's make ______ , you and me baby.
+    OptionA: Tragic
+    OptionB: Magic
+    MarkWord: ' '
+    CorrectAnswer: 2
+    hintLine: 'Basketball player: ____  Johnson'
+  correctLyrics:
+  - {fileID: 8300000, guid: e0b5e4fc30ce9cf4a82f99186fe5f0ae, type: 3}
+  - {fileID: 8300000, guid: 01ace58300031f14caf300e6096fab21, type: 3}
+  - {fileID: 8300000, guid: e2e98254bae769341ac6bf1844f7e8c4, type: 3}
+  - {fileID: 8300000, guid: 2607cdfb7bdb0d54ca93924f8758c463, type: 3}
+  - {fileID: 8300000, guid: 658684039adf00e439b754252deb3652, type: 3}
+  - {fileID: 8300000, guid: da1de3de1fce95a45951cdb18c58406a, type: 3}
+  - {fileID: 8300000, guid: 36a6f26bf13b2ad4e9f86143309a9d0d, type: 3}
+  - {fileID: 8300000, guid: db86fcc5db7b55e489fbf5ee617ffbde, type: 3}
+  wrongLyrics:
+  - {fileID: 8300000, guid: b3f4efcd310cbc145819ac734fceb164, type: 3}
+  - {fileID: 8300000, guid: e0a819a79e9d9834ea9f6fab08aa0b7a, type: 3}
+  - {fileID: 8300000, guid: bdf86e2b1c6e24f4181382a23ec983da, type: 3}
+  - {fileID: 8300000, guid: abd5e7b66372c094283298a492317a8c, type: 3}
+  - {fileID: 8300000, guid: 183f198da5fb4f64393709a650de746b, type: 3}
+  - {fileID: 8300000, guid: 40e85e357b1b7dc418fd06a02c46a4f0, type: 3}
+  - {fileID: 8300000, guid: 1af4181462720cb488e3ce46342efc63, type: 3}
+  - {fileID: 8300000, guid: 48276e15513967743bce34554e0580fc, type: 3}
+  bgm: {fileID: 8300000, guid: e36dc668d9a72264db56f999b50e115e, type: 3}

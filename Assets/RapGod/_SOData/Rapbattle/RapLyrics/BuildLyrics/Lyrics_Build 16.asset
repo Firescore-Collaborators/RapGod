@@ -1,0 +1,83 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cea2552ad22dd1a4aafb532f8d0c59e5, type: 3}
+  m_Name: Lyrics_Build 16
+  m_EditorClassIdentifier: 
+  leveldata:
+  - RapString: "I\u2019m the cream of the crop, the ______ on top,"
+    OptionA: Cherry
+    OptionB: Shoe
+    MarkWord: ' '
+    CorrectAnswer: 1
+    hintLine: 'Hint: Found in sundaes'
+  - RapString: "You\u2019re a wannabe rapper, your ______ in the crapper,"
+    OptionA: Chair
+    OptionB: Tracks
+    MarkWord: ' '
+    CorrectAnswer: 2
+    hintLine: 'Hint: Rail _____'
+  - RapString: "I got a ______ happenin\u2019, you gonna get a slappin\u2019,"
+    OptionA: Multi-platinum
+    OptionB: Shit
+    MarkWord: ' '
+    CorrectAnswer: 1
+    hintLine: 'Hint: 8 Mile'
+  - RapString: "Cuz when I\u2019m done, even you gonna be ______ "
+    OptionA: Trappin
+    OptionB: Clappin
+    MarkWord: ' '
+    CorrectAnswer: 2
+    hintLine: 'Hint: Applause'
+  - RapString: "I\u2019ll put you in your place, like a brush with some ______ ,"
+    OptionA: Hair-Gel
+    OptionB: Toothpaste
+    MarkWord: ' '
+    CorrectAnswer: 2
+    hintLine: 'Hint: Colgate'
+  - RapString: "Gonna wash my mouth, ______ you out, eww what\u2019s that taste."
+    OptionA: Spit
+    OptionB: Throw
+    MarkWord: ' '
+    CorrectAnswer: 1
+    hintLine: 'Rhyme: Tit'
+  - RapString: "When I\u2019m done, it\u2019ll be ______ , you\u2019ll be looking
+      to run,"
+    OptionA: Fun
+    OptionB: Depressing
+    MarkWord: ' '
+    CorrectAnswer: 1
+    hintLine: 'Hint: Pleasure & Enjoyment'
+  - RapString: "But little did you know, your rap career\u2026is already ______ "
+    OptionA: Done
+    OptionB: One
+    MarkWord: ' '
+    CorrectAnswer: 1
+    hintLine: 'Hint: Over'
+  correctLyrics:
+  - {fileID: 8300000, guid: 5bedddc2188c52e46b50d88112b6a1c5, type: 3}
+  - {fileID: 8300000, guid: 4b2d65f4f95777f468955920f2ce4f2d, type: 3}
+  - {fileID: 8300000, guid: e7f29ed19e3fbb246b36a1d5877d97ce, type: 3}
+  - {fileID: 8300000, guid: f814768366c42c64bbbeb427e3087f5a, type: 3}
+  - {fileID: 8300000, guid: f4de1141823cf5f41b9a12c3ad23e8c4, type: 3}
+  - {fileID: 8300000, guid: 4e265897017ddbe46a23ce9124c09414, type: 3}
+  - {fileID: 8300000, guid: e23d8dd8472603243b6bf3aa4a985fe7, type: 3}
+  - {fileID: 8300000, guid: 00d47b4c2300fb6479ef58b4db401fec, type: 3}
+  wrongLyrics:
+  - {fileID: 8300000, guid: 6726977f8537e7a4d8947209aa3c21fb, type: 3}
+  - {fileID: 8300000, guid: 93a4e7284ae43e340aac445e1d86f77c, type: 3}
+  - {fileID: 8300000, guid: a4380d7763f56a94a8b82a886cd9464f, type: 3}
+  - {fileID: 8300000, guid: 787b4ddbbf6b949439254cf9de6e0e77, type: 3}
+  - {fileID: 8300000, guid: 94105eda4f46bce4d91a36cbdac72772, type: 3}
+  - {fileID: 8300000, guid: 78cc54fd05553964db922f6b1275265a, type: 3}
+  - {fileID: 8300000, guid: e2d83b53815a9754da081d873bc3991b, type: 3}
+  - {fileID: 8300000, guid: 013370a6823cffb4b8c2c9e3abbcf08d, type: 3}
+  bgm: {fileID: 8300000, guid: 2b0b544e548edb740ba9a9b6ce3561f8, type: 3}

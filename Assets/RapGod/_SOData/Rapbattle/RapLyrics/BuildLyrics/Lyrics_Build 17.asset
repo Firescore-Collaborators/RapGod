@@ -1,0 +1,82 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cea2552ad22dd1a4aafb532f8d0c59e5, type: 3}
+  m_Name: Lyrics_Build 17
+  m_EditorClassIdentifier: 
+  leveldata:
+  - RapString: This ain't for the ______ , spitting provocative lyrics
+    OptionA: Weak
+    OptionB: Brilliant
+    MarkWord: ' '
+    CorrectAnswer: 1
+    hintLine: 'Hint: Mumble Rappers'
+  - RapString: The girl with the ______ , you know imma go get it
+    OptionA: Phat-Ass
+    OptionB: Tiny-Ass
+    MarkWord: ' '
+    CorrectAnswer: 1
+    hintLine: 'Hint: Big Booty'
+  - RapString: Feeling her up all under that ______ dress,
+    OptionA: White
+    OptionB: Night
+    MarkWord: ' '
+    CorrectAnswer: 1
+    hintLine: 'Hint: Colour'
+  - RapString: 'When she leave in the morning her hair be a right ______ '
+    OptionA: Crest
+    OptionB: Mess
+    MarkWord: ' '
+    CorrectAnswer: 2
+    hintLine: 'Hint: Dirty'
+  - RapString: 'Little do you''ll know the game that I ______ '
+    OptionA: Bring
+    OptionB: Have
+    MarkWord: ' '
+    CorrectAnswer: 1
+    hintLine: 'Rhyme: Ring'
+  - RapString: 'Always looking fly decorated in ______ '
+    OptionA: Bling
+    OptionB: Thing
+    MarkWord: ' '
+    CorrectAnswer: 1
+    hintLine: 'Hint: Jewellery'
+  - RapString: 'Them girls be on me like a rider on a wild ______  '
+    OptionA: Pull
+    OptionB: Bull
+    MarkWord: ' '
+    CorrectAnswer: 2
+    hintLine: 'Hint: Animal'
+  - RapString: Shhh, she can't ______ now, you know her mouth full
+    OptionA: Talk
+    OptionB: Feel
+    MarkWord: ' '
+    CorrectAnswer: 1
+    hintLine: 'Hint: Speak'
+  correctLyrics:
+  - {fileID: 8300000, guid: c9c143f52a69fca41b200d1f505d6469, type: 3}
+  - {fileID: 8300000, guid: c2df9766016a39e4d9cbfa872ff235d7, type: 3}
+  - {fileID: 8300000, guid: 3345dedb7e91a1644a509afc047bd9c3, type: 3}
+  - {fileID: 8300000, guid: 6e71637b310a16e42aaab5b7c0e43026, type: 3}
+  - {fileID: 8300000, guid: dc448343146625c4e89e8f89089b365d, type: 3}
+  - {fileID: 8300000, guid: 59696ed7b813371418af9f8ff09574e7, type: 3}
+  - {fileID: 8300000, guid: c62e47ad7b661bc489b63d8f647aea3d, type: 3}
+  - {fileID: 8300000, guid: a20458e9cb40b354ba512f4d6b3383b7, type: 3}
+  wrongLyrics:
+  - {fileID: 8300000, guid: bea277e0c05d11843a552f855a37fd7b, type: 3}
+  - {fileID: 8300000, guid: 8c342e5206999dc489da610de06fc9e4, type: 3}
+  - {fileID: 8300000, guid: f1aa35598edb463409d5655c71e1c454, type: 3}
+  - {fileID: 8300000, guid: c5a84be35a127ec47bf4a31155251a3f, type: 3}
+  - {fileID: 8300000, guid: 58d6c387fb6a07344bbbb899a61157c3, type: 3}
+  - {fileID: 8300000, guid: fb772cdb5bb3cb444bd1ca31ba23f483, type: 3}
+  - {fileID: 8300000, guid: 001470814c08b6a449a7ddf20b6f9b6a, type: 3}
+  - {fileID: 8300000, guid: 98dc4b07a7fc40945b44d1549546c780, type: 3}
+  bgm: {fileID: 8300000, guid: 7cfe242384516ec4bab6c51753722ca3, type: 3}
