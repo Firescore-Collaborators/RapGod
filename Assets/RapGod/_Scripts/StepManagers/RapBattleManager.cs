@@ -23,7 +23,7 @@ namespace PrisonControl
         private RuntimeAnimatorController playerAnimator, enemyAnimator;
 
         [SerializeField]
-        GameObject player, enemy, handUI,tapFx;
+        GameObject player, enemy, handUI, tapFx;
 
         public PlayPhasesControl m_playPhaseControl;
         HypeMeterFxController m_hypeMeterFxController
@@ -94,7 +94,7 @@ namespace PrisonControl
         }
 
         public RespondMessageController respondMessageController;
-
+        Coroutine handCoroutine;
         // [SerializeField]
         // private Color[] FogColor, lightColor, planeColor;
         [NaughtyAttributes.Foldout("Audio")]
@@ -486,6 +486,7 @@ namespace PrisonControl
                         player_anim.SetBool("win", true);
                         enemy_anim.SetBool("loose", true);
                         respondMessageController.ShowCorrectRespone("WINNER MENTALITY !");
+                        Invoke("TapSmash", 1f);
                     }
                     else
                     {
@@ -496,10 +497,13 @@ namespace PrisonControl
                         player_anim.SetBool("loose", true);
                         enemy_anim.SetBool("win", true);
                         respondMessageController.ShowWrongResponse("NO HYPE");
+                        Timer.Delay(3f,()=>{
+                            OnLevelEnd();
+                        });
+                        
                     }
                 }
 
-                Invoke("TapSmash", 1f);
             }
             else
             {
@@ -541,12 +545,18 @@ namespace PrisonControl
 
         void Tapped()
         {
-            handUI.SetActive(false);
+            StartCoroutine(HandUIState(false, 1f));
+
+            if (handCoroutine != null)
+                StopCoroutine(handCoroutine);
+
+            //handUI.SetActive(false);
             player_anim.Play(rapData.rapAnimation.ToString());
             //print(MainCameraController.instance.CurrentCamera.transform);
             GetComponent<CameraShake>().Shake(MainCameraController.instance.CurrentCamera.transform);
             m_hypeMeterFxController.SpawnHypeAnimEndFx(1.5f);
-            Utils.SpawnEfxWithDestroy(Input.mousePosition,tapSmashPanel,tapFx,2f);
+            Utils.SpawnEfxWithDestroy(Input.mousePosition, tapSmashPanel, tapFx, 2f);
+            handCoroutine = StartCoroutine(HandUIState(true, 2f));
             if (sfx.isPlaying) { return; }
             PlaySfx(applauseLoop);
         }
@@ -620,6 +630,12 @@ namespace PrisonControl
         void ResetTutorial()
         {
             Progress.Instance.TapSmashTut = false;
+        }
+
+        IEnumerator HandUIState(bool state, float time)
+        {
+            yield return new WaitForSeconds(time);
+            handUI.SetActive(state);
         }
         // public void OnNextLevelLoad()
         // {
