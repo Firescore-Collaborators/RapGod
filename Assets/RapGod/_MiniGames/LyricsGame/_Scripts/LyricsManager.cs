@@ -5,12 +5,13 @@ using TMPro;
 
 public class LyricsManager : MonoBehaviour
 {
-    public TMP_Text Question;
+    public TMP_Text Question, FinalLyrics;
     public string Hint;
-    public GameObject WinPanel, LosePanel, ParentQP;
+    public GameObject WinPanel, LosePanel, ParentQP, FinalShow;
     public TMP_InputField IF;
     public Lyrics_SO[] lyrics_SO;
     public TouchScreenKeyboard KB;
+    public LyricListSO lyricListSO;
 
     [SerializeField]
     private int LyricsNo;
@@ -18,7 +19,7 @@ public class LyricsManager : MonoBehaviour
     // Start is called before the first frame update
     void OnEnable()
     {
-        Question.text = lyrics_SO[LyricsNo].Question;
+        Question.text = lyricListSO.lyricList[LyricsNo].Question;
         IF.onEndEdit.AddListener(delegate { CheckInput(); });
 
         Invoke("ShowKB", 0.01f);
@@ -47,15 +48,27 @@ public class LyricsManager : MonoBehaviour
         // put next line of questions
         IF.text = "";
         LyricsNo++;
-        if (LyricsNo < lyrics_SO.Length)
+        if (LyricsNo < lyricListSO.lyricList.Count)
         {
-            Question.text = lyrics_SO[LyricsNo].Question;
+            Question.text = lyricListSO.lyricList[LyricsNo].Question;
             ShowKB();
         }
         else
         {
             IF.enabled = false;
             ParentQP.SetActive(false);
+            FinalShow.SetActive(true);
+            for (int i = 0; i < lyricListSO.lyricList.Count; i++)
+            {
+                lyricListSO.lyricList[i].InputLyrics =
+                    lyricListSO.lyricList[i].InputLyrics.Replace(lyricListSO.lyricList[i].RightAnswer, "<#FFFFFF>" + lyricListSO.lyricList[i].RightAnswer + "</color>");
+
+                FinalLyrics.text += lyricListSO.lyricList[i].InputLyrics;
+                FinalLyrics.text += "\n";
+
+                //FinalLyrics.text = FinalLyrics.text.Replace(lyricListSO.lyricList[i].RightAnswer, "<#FFFFFF>" + lyricListSO.lyricList[i].RightAnswer + " </color>");
+
+            }
         }
     }
     public void OnRetryClick()
@@ -67,10 +80,12 @@ public class LyricsManager : MonoBehaviour
 
     public void CheckInput()
     {
-        if (IF.text.ToLower().Contains(lyrics_SO[LyricsNo].RightAnswer.ToLower()))
+        if (IF.text.ToLower().Contains(lyricListSO.lyricList[LyricsNo].RightAnswer.ToLower()))
         {
+            lyricListSO.lyricList[LyricsNo].InputLyrics = IF.text;
             Debug.Log("Matched");
             Invoke("Celebrate", 1);
+            
         }
         else
         {
