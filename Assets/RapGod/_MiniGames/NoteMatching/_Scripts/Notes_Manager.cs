@@ -1,7 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
 public class Notes_Manager : MonoBehaviour
 {
     public static Notes_Manager instance;
@@ -61,13 +60,10 @@ public class Notes_Manager : MonoBehaviour
     
     IEnumerator ShowWinPanel()
     {
-        yield return new WaitForSeconds(2);
+        yield return new WaitForSeconds(4);
         //WinPanel.SetActive(true);
-        PlayBar.SetActive(true); ;
-
-         
-            
-
+        PlayBar.SetActive(true);
+        PlayBar.GetComponent<Animator>().SetTrigger("play");
     }
 
     public void showPanel()

@@ -34,14 +34,24 @@ public class UIParentScript : MonoBehaviour, IBeginDragHandler, IDragHandler, IE
     public void OnEndDrag(PointerEventData eventData)
     {
         isMoving = true;
-        if (drag.x > 0 && AgentUIManager.instance.AgentUI[0].transform.position != CenterScreen.transform.position)
+        if (drag.x > 0 /*&& AgentUIManager.instance.AgentUI[0].transform.position != CenterScreen.transform.position*/)
         {
-            GetComponent<RectTransform>().DOAnchorPos(new Vector2(GetComponent<RectTransform>().localPosition.x + 700, 0), 0.5f);
+            if (AgentUIManager.instance.AgentUI[0].transform.position.x >= CenterScreen.transform.position.x)
+            { return; }
+            else if (AgentUIManager.instance.AgentUI[0].transform.position.x <= CenterScreen.transform.position.x)
+            {
+                GetComponent<RectTransform>().DOAnchorPos(new Vector2(GetComponent<RectTransform>().localPosition.x + 700, 0), 0.5f);
+            }
         }
-        if (drag.x < 0 && AgentUIManager.instance.AgentUI[AgentUIManager.instance.AgentUI.Length-1].transform.position != CenterScreen.transform.position)
+        if (drag.x < 0 /*&& AgentUIManager.instance.AgentUI[AgentUIManager.instance.AgentUI.Length-1].transform.position != CenterScreen.transform.position*/)
         {
-            GetComponent<RectTransform>().DOAnchorPos(new Vector2(GetComponent<RectTransform>().localPosition.x - 700, 0), 0.5f);
-        }   
+            if (AgentUIManager.instance.AgentUI[AgentUIManager.instance.AgentUI.Length - 1].transform.position.x <= CenterScreen.transform.position.x)
+            { return; }
+            else if (AgentUIManager.instance.AgentUI[AgentUIManager.instance.AgentUI.Length - 1].transform.position.x >= CenterScreen.transform.position.x)
+            {
+                GetComponent<RectTransform>().DOAnchorPos(new Vector2(GetComponent<RectTransform>().localPosition.x - 700, 0), 0.5f);
+            }
+        }
     }
     // Start is called before the first frame update
     void Start()
