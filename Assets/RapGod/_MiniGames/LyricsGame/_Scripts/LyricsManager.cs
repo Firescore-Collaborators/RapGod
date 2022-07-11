@@ -5,7 +5,7 @@ using TMPro;
 
 public class LyricsManager : MonoBehaviour
 {
-    public TMP_Text Question, FinalLyrics;
+    public TMP_Text Question, FinalLyrics, HintDown;
     public string Hint;
     public GameObject WinPanel, LosePanel, ParentQP, FinalShow;
     public TMP_InputField IF;
@@ -14,7 +14,7 @@ public class LyricsManager : MonoBehaviour
     public LyricListSO lyricListSO;
 
     [SerializeField]
-    private int LyricsNo;
+    private int LyricsNo, FailCount;
 
     // Start is called before the first frame update
     void OnEnable()
@@ -32,6 +32,9 @@ public class LyricsManager : MonoBehaviour
     }
     public void Celebrate()
     {
+        FailCount = 0;
+        HintDown.text = "";
+
         WinPanel.SetActive(true);
         ParentQP.GetComponent<Animator>().SetTrigger("hide");
     }
@@ -40,7 +43,7 @@ public class LyricsManager : MonoBehaviour
     {
         IF.text = "";
         LosePanel.SetActive(true);
-
+        FailCount++;
     }
     public void OnWinClick()
     {
@@ -57,6 +60,7 @@ public class LyricsManager : MonoBehaviour
         {
             IF.enabled = false;
             ParentQP.SetActive(false);
+
             FinalShow.SetActive(true);
             for (int i = 0; i < lyricListSO.lyricList.Count; i++)
             {
@@ -75,7 +79,10 @@ public class LyricsManager : MonoBehaviour
     {
         LosePanel.SetActive(false);
         ShowKB();
-
+        if(FailCount > 1)
+        {
+            HintDown.text = "Hint: " + lyricListSO.lyricList[LyricsNo].RightAnswer;
+        }
     }
 
     public void CheckInput()
@@ -93,5 +100,14 @@ public class LyricsManager : MonoBehaviour
         }
     }
 
-    
+    public void RetryLevel()
+    {
+        IF.enabled = true;
+        ParentQP.SetActive(true);
+        LyricsNo = -1;
+        
+        FinalShow.SetActive(false);
+        OnWinClick();
+        FinalLyrics.text = "";
+    }
 }
