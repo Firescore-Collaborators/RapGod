@@ -9,9 +9,9 @@ public class AgentUIManager : MonoBehaviour
     public static AgentUIManager instance;
     public GameObject[] AgentUI;
 
-    public Agent_SO[] agent_SO;
+    //public Agent_SO[] agent_SO;
     public Transform CenterScreen;
-
+    public AgentsList_SO agentsList_SO;
     public GameObject Panel, PanelParent, TempPanel;
     
     [SerializeField]
@@ -27,14 +27,14 @@ public class AgentUIManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-         AgentUI = new GameObject[agent_SO.Length];
+         AgentUI = new GameObject[agentsList_SO.agentList.Count];
 
-        for (int i = 0; i < agent_SO.Length; i++)
+        for (int i = 0; i < agentsList_SO.agentList.Count; i++)
         {
             AgentUI[i] = Instantiate(Panel, new Vector2(CenterScreen.position.x + 700 * i, CenterScreen.position.y), Quaternion.identity, PanelParent.transform);
-            AgentUI[i].transform.GetChild(1).GetComponent<TMP_Text>().text = agent_SO[i].AgentName;
-            AgentUI[i].transform.GetChild(2).GetComponent<Image>().sprite = agent_SO[i].AgentPic;
-        }
+            AgentUI[i].transform.GetChild(1).GetComponent<TMP_Text>().text = agentsList_SO.agentList[i].AgentName;
+            AgentUI[i].transform.GetChild(2).GetComponent<Image>().sprite = agentsList_SO.agentList[i].AgentPic;
+        }   
     }
 
     // Update is called once per frame

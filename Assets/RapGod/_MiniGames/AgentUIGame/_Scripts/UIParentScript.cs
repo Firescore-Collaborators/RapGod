@@ -36,18 +36,18 @@ public class UIParentScript : MonoBehaviour, IBeginDragHandler, IDragHandler, IE
         isMoving = true;
         if (drag.x > 0 /*&& AgentUIManager.instance.AgentUI[0].transform.position != CenterScreen.transform.position*/)
         {
-            if (AgentUIManager.instance.AgentUI[0].transform.position.x >= CenterScreen.transform.position.x)
+            if (AgentUIManager.instance.AgentUI[0].transform.position.x >= CenterScreen.transform.position.x-100)
             { return; }
-            else if (AgentUIManager.instance.AgentUI[0].transform.position.x <= CenterScreen.transform.position.x)
+            else if (AgentUIManager.instance.AgentUI[0].transform.position.x <= CenterScreen.transform.position.x-100)
             {
                 GetComponent<RectTransform>().DOAnchorPos(new Vector2(GetComponent<RectTransform>().localPosition.x + 700, 0), 0.5f);
             }
         }
         if (drag.x < 0 /*&& AgentUIManager.instance.AgentUI[AgentUIManager.instance.AgentUI.Length-1].transform.position != CenterScreen.transform.position*/)
         {
-            if (AgentUIManager.instance.AgentUI[AgentUIManager.instance.AgentUI.Length - 1].transform.position.x <= CenterScreen.transform.position.x)
+            if (AgentUIManager.instance.AgentUI[AgentUIManager.instance.AgentUI.Length - 1].transform.position.x <= CenterScreen.transform.position.x+100)
             { return; }
-            else if (AgentUIManager.instance.AgentUI[AgentUIManager.instance.AgentUI.Length - 1].transform.position.x >= CenterScreen.transform.position.x)
+            else if (AgentUIManager.instance.AgentUI[AgentUIManager.instance.AgentUI.Length - 1].transform.position.x >= CenterScreen.transform.position.x+100)
             {
                 GetComponent<RectTransform>().DOAnchorPos(new Vector2(GetComponent<RectTransform>().localPosition.x - 700, 0), 0.5f);
             }
