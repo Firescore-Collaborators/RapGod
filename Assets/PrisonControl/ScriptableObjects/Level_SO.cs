@@ -38,6 +38,10 @@ namespace PrisonControl
         [SerializeField]
         private AgentsList_SO agentsList_SO;
 
+        [Foldout("RapBattle")]
+        [SerializeField]
+        private GameObject signaturePrefab;
+
         public enum LevelTypes
         {
             rapBattle,
@@ -45,6 +49,7 @@ namespace PrisonControl
             ProfileDp,
             HandShake,
             AgentSelect,
+            Signature,
         }
 
         public RapBattleDataSO GetRapBattleSO
@@ -94,6 +99,13 @@ namespace PrisonControl
             }
         }
 
+        public GameObject GetSignaturePrefab
+        {
+            get
+            {
+                return signaturePrefab;
+            }
+        }
     }
 }
 

@@ -59,6 +59,7 @@ public class PencilMoveScript : MonoBehaviour
 
     IEnumerator ShowWin()
     {
+        print("show win");
         yield return new WaitForSeconds(2);
         WinPanel.SetActive(true);
     }

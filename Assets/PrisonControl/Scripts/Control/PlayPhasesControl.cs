@@ -87,6 +87,11 @@ namespace PrisonControl
             {
                 mPlayPhasesStateMachine.SwitchState(PlayPhase.AgentSelect);
             }
+            else
+            if (levels[Progress.Instance.CurrentLevel - 1].GetLevelTypes[currentMiniLevel] == Level_SO.LevelTypes.Signature)
+            {
+                mPlayPhasesStateMachine.SwitchState(PlayPhase.Signature);
+            }
         }
 
         public override void OnExit()
@@ -128,7 +133,8 @@ namespace PrisonControl
                 (PlayPhase.Narration, GetComponent<NarrationState>()),
                 (PlayPhase.ProfileDp, GetComponent<ProfileDPState>()),
                 (PlayPhase.HandShake, GetComponent<HandShakeState>()),
-                (PlayPhase.AgentSelect, GetComponent<AgentSelectState>())
+                (PlayPhase.AgentSelect, GetComponent<AgentSelectState>()),
+                (PlayPhase.Signature, GetComponent<SignatureState>())
             );
         }
 
@@ -250,6 +256,7 @@ namespace PrisonControl
             PlayPhase.ProfileDp,
             PlayPhase.HandShake,
             PlayPhase.AgentSelect,
+            PlayPhase.Signature,
         };
     }
 }

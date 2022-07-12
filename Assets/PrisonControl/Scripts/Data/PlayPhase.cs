@@ -7,5 +7,6 @@
         ProfileDp,
         HandShake,
         AgentSelect,
+        Signature,
     }
 }

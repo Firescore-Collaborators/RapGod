@@ -65,6 +65,7 @@ namespace PrisonControl
         void LevelEnd()
         {
             Reset();
+            EnvironmentList.instance.SwitchOffEnvironment();
         }
 
         void Reset()

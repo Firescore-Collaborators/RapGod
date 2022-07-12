@@ -80,6 +80,11 @@ namespace PrisonControl
             Timer.Delay(1.5f, () =>
             {
                 string currentResponse;
+                // if(conversation >= narration.default_conversation.Length) 
+                // {
+                //     LevelEnd();
+                //     return;
+                // }
                 //Checking if def converstaion is over
                 if (conversation < narration.default_conversation.Length)
                 {
@@ -88,6 +93,7 @@ namespace PrisonControl
                     option1.text = narration.positiveResponse[conversation];
                     option2.text = narration.negativeResponse[conversation];
                 }
+
 
                 if (conversation != 0)
                 {
@@ -107,7 +113,6 @@ namespace PrisonControl
                         //Showing response dialogue
                         ShowDialogue(currentResponse, positive, () =>
                         {
-
                             Timer.Delay(1.0f, () =>
                             {
                                 popUp.SetActive(false);
@@ -153,6 +158,11 @@ namespace PrisonControl
 
         void ShowDefaultRespone(string text)
         {
+            // if (text == string.Empty)
+            // {
+            //     optionPanel.SetActive(true);
+            //     return;
+            // }
             typewriter.WholeText = text;
             popUp.SetActive(true);
             typewriter.ShowTextResponse(() =>
