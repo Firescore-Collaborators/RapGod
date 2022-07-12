@@ -9,6 +9,7 @@ public class LyricsBlock : MonoBehaviour, IPointerDownHandler, IBeginDragHandler
     [SerializeField] private RectTransform rectTransform;
     [SerializeField] private CanvasGroup canvasGroup;
     public Vector3 StartPosition;
+    public bool isPlaced;
     private void Awake()
     {
         canvas = FindObjectOfType<Canvas>();
@@ -17,17 +18,26 @@ public class LyricsBlock : MonoBehaviour, IPointerDownHandler, IBeginDragHandler
     }
     public void OnBeginDrag(PointerEventData eventData)
     {
-        
+        canvasGroup.blocksRaycasts = false;
+        StartPosition = rectTransform.position;
     }
 
     public void OnDrag(PointerEventData eventData)
     {
-        
+        if (!isPlaced)
+        { 
+            rectTransform.anchoredPosition += eventData.delta / canvas.scaleFactor;
+        } 
     }
 
     public void OnEndDrag(PointerEventData eventData)
     {
-        
+        canvasGroup.blocksRaycasts = true;
+
+        if(isPlaced)
+        {
+            canvasGroup.interactable = false;
+        }
     }
 
     public void OnPointerDown(PointerEventData eventData)
