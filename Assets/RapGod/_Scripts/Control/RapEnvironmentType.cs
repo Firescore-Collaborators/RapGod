@@ -8,7 +8,8 @@ public enum EnvironmentType
     streetEnvironment,
     houseEnvironment,
     barEnvironment,
-    studioEnvironment
+    studioEnvironment,
+    agentOfficeEnvironment,
 }
 [System.Serializable]
 public enum EnvironmentPosition

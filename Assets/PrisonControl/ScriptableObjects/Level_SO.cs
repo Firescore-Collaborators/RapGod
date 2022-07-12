@@ -33,12 +33,18 @@ namespace PrisonControl
         [SerializeField]
         private HandShakeSO handShake_SO;
 
+        [Foldout("RapBattle")]
+        [Expandable]
+        [SerializeField]
+        private AgentsList_SO agentsList_SO;
+
         public enum LevelTypes
         {
             rapBattle,
             Narration,
             ProfileDp,
             HandShake,
+            AgentSelect,
         }
 
         public RapBattleDataSO GetRapBattleSO
@@ -80,6 +86,13 @@ namespace PrisonControl
             }
         }
 
+        public AgentsList_SO GetAgentsListSO
+        {
+            get
+            {
+                return agentsList_SO;
+            }
+        }
 
     }
 }

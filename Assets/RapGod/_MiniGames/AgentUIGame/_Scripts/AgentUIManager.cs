@@ -4,42 +4,76 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 
-public class AgentUIManager : MonoBehaviour
+namespace PrisonControl
 {
-    public static AgentUIManager instance;
-    public GameObject[] AgentUI;
-
-    //public Agent_SO[] agent_SO;
-    public Transform CenterScreen;
-    public AgentsList_SO agentsList_SO;
-    public GameObject Panel, PanelParent, TempPanel;
-    
-    [SerializeField]
-    public int AgentNum;
-
-    private void Awake()
+    public class AgentUIManager : MonoBehaviour
     {
-        if(instance== null)
+        [SerializeField] private PlayPhasesControl _mPlayPhasesControl;
+        public static AgentUIManager instance;
+        public GameObject[] AgentUI;
+
+        //public Agent_SO[] agent_SO;
+        public Transform CenterScreen;
+        public AgentsList_SO agentsList_SO;
+        public GameObject Panel, PanelParent, TempPanel;
+
+        [SerializeField]
+        public int AgentNum;
+
+        private void Awake()
         {
-            instance = this;
+            if (instance == null)
+            {
+                instance = this;
+            }
         }
-    }
-    // Start is called before the first frame update
-    void Start()
-    {
-         AgentUI = new GameObject[agentsList_SO.agentList.Count];
-
-        for (int i = 0; i < agentsList_SO.agentList.Count; i++)
+        // Start is called before the first frame update
+        void OnEnable()
         {
-            AgentUI[i] = Instantiate(Panel, new Vector2(CenterScreen.position.x + 700 * i, CenterScreen.position.y), Quaternion.identity, PanelParent.transform);
-            AgentUI[i].transform.GetChild(1).GetComponent<TMP_Text>().text = agentsList_SO.agentList[i].AgentName;
-            AgentUI[i].transform.GetChild(2).GetComponent<Image>().sprite = agentsList_SO.agentList[i].AgentPic;
-        }   
-    }
+            InitLevelData();
+            InitPanel();
+        }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
+        void InitLevelData()
+        {
+            Level_SO level = _mPlayPhasesControl.levels[Progress.Instance.CurrentLevel - 1];
+            agentsList_SO = level.GetAgentsListSO;
+        }
+
+        void InitPanel()
+        {
+            AgentUI = new GameObject[agentsList_SO.agentList.Count];
+
+            for (int i = 0; i < agentsList_SO.agentList.Count; i++)
+            {
+                AgentUI[i] = Instantiate(Panel, new Vector2(CenterScreen.position.x + 700 * i, CenterScreen.position.y), Quaternion.identity, PanelParent.transform);
+                AgentUI[i].transform.GetChild(1).GetComponent<TMP_Text>().text = agentsList_SO.agentList[i].AgentName;
+                AgentUI[i].transform.GetChild(2).GetComponent<Image>().sprite = agentsList_SO.agentList[i].AgentPic;
+                AgentUI[i].GetComponent<AgentUIPanel>().selectButton.onClick.AddListener(() =>
+                {
+                    OnAgentSelected();
+                });
+            }
+        }
+
+        public void OnAgentSelected()
+        {
+            _mPlayPhasesControl._OnPhaseFinished();
+            LevelEnd();
+        }
+
+        void LevelEnd()
+        {
+            Reset();
+        }
+
+        void Reset()
+        {
+            for (int i = 0; PanelParent.transform.childCount > i; i++)
+            {
+                Destroy(PanelParent.transform.GetChild(i).gameObject);
+            }
+        }
+
     }
 }

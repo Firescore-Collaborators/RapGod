@@ -6,5 +6,6 @@
         Narration,
         ProfileDp,
         HandShake,
+        AgentSelect,
     }
 }

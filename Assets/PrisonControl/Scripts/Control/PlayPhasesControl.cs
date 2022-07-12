@@ -82,6 +82,11 @@ namespace PrisonControl
             {
                 mPlayPhasesStateMachine.SwitchState(PlayPhase.HandShake);
             }
+            else
+            if (levels[Progress.Instance.CurrentLevel - 1].GetLevelTypes[currentMiniLevel] == Level_SO.LevelTypes.AgentSelect)
+            {
+                mPlayPhasesStateMachine.SwitchState(PlayPhase.AgentSelect);
+            }
         }
 
         public override void OnExit()
@@ -122,7 +127,8 @@ namespace PrisonControl
                 (PlayPhase.RapBattle,GetComponent<RapBattleState>()),
                 (PlayPhase.Narration, GetComponent<NarrationState>()),
                 (PlayPhase.ProfileDp, GetComponent<ProfileDPState>()),
-                (PlayPhase.HandShake, GetComponent<HandShakeState>())
+                (PlayPhase.HandShake, GetComponent<HandShakeState>()),
+                (PlayPhase.AgentSelect, GetComponent<AgentSelectState>())
             );
         }
 
@@ -243,6 +249,7 @@ namespace PrisonControl
             PlayPhase.Narration,
             PlayPhase.ProfileDp,
             PlayPhase.HandShake,
+            PlayPhase.AgentSelect,
         };
     }
 }

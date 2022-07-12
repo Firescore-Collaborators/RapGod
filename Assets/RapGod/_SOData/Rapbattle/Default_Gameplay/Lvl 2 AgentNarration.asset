@@ -1,0 +1,23 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 55c91730e4923cf48bd2b8f9f6b3d5b4, type: 3}
+  m_Name: Lvl 2 AgentNarration
+  m_EditorClassIdentifier: 
+  enemyCharacter: {fileID: 6454957653236798055, guid: 161adea069abb7b4c9f4e297909755ea, type: 3}
+  environment: {fileID: 11400000, guid: 3dbc160a86139dc44aa9ff6fc4632e04, type: 2}
+  rapBattleLyricSO: {fileID: 0}
+  inputSequence: {fileID: 0}
+  rapAnimation: 0
+  rapPose: 0
+  punchLine: 
+  tapSmashLimit: 20
+  maxAnimationSpeed: 3
