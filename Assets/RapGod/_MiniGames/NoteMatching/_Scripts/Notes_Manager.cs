@@ -1,21 +1,35 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
-
 public class Notes_Manager : MonoBehaviour
 {
     public static Notes_Manager instance;
     public Transform endpoint1, endpoint2;
-    public GameObject WinPanel;
+    public GameObject WinPanel, squareParent, PlayBar;
+    public int temp;
+    public AudioSource SRC;
+    public AudioClip clip1, clip2, clip3;
 
     public GameObject[] grid, box;
+    public Tiles_SO tiles_SO;
 
     private void Awake()
     {
         if(instance == null)
         {
             instance = this;
+        }
+    }
+    int j;
+    private void OnEnable()
+    {
+        for (int i = 0; i < grid.Length; i++)
+        {
+            if (tiles_SO.box[i] != null)
+            {
+                box[j] = Instantiate(tiles_SO.box[i], grid[i].transform.position, Quaternion.identity, squareParent.transform);
+                j++;
+            }
         }
     }
 
@@ -43,14 +57,30 @@ public class Notes_Manager : MonoBehaviour
         }
     }
 
+    
     IEnumerator ShowWinPanel()
     {
-        yield return new WaitForSeconds(2);
-        WinPanel.SetActive(true);
+        yield return new WaitForSeconds(4);
+        //WinPanel.SetActive(true);
+        PlayBar.SetActive(true);
+        PlayBar.GetComponent<Animator>().SetTrigger("play");
     }
 
     public void showPanel()
     {
         StartCoroutine(ShowWinPanel());
+    }
+
+    public void PlayTheBar()
+    {
+        if (temp < 4)
+        {
+            temp++;
+            PlayBar.GetComponent<Animator>().SetTrigger("play");
+        }
+        else
+        {
+            PlayBar.SetActive(false);
+        }
     }
 }

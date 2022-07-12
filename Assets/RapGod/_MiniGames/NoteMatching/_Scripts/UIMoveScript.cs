@@ -32,7 +32,8 @@ public class UIMoveScript : MonoBehaviour, IPointerDownHandler, IBeginDragHandle
     public void OnEndDrag(PointerEventData eventData)
     {
         canvasGroup.blocksRaycasts = true;
-        if(rectTransform.position.x <= Notes_Manager.instance.endpoint1.position.x || rectTransform.position.y <= Notes_Manager.instance.endpoint1.position.y
+        
+        if (rectTransform.position.x <= Notes_Manager.instance.endpoint1.position.x || rectTransform.position.y <= Notes_Manager.instance.endpoint1.position.y
             || rectTransform.position.x >= Notes_Manager.instance.endpoint2.position.x || rectTransform.position.y >= Notes_Manager.instance.endpoint2.position.y)
         {
             rectTransform.position = StartPosition;
