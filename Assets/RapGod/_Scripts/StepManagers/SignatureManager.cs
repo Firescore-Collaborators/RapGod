@@ -31,6 +31,8 @@ namespace PrisonControl
         void Init()
         {
             signaturePrefab = Instantiate(signaturePrefab);
+            PencilMoveScript pen = signaturePrefab.transform.Find("Pen").GetComponent<PencilMoveScript>();
+            pen.onReset += LevelEnd;
         }
 
         void LevelEnd()

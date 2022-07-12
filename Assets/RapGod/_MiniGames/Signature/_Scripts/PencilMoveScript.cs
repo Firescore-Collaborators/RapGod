@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using PrisonControl;
 
 public class PencilMoveScript : MonoBehaviour
 {
@@ -11,6 +12,8 @@ public class PencilMoveScript : MonoBehaviour
     [SerializeField]
     private int pen_cp, max_cp ;
     private GameObject[] cp;
+
+    public System.Action onReset;
     
     // Start is called before the first frame update
     void OnEnable()
@@ -53,7 +56,7 @@ public class PencilMoveScript : MonoBehaviour
                 pen_cp++;
             }
             other.GetComponent<CPChecker>().isSelected = true;
-
+            CheckWin();
         }
     }
 
@@ -62,10 +65,12 @@ public class PencilMoveScript : MonoBehaviour
         print("show win");
         yield return new WaitForSeconds(2);
         WinPanel.SetActive(true);
+        yield return new WaitForSeconds(2);
+        WinPanel.SetActive(false);
+        onReset?.Invoke();
     }
     
-    // Update is called once per frame
-    void Update()
+    void CheckWin()
     {
         if(pen_cp >= max_cp)
         {

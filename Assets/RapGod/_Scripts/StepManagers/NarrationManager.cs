@@ -274,6 +274,7 @@ namespace PrisonControl
         void LevelEnd()
         {
             Reset();
+            EnvironmentList.instance.SwitchOffEnvironment();
             playPhasesControl._OnPhaseFinished();
         }
     }
