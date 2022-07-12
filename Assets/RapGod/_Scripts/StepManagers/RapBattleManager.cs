@@ -551,10 +551,10 @@ namespace PrisonControl
 
         void Tapped()
         {
-            StartCoroutine(HandUIState(false, 1f));
+            //StartCoroutine(HandUIState(false, 1f));
 
-            if (handCoroutine != null)
-                StopCoroutine(handCoroutine);
+            // if (handCoroutine != null)
+            //     StopCoroutine(handCoroutine);
 
             //handUI.SetActive(false);
             player_anim.Play(rapData.rapAnimation.ToString());
@@ -562,7 +562,7 @@ namespace PrisonControl
             GetComponent<CameraShake>().Shake(MainCameraController.instance.CurrentCamera.transform);
             m_hypeMeterFxController.SpawnHypeAnimEndFx(1.5f);
             Utils.SpawnEfxWithDestroy(Input.mousePosition, tapSmashPanel, tapFx, 2f);
-            handCoroutine = StartCoroutine(HandUIState(true, 2f));
+            //handCoroutine = StartCoroutine(HandUIState(true, 2f));
             if (sfx.isPlaying) { return; }
             PlaySfx(applauseLoop);
         }

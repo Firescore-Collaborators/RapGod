@@ -99,7 +99,7 @@ public class TouchInputs : MonoBehaviour
         }
         else
         {
-            currentTapScore -= Time.deltaTime * regression;
+            //currentTapScore -= Time.deltaTime * regression;
         }
         currentTapScore = Mathf.Clamp(currentTapScore, 0f, multiTapLimit);
         if (currentTapScore >= multiTapLimit)
