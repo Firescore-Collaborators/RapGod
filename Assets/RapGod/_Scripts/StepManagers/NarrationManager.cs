@@ -80,25 +80,29 @@ namespace PrisonControl
             Timer.Delay(1.5f, () =>
             {
                 string currentResponse;
-                // if(conversation >= narration.default_conversation.Length) 
-                // {
-                //     LevelEnd();
-                //     return;
-                // }
-                //Checking if def converstaion is over
-                if (conversation < narration.default_conversation.Length)
-                {
-                    currentConversation = narration.default_conversation[conversation];
-                    //Assinging player response
-                    option1.text = narration.positiveResponse[conversation];
-                    option2.text = narration.negativeResponse[conversation];
-                }
+                print("Converation: " + conversation + " conv: " + narration.default_conversation.Length + " response: " + response);
 
+                if (conversation == 0)
+                {
+                    //Checking if def converstaion is over
+                    if (conversation < narration.default_conversation.Length)
+                    {
+                        currentConversation = narration.default_conversation[conversation];
+                        //Assinging player response
+                        option1.text = narration.positiveResponse[conversation];
+                        option2.text = narration.negativeResponse[conversation];
+                    }
+                }
 
                 if (conversation != 0)
                 {
                     //Play player audio response
                     //PlayAudio(positive ? GetAudioClip(narration.aud_positiveResponse,response) : GetAudioClip(narration.aud_negetiveResponse,response));
+                    if (response >= conversation)
+                    {
+                        LevelEnd();
+                        return;
+                    }
                     if (positive)
                     {
                         currentResponse = narration.positive_conversation[response];
@@ -115,19 +119,61 @@ namespace PrisonControl
                         {
                             Timer.Delay(1.0f, () =>
                             {
-                                popUp.SetActive(false);
                                 //Check if def conversation is over
+                                if (conversation >= narration.default_conversation.Length)
+                                {
+                                    LevelEnd();
+                                    return;
+                                }
                                 if (conversation < narration.default_conversation.Length)
                                 {
-                                    Timer.Delay(1.0f, () =>
+                                    currentConversation = narration.default_conversation[conversation];
+                                    //Assinging player response
+                                    if (conversation < narration.positiveResponse.Length)
                                     {
-                                        //Showing def coversation after response
-                                        ShowDefaultRespone(currentConversation);
-                                    });
+                                        option1.text = narration.positiveResponse[conversation];
+                                        option2.text = narration.negativeResponse[conversation];
+                                    }
+                                    else
+                                    {
+                                        option1.text = string.Empty;
+                                        option2.text = string.Empty;
+                                    }
+                                }
+                                if (conversation < narration.default_conversation.Length)
+                                {
+                                    if (currentConversation == string.Empty)
+                                    {
+                                        if (option1.text == string.Empty)
+                                        {
+                                            Timer.Delay(1.5f, () =>
+                                            {
+                                                LevelEnd();
+                                            });
+                                            return;
+                                        }
+                                        else
+                                        {
+                                            optionPanel.SetActive(true);
+                                            conversation++;
+                                        }
+                                    }
+                                    else
+                                    {
+                                        popUp.SetActive(false);
+                                        Timer.Delay(1.0f, () =>
+                                        {
+                                            //Showing def coversation after response
+                                            ShowDefaultRespone(currentConversation);
+                                        });
+                                    }
                                 }
                                 else
-                                    //If no converstaion and response is over
+                                {
+                                    popUp.SetActive(false);
                                     LevelEnd();
+                                }
+                                //If no converstaion and response is over
                             });
                         });
                         response++;
@@ -158,22 +204,27 @@ namespace PrisonControl
 
         void ShowDefaultRespone(string text)
         {
-            // if (text == string.Empty)
-            // {
-            //     optionPanel.SetActive(true);
-            //     return;
-            // }
             typewriter.WholeText = text;
             popUp.SetActive(true);
             typewriter.ShowTextResponse(() =>
             {
-                optionPanel.SetActive(true);
+                if (option1.text == string.Empty)
+                {
+                    Timer.Delay(1.5f, () =>
+                    {
+                        LevelEnd();
+                    });
+                }
+                else
+                {
+                    optionPanel.SetActive(true);
+                    conversation++;
+                }
             });
             //play enemy def anim
             PlayAnim(narration.default_anim[conversation]);
             //play audio def conv
             //PlayAudio(GetAudioClip(narration.aud_defaultConv, conversation));
-            conversation++;
         }
 
         void Reset()

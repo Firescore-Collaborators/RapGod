@@ -37,7 +37,7 @@ namespace PrisonControl
         public AudioSource lyricsAudioSource, bgmAudioSource, sfx;
 
         [SerializeField]
-        private GameObject OptionPanle, PopUpPanle, winnerConfitti, initialPopUpPos;
+        private GameObject OptionPanle, restartPanel, PopUpPanle, winnerConfitti, initialPopUpPos;
 
         [SerializeField]
         public Text remarks;
@@ -134,6 +134,11 @@ namespace PrisonControl
             homePanle.SetActive(true);
             rewardPanle.SetActive(false);
             OnNextRapWord();
+        }
+
+        void OnDisable()
+        {
+            LevelReset();
         }
 
         void Init()
@@ -497,10 +502,11 @@ namespace PrisonControl
                         player_anim.SetBool("loose", true);
                         enemy_anim.SetBool("win", true);
                         respondMessageController.ShowWrongResponse("NO HYPE");
-                        Timer.Delay(3f,()=>{
-                            OnLevelEnd();
+                        Timer.Delay(3f, () =>
+                        {
+                            restartPanel.SetActive(true);
                         });
-                        
+
                     }
                 }
 
@@ -601,6 +607,7 @@ namespace PrisonControl
             multiTouchManager.Reset();
             rapFinishPanel.SetActive(false);
             onTapped = null;
+            restartPanel.SetActive(false);
         }
 
         void PlayAudio(bool correct)
