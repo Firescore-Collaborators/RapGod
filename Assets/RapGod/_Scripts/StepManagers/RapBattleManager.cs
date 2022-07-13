@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 using System;
+using NaughtyAttributes;
 
 namespace PrisonControl
 
@@ -13,19 +14,27 @@ namespace PrisonControl
 
         public RapEnvironmentType environmentType;
         [SerializeField]
+        [Foldout("SOData")]
         private CharacterListSO characterList;
         [SerializeField]
+        [Foldout("SOData")]
         private VFXSO vFXSO;
         [SerializeField]
         private SpawnPosition spawnPosition;
 
         [SerializeField]
+        [Foldout("Animator")]
         private RuntimeAnimatorController playerAnimator, enemyAnimator;
 
         [SerializeField]
-        GameObject player, enemy, handUI, tapFx;
+        GameObject handUI, tapFx;
 
+        GameObject player, enemy;
         public PlayPhasesControl m_playPhaseControl;
+        [Foldout("Cameras")]
+        public Camera renderCamera;
+        [Foldout("Cameras")]
+        public RenderTexture m_renderTexture;
         HypeMeterFxController m_hypeMeterFxController
         {
             get
@@ -34,15 +43,18 @@ namespace PrisonControl
             }
         }
 
+        [Foldout("AuidoSource")]
         public AudioSource lyricsAudioSource, bgmAudioSource, sfx;
 
         [SerializeField]
-        private GameObject OptionPanle, restartPanel, PopUpPanle, winnerConfitti, initialPopUpPos;
+        private GameObject OptionPanle, restartPanel, PopUpPanle, youtubePanel, winnerConfitti, initialPopUpPos;
 
         [SerializeField]
+        [Foldout("UI")]
         public Text remarks;
 
         [SerializeField]
+        [Foldout("UI")]
         private TMP_Text optionA_text, optionB_text;
 
         [SerializeField]
@@ -51,6 +63,7 @@ namespace PrisonControl
         List<char> rapChar = new List<char>();
 
         [SerializeField]
+        [Foldout("UI")]
         private TMP_Text popUp_text, DummyText;
 
         [SerializeField]
@@ -60,6 +73,8 @@ namespace PrisonControl
         private AudienceManager audienceManager;
 
         [SerializeField]
+        [Foldout("Animator")]
+
         private Animator player_anim, enemy_anim, ui_anim;
 
         [SerializeField]
@@ -67,22 +82,28 @@ namespace PrisonControl
 
         [SerializeField]
         private Sprite[] sprites_btn;
+        [Foldout("Particles")]
+        [SerializeField]
+        private GameObject Conffiti_btn, ConffitiWrong_btn, hearts;
 
         [SerializeField]
-        private GameObject Conffiti_btn, ConffitiWrong_btn;
-
-        [SerializeField]
+        [Foldout("UI")]
         private Image[] hand;
 
         [SerializeField]
+        [Foldout("UI")]
         private Sprite[] popUp_sprite;
 
         [SerializeField]
         private GameObject homePanle, rewardPanle, rapFinishPanel;
-
+        [Foldout("SOData")]
         public RapBattleDataSO rapData;
         public Transform tapSmashPanel;
+        [Foldout("Youtube UI")]
+        public Text liveText, viewText, likeText, videoTitle;
+        [Foldout("UI")]
         public Text punchline, hintText;
+        [Foldout("UI")]
         public Image hypeMeter;
         public StepProgress stepProgress;
         MultiTouchManager multiTouchManager
@@ -100,14 +121,14 @@ namespace PrisonControl
         [NaughtyAttributes.Foldout("Audio")]
         public AudioClip audienceCorrect, audienceWrong, answerCorrect, answerWrong, applauseLoop;
 
-        [SerializeField]
-        private MeshRenderer lightLObj, lightRObj, planeObj, stageObj, stageLightObj;
         public static event System.Action onTapped;
         int levelNo;
         int textNo;
         int rapWordNo;
+        float viewCount;
         int rapCameraIndex = 0;
         bool print = false;
+        bool increaseYoutubeVariables = false;
         float duration, durationTarget;
         int currentCorrectCount;
         int currentWrongCount;
@@ -265,6 +286,17 @@ namespace PrisonControl
                 StartTapSmash();
             }
             PrintTextEffect();
+            IncreaseYoutubeVariables();
+        }
+
+        void IncreaseYoutubeVariables()
+        {
+            if (!increaseYoutubeVariables) return;
+
+            viewCount = (viewCount + (Time.deltaTime * 2));
+            int likeCount = (int)(viewCount / 1.5f);
+            viewText.text = (int)viewCount + "M Views";
+            likeText.text = likeCount + "M Likes";
         }
 
         void PrintTextEffect()
@@ -421,8 +453,8 @@ namespace PrisonControl
             PopUP_rect.gameObject.GetComponent<Image>().sprite = popUp_sprite[1];
             yield return new WaitForSeconds(1.2f);
             //Rap Starts
-            
-            
+
+
             print = false;
             //player_anim.SetBool("Idle", false);
             // string tempText = popUp_text.text;
@@ -605,7 +637,8 @@ namespace PrisonControl
             m_hypeMeterFxController.SpawnFountainFx();
             hypeMeter.fillAmount = 0;
             tapSmashPanel.gameObject.SetActive(false);
-            Timer.Delay(6f, () =>
+            YoutubePanel();
+            Timer.Delay(10f, () =>
             {
                 OnLevelEnd();
             });
@@ -619,11 +652,23 @@ namespace PrisonControl
             m_playPhaseControl._OnPhaseFinished();
         }
 
+        void YoutubePanel()
+        {
+            youtubePanel.SetActive(true);
+            renderCamera.gameObject.SetActive(true);
+            renderCamera.targetTexture = m_renderTexture;
+            videoTitle.text = rapData.youtubeVideoTitle;
+            viewCount = UnityEngine.Random.Range(1, 10);
+
+            increaseYoutubeVariables = true;
+            Timer.Delay(2f, () =>
+            {
+                hearts.SetActive(true);
+            });
+        }
         void LevelReset()
         {
             EnvironmentList.instance.SwitchOffEnvironment();
-            Destroy(spawnPosition.enemyPos.transform.GetChild(0).gameObject);
-            Destroy(spawnPosition.playerPos.transform.GetChild(0).gameObject);
             punchline.transform.parent.gameObject.SetActive(false);
             currentCorrectCount = 0;
             currentWrongCount = 0;
@@ -638,6 +683,13 @@ namespace PrisonControl
             onTapped = null;
             restartPanel.SetActive(false);
             rapCameraIndex = 0;
+            renderCamera.targetTexture = null;
+            youtubePanel.SetActive(true);
+            renderCamera.gameObject.SetActive(false);
+            increaseYoutubeVariables = false;
+            hearts.SetActive(false);
+            Destroy(spawnPosition.enemyPos.transform.GetChild(0).gameObject);
+            Destroy(spawnPosition.playerPos.transform.GetChild(0).gameObject);
         }
 
         void PlayAudio(bool correct)

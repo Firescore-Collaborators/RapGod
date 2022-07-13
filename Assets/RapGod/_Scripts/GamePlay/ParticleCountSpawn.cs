@@ -26,6 +26,5 @@ public class ParticleCountSpawn : MonoBehaviour
             GameObject efx = Utils.SpawnEfxWithDestroy(toSpawn, particlePrefab, 3f);
             currentCount = 0;
         }
-        print("ParticleTapped : " + currentCount);
     }
 }

@@ -65,6 +65,7 @@ public class RapBattleDataSO : ScriptableObject
     public List<RapAnimations> rapAnimations = new List<RapAnimations>();
     public List<rapCameras> rapCameras = new List<rapCameras>();
     public string punchLine;
+    public string youtubeVideoTitle = "LATEST RAP SONG RELEASED";
     public float tapSmashLimit = 20f;
     public float maxAnimationSpeed = 3f;
 
