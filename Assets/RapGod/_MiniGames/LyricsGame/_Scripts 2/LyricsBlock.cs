@@ -19,7 +19,7 @@ public class LyricsBlock : MonoBehaviour, IPointerDownHandler, IBeginDragHandler
     public void OnBeginDrag(PointerEventData eventData)
     {
         canvasGroup.blocksRaycasts = false;
-        StartPosition = rectTransform.position;
+        StartPosition = rectTransform.localPosition;
     }
 
     public void OnDrag(PointerEventData eventData)
