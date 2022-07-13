@@ -67,7 +67,7 @@ public class LyricsManagerNew : MonoBehaviour
         OutputScreen.GetComponent<Animator>().SetTrigger("panelOFF");
 
         ClearListData();
-        CurrentPanel = Instantiate(MasterPanel, FindObjectOfType<Canvas>().transform);
+        CurrentPanel = Instantiate(MasterPanel, FindObjectOfType<Canvas>().transform.GetChild(0));
 
         //GameObject[] Panel = new GameObject[5];
 
