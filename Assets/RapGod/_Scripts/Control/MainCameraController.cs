@@ -36,11 +36,12 @@ public class MainCameraController : MonoBehaviour
         cameras.Clear();
         for(int i = 0; i < transform.childCount; i++)
         {
-            CinemachineVirtualCamera cam = transform.GetChild(i).GetComponent<CinemachineVirtualCamera>();
-            if(cam != null)
-            {
-                cameras.Add(cam);
-            }
+            // CinemachineVirtualCamera cam = transform.GetChild(i).GetComponent<CinemachineVirtualCamera>();
+            // if(cam != null)
+            // {
+            //     cameras.Add(cam);
+            // }
+            AddCameraFromChild(transform.GetChild(i));
         }
     }
     public void SetCameraZero()
@@ -54,7 +55,9 @@ public class MainCameraController : MonoBehaviour
     public void SetCurrentCamera(string camera, float blendSpeed = 1)
     {
         SetCameraZero();
-        currentCamera = transform.Find(camera).GetComponent<CinemachineVirtualCamera>();
+        //cameras.Find(x => x.Name == camera).Priority = 10;
+        //currentCamera = transform.Find(camera).GetComponent<CinemachineVirtualCamera>();
+        currentCamera = cameras.Find(x => x.Name == camera);
         SetBlendSpeed(blendSpeed);
         currentCamera.Priority = 15;
 
@@ -64,5 +67,21 @@ public class MainCameraController : MonoBehaviour
     {
         Camera.main.GetComponent<CinemachineBrain>().m_DefaultBlend.m_Time = blendSpeed;
     }
+    
+    void AddCameraFromChild(Transform parent)
+    {
+        if(parent.TryGetComponent<CinemachineVirtualCamera>(out CinemachineVirtualCamera vcam))
+        {
+            cameras.Add(vcam);
+        }
 
+        for(int i = 0; i < parent.childCount; i++)
+        {
+            if(parent.GetChild(i).TryGetComponent<CinemachineVirtualCamera>( out CinemachineVirtualCamera cam))
+            {
+                cameras.Add(cam);
+            }
+            
+        }
+    }
 }
