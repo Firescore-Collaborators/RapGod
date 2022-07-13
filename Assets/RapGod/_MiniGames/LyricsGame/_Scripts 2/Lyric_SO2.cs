@@ -8,5 +8,7 @@ public class Lyric_SO2 : ScriptableObject
 {
     public string[] Lyrics;
     public List<string> option = new List<string>();
+
+    public string option1, option2;
   
 }

@@ -10,7 +10,7 @@ public class LyricsManagerNew : MonoBehaviour
     public TMP_Text[] Raps;
 
     public TMP_Text FinalText, FinalText2;
-    public int LevelNo;
+    public int LevelNo, Score;
 
     public Lyric_SO2[] LyricsSO;
     public GameObject[] Panel;
@@ -57,6 +57,15 @@ public class LyricsManagerNew : MonoBehaviour
 
         FinalText2.text = FinalText2.text + " " + LyricsSO[LevelNo].Lyrics[0] + " " + LyricsSO[LevelNo].option[0]
            + " " + LyricsSO[LevelNo].Lyrics[1] + " " + LyricsSO[LevelNo].option[1] + " " + LyricsSO[LevelNo].Lyrics[2] + "\n";
+
+        if (LyricsSO[LevelNo].option[0] == LyricsSO[LevelNo].option1)
+        {
+            Score++;
+        }
+        if (LyricsSO[LevelNo].option[1] == LyricsSO[LevelNo].option2)
+        {
+            Score++;
+        }
     }
 
     public void Retry()
