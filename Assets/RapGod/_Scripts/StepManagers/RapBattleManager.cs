@@ -182,7 +182,11 @@ namespace PrisonControl
         public void OnNextRapWord()
         {
             if (player_anim != null)
-                player_anim.SetBool("Idle", true);
+            {
+                player_anim.CrossFade("Idle", 0.01f);
+                enemy_anim.CrossFade("Idle", 0.01f);
+            }
+            //player_anim.SetBool("Idle", true);
 
             PopUP_rect.gameObject.GetComponent<Image>().sprite = popUp_sprite[0];
 
@@ -415,9 +419,10 @@ namespace PrisonControl
             PopUP_rect.gameObject.GetComponent<Image>().sprite = popUp_sprite[1];
             yield return new WaitForSeconds(1.2f);
             //Rap Starts
+            PlayRapAnim();
             SetRapCamera();
             print = false;
-            player_anim.SetBool("Idle", false);
+            //player_anim.SetBool("Idle", false);
             // string tempText = popUp_text.text;
             if (sideNo == 1)
             {
@@ -458,9 +463,16 @@ namespace PrisonControl
                 EnvironmentList.instance.SetRapCamera(0);
                 return;
             }
-            print("RapCameraIndex : " + (int)rapData.rapCameras[rapCameraIndex] + " , rapCameraCount : " + rapData.rapCameras.Count);
             EnvironmentList.instance.SetRapCamera((int)rapData.rapCameras[rapCameraIndex]);
             rapCameraIndex++;
+        }
+
+        void PlayRapAnim()
+        {
+            string playerAnimName = (rapData.rapAnimations[rapCameraIndex].playerAnim).ToString();
+            string enemyAnimName = (rapData.rapAnimations[rapCameraIndex].enemyAnim).ToString();
+            player_anim.CrossFade(playerAnimName, 0.1f);
+            enemy_anim.CrossFade(enemyAnimName, 0.1f);
         }
         public void OnReset()
         {
@@ -501,8 +513,9 @@ namespace PrisonControl
                         remarks.color = Color.green;
                         remarks.text = "WINNER!";
                         remarks.gameObject.SetActive(true);
-                        player_anim.SetBool("win", true);
-                        enemy_anim.SetBool("loose", true);
+                        //player_anim.SetBool("win", true);
+                        player_anim.CrossFade("Cheering", 0.01f);
+                        enemy_anim.CrossFade("Lose", 0.01f);
                         respondMessageController.ShowCorrectRespone("WINNER MENTALITY !");
                         Invoke("TapSmash", 1f);
                     }
@@ -512,8 +525,9 @@ namespace PrisonControl
                         remarks.text = "LOSER!";
                         remarks.color = Color.red;
                         remarks.gameObject.SetActive(true);
-                        player_anim.SetBool("loose", true);
-                        enemy_anim.SetBool("win", true);
+                        //player_anim.SetBool("loose", true);
+                        player_anim.CrossFade("Defeat", 0.01f);
+                        enemy_anim.CrossFade("Win", 0.01f);
                         respondMessageController.ShowWrongResponse("NO HYPE");
                         Timer.Delay(3f, () =>
                         {
@@ -570,7 +584,7 @@ namespace PrisonControl
             //     StopCoroutine(handCoroutine);
 
             //handUI.SetActive(false);
-            player_anim.Play(rapData.rapAnimation.ToString());
+            player_anim.Play(rapData.rapEndAnimation.ToString());
             //print(MainCameraController.instance.CurrentCamera.transform);
             GetComponent<CameraShake>().Shake(MainCameraController.instance.CurrentCamera.transform);
             m_hypeMeterFxController.SpawnHypeAnimEndFx(1.5f);
