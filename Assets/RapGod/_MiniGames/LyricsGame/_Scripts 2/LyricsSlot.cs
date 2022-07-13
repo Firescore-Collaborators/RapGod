@@ -52,7 +52,13 @@ public class LyricsSlot : MonoBehaviour, IDropHandler
     public void LoadNextPanel()
     {
         {
-            LyricsManagerNew.instance.Panel[LyricsManagerNew.instance.LevelNo].GetComponent<Animator>().SetTrigger("panelON");
+            if (LyricsManagerNew.instance.LevelNo < 4)
+                LyricsManagerNew.instance.Panel[LyricsManagerNew.instance.LevelNo].GetComponent<Animator>().SetTrigger("panelON");
+
+            if(LyricsManagerNew.instance.LevelNo == 4)
+            {
+                LyricsManagerNew.instance.OutputScreen.GetComponent<Animator>().SetTrigger("panelON");
+            }
             if (LyricsManagerNew.instance.LevelNo > 0)
             {
                 LyricsManagerNew.instance.Panel[LyricsManagerNew.instance.LevelNo - 1].GetComponent<Animator>().SetTrigger("panelOFF");

@@ -14,7 +14,7 @@ public class LyricsManagerNew : MonoBehaviour
 
     public Lyric_SO2[] LyricsSO;
     public GameObject[] Panel;
-    public GameObject MasterPanel, CurrentPanel;
+    public GameObject MasterPanel, CurrentPanel, OutputScreen;
 
     private void Awake()
     {
@@ -63,15 +63,27 @@ public class LyricsManagerNew : MonoBehaviour
     {
         LevelNo = 0;
 
+        FinalText.text = ""; FinalText2.text = "";
+        OutputScreen.GetComponent<Animator>().SetTrigger("panelOFF");
+
         ClearListData();
+        CurrentPanel = Instantiate(MasterPanel, FindObjectOfType<Canvas>().transform);
 
-        //CurrentPanel = Instantiate(MasterPanel, FindObjectOfType<Canvas>().transform);
+        //GameObject[] Panel = new GameObject[5];
 
+        for (int i = 0; i < Panel.Length; i++)
+        {
+            if (i == 4)
+            {
+                Panel[i] = CurrentPanel.transform.GetChild(i + 1).gameObject;
+            }
+            else
+            {
+                Panel[i] = CurrentPanel.transform.GetChild(i).gameObject;
+            }
+        }
 
-        //for (int i = 0; i < LevelNo; i++)
-        //{
-        //    Panel[i] = CurrentPanel.transform.GetChild(i).gameObject;
-        //}
+        Panel[LevelNo].GetComponent<Animator>().SetTrigger("panelON");
 
         //for (int i = 1; i < LevelNo; i++)
         //{
