@@ -9,7 +9,7 @@ public class LyricsManagerNew : MonoBehaviour
 
     public TMP_Text[] Raps;
 
-    public TMP_Text FinalText, FinalText2;
+    public TMP_Text FinalText, FinalText2, ScoreText;
     public int LevelNo, Score;
 
     public Lyric_SO2[] LyricsSO;
@@ -27,6 +27,7 @@ public class LyricsManagerNew : MonoBehaviour
     void Start()
     {
         Panel[LevelNo].GetComponent<Animator>().SetTrigger("panelON");
+       
 
         ClearListData();
 
@@ -66,11 +67,19 @@ public class LyricsManagerNew : MonoBehaviour
         {
             Score++;
         }
+
+        
+        if(Score < 1) { ScoreText.text = "Dumb rapper!"; }
+        else if (Score < 4 && Score >1) { ScoreText.text = "Good"; }
+        else if(Score >=4) { ScoreText.text = "Rap GOD!!"; }
+
+        //= "SCORE: " + Score.ToString();
     }
 
     public void Retry()
     {
         LevelNo = 0;
+        Score = 0;
 
         FinalText.text = ""; FinalText2.text = "";
         OutputScreen.GetComponent<Animator>().SetTrigger("panelOFF");
