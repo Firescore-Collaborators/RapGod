@@ -9,6 +9,7 @@ public enum RapEndAnimation
 public enum RapPose
 {
     layingDown,
+    Dying,
     WaveHipHop
 }
 public enum rapCameras{

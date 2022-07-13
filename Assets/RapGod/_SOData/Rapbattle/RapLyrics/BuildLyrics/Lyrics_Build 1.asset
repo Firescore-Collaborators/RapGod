@@ -13,38 +13,38 @@ MonoBehaviour:
   m_Name: Lyrics_Build 1
   m_EditorClassIdentifier: 
   leveldata:
-  - RapString: 'I''m a up an coming rapper, a superstar ______ '
+  - RapString: 'I''m a up and coming rapper, a superstar ______ '
     OptionA: Trapper
     OptionB: King
-    MarkWord: rapper
-    CorrectAnswer: 1
-    hintLine: 'Rhyme: Rapper'
-  - RapString: 'When you see me on the street, you see me looking ______  '
-    OptionA: Dapper
-    OptionB: Crapper
-    MarkWord: ' '
-    CorrectAnswer: 1
-    hintLine: 'Meaning: Neat & trim in dress and appearance '
-  - RapString: Rodgers is a packer,  ______  is a hacker
-    OptionA: The American Government
-    OptionB: Anonymous
     MarkWord: ' '
     CorrectAnswer: 2
-    hintLine: 'Find: Name a Hacker Group '
-  - RapString: 'All you mumble rap boys can put your music in the ______ '
-    OptionA: Crapper
-    OptionB: James Corden
+    hintLine: 'Hint: Opposite of Queen'
+  - RapString: 'Just like ______ , I dont quit till I win '
+    OptionA: Martin Luther
+    OptionB: KSI
     MarkWord: ' '
     CorrectAnswer: 1
-    hintLine: 'Find: English Slang term for Toliet'
+    hintLine: 'Hint: African American Icon'
+  - RapString: 'You''re a deadbeat, old news, washed up old ______ '
+    OptionA: Winner
+    OptionB: Tool
+    MarkWord: ' '
+    CorrectAnswer: 2
+    hintLine: 'Hint: Thing'
+  - RapString: I bet yo ______ regrets that she even had you
+    OptionA: Mama
+    OptionB: Sister
+    MarkWord: ' '
+    CorrectAnswer: 1
+    hintLine: 'Hint: Mother'
   correctLyrics:
-  - {fileID: 8300000, guid: b9570c24958030f409916a858a7758b4, type: 3}
-  - {fileID: 8300000, guid: 68079ea334606d44a97790da144a5fd5, type: 3}
-  - {fileID: 8300000, guid: abfba1e0de31fef4b9559bb165b2fa83, type: 3}
-  - {fileID: 8300000, guid: 87c903b4e0142b1499b40f8a3233a5c2, type: 3}
+  - {fileID: 8300000, guid: 5ed9137db9a3446819c68928f95a7d38, type: 3}
+  - {fileID: 8300000, guid: 8faf10d627b784949bdc4d28c0958087, type: 3}
+  - {fileID: 8300000, guid: 9b86429d7ee454da4a20947dbcbf1f86, type: 3}
+  - {fileID: 8300000, guid: 789925578931d4961923928e5ee9e052, type: 3}
   wrongLyrics:
-  - {fileID: 8300000, guid: 00e2487c5db4f574dbf21ed48903abfe, type: 3}
-  - {fileID: 8300000, guid: 57344d80677f9364d923a9654c9455b2, type: 3}
-  - {fileID: 8300000, guid: 3b9949c98fd8c794ba62d706a772ab4d, type: 3}
-  - {fileID: 8300000, guid: 6239e4acfc756a142a2209afe69a3192, type: 3}
-  bgm: {fileID: 8300000, guid: 7dea396e5ec2184438f114d40a7d2c2a, type: 3}
+  - {fileID: 8300000, guid: 152c7dc628ee4471fa4e1489389079ce, type: 3}
+  - {fileID: 8300000, guid: e047ca97c98fc49c5a5267fe600517cd, type: 3}
+  - {fileID: 8300000, guid: b5938a0e614114cd0adffc8cebdaf4d3, type: 3}
+  - {fileID: 8300000, guid: f9e7af48f486f4eb6ae57ef96177fb45, type: 3}
+  bgm: {fileID: 8300000, guid: a210a2358c5da204789e15f95cc3a8fc, type: 3}

@@ -399,6 +399,8 @@ namespace PrisonControl
 
         IEnumerator CheckAnswer(TMP_Text _Answer)
         {
+            PlayRapAnim();
+            SetRapCamera();
 
             LeanTween.move(PopUP_rect.gameObject, popUpPos, 1f);
 
@@ -419,8 +421,8 @@ namespace PrisonControl
             PopUP_rect.gameObject.GetComponent<Image>().sprite = popUp_sprite[1];
             yield return new WaitForSeconds(1.2f);
             //Rap Starts
-            PlayRapAnim();
-            SetRapCamera();
+            
+            
             print = false;
             //player_anim.SetBool("Idle", false);
             // string tempText = popUp_text.text;
