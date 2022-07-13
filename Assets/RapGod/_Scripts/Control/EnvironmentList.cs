@@ -88,4 +88,11 @@ public class EnvironmentList : MonoBehaviour
             environments.Add(transform.GetChild(i).GetComponent<RapEnvironment>());
         }
     }
+
+    public void SetRapCamera(int index)
+    {
+        if(currentEnvironment == null) return;
+
+        MainCameraController.instance.SetCurrentCamera(currentEnvironment.rapCameras[index].name, 3);
+    }
 }

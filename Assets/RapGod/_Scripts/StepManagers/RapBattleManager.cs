@@ -106,6 +106,7 @@ namespace PrisonControl
         int levelNo;
         int textNo;
         int rapWordNo;
+        int rapCameraIndex = 0;
         bool print = false;
         float duration, durationTarget;
         int currentCorrectCount;
@@ -413,6 +414,8 @@ namespace PrisonControl
             yield return new WaitForSeconds(0.5f);
             PopUP_rect.gameObject.GetComponent<Image>().sprite = popUp_sprite[1];
             yield return new WaitForSeconds(1.2f);
+            //Rap Starts
+            SetRapCamera();
             print = false;
             player_anim.SetBool("Idle", false);
             // string tempText = popUp_text.text;
@@ -444,11 +447,21 @@ namespace PrisonControl
                 PlaySfx(sideNo == 1 ? audienceCorrect : audienceWrong);
             });
 
+
             StopCoroutine("WaitAndPrint");
-
-
         }
 
+        void SetRapCamera()
+        {
+            if (rapCameraIndex >= rapData.rapCameras.Count)
+            {
+                EnvironmentList.instance.SetRapCamera(0);
+                return;
+            }
+            print("RapCameraIndex : " + (int)rapData.rapCameras[rapCameraIndex] + " , rapCameraCount : " + rapData.rapCameras.Count);
+            EnvironmentList.instance.SetRapCamera((int)rapData.rapCameras[rapCameraIndex]);
+            rapCameraIndex++;
+        }
         public void OnReset()
         {
 
@@ -533,7 +546,7 @@ namespace PrisonControl
             multiTouchManager.Init();
             onTapped += Tapped;
             m_hypeMeterFxController.InitParticleAndCount();
-
+            EnvironmentList.instance.SetRapCamera(0);
             handUI.SetActive(true);
             //Progress.Instance.TapSmashTut = true;
         }
@@ -608,6 +621,7 @@ namespace PrisonControl
             rapFinishPanel.SetActive(false);
             onTapped = null;
             restartPanel.SetActive(false);
+            rapCameraIndex = 0;
         }
 
         void PlayAudio(bool correct)
