@@ -26,6 +26,8 @@ public class LyricsManagerNew : MonoBehaviour
 
     void Start()
     {
+        Panel[LevelNo].GetComponent<Animator>().SetTrigger("panelON");
+
         ClearListData();
 
         //for (int i = 0; i < Raps.Length; i++)

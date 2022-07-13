@@ -21,8 +21,11 @@ public class LyricsSlot : MonoBehaviour, IDropHandler
                 eventData.pointerDrag.GetComponent<RectTransform>().anchoredPosition
                     = GetComponent<RectTransform>().anchoredPosition;
 
+
                 //eventData.pointerDrag.GetComponent<LyricsBlock>().isPlaced = true;
+                eventData.pointerDrag.transform.GetChild(0).position = transform.position;
                 eventData.pointerDrag.transform.GetChild(0).SetParent(transform);
+
                 eventData.pointerDrag.gameObject.SetActive(false);
 
                 isFilled = true;
@@ -48,9 +51,13 @@ public class LyricsSlot : MonoBehaviour, IDropHandler
 
     public void LoadNextPanel()
     {
-        //if (LyricsManagerNew.instance.LevelNo <= LyricsManagerNew.instance.LyricsSO.Length)
         {
-            LyricsManagerNew.instance.Panel[LyricsManagerNew.instance.LevelNo].SetActive(true);
+            LyricsManagerNew.instance.Panel[LyricsManagerNew.instance.LevelNo].GetComponent<Animator>().SetTrigger("panelON");
+            if (LyricsManagerNew.instance.LevelNo > 0)
+            {
+                LyricsManagerNew.instance.Panel[LyricsManagerNew.instance.LevelNo - 1].GetComponent<Animator>().SetTrigger("panelOFF");
+            }
+            //LyricsManagerNew.instance.Panel[LyricsManagerNew.instance.LevelNo].SetActive(true);
         }
     }
 
