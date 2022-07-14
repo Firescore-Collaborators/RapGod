@@ -49,7 +49,7 @@ public class SliderScript : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        asrc = EqualizerManager.instance.ASRC;
+        asrc = FindObjectOfType<AudioSource>();
     }
 
     public int currentIndex;
@@ -70,8 +70,8 @@ public class SliderScript : MonoBehaviour
                 slider.transform.GetChild(i).GetComponent<Graphic>().color = Color.red;
                 currentIndex = i;
 
-                asrc.clip = EqualizerManager.instance.incrementPop;
-                asrc.Play();
+                //asrc.clip = EqualizerManager.instance.incrementPop;
+                //asrc.Play();
 
                 if (currentIndex == Reading)
                 {
@@ -86,13 +86,16 @@ public class SliderScript : MonoBehaviour
                     }
                     isMatched = true;
                 }
-                else if(currentIndex != Reading)
+                else 
                 {
                     for (int j = 0; j <= i; j++)
                     {
                         slider.transform.GetChild(j).GetComponent<Animator>().SetBool("Blip", false);
                         //slider.transform.GetChild(j).GetComponent<Animator>().enabled = false;
                         slider.transform.GetChild(j).GetComponent<Graphic>().color = Color.red;
+
+                        //asrc.clip = EqualizerManager.instance.incrementPop;
+                        //asrc.PlayOneShot(asrc.clip);
                     }
                     isMatched = false;
                 }
@@ -113,7 +116,5 @@ public class SliderScript : MonoBehaviour
             }
         }
 
-        
-        
     }
 }
