@@ -14,7 +14,7 @@ public class LyricsManagerNew : MonoBehaviour
 
     public Lyric_SO2[] LyricsSO;
     public GameObject[] Panel;
-    public GameObject MasterPanel, CurrentPanel, OutputScreen;
+    public GameObject MasterPanel, CurrentPanel, OutputScreen, ParentPanel;
 
     private void Awake()
     {
@@ -53,8 +53,8 @@ public class LyricsManagerNew : MonoBehaviour
 
     public void FillLyrics()
     {
-        FinalText.text = FinalText.text + " "+ LyricsSO[LevelNo].Lyrics[0] +" " + "<mark=#FFFFFF>" + LyricsSO[LevelNo].option[0]+ "</mark>"
-           + " " + LyricsSO[LevelNo].Lyrics[1] +" "+ "<mark=#FFFFFF>" + LyricsSO[LevelNo].option[1] +"</mark>" + " " + LyricsSO[LevelNo].Lyrics[2] + "\n";
+        FinalText.text = FinalText.text + " "+ LyricsSO[LevelNo].Lyrics[0] +" " + "<mark=#FFFF66>" + LyricsSO[LevelNo].option[0]+ "</mark>"
+           + " " + LyricsSO[LevelNo].Lyrics[1] +" "+ "<mark=#FFFF66>" + LyricsSO[LevelNo].option[1] +"</mark>" + " " + LyricsSO[LevelNo].Lyrics[2] + "\n";
 
         FinalText2.text = FinalText2.text + " " + LyricsSO[LevelNo].Lyrics[0] + " " + LyricsSO[LevelNo].option[0]
            + " " + LyricsSO[LevelNo].Lyrics[1] + " " + LyricsSO[LevelNo].option[1] + " " + LyricsSO[LevelNo].Lyrics[2] + "\n";
@@ -85,7 +85,7 @@ public class LyricsManagerNew : MonoBehaviour
         OutputScreen.GetComponent<Animator>().SetTrigger("panelOFF");
 
         ClearListData();
-        CurrentPanel = Instantiate(MasterPanel, FindObjectOfType<Canvas>().transform.GetChild(0));
+        CurrentPanel = Instantiate(MasterPanel, ParentPanel.transform);
 
         //GameObject[] Panel = new GameObject[5];
 
