@@ -7,6 +7,9 @@ public class EqualizerManager : MonoBehaviour
     public static EqualizerManager instance;
 
     public GameObject[] squares;
+    public AudioSource ASRC;
+
+    public AudioClip incrementPop, matchTing;
 
     //public GameObject[] slider;
 

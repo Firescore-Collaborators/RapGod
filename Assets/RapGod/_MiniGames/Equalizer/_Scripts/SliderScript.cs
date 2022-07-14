@@ -14,6 +14,8 @@ public class SliderScript : MonoBehaviour
     public bool onObject, isMatched;
     public int Reading;
 
+    public AudioSource asrc;
+
     void OnMouseDown()
     {
         screenPoint = Camera.main.WorldToScreenPoint(gameObject.transform.position);
@@ -47,7 +49,7 @@ public class SliderScript : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+        asrc = EqualizerManager.instance.ASRC;
     }
 
     public int currentIndex;
@@ -68,17 +70,23 @@ public class SliderScript : MonoBehaviour
                 slider.transform.GetChild(i).GetComponent<Graphic>().color = Color.red;
                 currentIndex = i;
 
+                asrc.clip = EqualizerManager.instance.incrementPop;
+                asrc.Play();
+
                 if (currentIndex == Reading)
                 {
                     for (int j = 0; j <= i; j++)
                     {
                         slider.transform.GetChild(j).GetComponent<Animator>().SetBool("Blip", true);
                         slider.transform.GetChild(j).GetComponent<Graphic>().color = Color.green;
+
+                        asrc.clip = EqualizerManager.instance.matchTing;
+                        asrc.Play();
                         //slider.transform.GetChild(j).GetComponent<Animator>().enabled = true;    
                     }
                     isMatched = true;
                 }
-                else
+                else if(currentIndex != Reading)
                 {
                     for (int j = 0; j <= i; j++)
                     {
