@@ -8,9 +8,10 @@ public class EqualizerManager : MonoBehaviour
 
     public GameObject[] squares;
 
-    public GameObject[] slider;
+    //public GameObject[] slider;
 
     public GameObject[] Limit;
+    public Transform startLimit, endLimit;
 
     public bool GameOver;
     public GameObject WinPanel;

@@ -95,6 +95,14 @@ public class SliderScript : MonoBehaviour
                 slider.transform.GetChild(i).GetComponent<Graphic>().color = Color.clear;
             }
             
+            if(transform.position.z <= EqualizerManager.instance.startLimit.position.z)
+            {
+                transform.position = new Vector3( transform.position.x, transform.position.y ,EqualizerManager.instance.startLimit.position.z);
+            }
+            if (transform.position.z >= EqualizerManager.instance.endLimit.position.z)
+            {
+                transform.position = new Vector3(transform.position.x, transform.position.y, EqualizerManager.instance.endLimit.position.z);
+            }
         }
 
         
