@@ -53,6 +53,15 @@ public class RapAnimations
     public RapAnimation enemyAnim;
 }
 
+[System.Serializable]
+public class RapPoseData
+{
+    public RapPose playerSuccess;
+    public RapPose enemyFail;
+    public RapPose playerFail;
+    public RapPose enemySuccess;
+}
+
 [CreateAssetMenu(fileName = "RapBattleDataSO", menuName = "RapBattle/RapBattle/RapBattleDataSO", order = 1)]
 public class RapBattleDataSO : ScriptableObject
 {
@@ -61,7 +70,7 @@ public class RapBattleDataSO : ScriptableObject
     public RapBattleLyricSO rapBattleLyricSO;
     public InputSequenceSO inputSequence;
     public RapEndAnimation rapEndAnimation;
-    public RapPose rapPose;
+    public RapPoseData rapPoses;
     public List<RapAnimations> rapAnimations = new List<RapAnimations>();
     public List<rapCameras> rapCameras = new List<rapCameras>();
     public string punchLine;

@@ -125,10 +125,11 @@ namespace PrisonControl
         int levelNo;
         int textNo;
         int rapWordNo;
-        float viewCount;
+        float viewCount, liveCount;
         int rapCameraIndex = 0;
         bool print = false;
         bool increaseYoutubeVariables = false;
+        bool playerWin = false;
         float duration, durationTarget;
         int currentCorrectCount;
         int currentWrongCount;
@@ -204,8 +205,8 @@ namespace PrisonControl
         {
             if (player_anim != null)
             {
-                player_anim.CrossFade("Idle", 0.01f);
-                enemy_anim.CrossFade("Idle", 0.01f);
+                player_anim.CrossFade("Idle", 0.1f);
+                enemy_anim.CrossFade("Idle", 0.1f);
             }
             //player_anim.SetBool("Idle", true);
 
@@ -293,12 +294,26 @@ namespace PrisonControl
         {
             if (!increaseYoutubeVariables) return;
 
-            viewCount = (viewCount + (Time.deltaTime * 2));
+            viewCount = (viewCount + (Time.deltaTime * 6));
+            liveCount += Time.deltaTime;
             int likeCount = (int)(viewCount / 1.5f);
             viewText.text = (int)viewCount + "M Views";
             likeText.text = likeCount + "M Likes";
+            // TimeSpan timeSpan = TimeSpan.FromSeconds(liveCount);
+            // string timeText = string.Format("{1:D2}:{2:D2}", timeSpan.Minutes, timeSpan.Seconds);
+
+
+            liveText.text = FormatSeconds(liveCount);
         }
 
+        string FormatSeconds(float elapsed)
+        {
+            int d = (int)(elapsed * 100.0f);
+            int minutes = d / (60 * 100);
+            int seconds = (d % (60 * 100)) / 100;
+            int hundredths = d % 100;
+            return String.Format("{0:00}:{1:00}", minutes, seconds);
+        }
         void PrintTextEffect()
         {
             if (print && textNo < rapChar.Count)
@@ -531,7 +546,7 @@ namespace PrisonControl
             if (rapData.rapBattleLyricSO.leveldata.Count <= rapWordNo)
             {
                 rapWordNo = 0;
-                bool playerWin = currentCorrectCount >= currentWrongCount ? true : false;
+                playerWin = currentCorrectCount >= currentWrongCount ? true : false;
                 if (!audienceManager.CheckWinner(playerWin))
                 {
 
@@ -560,10 +575,10 @@ namespace PrisonControl
                         remarks.color = Color.red;
                         remarks.gameObject.SetActive(true);
                         //player_anim.SetBool("loose", true);
-                        player_anim.CrossFade("Defeat", 0.01f);
-                        enemy_anim.CrossFade("Win", 0.01f);
+                        EnvironmentList.instance.SetRapCamera(0, 1);
+                        RapPose();
                         respondMessageController.ShowWrongResponse("NO HYPE");
-                        Timer.Delay(3f, () =>
+                        Timer.Delay(5f, () =>
                         {
                             restartPanel.SetActive(true);
                         });
@@ -594,7 +609,7 @@ namespace PrisonControl
             multiTouchManager.Init();
             onTapped += Tapped;
             m_hypeMeterFxController.InitParticleAndCount();
-            EnvironmentList.instance.SetRapCamera(0);
+            EnvironmentList.instance.SetRapCamera(0, 1);
             handUI.SetActive(true);
             //Progress.Instance.TapSmashTut = true;
         }
@@ -630,18 +645,27 @@ namespace PrisonControl
         void OnTapOver()
         {
             player_anim.speed = 1;
-            player_anim.CrossFade(rapData.rapPose.ToString(), 0.1f);
+            RapPose();
             //punchline.text = rapData.punchLine;
             //punchline.transform.parent.gameObject.SetActive(true);
             rapFinishPanel.SetActive(true);
             m_hypeMeterFxController.SpawnFountainFx();
             hypeMeter.fillAmount = 0;
             tapSmashPanel.gameObject.SetActive(false);
+            //rapFinishPanel.SetActive(false);
             YoutubePanel();
             Timer.Delay(10f, () =>
             {
                 OnLevelEnd();
             });
+        }
+
+        void RapPose()
+        {
+            string playerAnimName = playerWin ? rapData.rapPoses.playerSuccess.ToString() : rapData.rapPoses.playerFail.ToString();
+            string enemyAnimName = playerWin ? rapData.rapPoses.enemyFail.ToString() : rapData.rapPoses.enemySuccess.ToString();
+            player_anim.CrossFade(playerAnimName, 0.1f);
+            enemy_anim.CrossFade(enemyAnimName, 0.1f);
         }
 
         void OnLevelEnd()
@@ -659,7 +683,7 @@ namespace PrisonControl
             renderCamera.targetTexture = m_renderTexture;
             videoTitle.text = rapData.youtubeVideoTitle;
             viewCount = UnityEngine.Random.Range(1, 10);
-
+            liveCount = UnityEngine.Random.Range(60, 300);
             increaseYoutubeVariables = true;
             Timer.Delay(2f, () =>
             {
@@ -690,6 +714,7 @@ namespace PrisonControl
             hearts.SetActive(false);
             Destroy(spawnPosition.enemyPos.transform.GetChild(0).gameObject);
             Destroy(spawnPosition.playerPos.transform.GetChild(0).gameObject);
+            playerWin = false;
         }
 
         void PlayAudio(bool correct)

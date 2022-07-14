@@ -89,10 +89,10 @@ public class EnvironmentList : MonoBehaviour
         }
     }
 
-    public void SetRapCamera(int index)
+    public void SetRapCamera(int index, float speed = 3)
     {
         if(currentEnvironment == null) return;
 
-        MainCameraController.instance.SetCurrentCamera(currentEnvironment.rapCameras[index].name, 3);
+        MainCameraController.instance.SetCurrentCamera(currentEnvironment.rapCameras[index].name, speed);
     }
 }
