@@ -19,7 +19,7 @@ public class EqualizerManager : MonoBehaviour
     public bool GameOver;
     public GameObject WinPanel;
 
-    int counter;
+    public int counter;
 
     private void Awake()
     {
@@ -38,6 +38,48 @@ public class EqualizerManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        //if (GameOver)
+        //    return;
+
+        //counter = 0;
+
+        //for (int i = 0; i < squares.Length; i++)
+        //{
+        //    if (squares[i].GetComponent<SliderScript>().isMatched)
+        //    {
+        //        //ASRC.clip = matchTing;
+        //        //ASRC.Play();
+
+        //        //if (!ASRC.isPlaying)
+        //        //{
+        //        //    ASRC.clip = matchTing;
+        //        //    ASRC.Play();
+        //        //}
+        //        counter++;
+        //    }
+
+        //    if (counter == 5)
+        //    {
+        //        Debug.Log("Success");
+        //        WinPanel.SetActive(true);
+        //        GameOver = true;
+        //    }
+        //}        
+    }
+
+    public void PlayMusic()
+    {
+        for (int i = 0; i < squares.Length; i++)
+        {
+            if (squares[i].GetComponent<SliderScript>().isMatched)
+            {
+                squares[i].GetComponent<AudioSource>().Play();
+            }
+        }
+    }
+
+    public void CheckStatus()
+    {
         if (GameOver)
             return;
 
@@ -45,10 +87,10 @@ public class EqualizerManager : MonoBehaviour
 
         for (int i = 0; i < squares.Length; i++)
         {
-            if (squares[i].GetComponent<SliderScript>().isMatched)
-            {
-                counter++;
-            }
+            //if (squares[i].GetComponent<SliderScript>().isMatched)
+            //{
+            //    counter++;
+            //}
 
             if (counter == 5)
             {
@@ -56,7 +98,7 @@ public class EqualizerManager : MonoBehaviour
                 WinPanel.SetActive(true);
                 GameOver = true;
             }
-        }        
+        }
     }
 
 }
