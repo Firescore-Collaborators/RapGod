@@ -9,6 +9,7 @@ public class EnvironmentList : MonoBehaviour
 
     public List<RapEnvironment> environments = new List<RapEnvironment>();
     RapEnvironment currentEnvironment;
+    string cherry;
     public AudienceManager GetAudienceManager
     {
         get
@@ -73,7 +74,7 @@ public class EnvironmentList : MonoBehaviour
         if (currentEnvironment != null)
         {
             currentEnvironment.gameObject.SetActive(false);
-            if(currentEnvironment.audienceManager != null)
+            if (currentEnvironment.audienceManager != null)
             {
                 currentEnvironment.audienceManager.gameObject.SetActive(false);
             }
@@ -83,10 +84,18 @@ public class EnvironmentList : MonoBehaviour
     void Init()
     {
         environments.Clear();
-        for(int i = 0; i < transform.childCount; i++)
+        for (int i = 0; i < transform.childCount; i++)
         {
             environments.Add(transform.GetChild(i).GetComponent<RapEnvironment>());
         }
+    }
+
+    public void SetRapCamera(int index, float speed = 3)
+    {
+        if (currentEnvironment == null) return;
+        string cherry;
+
+        MainCameraController.instance.SetCurrentCamera(currentEnvironment.rapCameras[index].name, speed);
     }
 }
 //Cherry Pick
