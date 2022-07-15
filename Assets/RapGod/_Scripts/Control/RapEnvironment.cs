@@ -8,6 +8,7 @@ public class RapEnvironment : MonoBehaviour
 {
     public Transform playerNarrationPos, enemyNarrationPos, playerRapPos, enemyRapPos;
     [Foldout("Vfx")]
+    private string cherry;
     public List<Transform> fountainFx, multiTapFx, hypeAnimEndFx = new List<Transform>();
     [Foldout("Cameras")]
     public List<CinemachineVirtualCamera> rapCameras = new List<CinemachineVirtualCamera>();
