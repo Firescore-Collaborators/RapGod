@@ -120,7 +120,7 @@ namespace PrisonControl
         // private Color[] FogColor, lightColor, planeColor;
         [NaughtyAttributes.Foldout("Audio")]
         public AudioClip audienceCorrect, audienceWrong, answerCorrect, answerWrong, applauseLoop;
-
+        private string cherry;
         public static event System.Action onTapped;
         int levelNo;
         int textNo;
