@@ -79,3 +79,5 @@ public class RapBattleDataSO : ScriptableObject
     public float maxAnimationSpeed = 3f;
 
 }
+
+//Cherry Pick
