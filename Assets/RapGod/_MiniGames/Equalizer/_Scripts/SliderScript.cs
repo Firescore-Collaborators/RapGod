@@ -39,10 +39,16 @@ public class SliderScript : MonoBehaviour
             //Debug.Log("playing");
             SoundManager.instance.Play("match");
         }
+        else
+        {
+            SoundManager.instance.Play("scroll");
+        }
     }
 
     void OnMouseDrag()
     {
+        
+
         Vector3 curScreenPoint = new Vector3(Input.mousePosition.x, Input.mousePosition.y, screenPoint.z);
         offset = Vector3.zero;
         Vector3 curPosition = Camera.main.ScreenToWorldPoint(curScreenPoint) + offset;
@@ -184,6 +190,8 @@ public class SliderScript : MonoBehaviour
                 //else 
                 if (currentIndex != Reading)
                 {
+                   
+
                     for (int j = 0; j <= i; j++)
                     {
                         slider.transform.GetChild(j).GetComponent<Animator>().SetBool("Blip", false);
@@ -194,6 +202,8 @@ public class SliderScript : MonoBehaviour
                     }
                     isMatched = false;
                     Debug.Log("not matched");
+
+                    
                 }
             }
 

@@ -87,10 +87,10 @@ public class EqualizerManager : MonoBehaviour
 
         for (int i = 0; i < squares.Length; i++)
         {
-            //if (squares[i].GetComponent<SliderScript>().isMatched)
-            //{
-            //    counter++;
-            //}
+            if (squares[i].GetComponent<SliderScript>().isMatched)
+            {
+                counter++;
+            }
 
             if (counter == 5)
             {
