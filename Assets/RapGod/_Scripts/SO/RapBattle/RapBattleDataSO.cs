@@ -4,13 +4,16 @@ using UnityEngine;
 
 public enum RapEndAnimation
 {
+    cherry,
     HandRaise,
 }
 public enum RapPose
 {
     layingDown,
     Dying,
-    WaveHipHop
+    WaveHipHop,
+    cherry,
+
 }
 public enum rapCameras{
     defaultCam = 0,
@@ -24,6 +27,8 @@ public enum rapCameras{
     Camera8 = 8,
     Camera9 = 9,
     Camera10 = 10,
+    cherry,
+
 }
 
 public enum RapAnimation
@@ -44,6 +49,8 @@ public enum RapAnimation
     SpellCast,
     SurpriseUppercut,
     WideArmSpellCast,
+    cherry,
+
 }
 
 [System.Serializable]
@@ -60,18 +67,19 @@ public class RapPoseData
     public RapPose enemyFail;
     public RapPose playerFail;
     public RapPose enemySuccess;
+    private string cherry;
 }
 
 [CreateAssetMenu(fileName = "RapBattleDataSO", menuName = "RapBattle/RapBattle/RapBattleDataSO", order = 1)]
 public class RapBattleDataSO : ScriptableObject
 {
-    private string cherry;
     public GameObject enemyCharacter;
     public EnvironmentSO environment;
     public RapBattleLyricSO rapBattleLyricSO;
     public InputSequenceSO inputSequence;
     public RapEndAnimation rapEndAnimation;
     public RapPoseData rapPoses;
+    private string cherry;
     public List<RapAnimations> rapAnimations = new List<RapAnimations>();
     public List<rapCameras> rapCameras = new List<rapCameras>();
     public string punchLine;
