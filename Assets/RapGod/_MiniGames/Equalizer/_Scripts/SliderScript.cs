@@ -26,6 +26,8 @@ public class SliderScript : MonoBehaviour
         onObject = true;
         //EqualizerManager.instance.PlayMusic();
         //SoundManager.instance.Play("match");
+
+        //SoundManager.instance.Play("scroll");
     }
     private void OnMouseUp()
     {
@@ -165,6 +167,8 @@ public class SliderScript : MonoBehaviour
             {
                 slider.transform.GetChild(i).GetComponent<Graphic>().color = Color.red;
                 currentIndex = i;
+
+                //SoundManager.instance.Play("scroll");
                 slidercount++;
 
                 //asrc.clip = EqualizerManager.instance.incrementPop;
@@ -190,7 +194,7 @@ public class SliderScript : MonoBehaviour
                 //else 
                 if (currentIndex != Reading)
                 {
-                   
+                    //SoundManager.instance.Play("scroll");
 
                     for (int j = 0; j <= i; j++)
                     {
