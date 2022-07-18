@@ -47,6 +47,7 @@ public class LyricsManagerNew : MonoBehaviour
         {
             Level_SO level = playPhasesControl.levels[Progress.Instance.CurrentLevel - 1];
             lyricDataSO = level.GetLyricList;
+            AssingLyrics(lyricDataSO);
         }
     }
 
