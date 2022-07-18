@@ -176,8 +176,11 @@ public class LyricsManagerNew : MonoBehaviour
         OutputScreen.gameObject.SetActive(false);
         OutputScreen.GetComponent<Animator>().SetTrigger("panelOFF");
         ClearListData();
-        Destroy(ParentPanel.transform.GetChild(0).gameObject);
-        //ParentPanel.transform.GetChild(0).gameObject.SetActive(false);
+        
+        if (ParentPanel.transform.childCount > 0)
+        {
+            Destroy(ParentPanel.transform.GetChild(0).gameObject);
+        }
 
         PermanentHeader.SetActive(false);
         //ParentPanel.SetActive(false);
