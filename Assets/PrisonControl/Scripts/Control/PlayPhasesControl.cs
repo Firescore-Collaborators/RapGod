@@ -92,6 +92,21 @@ namespace PrisonControl
             {
                 mPlayPhasesStateMachine.SwitchState(PlayPhase.Signature);
             }
+            else
+            if (levels[Progress.Instance.CurrentLevel - 1].GetLevelTypes[currentMiniLevel] == Level_SO.LevelTypes.Lyrics)
+            {
+                mPlayPhasesStateMachine.SwitchState(PlayPhase.Lyrics);
+            }
+            else
+            if (levels[Progress.Instance.CurrentLevel - 1].GetLevelTypes[currentMiniLevel] == Level_SO.LevelTypes.BeatSort)
+            {
+                mPlayPhasesStateMachine.SwitchState(PlayPhase.BeatSort);
+            }
+            else 
+            if(levels[Progress.Instance.CurrentLevel - 1].GetLevelTypes[currentMiniLevel] == Level_SO.LevelTypes.Equalizer)
+            {
+                mPlayPhasesStateMachine.SwitchState(PlayPhase.Equalizer);
+            }
         }
 
         public override void OnExit()
@@ -134,7 +149,10 @@ namespace PrisonControl
                 (PlayPhase.ProfileDp, GetComponent<ProfileDPState>()),
                 (PlayPhase.HandShake, GetComponent<HandShakeState>()),
                 (PlayPhase.AgentSelect, GetComponent<AgentSelectState>()),
-                (PlayPhase.Signature, GetComponent<SignatureState>())
+                (PlayPhase.Signature, GetComponent<SignatureState>()),
+                (PlayPhase.Lyrics, GetComponent<LyricsState>()),
+                (PlayPhase.BeatSort, GetComponent<BeatSortState>()),
+                (PlayPhase.Equalizer, GetComponent<EqualizerState>())
             );
         }
 
@@ -257,6 +275,9 @@ namespace PrisonControl
             PlayPhase.HandShake,
             PlayPhase.AgentSelect,
             PlayPhase.Signature,
+            PlayPhase.Lyrics,
+            PlayPhase.BeatSort,
+            PlayPhase.Equalizer,
         };
     }
 }

@@ -12,12 +12,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 55c91730e4923cf48bd2b8f9f6b3d5b4, type: 3}
   m_Name: Lvl 2 AgentNarration
   m_EditorClassIdentifier: 
-  enemyCharacter: {fileID: 6454957653236798055, guid: 161adea069abb7b4c9f4e297909755ea, type: 3}
+  enemyCharacter: {fileID: 614020687420764838, guid: 9c5c445f9dfa11a47896f58b5611e352, type: 3}
   environment: {fileID: 11400000, guid: 3dbc160a86139dc44aa9ff6fc4632e04, type: 2}
   rapBattleLyricSO: {fileID: 0}
   inputSequence: {fileID: 0}
-  rapAnimation: 0
-  rapPose: 0
+  rapEndAnimation: 0
+  rapPoses:
+    playerSuccess: 0
+    enemyFail: 0
+    playerFail: 0
+    enemySuccess: 0
+  rapAnimations: []
+  rapCameras: 
   punchLine: 
+  youtubeVideoTitle: LATEST RAP SONG RELEASED
   tapSmashLimit: 20
   maxAnimationSpeed: 3

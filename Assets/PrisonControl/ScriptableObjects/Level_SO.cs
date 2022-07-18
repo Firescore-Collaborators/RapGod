@@ -42,6 +42,10 @@ namespace PrisonControl
         [SerializeField]
         private GameObject signaturePrefab;
 
+        [Foldout("RapBattle")]
+        [SerializeField]
+        private LyricDataSO lyricList;
+
         public enum LevelTypes
         {
             rapBattle,
@@ -50,6 +54,9 @@ namespace PrisonControl
             HandShake,
             AgentSelect,
             Signature,
+            Lyrics,
+            BeatSort,
+            Equalizer,
         }
 
         public RapBattleDataSO GetRapBattleSO
@@ -106,6 +113,15 @@ namespace PrisonControl
                 return signaturePrefab;
             }
         }
+
+        public LyricDataSO GetLyricList
+        {
+            get
+            {
+                return lyricList;
+            }
+        }
+        
     }
 }
 

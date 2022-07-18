@@ -8,5 +8,8 @@
         HandShake,
         AgentSelect,
         Signature,
+        Lyrics,
+        BeatSort,
+        Equalizer,
     }
 }

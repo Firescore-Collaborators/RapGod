@@ -41,6 +41,21 @@ namespace PrisonControl
             {
                 _mPlayPhasesControl.BeginNextLevel();
             }
+            else
+            if (_mPlayPhasesControl.levels[Progress.Instance.CurrentLevel - 1].GetLevelTypes[0] == Level_SO.LevelTypes.Lyrics)
+            {
+                _mPlayPhasesControl.BeginNextLevel();
+            }
+            else
+            if (_mPlayPhasesControl.levels[Progress.Instance.CurrentLevel - 1].GetLevelTypes[0] == Level_SO.LevelTypes.BeatSort)
+            {
+                _mPlayPhasesControl.BeginNextLevel();
+            }
+            else
+            if (_mPlayPhasesControl.levels[Progress.Instance.CurrentLevel - 1].GetLevelTypes[0] == Level_SO.LevelTypes.Equalizer)
+            {
+                _mPlayPhasesControl.BeginNextLevel();
+            }
         }
     }
 }

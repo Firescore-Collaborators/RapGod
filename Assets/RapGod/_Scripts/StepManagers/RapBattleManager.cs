@@ -708,7 +708,7 @@ namespace PrisonControl
             restartPanel.SetActive(false);
             rapCameraIndex = 0;
             renderCamera.targetTexture = null;
-            youtubePanel.SetActive(true);
+            youtubePanel.SetActive(false);
             renderCamera.gameObject.SetActive(false);
             increaseYoutubeVariables = false;
             hearts.SetActive(false);
