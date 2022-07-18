@@ -1,9 +1,11 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using PrisonControl;
 public class Notes_Manager : MonoBehaviour
 {
     public static Notes_Manager instance;
+    public PlayPhasesControl playPhasesControl;
     public Transform endpoint1, endpoint2;
     public GameObject WinPanel, squareParent, PlayBar;
     public int temp;
@@ -11,17 +13,28 @@ public class Notes_Manager : MonoBehaviour
     public AudioClip clip1, clip2, clip3;
 
     public GameObject[] grid, box;
-    public Tiles_SO tiles_SO;
+    public TilesSO tiles_SO;
 
     private void Awake()
     {
-        if(instance == null)
+        if (instance == null)
         {
             instance = this;
         }
     }
     int j;
     private void OnEnable()
+    {
+        InitLevelData();
+        Init();
+    }
+
+    void InitLevelData()
+    {
+        Level_SO level = playPhasesControl.levels[Progress.Instance.CurrentLevel - 1];
+        tiles_SO = level.GetTilesSO;
+    }
+    void Init()
     {
         for (int i = 0; i < grid.Length; i++)
         {
@@ -36,7 +49,7 @@ public class Notes_Manager : MonoBehaviour
     public int sum;
     public void Update()
     {
-      
+
     }
 
     public void CubeCheck()
@@ -57,13 +70,17 @@ public class Notes_Manager : MonoBehaviour
         }
     }
 
-    
+
     IEnumerator ShowWinPanel()
     {
         yield return new WaitForSeconds(4);
         //WinPanel.SetActive(true);
         PlayBar.SetActive(true);
         PlayBar.GetComponent<Animator>().SetTrigger("play");
+        Timer.Delay(5f, () =>
+        {
+            LevelComplete();
+        });
     }
 
     public void showPanel()
@@ -76,11 +93,29 @@ public class Notes_Manager : MonoBehaviour
         if (temp < 4)
         {
             temp++;
+            PlayBar.SetActive(true);
             PlayBar.GetComponent<Animator>().SetTrigger("play");
         }
         else
         {
             PlayBar.SetActive(false);
         }
+    }
+
+    void LevelComplete()
+    {
+        Reset();
+        playPhasesControl._OnPhaseFinished();
+    }
+
+    void Reset()
+    {
+        for (int i = 0; i < box.Length; i++)
+        {
+            Destroy(box[i]);
+        }
+        box = new GameObject[12];
+        PlayBar.SetActive(true);
+
     }
 }

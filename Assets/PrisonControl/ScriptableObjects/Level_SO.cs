@@ -46,6 +46,9 @@ namespace PrisonControl
         [SerializeField]
         private LyricDataSO lyricList;
 
+        [Foldout("RapBattle")]
+        [SerializeField]
+        private TilesSO tiles_SO;
         public enum LevelTypes
         {
             rapBattle,
@@ -122,6 +125,13 @@ namespace PrisonControl
             }
         }
         
+        public TilesSO GetTilesSO
+        {
+            get
+            {
+                return tiles_SO;
+            }
+        }
     }
 }
 
