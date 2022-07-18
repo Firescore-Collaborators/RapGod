@@ -21,7 +21,6 @@ public class LyricsSlot : MonoBehaviour, IDropHandler
                 eventData.pointerDrag.GetComponent<RectTransform>().anchoredPosition
                     = GetComponent<RectTransform>().anchoredPosition;
 
-
                 //eventData.pointerDrag.GetComponent<LyricsBlock>().isPlaced = true;
                 eventData.pointerDrag.transform.GetChild(0).position = transform.position;
                 eventData.pointerDrag.transform.GetChild(0).SetParent(transform);
@@ -34,7 +33,7 @@ public class LyricsSlot : MonoBehaviour, IDropHandler
                 {
                     LyricsManagerNew.instance.FillLyrics();
                     LyricsManagerNew.instance.LevelNo++;
-                    Invoke("LoadNextPanel", 5);
+                    Invoke("LoadNextPanel", LyricsManagerNew.instance.SlideDelay);
                 }
             }
         }

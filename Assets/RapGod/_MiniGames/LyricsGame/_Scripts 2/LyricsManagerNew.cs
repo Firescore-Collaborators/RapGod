@@ -11,10 +11,10 @@ public class LyricsManagerNew : MonoBehaviour
     public TMP_Text[] Raps;
 
     public TMP_Text FinalText, FinalText2, ScoreText;
-    public int LevelNo, Score;
+    public int LevelNo, Score, SlideDelay;
     public List<Lyric_SO2> lyricsList = new List<Lyric_SO2>();
     public GameObject[] Panel;
-    public GameObject MasterPanel, CurrentPanel, OutputScreen, ParentPanel;
+    public GameObject MasterPanel, CurrentPanel, OutputScreen, ParentPanel, PermanentHeader;
     [SerializeField] LyricDataSO lyricDataSO;
 
     private void Awake()
@@ -29,6 +29,7 @@ public class LyricsManagerNew : MonoBehaviour
     {
         InitLevelData();
         Init();
+        
     }
 
     void OnDisable()
@@ -60,25 +61,35 @@ public class LyricsManagerNew : MonoBehaviour
 
     void Init()
     {
-        Panel[LevelNo].GetComponent<Animator>().SetTrigger("panelON");
+        //Panel[LevelNo].GetComponent<Animator>().SetTrigger("panelON");
+        //ClearListData();
 
+        LevelNo = 0;
+        Score = 0;
+
+        FinalText.text = ""; FinalText2.text = "";
 
         ClearListData();
+        CurrentPanel = Instantiate(MasterPanel, ParentPanel.transform);
+        PermanentHeader.SetActive(true);
+        OutputScreen.gameObject.SetActive(true);
 
-        //for (int i = 0; i < Raps.Length; i++)
-        //{
-        //    FinalText.text = FinalText.text + " " + Raps[i].text + "\n";
-        //}
-
-        for (int i = 0; i < lyricsList.Count; i++)
+        for (int i = 0; i < Panel.Length; i++)
         {
-
+            if (i == 4)
             {
-                //FinalText.text = FinalText.text + " " + lyricsList[i].Lyrics[0] + lyricsList[i].option[0]+ lyricsList[i].Lyrics[1]+ lyricsList[i].option[1]+ lyricsList[i].Lyrics[2];
-                //FinalText.text = FinalText.text + " " + lyricsList[i].Lyrics[0];
+                Panel[i] = CurrentPanel.transform.GetChild(i + 1).gameObject;
+            }
+            else
+            {
+                Panel[i] = CurrentPanel.transform.GetChild(i).gameObject;
             }
         }
+
+        Panel[LevelNo].GetComponent<Animator>().SetTrigger("panelON");
+
     }
+
 
     public void FillLyrics()
     {
@@ -107,35 +118,34 @@ public class LyricsManagerNew : MonoBehaviour
 
     public void Retry()
     {
-        LevelNo = 0;
-        Score = 0;
-
-        FinalText.text = ""; FinalText2.text = "";
+        Init();
         OutputScreen.GetComponent<Animator>().SetTrigger("panelOFF");
+        //LevelNo = 0;
+        //Score = 0;
 
-        ClearListData();
-        CurrentPanel = Instantiate(MasterPanel, ParentPanel.transform);
+        //FinalText.text = ""; FinalText2.text = "";
+        //OutputScreen.GetComponent<Animator>().SetTrigger("panelOFF");
 
-        //GameObject[] Panel = new GameObject[5];
+        //ClearListData();
+        //CurrentPanel = Instantiate(MasterPanel, ParentPanel.transform);
+        //PermanentHeader.SetActive(true);
+        //OutputScreen.gameObject.SetActive(true);
 
-        for (int i = 0; i < Panel.Length; i++)
-        {
-            if (i == 4)
-            {
-                Panel[i] = CurrentPanel.transform.GetChild(i + 1).gameObject;
-            }
-            else
-            {
-                Panel[i] = CurrentPanel.transform.GetChild(i).gameObject;
-            }
-        }
+        ////GameObject[] Panel = new GameObject[5];
 
-        Panel[LevelNo].GetComponent<Animator>().SetTrigger("panelON");
-
-        //for (int i = 1; i < LevelNo; i++)
+        //for (int i = 0; i < Panel.Length; i++)
         //{
-        //    Panel[i].SetActive(false);
+        //    if (i == 4)
+        //    {
+        //        Panel[i] = CurrentPanel.transform.GetChild(i + 1).gameObject;
+        //    }
+        //    else
+        //    {
+        //        Panel[i] = CurrentPanel.transform.GetChild(i).gameObject;
+        //    }
         //}
+
+        //Panel[LevelNo].GetComponent<Animator>().SetTrigger("panelON");
     }
 
     public void ClearListData()
@@ -158,7 +168,7 @@ public class LyricsManagerNew : MonoBehaviour
         Reset();
     }
 
-    void Reset()
+    public void Reset()
     {
         LevelNo = 0;
         Score = 0;
@@ -166,6 +176,10 @@ public class LyricsManagerNew : MonoBehaviour
         OutputScreen.gameObject.SetActive(false);
         OutputScreen.GetComponent<Animator>().SetTrigger("panelOFF");
         ClearListData();
+        Destroy(ParentPanel.transform.GetChild(0).gameObject);
+        //ParentPanel.transform.GetChild(0).gameObject.SetActive(false);
+
+        PermanentHeader.SetActive(false);
         //ParentPanel.SetActive(false);
         //Panel[LevelNo].GetComponent<Animator>().SetTrigger("panelON");
     }
