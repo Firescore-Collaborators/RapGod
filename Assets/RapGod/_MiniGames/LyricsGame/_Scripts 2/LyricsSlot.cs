@@ -56,6 +56,7 @@ public class LyricsSlot : MonoBehaviour, IDropHandler
 
             if (LyricsManagerNew.instance.LevelNo == 4)
             {
+                LyricsManagerNew.instance.OutputScreen.SetActive(true);
                 LyricsManagerNew.instance.OutputScreen.GetComponent<Animator>().SetTrigger("panelON");
             }
             if (LyricsManagerNew.instance.LevelNo > 0)

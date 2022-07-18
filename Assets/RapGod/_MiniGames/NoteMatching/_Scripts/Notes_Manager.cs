@@ -77,7 +77,7 @@ public class Notes_Manager : MonoBehaviour
         //WinPanel.SetActive(true);
         PlayBar.SetActive(true);
         PlayBar.GetComponent<Animator>().SetTrigger("play");
-        Timer.Delay(5f, () =>
+        Timer.Delay(7f, () =>
         {
             LevelComplete();
         });
@@ -108,13 +108,24 @@ public class Notes_Manager : MonoBehaviour
         playPhasesControl._OnPhaseFinished();
     }
 
+    private void OnDisable()
+    {
+        Reset();
+    }
+
     void Reset()
     {
+        //for (int i = 0; i < squareParent.transform.childCount; i++)
+        //{
+        //    squareParent.transform.GetChild(i).gameObject.SetActive(false);
+        //}
         for (int i = 0; i < box.Length; i++)
         {
             Destroy(box[i]);
+            //box[i] = null;
         }
-        box = new GameObject[12];
+        
+        //box = new GameObject[12];
         PlayBar.SetActive(true);
 
     }

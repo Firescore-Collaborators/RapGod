@@ -29,12 +29,13 @@ public class LyricsManagerNew : MonoBehaviour
     {
         InitLevelData();
         Init();
-        
+ 
     }
 
     void OnDisable()
     {
         Reset();
+        
     }
 
     void InitLevelData()
@@ -64,6 +65,7 @@ public class LyricsManagerNew : MonoBehaviour
     {
         //Panel[LevelNo].GetComponent<Animator>().SetTrigger("panelON");
         //ClearListData();
+        //OutputScreen.GetComponent<Animator>().Play("PanelOff", 0, 0.9f);
 
         LevelNo = 0;
         Score = 0;
@@ -73,7 +75,7 @@ public class LyricsManagerNew : MonoBehaviour
         ClearListData();
         CurrentPanel = Instantiate(MasterPanel, ParentPanel.transform);
         PermanentHeader.SetActive(true);
-        OutputScreen.gameObject.SetActive(true);
+        //OutputScreen.gameObject.SetActive(true);
 
         for (int i = 0; i < Panel.Length; i++)
         {
@@ -88,7 +90,6 @@ public class LyricsManagerNew : MonoBehaviour
         }
 
         Panel[LevelNo].GetComponent<Animator>().SetTrigger("panelON");
-
     }
 
 
@@ -174,8 +175,8 @@ public class LyricsManagerNew : MonoBehaviour
         LevelNo = 0;
         Score = 0;
         FinalText.text = ""; FinalText2.text = "";
-        OutputScreen.gameObject.SetActive(false);
         OutputScreen.GetComponent<Animator>().SetTrigger("panelOFF");
+        OutputScreen.gameObject.SetActive(false);
         ClearListData();
         
         if (ParentPanel.transform.childCount > 0)
