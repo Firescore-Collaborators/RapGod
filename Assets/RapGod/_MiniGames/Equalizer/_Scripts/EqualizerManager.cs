@@ -29,11 +29,20 @@ public class EqualizerManager : MonoBehaviour
     }
 
     // Start is called before the first frame update
-    void Start()
+    private void OnEnable()
     {
         for (int i = 0; i < slider.Length; i++)
         {
             slider[i].GetComponent<SliderScript>().Reading = sliderSOList.reading[i];
+            //slider[i].GetComponent<SliderScript>().startPos = slider[i].transform;
+        }
+    }
+
+    private void OnDisable()
+    {
+        for (int i = 0; i < slider.Length; i++)
+        {
+            //slider[i].GetComponent<SliderScript>().startPos = slider[i].transform;
         }
     }
 

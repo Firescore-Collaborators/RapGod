@@ -13,7 +13,7 @@ public class SliderScript : MonoBehaviour
     public GameObject slider;
     public bool onObject, isMatched;
     public int Reading, slidercount;
-    private Transform startPos;
+    public Transform startPos;
     public AudioSource asrc;
 
     void OnMouseDown()
