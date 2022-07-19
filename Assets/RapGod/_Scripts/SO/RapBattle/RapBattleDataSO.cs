@@ -11,7 +11,7 @@ public enum RapPose
     layingDown,
     Dying,
     WaveHipHop,
-
+    KissMan
 }
 public enum rapCameras{
     defaultCam = 0,

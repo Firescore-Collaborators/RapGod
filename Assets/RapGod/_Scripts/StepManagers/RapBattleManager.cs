@@ -237,9 +237,21 @@ namespace PrisonControl
             Vector3 pos = isPlayer ? playerPos[girlWalkIndex] : enemyPos[girlWalkIndex];
             LerpObjectPosition.instance.LerpObject(girl.transform, pos, 1, () =>
             {
-                girl_Anim.CrossFade("Idle", 0.1f);
-                LerpObjectRotation.instance.LerpObject(girl.transform,girlRotation,0.3f);
+                if (girlWalkIndex != 4)
+                {
+                    girl_Anim.CrossFade("Idle", 0.1f);
+
+                    LerpObjectRotation.instance.LerpObject(girl.transform, girlRotation, 0.3f);
+                }
+                else
+                {
+                    girl_Anim.CrossFade("Kiss", 0.1f);
+                }
             });
+            if (girlWalkIndex == 3)
+            {
+                LerpObjectRotation.instance.LerpObject(girl.transform, spawnPosition.enemyPos.Find("GirlPos").rotation, 1f);
+            }
             girl_Anim.CrossFade("Walk", 0.1f);
             girl.transform.LookAt(pos);
             girlWalkIndex++;
@@ -627,7 +639,12 @@ namespace PrisonControl
                         remarks.gameObject.SetActive(true);
                         //player_anim.SetBool("loose", true);
                         EnvironmentList.instance.SetRapCamera(0, 1);
-                        RapPose();
+                        print("GirlKiss");
+                        Timer.Delay(1f, () =>
+                        {
+                            RapPose();
+
+                        });
                         respondMessageController.ShowWrongResponse("NO HYPE");
                         Timer.Delay(5f, () =>
                         {
