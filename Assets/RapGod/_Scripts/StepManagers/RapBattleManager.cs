@@ -24,12 +24,12 @@ namespace PrisonControl
 
         [SerializeField]
         [Foldout("Animator")]
-        private RuntimeAnimatorController playerAnimator, enemyAnimator;
+        private RuntimeAnimatorController playerAnimator, enemyAnimator, girlAnimator;
 
         [SerializeField]
         GameObject handUI, tapFx;
 
-        GameObject player, enemy;
+        GameObject player, enemy, girl;
         public PlayPhasesControl m_playPhaseControl;
         [Foldout("Cameras")]
         public Camera renderCamera;
@@ -75,7 +75,7 @@ namespace PrisonControl
         [SerializeField]
         [Foldout("Animator")]
 
-        private Animator player_anim, enemy_anim, ui_anim;
+        private Animator player_anim, enemy_anim, ui_anim, girl_Anim;
 
         [SerializeField]
         private GameObject[] textAnswer_anim;
@@ -138,11 +138,16 @@ namespace PrisonControl
         bool removedLetter;
         Vector3 popUpPos;
         [SerializeField] int currentLyric;
+        List<Vector3> playerPos = new List<Vector3>();
+        List<Vector3> enemyPos = new List<Vector3>();
+        public int girlWalkIndex;
+        Quaternion girlRotation;
 
         private void OnEnable()
         {
             InitLevelData();
             Init();
+            InitGirlPos();
             //int no = PlayerPrefs.GetInt("LevelNo", 1);
             //int fogNo = (no - 1) % FogColor.Length;
             //RenderSettings.fogColor = FogColor[fogNo];
@@ -179,7 +184,10 @@ namespace PrisonControl
             enemy = Utils.spawnGameObject(rapData.enemyCharacter, spawnPosition.enemyPos);
             enemy_anim = enemy.GetComponent<Animator>();
             enemy_anim.runtimeAnimatorController = enemyAnimator;
-
+            girl = Utils.spawnGameObject(rapData.girlCharacter, EnvironmentList.instance.GetCurrentEnvironment.girlRapPos);
+            girl_Anim = girl.GetComponent<Animator>();
+            girl_Anim.runtimeAnimatorController = girlAnimator;
+            girlRotation = girl.transform.rotation;
             //Get Audience reference
             audienceManager = EnvironmentList.instance.GetAudienceManager;
             audienceManager.EnemyHeadTarget = enemy;
@@ -200,6 +208,41 @@ namespace PrisonControl
             multiTouchManager.inputSequence = level.GetRapBattleSO.inputSequence;
             GetComponent<TouchInputs>().multiTapLimit = level.GetRapBattleSO.tapSmashLimit;
             stepProgress.Init(rapData.rapBattleLyricSO.leveldata.Count);
+        }
+
+        void InitGirlPos()
+        {
+            AddCheckPoint(spawnPosition.playerPos.transform.Find("GirlPos"), playerPos);
+            AddCheckPoint(spawnPosition.enemyPos.transform.Find("GirlPos"), enemyPos);
+        }
+
+        void AddCheckPoint(Transform pos, List<Vector3> list)
+        {
+            list.Clear();
+            float distance = Vector3.Distance(girl.transform.position, pos.position);
+            int count = rapData.rapBattleLyricSO.leveldata.Count;
+            float segment = distance / count;
+            //0.75f = 3/4
+            Vector3 dir = (pos.position - girl.transform.position).normalized;
+            for (int i = 1; i <= count; i++)
+            {
+                // add a pos between girl pos and pos
+                Vector3 newPos = girl.transform.position + (dir * i * segment);
+                list.Add(newPos);
+            }
+        }
+
+        void MoveGirl(bool isPlayer)
+        {
+            Vector3 pos = isPlayer ? playerPos[girlWalkIndex] : enemyPos[girlWalkIndex];
+            LerpObjectPosition.instance.LerpObject(girl.transform, pos, 1, () =>
+            {
+                girl_Anim.CrossFade("Idle", 0.1f);
+                LerpObjectRotation.instance.LerpObject(girl.transform,girlRotation,0.3f);
+            });
+            girl_Anim.CrossFade("Walk", 0.1f);
+            girl.transform.LookAt(pos);
+            girlWalkIndex++;
         }
         public void OnNextRapWord()
         {
@@ -373,11 +416,19 @@ namespace PrisonControl
                         {
                             currentCorrectCount++;
                             audienceManager.OnMovePlayerSide(0);
+                            Timer.Delay(1.5f, () =>
+                            {
+                                MoveGirl(true);
+                            });
                         }
                         else
                         {
                             currentWrongCount++;
                             audienceManager.OnMoveEnemySide(0);
+                            Timer.Delay(1.5f, () =>
+                            {
+                                MoveGirl(false);
+                            });
                         }
                         Invoke("OnReset", 1f);
                     }

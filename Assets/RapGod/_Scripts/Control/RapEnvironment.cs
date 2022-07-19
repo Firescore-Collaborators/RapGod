@@ -6,7 +6,7 @@ using Cinemachine;
 
 public class RapEnvironment : MonoBehaviour
 {
-    public Transform playerNarrationPos, enemyNarrationPos, playerRapPos, enemyRapPos;
+    public Transform playerNarrationPos, enemyNarrationPos, playerRapPos, enemyRapPos, girlRapPos;
     [Foldout("Vfx")]
     public List<Transform> fountainFx, multiTapFx, hypeAnimEndFx = new List<Transform>();
     [Foldout("Cameras")]

@@ -69,6 +69,7 @@ public class RapPoseData
 public class RapBattleDataSO : ScriptableObject
 {
     public GameObject enemyCharacter;
+    public GameObject girlCharacter;
     public EnvironmentSO environment;
     public RapBattleLyricSO rapBattleLyricSO;
     public InputSequenceSO inputSequence;
