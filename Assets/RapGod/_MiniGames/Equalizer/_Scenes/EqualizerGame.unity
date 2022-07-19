@@ -374,7 +374,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 28147925}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: -124.51962, z: 869.66956}
+  m_LocalPosition: {x: 0, y: -124.51962, z: 873.8}
   m_LocalScale: {x: 30, y: 10, z: 10}
   m_Children: []
   m_Father: {fileID: 475574622}
@@ -606,7 +606,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 73618106}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 75, y: -124.51962, z: 869.66956}
+  m_LocalPosition: {x: 75, y: -124.51962, z: 873.8}
   m_LocalScale: {x: 30, y: 10, z: 10}
   m_Children: []
   m_Father: {fileID: 475574622}
@@ -1023,7 +1023,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 127792532}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -150, y: -124.51962, z: 869.66956}
+  m_LocalPosition: {x: -150, y: -124.51962, z: 873.8}
   m_LocalScale: {x: 30, y: 10, z: 10}
   m_Children: []
   m_Father: {fileID: 475574622}
@@ -1108,7 +1108,7 @@ MonoBehaviour:
   slider: {fileID: 2016466579}
   onObject: 0
   isMatched: 0
-  Reading: 2
+  Reading: 1
   slidercount: 0
   asrc: {fileID: 0}
   currentIndex: 0
@@ -1235,7 +1235,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 143147907}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: -129.8131, z: 855.8667}
+  m_LocalPosition: {x: 0, y: -129.8131, z: 866.5}
   m_LocalScale: {x: 350, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 475574622}
@@ -2725,7 +2725,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1015213091}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -75, y: -124.51962, z: 869.66956}
+  m_LocalPosition: {x: -75, y: -124.51962, z: 873.8}
   m_LocalScale: {x: 30, y: 10, z: 10}
   m_Children: []
   m_Father: {fileID: 475574622}
@@ -4647,7 +4647,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0, g: 0, b: 0, a: 0.392}
+  m_Color: {r: 0, g: 0, b: 0, a: 0.8666667}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -5314,7 +5314,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1788859540}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: -129.87381, z: 988.0666}
+  m_LocalPosition: {x: 0, y: -129.87381, z: 968.5}
   m_LocalScale: {x: 350, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 475574622}
@@ -5926,7 +5926,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 40869805fea892f48b4a582d33f112c9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  squares:
+  slider:
   - {fileID: 127792532}
   - {fileID: 1015213091}
   - {fileID: 28147925}
@@ -5945,6 +5945,7 @@ MonoBehaviour:
   endLimit: {fileID: 1788859541}
   GameOver: 0
   WinPanel: {fileID: 1537128459}
+  sliderSOList: {fileID: 11400000, guid: 77ddca2e3d92ed44c9f9e06557c08005, type: 2}
   counter: 0
 --- !u!1 &1970179221
 GameObject:
@@ -6398,7 +6399,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2088624083}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 150, y: -124.51962, z: 869.66956}
+  m_LocalPosition: {x: 150, y: -124.51962, z: 873.8}
   m_LocalScale: {x: 30, y: 10, z: 10}
   m_Children: []
   m_Father: {fileID: 475574622}

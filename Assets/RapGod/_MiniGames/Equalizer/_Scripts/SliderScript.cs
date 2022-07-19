@@ -13,7 +13,7 @@ public class SliderScript : MonoBehaviour
     public GameObject slider;
     public bool onObject, isMatched;
     public int Reading, slidercount;
-
+    private Transform startPos;
     public AudioSource asrc;
 
     void OnMouseDown()
@@ -49,8 +49,6 @@ public class SliderScript : MonoBehaviour
 
     void OnMouseDrag()
     {
-        
-
         Vector3 curScreenPoint = new Vector3(Input.mousePosition.x, Input.mousePosition.y, screenPoint.z);
         offset = Vector3.zero;
         Vector3 curPosition = Camera.main.ScreenToWorldPoint(curScreenPoint) + offset;
@@ -79,6 +77,7 @@ public class SliderScript : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        startPos = transform;
         asrc = GetComponent<AudioSource>();
     }
 
@@ -154,7 +153,7 @@ public class SliderScript : MonoBehaviour
         
 
         public void CheckEqualiser()
-    {
+        {
         if (EqualizerManager.instance.GameOver)
             return;
 
@@ -167,6 +166,8 @@ public class SliderScript : MonoBehaviour
             {
                 slider.transform.GetChild(i).GetComponent<Graphic>().color = Color.red;
                 currentIndex = i;
+
+                transform.Translate(0, 0, 1);
 
                 //SoundManager.instance.Play("scroll");
                 slidercount++;
