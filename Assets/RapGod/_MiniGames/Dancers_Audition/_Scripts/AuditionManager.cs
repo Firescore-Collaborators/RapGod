@@ -27,15 +27,15 @@ public class AuditionManager : MonoBehaviour
 
     public int conversationIndex, characterIndex;
 
-    public Dancers_SO [] dancers_SO;
-
+    //public Dancers_SO [] dancers_SO;
+    public DancerSOList dancerSOList;
 
     public void OnEnable()
     {
         characterIndex = 0;
         conversationIndex = 0;
 
-        if (chicNo <= dancers_SO.Length-1)
+        if (chicNo <= dancerSOList.dancersList.Count-1)
         {
             StartCoroutine(Entry());
         }
@@ -43,9 +43,9 @@ public class AuditionManager : MonoBehaviour
 
     void UpdateData()
     {
-        conversation.text = dancers_SO[chicNo].Conversation[conversationIndex];
-        positiveResp.text = dancers_SO[chicNo].responsePositive[conversationIndex];
-        negetiveResp.text = dancers_SO[chicNo].responseNegetive[conversationIndex];
+        conversation.text = dancerSOList.dancersList[chicNo].Conversation[conversationIndex];
+        positiveResp.text = dancerSOList.dancersList[chicNo].responsePositive[conversationIndex];
+        negetiveResp.text = dancerSOList.dancersList[chicNo].responseNegetive[conversationIndex];
 
         conversationPopUp.GetComponent<Animator>().SetTrigger("show");
 
@@ -110,7 +110,7 @@ public class AuditionManager : MonoBehaviour
         chicNo++;
         //ChatNo++;
 
-        if (chicNo <= dancers_SO.Length-1)
+        if (chicNo <= dancerSOList.dancersList.Count-1)
         {
             StartCoroutine(Entry());
         }
@@ -135,7 +135,7 @@ public class AuditionManager : MonoBehaviour
 
         selectedChicNo++;
 
-        if (chicNo <= dancers_SO.Length-1)
+        if (chicNo <= dancerSOList.dancersList.Count-1)
         {
             StartCoroutine(Entry());
         }
@@ -145,7 +145,7 @@ public class AuditionManager : MonoBehaviour
     IEnumerator Entry()
     {
 
-        CurrentChic = Instantiate(dancers_SO[chicNo].character, startPosition, Quaternion.Euler(0,90,0));
+        CurrentChic = Instantiate(dancerSOList.dancersList[chicNo].character, startPosition, Quaternion.Euler(0,90,0));
 
         yield return new WaitForSeconds(1);
         CurrentChic.transform.DOMoveX(0, 2);
@@ -158,7 +158,8 @@ public class AuditionManager : MonoBehaviour
         UpdateData();
 
         Resume.GetComponent<Animator>().SetTrigger("show");
-        Resume.GetComponentInChildren<TMP_Text>().text = dancers_SO[chicNo].Resume[0]+"\n"+ dancers_SO[chicNo].Resume[1]+"\n"+ dancers_SO[chicNo].Resume[2];
+        Resume.GetComponentInChildren<TMP_Text>().text = dancerSOList.dancersList[chicNo].Resume[0]+"\n"+
+            dancerSOList.dancersList[chicNo].Resume[1]+"\n"+ dancerSOList.dancersList[chicNo].Resume[2];
         conversationIndex = 0;
     }
 
