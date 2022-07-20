@@ -148,6 +148,11 @@ namespace PrisonControl
             InitLevelData();
             Init();
             InitGirlPos();
+            Timer.Delay(0.5f, () =>
+            {
+                MainCameraController.instance.SetCurrentCamera("BarRap", 2);
+            });
+
             //int no = PlayerPrefs.GetInt("LevelNo", 1);
             //int fogNo = (no - 1) % FogColor.Length;
             //RenderSettings.fogColor = FogColor[fogNo];
@@ -161,7 +166,10 @@ namespace PrisonControl
             //levelNo_text.text = "Level " + no;
             homePanle.SetActive(true);
             rewardPanle.SetActive(false);
-            OnNextRapWord();
+            Timer.Delay(3f, () =>
+            {
+                OnNextRapWord();
+            });
         }
 
         void OnDisable()
@@ -428,7 +436,7 @@ namespace PrisonControl
                         {
                             currentCorrectCount++;
                             audienceManager.OnMovePlayerSide(0);
-                            Timer.Delay(1.5f, () =>
+                            Timer.Delay(2f, () =>
                             {
                                 MoveGirl(true);
                             });
@@ -437,7 +445,7 @@ namespace PrisonControl
                         {
                             currentWrongCount++;
                             audienceManager.OnMoveEnemySide(0);
-                            Timer.Delay(1.5f, () =>
+                            Timer.Delay(2f, () =>
                             {
                                 MoveGirl(false);
                             });
@@ -553,7 +561,7 @@ namespace PrisonControl
 
             // _anim.SetBool("OnClicked",true);
             yield return new WaitForSeconds(0.7f);
-            Utils.SpawnEfxWithDestroy(EnvironmentList.instance.GetCurrentEnvironment.multiTapFx[0], vFXSO.musicNote1, 3f);
+            //Utils.SpawnEfxWithDestroy(EnvironmentList.instance.GetCurrentEnvironment.multiTapFx[0], vFXSO.musicNote1, 3f);
             textAnswer_anim[levelNo].gameObject.SetActive(false);
             OptionPanle.SetActive(false);
             _Answer.gameObject.SetActive(true);
@@ -604,61 +612,73 @@ namespace PrisonControl
             removedLetter = false;
             textNo = 0;
             PopUpPanle.SetActive(false);
-
-
-            if (rapData.rapBattleLyricSO.leveldata.Count <= rapWordNo)
+            if (player_anim != null)
             {
-                rapWordNo = 0;
-                playerWin = currentCorrectCount >= currentWrongCount ? true : false;
-                if (!audienceManager.CheckWinner(playerWin))
+                player_anim.CrossFade("Idle", 0.1f);
+                enemy_anim.CrossFade("Idle", 0.1f);
+            }
+            Timer.Delay(0f, () =>
+            {
+
+                if (rapData.rapBattleLyricSO.leveldata.Count <= rapWordNo)
                 {
+                    rapWordNo = 0;
+                    playerWin = currentCorrectCount >= currentWrongCount ? true : false;
+                    if (!audienceManager.CheckWinner(playerWin))
+                    {
+
+                    }
+                    else
+                    {
+                        ui_anim.enabled = true;
+
+                        if (playerWin)
+                        {
+                            ui_anim.SetTrigger("win");
+                            winnerConfitti.SetActive(true);
+                            remarks.color = Color.green;
+                            remarks.text = "WINNER!";
+                            remarks.gameObject.SetActive(true);
+                            //player_anim.SetBool("win", true);
+                            player_anim.CrossFade("Cheering", 0.01f);
+                            enemy_anim.CrossFade("Lose", 0.01f);
+                            respondMessageController.ShowCorrectRespone("WINNER MENTALITY !");
+                            Invoke("TapSmash", 1f);
+                        }
+                        else
+                        {
+                            ui_anim.SetTrigger("loose");
+                            remarks.text = "LOSER!";
+                            remarks.color = Color.red;
+                            remarks.gameObject.SetActive(true);
+                            //player_anim.SetBool("loose", true);
+                            EnvironmentList.instance.SetRapCamera(0, 1);
+                            print("GirlKiss");
+                            Timer.Delay(2f, () =>
+                            {
+                                RapPose();
+
+                            });
+                            respondMessageController.ShowWrongResponse("NO HYPE");
+                            Timer.Delay(5f, () =>
+                            {
+                                restartPanel.SetActive(true);
+                            });
+
+                        }
+                    }
 
                 }
                 else
                 {
-                    ui_anim.enabled = true;
-
-                    if (playerWin)
+                    Timer.Delay(3f, () =>
                     {
-                        ui_anim.SetTrigger("win");
-                        winnerConfitti.SetActive(true);
-                        remarks.color = Color.green;
-                        remarks.text = "WINNER!";
-                        remarks.gameObject.SetActive(true);
-                        //player_anim.SetBool("win", true);
-                        player_anim.CrossFade("Cheering", 0.01f);
-                        enemy_anim.CrossFade("Lose", 0.01f);
-                        respondMessageController.ShowCorrectRespone("WINNER MENTALITY !");
-                        Invoke("TapSmash", 1f);
-                    }
-                    else
-                    {
-                        ui_anim.SetTrigger("loose");
-                        remarks.text = "LOSER!";
-                        remarks.color = Color.red;
-                        remarks.gameObject.SetActive(true);
-                        //player_anim.SetBool("loose", true);
-                        EnvironmentList.instance.SetRapCamera(0, 1);
-                        print("GirlKiss");
-                        Timer.Delay(1f, () =>
-                        {
-                            RapPose();
+                        OnNextRapWord();
+                    });
 
-                        });
-                        respondMessageController.ShowWrongResponse("NO HYPE");
-                        Timer.Delay(5f, () =>
-                        {
-                            restartPanel.SetActive(true);
-                        });
-
-                    }
                 }
+            });
 
-            }
-            else
-            {
-                OnNextRapWord();
-            }
         }
 
         void StartTapSmash()
