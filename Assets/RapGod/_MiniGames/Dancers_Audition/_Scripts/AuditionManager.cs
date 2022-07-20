@@ -11,12 +11,12 @@ public class AuditionManager : MonoBehaviour
     //public GameObject[] con, Resume;
     //public int ChatNo = 0, resNo = 0;
     public GameObject[] Chic;
-    public int chicNo = 0, selectedChicNo = 1;
+    public int chicNo, selectedChicNo;
     public Vector3 startPosition;
     private GameObject CurrentChic;
 
     [SerializeField]
-    private GameObject conversationPopUp;
+    private GameObject conversationPopUp, DancerParent;
 
     [SerializeField]
     private GameObject Resume;
@@ -34,13 +34,15 @@ public class AuditionManager : MonoBehaviour
     {
         characterIndex = 0;
         conversationIndex = 0;
+        chicNo = 0;
+        selectedChicNo = 0;
 
         if (chicNo <= dancerSOList.dancersList.Count-1)
         {
             StartCoroutine(Entry());
         }
     }
-
+    
     void UpdateData()
     {
         conversation.text = dancerSOList.dancersList[chicNo].Conversation[conversationIndex];
@@ -144,8 +146,7 @@ public class AuditionManager : MonoBehaviour
 
     IEnumerator Entry()
     {
-
-        CurrentChic = Instantiate(dancerSOList.dancersList[chicNo].character, startPosition, Quaternion.Euler(0,90,0));
+        CurrentChic = Instantiate(dancerSOList.dancersList[chicNo].character, startPosition, Quaternion.Euler(0,90,0), DancerParent.transform);
 
         yield return new WaitForSeconds(1);
         CurrentChic.transform.DOMoveX(0, 2);
@@ -165,20 +166,24 @@ public class AuditionManager : MonoBehaviour
 
     IEnumerator ActivateCon()
     {
-
         yield return new WaitForSeconds(1);
         //con[ChatNo].SetActive(true);
         UpdateData();
         conversationPopUp.GetComponent<Animator>().SetTrigger("show");
-
     }
 
     private void OnDisable()
     {
-        //for (int i = 0; i < dancers_SO.Length; i++)
-        //{
-        //    Destroy(dancers_SO[chicNo].character);
-        //}
+        for (int i = 0; i < DancerParent.transform.childCount; i++)
+        {
+            //DancerParent.transform.GetChild(i).gameObject.SetActive(false);
+            Destroy(DancerParent.transform.GetChild(i).gameObject);
+        }
 
+        //for (int i = 0; i < dancerSOList.dancersList.Count; i++)
+        //{
+        //    Destroy(dancerSOList.dancersList[chicNo].character);
+        //}
     }
+
 }
