@@ -35,6 +35,7 @@ public class EqualizerManager : MonoBehaviour
         {
             slider[i].GetComponent<SliderScript>().Reading = sliderSOList.reading[i];
             //slider[i].GetComponent<SliderScript>().startPos = slider[i].transform;
+            slider[i].transform.position = new Vector3(slider[i].transform.position.x, slider[i].transform.position.y, startLimit.transform.position.z);
         }
     }
 
@@ -42,7 +43,7 @@ public class EqualizerManager : MonoBehaviour
     {
         for (int i = 0; i < slider.Length; i++)
         {
-            //slider[i].GetComponent<SliderScript>().startPos = slider[i].transform;
+            //slider[i].transform.position = new Vector3 (slider[i].transform.position.x, slider[i].transform.position.y, startLimit.transform.position.z);
         }
     }
 
