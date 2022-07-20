@@ -14,6 +14,7 @@ public class AuditionManager : MonoBehaviour
     public int chicNo, selectedChicNo;
     public Vector3 startPosition;
     private GameObject CurrentChic;
+    private bool isDisabled;
 
     [SerializeField]
     private GameObject conversationPopUp, DancerParent;
@@ -32,6 +33,7 @@ public class AuditionManager : MonoBehaviour
 
     public void OnEnable()
     {
+        isDisabled = false;
         characterIndex = 0;
         conversationIndex = 0;
         chicNo = 0;
@@ -146,22 +148,25 @@ public class AuditionManager : MonoBehaviour
 
     IEnumerator Entry()
     {
-        CurrentChic = Instantiate(dancerSOList.dancersList[chicNo].character, startPosition, Quaternion.Euler(0,90,0), DancerParent.transform);
+        if (!isDisabled)
+        {
+            CurrentChic = Instantiate(dancerSOList.dancersList[chicNo].character, startPosition, Quaternion.Euler(0, 90, 0), DancerParent.transform);
 
-        yield return new WaitForSeconds(1);
-        CurrentChic.transform.DOMoveX(0, 2);
-        CurrentChic.GetComponent<Animator>().SetBool("Walk1", true);
+            yield return new WaitForSeconds(1);
+            CurrentChic.transform.DOMoveX(0, 2);
+            CurrentChic.GetComponent<Animator>().SetBool("Walk1", true);
 
-        yield return new WaitForSeconds(2);
-        CurrentChic.GetComponent<Animator>().SetBool("Walk1", false);
-        CurrentChic.transform.DORotate(new Vector3(0, 0, 0), 0.5f);
+            yield return new WaitForSeconds(2);
+            CurrentChic.GetComponent<Animator>().SetBool("Walk1", false);
+            CurrentChic.transform.DORotate(new Vector3(0, 0, 0), 0.5f);
 
-        UpdateData();
+            UpdateData();
 
-        Resume.GetComponent<Animator>().SetTrigger("show");
-        Resume.GetComponentInChildren<TMP_Text>().text = dancerSOList.dancersList[chicNo].Resume[0]+"\n"+
-            dancerSOList.dancersList[chicNo].Resume[1]+"\n"+ dancerSOList.dancersList[chicNo].Resume[2];
-        conversationIndex = 0;
+            Resume.GetComponent<Animator>().SetTrigger("show");
+            Resume.GetComponentInChildren<TMP_Text>().text = dancerSOList.dancersList[chicNo].Resume[0] + "\n" +
+                dancerSOList.dancersList[chicNo].Resume[1] + "\n" + dancerSOList.dancersList[chicNo].Resume[2];
+            conversationIndex = 0;
+        }
     }
 
     IEnumerator ActivateCon()
@@ -174,6 +179,8 @@ public class AuditionManager : MonoBehaviour
 
     private void OnDisable()
     {
+        isDisabled = true;
+
         for (int i = 0; i < DancerParent.transform.childCount; i++)
         {
             //DancerParent.transform.GetChild(i).gameObject.SetActive(false);
