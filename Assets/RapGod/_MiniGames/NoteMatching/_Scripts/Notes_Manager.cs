@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using PrisonControl;
+
 public class Notes_Manager : MonoBehaviour
 {
     public static Notes_Manager instance;
