@@ -27,7 +27,7 @@ namespace PrisonControl
         private RuntimeAnimatorController playerAnimator, enemyAnimator, girlAnimator;
 
         [SerializeField]
-        GameObject handUI, tapFx;
+        GameObject handUI, tapFx, heartsCamvas;
 
         GameObject player, enemy, girl;
         public PlayPhasesControl m_playPhaseControl;
@@ -84,7 +84,7 @@ namespace PrisonControl
         private Sprite[] sprites_btn;
         [Foldout("Particles")]
         [SerializeField]
-        private GameObject Conffiti_btn, ConffitiWrong_btn, hearts;
+        private GameObject Conffiti_btn, ConffitiWrong_btn, hearts, kewl;
 
         [SerializeField]
         [Foldout("UI")]
@@ -196,6 +196,9 @@ namespace PrisonControl
             girl_Anim = girl.GetComponent<Animator>();
             girl_Anim.runtimeAnimatorController = girlAnimator;
             girlRotation = girl.transform.rotation;
+            //hearts.transform.parent = girl.transform;
+            //kewl.transform.parent = girl.transform;
+            heartsCamvas.transform.parent = girl.transform.Find("mixamorig:Hips");
             //Get Audience reference
             audienceManager = EnvironmentList.instance.GetAudienceManager;
             audienceManager.EnemyHeadTarget = enemy;
@@ -242,26 +245,80 @@ namespace PrisonControl
 
         void MoveGirl(bool isPlayer)
         {
-            Vector3 pos = isPlayer ? playerPos[girlWalkIndex] : enemyPos[girlWalkIndex];
-            LerpObjectPosition.instance.LerpObject(girl.transform, pos, 1, () =>
+            Vector3 pos = isPlayer ? playerPos[girlWalkIndex] : playerPos[girlWalkIndex];
+            print("StartIndex :" + girlWalkIndex);
+            if (isPlayer)
             {
+                hearts.SetActive(true);
+                Timer.Delay(2f, () =>
+                {
+                    ControllFill(0.5f);
+                    if (girlWalkIndex != 3)
+                        hearts.SetActive(false);
+                });
+            }
+            else
+            {
+                kewl.SetActive(true);
+                Timer.Delay(2f, () =>
+                {
+                    ControllFill(-0.25f);
+                    if (girlWalkIndex != 3)
+                        kewl.SetActive(false);
+                });
+            }
+
+            Timer.Delay(0.5f, () =>
+            {
+                // LerpObjectPosition.instance.LerpObject(girl.transform, pos, 1, () =>
+                // {
+
+
+                //     if (girlWalkIndex != 4)
+                //     {
+                //         girl_Anim.CrossFade("Idle", 0.1f);
+
+                //         LerpObjectRotation.instance.LerpObject(girl.transform, girlRotation, 0.3f);
+                //     }
+                //     else
+                //     {
+                //         heartsCamvas.SetActive(false);
+                //         girl_Anim.CrossFade("Kiss", 0.1f);
+                //     }
+                // });
+                // if (girlWalkIndex == 3)
+                // {
+                //     LerpObjectRotation.instance.LerpObject(girl.transform, spawnPosition.enemyPos.Find("GirlPos").rotation, 1f);
+                // }
+                // girl_Anim.CrossFade("Walk", 0.1f);
+                print("StartIndex1 :" + girlWalkIndex);
+                if (girlWalkIndex == 4)
+                {
+                    LerpObjectPosition.instance.LerpObject(girl.transform, spawnPosition.enemyPos.Find("GirlPos").position, 2, () =>
+                    {
+                        LerpObjectRotation.instance.LerpObject(girl.transform, spawnPosition.enemyPos.Find("GirlPos").rotation, 0.3f);
+                        heartsCamvas.SetActive(false);
+                        girl_Anim.CrossFade("Kiss", 0.1f);
+                    });
+                    girl_Anim.CrossFade("Walk", 0.1f);
+                }
+                //var targetRotation = Quaternion.LookRotation(transform.position - pos);
+                girl.transform.LookAt(girlWalkIndex != 4 ? pos : spawnPosition.enemyPos.Find("GirlPos").position);
+                Quaternion currentRot = girl.transform.rotation;
+                girl.transform.rotation = girlRotation;
+                LerpObjectRotation.instance.LerpObject(girl.transform, currentRot, 0.3f);
                 if (girlWalkIndex != 4)
                 {
-                    girl_Anim.CrossFade("Idle", 0.1f);
-
-                    LerpObjectRotation.instance.LerpObject(girl.transform, girlRotation, 0.3f);
+                    girl_Anim.CrossFade(isPlayer ? GirlAnim.LongKiss.ToString() : GirlAnim.Disbelief.ToString(), 0.1f);
                 }
-                else
+                Timer.Delay(4, () =>
                 {
-                    girl_Anim.CrossFade("Kiss", 0.1f);
-                }
+                    print("StartIndex2 :" + girlWalkIndex);
+                    if (girlWalkIndex != 4)
+                        LerpObjectRotation.instance.LerpObject(girl.transform, girlRotation, 0.3f);
+                });
+
             });
-            if (girlWalkIndex == 3)
-            {
-                LerpObjectRotation.instance.LerpObject(girl.transform, spawnPosition.enemyPos.Find("GirlPos").rotation, 1f);
-            }
-            girl_Anim.CrossFade("Walk", 0.1f);
-            girl.transform.LookAt(pos);
             girlWalkIndex++;
         }
         public void OnNextRapWord()
@@ -436,7 +493,7 @@ namespace PrisonControl
                         {
                             currentCorrectCount++;
                             audienceManager.OnMovePlayerSide(0);
-                            Timer.Delay(2f, () =>
+                            Timer.Delay(1f, () =>
                             {
                                 MoveGirl(true);
                             });
@@ -445,7 +502,7 @@ namespace PrisonControl
                         {
                             currentWrongCount++;
                             audienceManager.OnMoveEnemySide(0);
-                            Timer.Delay(2f, () =>
+                            Timer.Delay(1f, () =>
                             {
                                 MoveGirl(false);
                             });
@@ -660,7 +717,7 @@ namespace PrisonControl
 
                             });
                             respondMessageController.ShowWrongResponse("NO HYPE");
-                            Timer.Delay(5f, () =>
+                            Timer.Delay(8f, () =>
                             {
                                 restartPanel.SetActive(true);
                             });
@@ -679,6 +736,16 @@ namespace PrisonControl
                 }
             });
 
+        }
+
+        void ControllFill(float value)
+        {
+            Image fill = heartsCamvas.transform.GetChild(0).transform.GetChild(1).GetComponent<Image>();
+            float endValue = Mathf.Clamp(fill.fillAmount + value, 0, 1);
+            LerpFloatValue.instance.LerpValue(fill.fillAmount, endValue, 0.75f, (v) =>
+            {
+                fill.fillAmount = v;
+            });
         }
 
         void StartTapSmash()

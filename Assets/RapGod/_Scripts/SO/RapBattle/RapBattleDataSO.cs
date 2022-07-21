@@ -48,6 +48,11 @@ public enum RapAnimation
     WideArmSpellCast,
 
 }
+public enum GirlAnim
+{
+    LongKiss,
+    Disbelief,
+}
 
 [System.Serializable]
 public class RapAnimations
