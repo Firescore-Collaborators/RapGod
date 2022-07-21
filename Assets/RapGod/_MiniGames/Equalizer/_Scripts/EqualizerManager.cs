@@ -18,6 +18,8 @@ public class EqualizerManager : MonoBehaviour
     public GameObject WinPanel;
     public SliderSOList sliderSOList;
 
+    public Material RedMat, GreenMat;
+
     public int counter;
 
     private void Awake()

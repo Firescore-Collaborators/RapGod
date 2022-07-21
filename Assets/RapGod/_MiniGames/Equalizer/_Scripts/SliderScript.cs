@@ -15,6 +15,7 @@ public class SliderScript : MonoBehaviour
     public int Reading, slidercount;
     public Transform startPos;
     public AudioSource asrc;
+    public GameObject Indicator1, Indicator2;
 
     void OnMouseDown()
     {
@@ -136,9 +137,9 @@ public class SliderScript : MonoBehaviour
                 //asrc.Play();
 
                 if (currentIndex == Reading)
-                { 
-                    //if (isMatched)
-                    //    return;
+                {
+                    Indicator1.GetComponent<MeshRenderer>().material = EqualizerManager.instance.GreenMat;
+                    Indicator2.GetComponent<MeshRenderer>().material = EqualizerManager.instance.GreenMat;
 
                     for (int j = 0; j <= i; j++)
                     {
@@ -156,6 +157,8 @@ public class SliderScript : MonoBehaviour
                 if (currentIndex != Reading)
                 {
                     //SoundManager.instance.Play("scroll");
+                    Indicator1.GetComponent<MeshRenderer>().material = EqualizerManager.instance.RedMat;
+                    Indicator2.GetComponent<MeshRenderer>().material = EqualizerManager.instance.RedMat;
 
                     for (int j = 0; j <= i; j++)
                     {
