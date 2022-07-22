@@ -10,6 +10,9 @@ public class CustomizationManager : MonoBehaviour
     [SerializeField] List<GameObject> blingTypes;
     [SerializeField] List<GameObject> hairTypes;
     [SerializeField] List<GameObject> bodyTypes;
+    [SerializeField] List<GameObject> caps;
+    [SerializeField] Animator girl;
+    [SerializeField] GameObject canvas;
     void Start()
     {
         Init();
@@ -49,23 +52,35 @@ public class CustomizationManager : MonoBehaviour
             entry.callback.AddListener((eventData) => { BodySelect(child.GetSiblingIndex()); });
             child.GetComponent<EventTrigger>().triggers.Add(entry);
         }
+        //bling.GetChild(0).transform.GetChild(0).gameObject.SetActive(true);
+        hair.GetChild(0).transform.GetChild(0).gameObject.SetActive(true);
+        body.GetChild(0).transform.GetChild(0).gameObject.SetActive(true);
     }
 
     void BlingSelect(int index)
     {
         DeselectBling();
         blingTypes[index].SetActive(true);
+        bling.GetChild(index).transform.GetChild(0).gameObject.SetActive(true);
+        //blingTypes[index].transform.GetChild(0).gameObject.SetActive(true);
     }
 
     void HairSelect(int index)
     {
         DeselectHair();
         hairTypes[index].SetActive(true);
+        if (caps[index] != null)
+        {
+            caps[index].SetActive(true);
+        }
+        hair.GetChild(index).transform.GetChild(0).gameObject.SetActive(true);
+
     }
     void BodySelect(int index)
     {
         DeselectBody();
         bodyTypes[index].SetActive(true);
+        body.GetChild(index).transform.GetChild(0).gameObject.SetActive(true);
     }
 
     public void TabSelect(int index)
@@ -76,14 +91,16 @@ public class CustomizationManager : MonoBehaviour
         {
             case 0:
                 hair.gameObject.SetActive(true);
+                MainCameraController.instance.SetCurrentCamera("DefaultCamera");
                 break;
             case 1:
                 body.gameObject.SetActive(true);
+                MainCameraController.instance.SetCurrentCamera("DefaultCamera");
                 break;
             case 2:
                 bling.gameObject.SetActive(true);
+                MainCameraController.instance.SetCurrentCamera("BlingCamera");
                 break;
-
         }
     }
 
@@ -104,6 +121,11 @@ public class CustomizationManager : MonoBehaviour
         {
             blingType.SetActive(false);
         }
+        for (int i = 0; i < bling.childCount; i++)
+        {
+            bling.GetChild(i).transform.GetChild(0).gameObject.SetActive(false);
+        }
+
     }
 
     void DeselectHair()
@@ -112,6 +134,16 @@ public class CustomizationManager : MonoBehaviour
         {
             hairType.SetActive(false);
         }
+        for (int i = 0; i < hair.childCount; i++)
+        {
+            hair.GetChild(i).transform.GetChild(0).gameObject.SetActive(false);
+        }
+        foreach (GameObject cap in caps)
+        {
+            if (cap != null)
+                cap.SetActive(false);
+        }
+
     }
     void DeselectBody()
     {
@@ -119,5 +151,17 @@ public class CustomizationManager : MonoBehaviour
         {
             bodyType.SetActive(false);
         }
+
+        for (int i = 0; i < body.childCount; i++)
+        {
+            body.GetChild(i).transform.GetChild(0).gameObject.SetActive(false);
+        }
+    }
+
+    public void Continue()
+    {
+        girl.CrossFade("Win",0.1f);
+        canvas.SetActive(false);
+        MainCameraController.instance.SetCurrentCamera("FinalCam");
     }
 }
