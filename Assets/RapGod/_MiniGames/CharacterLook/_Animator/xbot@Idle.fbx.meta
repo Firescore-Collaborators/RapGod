@@ -1,8 +1,11 @@
 fileFormatVersion: 2
-guid: dc4a65d946da7f1468de7c4821e9c830
+guid: 0f6c252142f08004ca172428a80f468e
 ModelImporter:
   serializedVersion: 20200
-  internalIDToNameTable: []
+  internalIDToNameTable:
+  - first:
+      74: -203655887218126122
+    second: mixamo.com
   externalObjects: {}
   materials:
     materialImportMode: 2
@@ -15,7 +18,9 @@ ModelImporter:
     resampleCurves: 1
     optimizeGameObjects: 0
     motionNodeName: 
-    rigImportErrors: 
+    rigImportErrors: "Copied Avatar Rig Configuration mis-match. Transform hierarchy
+      does not match:\n\tParent for 'mixamorig:Hips' differs from one found in HumanDescription.
+      'xbot@Idle' was found instead of 'Armature'.\n"
     rigImportWarnings: 
     animationImportErrors: 
     animationImportWarnings: 
@@ -31,7 +36,7 @@ ModelImporter:
     extraExposedTransformPaths: []
     extraUserProperties: []
     clipAnimations: []
-    isReadable: 1
+    isReadable: 0
   meshes:
     lODScreenPercentages: []
     globalScale: 1

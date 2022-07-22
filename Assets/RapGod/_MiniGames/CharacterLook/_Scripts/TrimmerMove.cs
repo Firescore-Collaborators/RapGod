@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using PaintIn3D;
 
 public class TrimmerMove : MonoBehaviour
@@ -10,6 +11,8 @@ public class TrimmerMove : MonoBehaviour
     public Transform startPos;
     public float Timer;
     public P3dHitNearby hit;
+    public Image Loader;
+    
     // Start is called before the first frame update
     void Start()
     {
@@ -17,8 +20,6 @@ public class TrimmerMove : MonoBehaviour
     }
     void OnMouseDown()
     {
-       
-
         screenPoint = Camera.main.WorldToScreenPoint(gameObject.transform.position);
         offset = gameObject.transform.position - Camera.main.ScreenToWorldPoint(new Vector3(Input.mousePosition.x, Input.mousePosition.y, screenPoint.z));
     }
