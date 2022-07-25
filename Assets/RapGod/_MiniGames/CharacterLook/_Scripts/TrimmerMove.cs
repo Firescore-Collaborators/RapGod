@@ -12,6 +12,7 @@ public class TrimmerMove : MonoBehaviour
     public float Timer;
     public P3dHitNearby hit;
     public Image Loader;
+    public ParticleSystem particleHair;
     
     // Start is called before the first frame update
     void Start()
@@ -42,12 +43,16 @@ public class TrimmerMove : MonoBehaviour
 
         transform.position = curPosition;
 
+        //particleHair.Play();
+
     }
 
     private void OnMouseUp()
     {
         Timer = 0;
        hit.enabled = false;
+
+        //particleHair.Stop();
 
     }
     // Update is called once per frame
