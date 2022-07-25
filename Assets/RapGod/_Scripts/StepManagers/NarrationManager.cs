@@ -32,7 +32,8 @@ namespace PrisonControl
         private Text option1, option2;
 
         [SerializeField]
-        private GameObject optionPanel;
+        private GameObject optionPanel, topChartsPanel;
+
 
         GameObject popUp;
         TypewriterEffect typewriter;
@@ -184,7 +185,11 @@ namespace PrisonControl
                 }
                 //Print def conversation when no response is available
                 if (conversation < narration.default_conversation.Length)
+                {
+                    currentConversation = narration.default_conversation[conversation];
+                    print("Showing def response: " + currentConversation);
                     ShowDefaultRespone(currentConversation);
+                }
                 else
                     LevelEnd();
             });
@@ -206,6 +211,7 @@ namespace PrisonControl
         {
             typewriter.WholeText = text;
             popUp.SetActive(true);
+
             typewriter.ShowTextResponse(() =>
             {
                 if (option1.text == string.Empty)
@@ -218,6 +224,10 @@ namespace PrisonControl
                 else
                 {
                     optionPanel.SetActive(true);
+                    if (narration.topChart.toShow && conversation == narration.topChart.showAtIndex)
+                    {
+                        topChartsPanel.SetActive(true);
+                    }
                     conversation++;
                 }
             });
@@ -233,6 +243,8 @@ namespace PrisonControl
             response = 0;
             Destroy(spawnPosition.playerPos.transform.GetChild(0).gameObject);
             Destroy(spawnPosition.enemyPos.transform.GetChild(0).gameObject);
+            EnvironmentList.instance.GetCurrentEnvironment.popUp.SetActive(false);
+            topChartsPanel.SetActive(false);
         }
 
         void PlayAnim(NarrationAnimation anim)

@@ -16,8 +16,23 @@ MonoBehaviour:
   environment: {fileID: 11400000, guid: d142bb0f46c8b9848a956ee4ef2289ad, type: 2}
   rapBattleLyricSO: {fileID: 11400000, guid: e61f7c67a7bfabf45a7652177745f020, type: 2}
   inputSequence: {fileID: 11400000, guid: 5f80157deb080694a97267cbb17935dc, type: 2}
-  rapAnimation: 0
-  rapPose: 1
+  rapEndAnimation: 0
+  rapPoses:
+    playerSuccess: 0
+    enemyFail: 0
+    playerFail: 0
+    enemySuccess: 0
+  rapAnimations:
+  - playerAnim: 1
+    enemyAnim: 4
+  - playerAnim: 2
+    enemyAnim: 5
+  - playerAnim: 3
+    enemyAnim: 7
+  - playerAnim: 12
+    enemyAnim: 3
+  rapCameras: 00000000
   punchLine: Punch Line Insert
+  youtubeVideoTitle: LATEST RAP SONG RELEASED
   tapSmashLimit: 20
   maxAnimationSpeed: 3
