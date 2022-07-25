@@ -23,6 +23,9 @@ public class TrimmerMove : MonoBehaviour
     {
         screenPoint = Camera.main.WorldToScreenPoint(gameObject.transform.position);
         offset = gameObject.transform.position - Camera.main.ScreenToWorldPoint(new Vector3(Input.mousePosition.x, Input.mousePosition.y, screenPoint.z));
+
+        particleHair.Play();
+
     }
     void OnMouseDrag()
     {
@@ -52,7 +55,7 @@ public class TrimmerMove : MonoBehaviour
         Timer = 0;
        hit.enabled = false;
 
-        //particleHair.Stop();
+       particleHair.Stop();
 
     }
     // Update is called once per frame
