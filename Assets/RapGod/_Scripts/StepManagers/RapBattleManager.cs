@@ -700,7 +700,7 @@ namespace PrisonControl
                             player_anim.CrossFade("Cheering", 0.01f);
                             enemy_anim.CrossFade("Lose", 0.01f);
                             respondMessageController.ShowCorrectRespone("WINNER MENTALITY !");
-                            Invoke("TapSmash", 1f);
+                            //Invoke("TapSmash", 1f);
                         }
                         else
                         {
