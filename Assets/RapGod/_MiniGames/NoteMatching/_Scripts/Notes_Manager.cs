@@ -125,7 +125,8 @@ public class Notes_Manager : MonoBehaviour
             Destroy(box[i]);
             //box[i] = null;
         }
-        
+        j = 0;
+        sum = 0;
         //box = new GameObject[12];
         PlayBar.SetActive(true);
 
