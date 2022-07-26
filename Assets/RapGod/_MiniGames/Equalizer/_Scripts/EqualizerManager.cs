@@ -1,11 +1,11 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using PrisonControl;
 public class EqualizerManager : MonoBehaviour
 {
     public static EqualizerManager instance;
-
+    public PlayPhasesControl playPhasesControl;
     public GameObject[] slider;
     public AudioSource ASRC;
 
@@ -24,7 +24,7 @@ public class EqualizerManager : MonoBehaviour
 
     private void Awake()
     {
-        if(instance == null)
+        if (instance == null)
         {
             instance = this;
         }
@@ -33,6 +33,18 @@ public class EqualizerManager : MonoBehaviour
     // Start is called before the first frame update
     private void OnEnable()
     {
+        InitLevelData();
+        Init();
+    }
+
+    void InitLevelData()
+    {
+        Level_SO level = playPhasesControl.levels[Progress.Instance.CurrentLevel - 1];
+        sliderSOList = level.GetEqualizerSO;
+    }
+
+    void Init()
+    {
         for (int i = 0; i < slider.Length; i++)
         {
             slider[i].GetComponent<SliderScript>().Reading = sliderSOList.reading[i];
@@ -40,7 +52,6 @@ public class EqualizerManager : MonoBehaviour
             slider[i].transform.position = new Vector3(slider[i].transform.position.x, slider[i].transform.position.y, startLimit.transform.position.z);
         }
     }
-
     private void OnDisable()
     {
         for (int i = 0; i < slider.Length; i++)
@@ -111,8 +122,22 @@ public class EqualizerManager : MonoBehaviour
                 Debug.Log("Success");
                 WinPanel.SetActive(true);
                 GameOver = true;
+                Timer.Delay(2f,()=>
+                {
+                    LevelComplete();
+                });
             }
         }
     }
 
+    void LevelComplete()
+    {
+        playPhasesControl._OnPhaseFinished();
+        Reset();
+    }
+
+    void Reset()
+    {
+        WinPanel.SetActive(false);
+    }
 }

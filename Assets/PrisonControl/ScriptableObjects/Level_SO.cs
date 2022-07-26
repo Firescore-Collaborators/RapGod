@@ -49,6 +49,11 @@ namespace PrisonControl
         [Foldout("RapBattle")]
         [SerializeField]
         private TilesSO tiles_SO;
+
+        [Foldout("RapBattle")]
+        [SerializeField]
+        private SliderSOList equalizer_SO;
+
         public enum LevelTypes
         {
             rapBattle,
@@ -132,6 +137,14 @@ namespace PrisonControl
                 return tiles_SO;
             }
         }
+
+        public SliderSOList GetEqualizerSO
+        {
+            get
+            {
+                return equalizer_SO;
+            }
+        } 
     }
 }
 
