@@ -12,6 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 843607262f07d514bb352422ad27886f, type: 3}
   m_Name: Lvl 6 Celeb Narration
   m_EditorClassIdentifier: 
+  topChart:
+    toShow: 0
+    showAtIndex: 0
   aud_negetiveConv:
   - {fileID: 8300000, guid: 053e333835f874985a08bfe3a5aad866, type: 3}
   - {fileID: 8300000, guid: ca25890d3183644748d6fd78ccb3b95e, type: 3}
@@ -37,9 +40,9 @@ MonoBehaviour:
   - Positive Response
   - 
   default_conversation:
-  - Dialogue 1
-  - Dialogue 2
-  - Dialogue 3
+  - Celeb Dialogue 1
+  - Celeb Dialogue 2
+  - Celeb Dialogue 3
   positiveResponse:
   - Reply 1
   - Reply 1
