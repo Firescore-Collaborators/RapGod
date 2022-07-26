@@ -6,18 +6,19 @@ public class EqualizerManager : MonoBehaviour
 {
     public static EqualizerManager instance;
 
-    public GameObject[] squares;
+    public GameObject[] slider;
     public AudioSource ASRC;
 
     public AudioClip incrementPop, matchTing;
-
-    //public GameObject[] slider;
 
     public GameObject[] Limit;
     public Transform startLimit, endLimit;
 
     public bool GameOver;
     public GameObject WinPanel;
+    public SliderSOList sliderSOList;
+
+    public Material RedMat, GreenMat;
 
     public int counter;
 
@@ -30,9 +31,22 @@ public class EqualizerManager : MonoBehaviour
     }
 
     // Start is called before the first frame update
-    void Start()
+    private void OnEnable()
     {
-        
+        for (int i = 0; i < slider.Length; i++)
+        {
+            slider[i].GetComponent<SliderScript>().Reading = sliderSOList.reading[i];
+            //slider[i].GetComponent<SliderScript>().startPos = slider[i].transform;
+            slider[i].transform.position = new Vector3(slider[i].transform.position.x, slider[i].transform.position.y, startLimit.transform.position.z);
+        }
+    }
+
+    private void OnDisable()
+    {
+        for (int i = 0; i < slider.Length; i++)
+        {
+            //slider[i].transform.position = new Vector3 (slider[i].transform.position.x, slider[i].transform.position.y, startLimit.transform.position.z);
+        }
     }
 
     // Update is called once per frame
@@ -43,9 +57,9 @@ public class EqualizerManager : MonoBehaviour
 
         //counter = 0;
 
-        //for (int i = 0; i < squares.Length; i++)
+        //for (int i = 0; i < slider.Length; i++)
         //{
-        //    if (squares[i].GetComponent<SliderScript>().isMatched)
+        //    if (slider[i].GetComponent<SliderScript>().isMatched)
         //    {
         //        //ASRC.clip = matchTing;
         //        //ASRC.Play();
@@ -69,11 +83,11 @@ public class EqualizerManager : MonoBehaviour
 
     public void PlayMusic()
     {
-        for (int i = 0; i < squares.Length; i++)
+        for (int i = 0; i < slider.Length; i++)
         {
-            if (squares[i].GetComponent<SliderScript>().isMatched)
+            if (slider[i].GetComponent<SliderScript>().isMatched)
             {
-                squares[i].GetComponent<AudioSource>().Play();
+                slider[i].GetComponent<AudioSource>().Play();
             }
         }
     }
@@ -85,9 +99,9 @@ public class EqualizerManager : MonoBehaviour
 
         counter = 0;
 
-        for (int i = 0; i < squares.Length; i++)
+        for (int i = 0; i < slider.Length; i++)
         {
-            if (squares[i].GetComponent<SliderScript>().isMatched)
+            if (slider[i].GetComponent<SliderScript>().isMatched)
             {
                 counter++;
             }

@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using PrisonControl;
+
 public class Notes_Manager : MonoBehaviour
 {
     public static Notes_Manager instance;
@@ -31,8 +32,8 @@ public class Notes_Manager : MonoBehaviour
 
     void InitLevelData()
     {
-        Level_SO level = playPhasesControl.levels[Progress.Instance.CurrentLevel - 1];
-        tiles_SO = level.GetTilesSO;
+        //Level_SO level = playPhasesControl.levels[Progress.Instance.CurrentLevel - 1];
+        //tiles_SO = level.GetTilesSO;
     }
     void Init()
     {

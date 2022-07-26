@@ -1,0 +1,28 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 591ca6f162fabf44cbb986cf29aa7ff5, type: 3}
+  m_Name: Dancers5
+  m_EditorClassIdentifier: 
+  Conversation:
+  - ' char 4 Conversation 1'
+  - char 4 Conversation 2
+  responsePositive:
+  - ' Positive Response 1'
+  - ' Positive Response 2'
+  responseNegetive:
+  - Negetive Response 1
+  - Negetive Response 2
+  Resume:
+  - Jennifer
+  - 25
+  - Cab Driver
+  character: {fileID: 6295899829957586862, guid: f2bad24fc8b9b774ab738aab20d7f566, type: 3}

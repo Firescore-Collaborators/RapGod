@@ -13,8 +13,9 @@ public class SliderScript : MonoBehaviour
     public GameObject slider;
     public bool onObject, isMatched;
     public int Reading, slidercount;
-
+    public Transform startPos;
     public AudioSource asrc;
+    public GameObject Indicator1, Indicator2;
 
     void OnMouseDown()
     {
@@ -49,8 +50,6 @@ public class SliderScript : MonoBehaviour
 
     void OnMouseDrag()
     {
-        
-
         Vector3 curScreenPoint = new Vector3(Input.mousePosition.x, Input.mousePosition.y, screenPoint.z);
         offset = Vector3.zero;
         Vector3 curPosition = Camera.main.ScreenToWorldPoint(curScreenPoint) + offset;
@@ -77,9 +76,18 @@ public class SliderScript : MonoBehaviour
 
     }
     // Start is called before the first frame update
-    void Start()
+    private void OnEnable()
     {
+        startPos = transform;
         asrc = GetComponent<AudioSource>();
+    }
+
+    private void OnDisable()
+    {
+        for (int i = 0; i < slider.transform.childCount; i++)
+        {
+            slider.transform.GetChild(i).GetComponent<Graphic>().color = Color.clear;
+        }
     }
 
     public int currentIndex;
@@ -93,54 +101,6 @@ public class SliderScript : MonoBehaviour
         if (!onObject)
             return;
 
-        ////////for (int i = 0; i < EqualizerManager.instance.Limit.Length; i++)
-        ////////{
-        ////////    if (transform.position.z > EqualizerManager.instance.Limit[i].transform.position.z)
-        ////////    {
-        ////////        slider.transform.GetChild(i).GetComponent<Graphic>().color = Color.red;
-        ////////        currentIndex = i;
-
-                
-        ////////        //asrc.clip = EqualizerManager.instance.incrementPop;
-        ////////        //asrc.Play();
-
-        ////////        if (currentIndex == Reading)
-        ////////        {
-        ////////            if (isMatched)
-        ////////                return;
-
-        ////////            for (int j = 0; j <= i; j++)
-        ////////            {
-        ////////                slider.transform.GetChild(j).GetComponent<Animator>().SetBool("Blip", true);
-        ////////                slider.transform.GetChild(j).GetComponent<Graphic>().color = Color.green;
-        ////////                //slider.transform.GetChild(j).GetComponent<Animator>().enabled = true;    
-        ////////            }
-        ////////            Debug.Log("matched");
-        ////////            asrc.clip = EqualizerManager.instance.matchTing;
-        ////////            asrc.Play();
-
-        ////////            isMatched = true;
-        ////////        }
-        ////////        else 
-        ////////        {
-        ////////            for (int j = 0; j <= i; j++)
-        ////////            {
-        ////////                slider.transform.GetChild(j).GetComponent<Animator>().SetBool("Blip", false);
-        ////////                slider.transform.GetChild(j).GetComponent<Graphic>().color = Color.red;
-
-        ////////                //asrc.clip = EqualizerManager.instance.incrementPop;
-        ////////                //asrc.PlayOneShot(asrc.clip);//slider.transform.GetChild(j).GetComponent<Animator>().enabled = false;
-        ////////            }
-        ////////            isMatched = false;
-        ////////            Debug.Log("not matched");
-
-        ////////        }
-        ////////    }
-
-        ////////    else if(transform.position.z < EqualizerManager.instance.Limit[i].transform.position.z)
-        ////////    {
-        ////////        slider.transform.GetChild(i).GetComponent<Graphic>().color = Color.clear;
-        ////////    }
             
             if(transform.position.z <= EqualizerManager.instance.startLimit.position.z)
             {
@@ -154,7 +114,7 @@ public class SliderScript : MonoBehaviour
         
 
         public void CheckEqualiser()
-    {
+        {
         if (EqualizerManager.instance.GameOver)
             return;
 
@@ -168,6 +128,8 @@ public class SliderScript : MonoBehaviour
                 slider.transform.GetChild(i).GetComponent<Graphic>().color = Color.red;
                 currentIndex = i;
 
+                transform.Translate(0, 0, 1);
+
                 //SoundManager.instance.Play("scroll");
                 slidercount++;
 
@@ -175,9 +137,9 @@ public class SliderScript : MonoBehaviour
                 //asrc.Play();
 
                 if (currentIndex == Reading)
-                { 
-                    //if (isMatched)
-                    //    return;
+                {
+                    Indicator1.GetComponent<MeshRenderer>().material = EqualizerManager.instance.GreenMat;
+                    Indicator2.GetComponent<MeshRenderer>().material = EqualizerManager.instance.GreenMat;
 
                     for (int j = 0; j <= i; j++)
                     {
@@ -195,6 +157,8 @@ public class SliderScript : MonoBehaviour
                 if (currentIndex != Reading)
                 {
                     //SoundManager.instance.Play("scroll");
+                    Indicator1.GetComponent<MeshRenderer>().material = EqualizerManager.instance.RedMat;
+                    Indicator2.GetComponent<MeshRenderer>().material = EqualizerManager.instance.RedMat;
 
                     for (int j = 0; j <= i; j++)
                     {
