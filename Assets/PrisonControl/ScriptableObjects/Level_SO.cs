@@ -65,6 +65,7 @@ namespace PrisonControl
             Lyrics,
             BeatSort,
             Equalizer,
+            GirlAudition
         }
 
         public RapBattleDataSO GetRapBattleSO

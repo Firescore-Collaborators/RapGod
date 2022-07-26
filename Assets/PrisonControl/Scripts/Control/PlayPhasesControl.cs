@@ -107,6 +107,11 @@ namespace PrisonControl
             {
                 mPlayPhasesStateMachine.SwitchState(PlayPhase.Equalizer);
             }
+            else
+            if (levels[Progress.Instance.CurrentLevel - 1].GetLevelTypes[currentMiniLevel] == Level_SO.LevelTypes.GirlAudition)
+            {
+                mPlayPhasesStateMachine.SwitchState(PlayPhase.GirlAudition);
+            }
         }
 
         public override void OnExit()
@@ -152,7 +157,8 @@ namespace PrisonControl
                 (PlayPhase.Signature, GetComponent<SignatureState>()),
                 (PlayPhase.Lyrics, GetComponent<LyricsState>()),
                 (PlayPhase.BeatSort, GetComponent<BeatSortState>()),
-                (PlayPhase.Equalizer, GetComponent<EqualizerState>())
+                (PlayPhase.Equalizer, GetComponent<EqualizerState>()),
+                (PlayPhase.GirlAudition, GetComponent<GirlAuditionState>())
             );
         }
 
@@ -278,6 +284,7 @@ namespace PrisonControl
             PlayPhase.Lyrics,
             PlayPhase.BeatSort,
             PlayPhase.Equalizer,
+            PlayPhase.GirlAudition,
         };
     }
 }

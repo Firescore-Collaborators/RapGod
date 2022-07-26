@@ -122,7 +122,7 @@ public class EqualizerManager : MonoBehaviour
                 Debug.Log("Success");
                 WinPanel.SetActive(true);
                 GameOver = true;
-                Timer.Delay(2f,()=>
+                Timer.Delay(2f, () =>
                 {
                     LevelComplete();
                 });
@@ -139,5 +139,14 @@ public class EqualizerManager : MonoBehaviour
     void Reset()
     {
         WinPanel.SetActive(false);
+        counter = 0;
+        GameOver = false;
+        WinPanel.SetActive(false);
+        for (int i = 0; i < slider.Length; i++)
+        {
+            slider[i].GetComponent<SliderScript>().Indicator1.GetComponent<MeshRenderer>().material = RedMat;
+            slider[i].GetComponent<SliderScript>().Indicator2.GetComponent<MeshRenderer>().material = RedMat;
+            slider[i].GetComponent<SliderScript>().isMatched = false;
+        }
     }
 }

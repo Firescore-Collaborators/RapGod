@@ -11,5 +11,6 @@
         Lyrics,
         BeatSort,
         Equalizer,
+        GirlAudition
     }
 }
