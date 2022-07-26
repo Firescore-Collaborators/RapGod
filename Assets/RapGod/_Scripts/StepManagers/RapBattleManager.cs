@@ -147,7 +147,7 @@ namespace PrisonControl
         {
             InitLevelData();
             Init();
-            InitGirlPos();
+            //InitGirlPos();
             Timer.Delay(0.5f, () =>
             {
                 MainCameraController.instance.SetCurrentCamera("BarRap", 2);
@@ -192,13 +192,13 @@ namespace PrisonControl
             enemy = Utils.spawnGameObject(rapData.enemyCharacter, spawnPosition.enemyPos);
             enemy_anim = enemy.GetComponent<Animator>();
             enemy_anim.runtimeAnimatorController = enemyAnimator;
-            girl = Utils.spawnGameObject(rapData.girlCharacter, EnvironmentList.instance.GetCurrentEnvironment.girlRapPos);
-            girl_Anim = girl.GetComponent<Animator>();
-            girl_Anim.runtimeAnimatorController = girlAnimator;
-            girlRotation = girl.transform.rotation;
+            // girl = Utils.spawnGameObject(rapData.girlCharacter, EnvironmentList.instance.GetCurrentEnvironment.girlRapPos);
+            // girl_Anim = girl.GetComponent<Animator>();
+            // girl_Anim.runtimeAnimatorController = girlAnimator;
+            // girlRotation = girl.transform.rotation;
             //hearts.transform.parent = girl.transform;
             //kewl.transform.parent = girl.transform;
-            heartsCamvas.transform.parent = girl.transform.Find("mixamorig:Hips");
+            //heartsCamvas.transform.parent = girl.transform.Find("mixamorig:Hips");
             //Get Audience reference
             audienceManager = EnvironmentList.instance.GetAudienceManager;
             audienceManager.EnemyHeadTarget = enemy;
@@ -493,19 +493,19 @@ namespace PrisonControl
                         {
                             currentCorrectCount++;
                             audienceManager.OnMovePlayerSide(0);
-                            Timer.Delay(1f, () =>
-                            {
-                                MoveGirl(true);
-                            });
+                            // Timer.Delay(1f, () =>
+                            // {
+                            //     MoveGirl(true);
+                            // });
                         }
                         else
                         {
                             currentWrongCount++;
                             audienceManager.OnMoveEnemySide(0);
-                            Timer.Delay(1f, () =>
-                            {
-                                MoveGirl(false);
-                            });
+                            // Timer.Delay(1f, () =>
+                            // {
+                            //     MoveGirl(false);
+                            // });
                         }
                         Invoke("OnReset", 1f);
                     }
