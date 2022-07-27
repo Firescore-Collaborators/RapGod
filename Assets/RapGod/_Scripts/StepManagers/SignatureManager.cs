@@ -7,7 +7,9 @@ namespace PrisonControl
     public class SignatureManager : MonoBehaviour
     {
         [SerializeField] private PlayPhasesControl _mPlayPhasesControl;
+        [SerializeField] Color bgColor;
         GameObject signaturePrefab;
+        
         void OnEnable()
         {
             InitLevelData();
@@ -26,6 +28,7 @@ namespace PrisonControl
         {
             Level_SO level = _mPlayPhasesControl.levels[Progress.Instance.CurrentLevel - 1];
             signaturePrefab = level.GetSignaturePrefab;
+            MainCameraController.instance.SetCameraSolidColor(bgColor);
         }   
 
         void Init()
@@ -38,6 +41,7 @@ namespace PrisonControl
         void LevelEnd()
         {
             Destroy(signaturePrefab);
+            MainCameraController.instance.ResetCameraColor();
             _mPlayPhasesControl._OnPhaseFinished();
         }
     }

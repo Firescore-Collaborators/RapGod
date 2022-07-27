@@ -49,17 +49,28 @@ namespace PrisonControl
                 AgentUI[i] = Instantiate(Panel, new Vector2(CenterScreen.position.x + 700 * i, CenterScreen.position.y), Quaternion.identity, PanelParent.transform);
                 AgentUI[i].transform.GetChild(1).GetComponent<TMP_Text>().text = agentsList_SO.agentList[i].AgentName;
                 AgentUI[i].transform.GetChild(2).GetComponent<Image>().sprite = agentsList_SO.agentList[i].AgentPic;
+                int index = AgentUI[i].transform.GetSiblingIndex();
                 AgentUI[i].GetComponent<AgentUIPanel>().selectButton.onClick.AddListener(() =>
                 {
                     OnAgentSelected();
+                    ScaleSelectedPanel(index);
                 });
             }
+        }
+        
+        void ScaleSelectedPanel(int index)
+        {
+            Transform panel = PanelParent.transform.GetChild(index);
+            panel.LeanScale((Vector3.one * 1.5f),0.25f);
         }
 
         public void OnAgentSelected()
         {
-            _mPlayPhasesControl._OnPhaseFinished();
-            LevelEnd();
+            Timer.Delay(2f, () =>
+            {
+                _mPlayPhasesControl._OnPhaseFinished();
+                LevelEnd();
+            });
         }
 
         void LevelEnd()

@@ -39,7 +39,7 @@ public class AuditionManager : MonoBehaviour
     //public Dancers_SO [] dancers_SO;
     public DancerSOList dancerSOList;
     public GameObject requirementPrefab;
-    public GameObject tellMeMoreButton;
+    public GameObject tellMeMoreButton, tapPanel;
     List<GameObject> selectedGirls = new List<GameObject>();
     List<GameObject> spawnedGirls = new List<GameObject>();
     public void OnEnable()
@@ -241,6 +241,7 @@ public class AuditionManager : MonoBehaviour
 
     void StartTwerk()
     {
+        Resume.transform.parent.gameObject.SetActive(false);
         MainCameraController.instance.SetCurrentCamera("TwerkCamera");
         Timer.Delay(2f, () =>
         {
@@ -250,8 +251,9 @@ public class AuditionManager : MonoBehaviour
 
     void TwerkInit()
     {
-        Resume.transform.parent.gameObject.SetActive(false);
+        tapPanel.SetActive(true);
         multiTouchManager.onMultiTaping += PlayGirlAnim;
+        multiTouchManager.onInputRaised += OnTapOver;
         multiTouchManager.Init();
     }
 
@@ -265,16 +267,25 @@ public class AuditionManager : MonoBehaviour
 
     void OnTapped()
     {
-        print("Tapped");
         for (int i = 0; i < selectedGirls.Count; i++)
         {
             selectedGirls[i].GetComponent<Animator>().Play(dancerSOList.girlanim.ToString());
         }
     }
 
+    void OnTapOver()
+    {
+        tapPanel.SetActive(false);
+        Timer.Delay(8f,()=>
+        {
+            LevelComplete();
+        });
+    }
+
     void LevelComplete()
     {
         Reset();
+        playPhasesControl._OnPhaseFinished();
     }
 
     void WrongChoice()
