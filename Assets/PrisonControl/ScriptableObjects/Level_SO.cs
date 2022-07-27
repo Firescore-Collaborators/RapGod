@@ -54,6 +54,10 @@ namespace PrisonControl
         [SerializeField]
         private SliderSOList equalizer_SO;
 
+        [Foldout("RapBattle")]
+        [SerializeField]
+        private DancerSOList auditionSO;
+
         public enum LevelTypes
         {
             rapBattle,
@@ -146,6 +150,14 @@ namespace PrisonControl
                 return equalizer_SO;
             }
         } 
+
+        public DancerSOList GetAuditionSO
+        {
+            get
+            {
+                return auditionSO;
+            }
+        }
     }
 }
 
