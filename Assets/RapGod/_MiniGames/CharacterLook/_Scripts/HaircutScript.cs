@@ -5,8 +5,8 @@ using DG.Tweening;
 
 public class HaircutScript : MonoBehaviour
 {
-    public GameObject Girl, TrimmerBlack, Chair, GirlChat, ReferenceImage, CameraFinal, Piston1, Piston2, 
-        topRing, sideRing, Eyering, ShakePanel, indicatorRing1, indicatorRing2;
+    public GameObject Girl, TrimmerBlack, Chair, GirlChat, ReferenceImage, CameraFinal, Piston1, Piston2, Piston3, 
+        topRing, sideRing, Eyering, ShakePanel, indicatorRing1, indicatorRing2, indicatorRing3 ,GirlHeadMesh;
 
     // Start is called before the first frame update
     void Start()
@@ -17,6 +17,10 @@ public class HaircutScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        indicatorRing1.transform.Rotate(0,0,-0.5f);
+        indicatorRing2.transform.Rotate(0, 0,-0.5f );
+        indicatorRing3.transform.Rotate(0, 0, -0.5f);
+
         if (Input.GetKey(KeyCode.M))
         {
             StartCoroutine(Entry());
@@ -40,11 +44,32 @@ public class HaircutScript : MonoBehaviour
             Invoke("ShakeOff", 4);
 
         }
+        if (Input.GetKey(KeyCode.D))
+        {
+            Invoke("ShakeScreen", 0.5f);
+            Piston3.GetComponent<Animator>().enabled = true;
+            Invoke("ShowJwel3", 2);
+            Invoke("ShakeOff", 4);
+
+        }
     }
 
     public void ShakeScreen()
     {
         ShakePanel.SetActive(true);
+
+        if (Piston1.GetComponent<Animator>().enabled)
+        {
+            GirlHeadMesh.GetComponent<SkinnedMeshRenderer>().SetBlendShapeWeight(1, 100);
+        }
+        if (Piston2.GetComponent<Animator>().enabled)
+        {
+            GirlHeadMesh.GetComponent<SkinnedMeshRenderer>().SetBlendShapeWeight(2, 100);
+        }
+        if (Piston3.GetComponent<Animator>().enabled)
+        {
+            GirlHeadMesh.GetComponent<SkinnedMeshRenderer>().SetBlendShapeWeight(0, 100);
+        }
     }
     public void ShakeOff()
     {
@@ -58,12 +83,13 @@ public class HaircutScript : MonoBehaviour
     }
     public void ShowJwel2()
     {
-        indicatorRing2.SetActive(false);
         sideRing.SetActive(true);
+        indicatorRing2.SetActive(false);
     }
     public void ShowJwel3()
     {
         Eyering.SetActive(true);
+        indicatorRing3.SetActive(false);
     }
 
     public void StopAnim()
