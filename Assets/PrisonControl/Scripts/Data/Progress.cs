@@ -436,7 +436,7 @@ namespace PrisonControl
         public int level_multiplier = 0;
 
         //RapBattle
-        public string socialHandleName = "RockMyWorld";
+        public string socialHandleName = "UpcomingRapper";
         public int followers = 0;
         public string displayPic = string.Empty;
         public Vector2 dpSize = new Vector2(1, 1);

@@ -68,7 +68,6 @@ namespace PrisonControl
         {
             Debug.Log("Progress.Instance.AvatarGender "+ Progress.Instance.AvatarGender);
 
-            audioManager.PlayAudio(aud_avatarSelected);
 
             if (Progress.Instance.AvatarGender == 0)
             {
@@ -89,7 +88,6 @@ namespace PrisonControl
 
         private void OnAvatarSelectionDone()
         {
-            audioManager.PlayAudio(aud_avatarSelected);
 
             mGameFlow.fadeIn.SetActive(true);
             mGameFlow._SwitchState(GameState.Play);
@@ -98,9 +96,6 @@ namespace PrisonControl
         public void OnAvatarClicked(int avatarGender)
         {
             Debug.Log("avatar clicked :" + avatarGender);
-
-            audioManager.PlayAudio(aud_avatarClicked);
-
             mAvatarUi.ActivateGenderSelection();
             Progress.Instance.AvatarGender = avatarGender;
             avatarSelection.SelectAvatar(avatarGender);

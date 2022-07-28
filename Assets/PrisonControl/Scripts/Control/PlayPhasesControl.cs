@@ -16,7 +16,7 @@ namespace PrisonControl
 
         public override void OnEnter()
         {
-            audioManager.SetNormalBg();
+            audioManager.PlayBGMusicDefault();
 
             Dictionary<string, object> parameter = new Dictionary<string, object>();
             parameter.Add("Level", Progress.Instance.CurrentLevel + (Progress.Instance.LevelMultiplier * levels.Length));
