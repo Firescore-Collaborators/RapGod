@@ -13,7 +13,10 @@ MonoBehaviour:
   m_Name: Lvl3 HandShakeSO
   m_EditorClassIdentifier: 
   player: 0100000003000000070000000900000008000000
-  enemy: 0000000002000000050000000a00000006000000
+  enemy: 0100000003000000070000000900000006000000
+  handShakeEnd:
+    playerEnd: 11
+    enemyEnd: 11
   inputSequence: {fileID: 11400000, guid: 9d0a8866a2c160f47aa808a15eeda491, type: 2}
   multiTapLimit: 10
   animationMaxSpeed: 3

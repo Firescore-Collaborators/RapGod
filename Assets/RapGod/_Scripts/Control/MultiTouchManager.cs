@@ -11,8 +11,8 @@ public class MultiTouchManager : MonoBehaviour
     public event System.Action<TouchInputType> onInputAssignedWithType;
     public event System.Action<TouchInputType> onInputRemovedWithType;
     //public event System.Action<int> onInputRaisedWithIndex;
-    public event System.Action<float,bool> onMultiTaping;
-
+    public event System.Action<float, bool> onMultiTaping;
+    public float sequenceCompleteDelay = 0;
     [Expandable]
     public InputSequenceSO inputSequence;
     TouchInputs touchInputs
@@ -32,7 +32,6 @@ public class MultiTouchManager : MonoBehaviour
         onInputRaised += IncreaseIndex;
         onInputRaised += AssingCallbacks;
         AssingCallbacks();
-
     }
     void OnDisable()
     {
@@ -54,7 +53,10 @@ public class MultiTouchManager : MonoBehaviour
         UnsubscribeCallbacks();
         if (currentSequenceIndex >= inputSequence.inputSequence.Count)
         {
-            onSequenceComplete?.Invoke();
+            Timer.Delay(sequenceCompleteDelay, () =>
+            {
+                onSequenceComplete?.Invoke();
+            });
             return;
         }
         switch (inputSequence.inputSequence[currentSequenceIndex])
@@ -115,6 +117,7 @@ public class MultiTouchManager : MonoBehaviour
         onInputAssignedWithType = null;
         onInputRemovedWithType = null;
         onMultiTaping = null;
+        sequenceCompleteDelay = 0;
     }
 
 

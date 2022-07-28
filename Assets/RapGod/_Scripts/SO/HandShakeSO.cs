@@ -15,7 +15,15 @@ public enum HandShakeType
     RunningMan,
     GuitarPlaying,
     BlowKiss,
-    Kiss
+    Kiss,
+    FemaleJumpCheer,
+}
+
+[System.Serializable]
+public class HandShakeEnd
+{
+    public HandShakeType playerEnd;
+    public HandShakeType enemyEnd;
 }
 
 [CreateAssetMenu(fileName = "HandShakeSO", menuName = "RapBattle/HandShake/HandShakeSO")]
@@ -23,6 +31,7 @@ public class HandShakeSO : ScriptableObject
 {
     public List<HandShakeType> player = new List<HandShakeType>();
     public List<HandShakeType> enemy = new List<HandShakeType>();
+    public HandShakeEnd handShakeEnd;
     public InputSequenceSO inputSequence;
     public float multiTapLimit = 10f; 
     public float animationMaxSpeed = 3f;

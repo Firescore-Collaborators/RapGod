@@ -79,11 +79,12 @@ namespace PrisonControl
 
         void InitMultiTouchCallback()
         {
+            multiTouchManager.onSequenceComplete += null;
             multiTouchManager.inputSequence = handShakeSO.inputSequence;
             multiTouchManager.onInputAssignedWithType += InputAssinged;
             multiTouchManager.onInputRaised += CorrectInputResult;
             multiTouchManager.onMultiTaping += OnMultiTap;
-            multiTouchManager.onSequenceComplete += LevelEnd;
+            multiTouchManager.onSequenceComplete += LevelEndAnim;
             //multiTouchManager.onInputRaisedWithIndex += PlayAnim;
             multiTouchManager.Init();
         }
@@ -222,6 +223,21 @@ namespace PrisonControl
             });
         }
 
+        void LevelEndAnim()
+        {
+            Timer.Delay(1f, () =>
+            {
+                player.GetComponent<Animator>().speed = 1;
+                enemy.GetComponent<Animator>().speed = 1;
+                player.GetComponent<Animator>().CrossFade(handShakeSO.handShakeEnd.playerEnd.ToString(), animTransitionTime, 0, 0f);
+                enemy.GetComponent<Animator>().CrossFade(handShakeSO.handShakeEnd.enemyEnd.ToString(), animTransitionTime, 0, 0f);
+                Timer.Delay(GetClipTime(handShakeSO.handShakeEnd.playerEnd.ToString()), () =>
+                {
+                    LevelEnd();
+                });
+            });
+
+        }
         void LevelEnd()
         {
             Timer.Delay(1f, () =>
