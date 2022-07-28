@@ -5,11 +5,19 @@ using UnityEngine.UI;
 using TMPro;
 using DG.Tweening;
 using System;
-
+using PrisonControl;
 public class AuditionManager : MonoBehaviour
 {
     //public GameObject[] con, Resume;
     //public int ChatNo = 0, resNo = 0;
+    public PlayPhasesControl playPhasesControl;
+    MultiTouchManager multiTouchManager
+    {
+        get
+        {
+            return GetComponent<MultiTouchManager>();
+        }
+    }
     public GameObject[] Chic;
     public int chicNo, selectedChicNo;
     public Vector3 startPosition;
@@ -30,77 +38,122 @@ public class AuditionManager : MonoBehaviour
 
     //public Dancers_SO [] dancers_SO;
     public DancerSOList dancerSOList;
-
+    public GameObject requirementPrefab;
+    public GameObject tellMeMoreButton, tapPanel;
+    List<GameObject> selectedGirls = new List<GameObject>();
+    List<GameObject> spawnedGirls = new List<GameObject>();
     public void OnEnable()
     {
+        InitLevelData();
+        Init();
+    }
+
+    void InitLevelData()
+    {
+        Level_SO level = playPhasesControl.levels[Progress.Instance.CurrentLevel - 1];
+        dancerSOList = level.GetAuditionSO;
+        multiTouchManager.inputSequence = dancerSOList.inputSequenceSO;
+        GetComponent<TouchInputs>().multiTapLimit = dancerSOList.tapSmashLimit;
+    }
+
+    void Init()
+    {
+        MainCameraController.instance.SetCurrentCamera("GirlAudition", 0);
         isDisabled = false;
         characterIndex = 0;
         conversationIndex = 0;
         chicNo = 0;
         selectedChicNo = 0;
 
-        if (chicNo <= dancerSOList.dancersList.Count-1)
+        if (chicNo <= dancerSOList.dancersList.Count - 1)
         {
             StartCoroutine(Entry());
         }
+        AssingRequirements();
     }
-    
     void UpdateData()
     {
-        conversation.text = dancerSOList.dancersList[chicNo].Conversation[conversationIndex];
-        positiveResp.text = dancerSOList.dancersList[chicNo].responsePositive[conversationIndex];
-        negetiveResp.text = dancerSOList.dancersList[chicNo].responseNegetive[conversationIndex];
+        conversation.text = dancerSOList.dancersList[chicNo].dancerSO.Conversation[conversationIndex];
+        positiveResp.text = dancerSOList.dancersList[chicNo].dancerSO.responsePositive[conversationIndex];
+        negetiveResp.text = dancerSOList.dancersList[chicNo].dancerSO.responseNegetive[conversationIndex];
 
         conversationPopUp.GetComponent<Animator>().SetTrigger("show");
+    }
 
+    void AssingRequirements()
+    {
+        for (int i = 0; i < dancerSOList.requirements.Count; i++)
+        {
+            GameObject pref = Instantiate(requirementPrefab, Resume.transform);
+            pref.transform.GetChild(0).GetComponent<Text>().text = dancerSOList.requirements[i].requirementText;
+            pref.transform.GetChild(1).transform.GetChild(dancerSOList.requirements[i].allowed ? 0 : 1).gameObject.SetActive(true);
+        }
     }
 
     public void OnNegetiveClicked()
     {
+        tellMeMoreButton.SetActive(false);
         if (conversationIndex == 0)
             FirstNegetive();
         else
         if (conversationIndex == 1)
-            SecondNegetetive();
+            Reject();
 
         conversationIndex++;
 
         if (conversationIndex > 1)
             conversationIndex = 0;
+
     }
     void FirstNegetive()
     {
         //con[ChatNo].SetActive(false);
         conversationPopUp.GetComponent<Animator>().SetTrigger("hide");
         //ChatNo++;
-        
-        StartCoroutine(ActivateCon());        
+
+        StartCoroutine(ActivateCon());
     }
-    
-    void SecondNegetetive()
+
+    public void Reject()
     {
-        CurrentChic.GetComponent<Animator>().SetTrigger("SadWalk");
-        StartCoroutine(Exit());
-        //con[ChatNo].SetActive(false);
-       // conversationPopUp.SetActive(false);
-        conversationPopUp.GetComponent<Animator>().SetTrigger("hide");
-       
+        if (dancerSOList.dancersList[chicNo].rightOption)
+        {
+            WrongChoice();
+        }
+        else
+        {
+            CurrentChic.GetComponent<Animator>().SetTrigger("SadWalk");
+            StartCoroutine(Exit());
+            //con[ChatNo].SetActive(false);
+            // conversationPopUp.SetActive(false);
+            conversationPopUp.GetComponent<Animator>().SetTrigger("hide");
+        }
+
+
     }
 
     public void OnPositiveClicked()
     {
-        CurrentChic.GetComponent<Animator>().SetTrigger("Win");
-        StartCoroutine(HappyExit());
-        Resume.GetComponent<Animator>().SetTrigger("hide");
-        //con[ChatNo].SetActive(false);
-        //   conversationPopUp.SetActive(false);
+        if (!dancerSOList.dancersList[chicNo].rightOption)
+        {
+            WrongChoice();
+        }
+        else
+        {
+            CurrentChic.GetComponent<Animator>().SetTrigger("Win");
+            StartCoroutine(HappyExit());
+            //Resume.GetComponent<Animator>().SetTrigger("hide");
+            //con[ChatNo].SetActive(false);
+            //   conversationPopUp.SetActive(false);
+            selectedGirls.Add(CurrentChic);
+            conversationPopUp.GetComponent<Animator>().SetTrigger("hide");
+        }
 
-        conversationPopUp.GetComponent<Animator>().SetTrigger("hide");
     }
 
     IEnumerator Exit()
     {
-        Resume.GetComponent<Animator>().SetTrigger("hide");
+        //Resume.GetComponent<Animator>().SetTrigger("hide");
         yield return new WaitForSeconds(1);
         CurrentChic.transform.DORotate(new Vector3(0, 90, 0), 1);
 
@@ -114,11 +167,15 @@ public class AuditionManager : MonoBehaviour
         chicNo++;
         //ChatNo++;
 
-        if (chicNo <= dancerSOList.dancersList.Count-1)
+        if (chicNo <= dancerSOList.dancersList.Count - 1)
         {
             StartCoroutine(Entry());
         }
-        
+        else
+        {
+            StartTwerk();
+        }
+
     }
     IEnumerator HappyExit()
     {
@@ -129,29 +186,34 @@ public class AuditionManager : MonoBehaviour
         CurrentChic.GetComponent<Animator>().SetBool("Walk1", true);
 
         yield return new WaitForSeconds(1);
-        CurrentChic.transform.DOMove(new Vector3(-0.5f+selectedChicNo*0.3f, 0, 0), 5);
+        CurrentChic.transform.DOMove(new Vector3(-0.5f + selectedChicNo * 0.3f, 0, 0), 5);
 
         yield return new WaitForSeconds(5);
         CurrentChic.transform.DORotate(new Vector3(0, 0, 0), 1);
         CurrentChic.GetComponent<Animator>().SetBool("Walk1", false);
-        
+
         chicNo++;
 
         selectedChicNo++;
 
-        if (chicNo <= dancerSOList.dancersList.Count-1)
+        if (chicNo <= dancerSOList.dancersList.Count - 1)
         {
             StartCoroutine(Entry());
         }
- 
+        else
+        {
+            StartTwerk();
+        }
     }
 
     IEnumerator Entry()
     {
         if (!isDisabled)
         {
-            CurrentChic = Instantiate(dancerSOList.dancersList[chicNo].character, startPosition, Quaternion.Euler(0, 90, 0), DancerParent.transform);
-
+            Resume.transform.parent.gameObject.SetActive(true);
+            tellMeMoreButton.SetActive(true);
+            CurrentChic = Instantiate(dancerSOList.dancersList[chicNo].dancerSO.character, startPosition, Quaternion.Euler(0, 90, 0), DancerParent.transform);
+            spawnedGirls.Add(CurrentChic);
             yield return new WaitForSeconds(1);
             CurrentChic.transform.DOMoveX(0, 2);
             CurrentChic.GetComponent<Animator>().SetBool("Walk1", true);
@@ -162,9 +224,9 @@ public class AuditionManager : MonoBehaviour
 
             UpdateData();
 
-            Resume.GetComponent<Animator>().SetTrigger("show");
-            Resume.GetComponentInChildren<TMP_Text>().text = dancerSOList.dancersList[chicNo].Resume[0] + "\n" +
-                dancerSOList.dancersList[chicNo].Resume[1] + "\n" + dancerSOList.dancersList[chicNo].Resume[2];
+            //Resume.GetComponent<Animator>().SetTrigger("show");
+            // Resume.GetComponentInChildren<TMP_Text>().text = dancerSOList.dancersList[chicNo].Resume[0] + "\n" +
+            //     dancerSOList.dancersList[chicNo].Resume[1] + "\n" + dancerSOList.dancersList[chicNo].Resume[2];
             conversationIndex = 0;
         }
     }
@@ -175,6 +237,60 @@ public class AuditionManager : MonoBehaviour
         //con[ChatNo].SetActive(true);
         UpdateData();
         conversationPopUp.GetComponent<Animator>().SetTrigger("show");
+    }
+
+    void StartTwerk()
+    {
+        Resume.transform.parent.gameObject.SetActive(false);
+        MainCameraController.instance.SetCurrentCamera("TwerkCamera");
+        Timer.Delay(2f, () =>
+        {
+            TwerkInit();
+        });
+    }
+
+    void TwerkInit()
+    {
+        tapPanel.SetActive(true);
+        multiTouchManager.onMultiTaping += PlayGirlAnim;
+        multiTouchManager.onInputRaised += OnTapOver;
+        multiTouchManager.Init();
+    }
+
+    void PlayGirlAnim(float value, bool tapped)
+    {
+        if (tapped)
+        {
+            OnTapped();
+        }
+    }
+
+    void OnTapped()
+    {
+        for (int i = 0; i < selectedGirls.Count; i++)
+        {
+            selectedGirls[i].GetComponent<Animator>().Play(dancerSOList.girlanim.ToString());
+        }
+    }
+
+    void OnTapOver()
+    {
+        tapPanel.SetActive(false);
+        Timer.Delay(8f,()=>
+        {
+            LevelComplete();
+        });
+    }
+
+    void LevelComplete()
+    {
+        Reset();
+        playPhasesControl._OnPhaseFinished();
+    }
+
+    void WrongChoice()
+    {
+
     }
 
     private void OnDisable()
@@ -191,6 +307,17 @@ public class AuditionManager : MonoBehaviour
         //{
         //    Destroy(dancerSOList.dancersList[chicNo].character);
         //}
+    }
+
+    void Reset()
+    {
+        for (int i = 0; i < spawnedGirls.Count; i++)
+        {
+            Destroy(spawnedGirls[i]);
+        }
+        spawnedGirls.Clear();
+        selectedGirls.Clear();
+        multiTouchManager.Reset();
     }
 
 }

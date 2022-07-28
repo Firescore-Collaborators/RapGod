@@ -1,0 +1,30 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 55c91730e4923cf48bd2b8f9f6b3d5b4, type: 3}
+  m_Name: Bar_Narration Lvl 6
+  m_EditorClassIdentifier: 
+  enemyCharacter: {fileID: 614020687420764838, guid: 9c5c445f9dfa11a47896f58b5611e352, type: 3}
+  environment: {fileID: 11400000, guid: c6ff0079c5387234eafaa2427c6fb006, type: 2}
+  rapBattleLyricSO: {fileID: 0}
+  inputSequence: {fileID: 0}
+  rapEndAnimation: 0
+  rapPoses:
+    playerSuccess: 0
+    enemyFail: 0
+    playerFail: 0
+    enemySuccess: 0
+  rapAnimations: []
+  rapCameras: 
+  punchLine: 
+  youtubeVideoTitle: LATEST RAP SONG RELEASED
+  tapSmashLimit: 20
+  maxAnimationSpeed: 3

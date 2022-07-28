@@ -56,6 +56,11 @@ namespace PrisonControl
             {
                 _mPlayPhasesControl.BeginNextLevel();
             }
+            else
+            if (_mPlayPhasesControl.levels[Progress.Instance.CurrentLevel - 1].GetLevelTypes[0] == Level_SO.LevelTypes.GirlAudition)
+            {
+                _mPlayPhasesControl.BeginNextLevel();
+            }
         }
     }
 }

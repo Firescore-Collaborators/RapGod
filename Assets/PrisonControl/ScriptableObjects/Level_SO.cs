@@ -49,6 +49,15 @@ namespace PrisonControl
         [Foldout("RapBattle")]
         [SerializeField]
         private TilesSO tiles_SO;
+
+        [Foldout("RapBattle")]
+        [SerializeField]
+        private SliderSOList equalizer_SO;
+
+        [Foldout("RapBattle")]
+        [SerializeField]
+        private DancerSOList auditionSO;
+
         public enum LevelTypes
         {
             rapBattle,
@@ -60,6 +69,7 @@ namespace PrisonControl
             Lyrics,
             BeatSort,
             Equalizer,
+            GirlAudition
         }
 
         public RapBattleDataSO GetRapBattleSO
@@ -130,6 +140,22 @@ namespace PrisonControl
             get
             {
                 return tiles_SO;
+            }
+        }
+
+        public SliderSOList GetEqualizerSO
+        {
+            get
+            {
+                return equalizer_SO;
+            }
+        } 
+
+        public DancerSOList GetAuditionSO
+        {
+            get
+            {
+                return auditionSO;
             }
         }
     }

@@ -13,7 +13,21 @@ MonoBehaviour:
   m_Name: DancersList
   m_EditorClassIdentifier: 
   dancersList:
-  - {fileID: 11400000, guid: b09517974ed7e9646a001cafbd1397ee, type: 2}
-  - {fileID: 11400000, guid: da2488c8f3a1e7a4aa5b690f6494c82c, type: 2}
-  - {fileID: 11400000, guid: 63406ea4143a89540b3f5e7c2a93a4a7, type: 2}
-  - {fileID: 11400000, guid: 3046cc82356862b4e893270f010354ce, type: 2}
+  - dancerSO: {fileID: 11400000, guid: b09517974ed7e9646a001cafbd1397ee, type: 2}
+    rightOption: 1
+  - dancerSO: {fileID: 11400000, guid: da2488c8f3a1e7a4aa5b690f6494c82c, type: 2}
+    rightOption: 1
+  - dancerSO: {fileID: 11400000, guid: 63406ea4143a89540b3f5e7c2a93a4a7, type: 2}
+    rightOption: 0
+  - dancerSO: {fileID: 11400000, guid: 3046cc82356862b4e893270f010354ce, type: 2}
+    rightOption: 1
+  requirements:
+  - requirementText: Flirty
+    allowed: 1
+  - requirementText: Beard
+    allowed: 0
+  - requirementText: Girl
+    allowed: 1
+  girlanim: 0
+  inputSequenceSO: {fileID: 11400000, guid: 5f80157deb080694a97267cbb17935dc, type: 2}
+  tapSmashLimit: 1

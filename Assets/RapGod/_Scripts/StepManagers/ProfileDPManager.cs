@@ -11,6 +11,10 @@ namespace PrisonControl
     {
         [SerializeField]
         private PlayPhasesControl _mPlayPhasesControl;
+        [SerializeField] Color bgColor;
+        [SerializeField] GameObject ftue;
+        [Foldout("Audio Clips")]
+        [SerializeField] AudioClip posted;
 
         [SerializeField]
         [Foldout("Text")]
@@ -33,7 +37,7 @@ namespace PrisonControl
         private ProfileDpSO profileDpSO;
         float currentFollowerCount;
         string postTextDefault = "Type your status...";
-
+        Transform currentSelectedButton;    
 
         void OnEnable()
         {
@@ -45,6 +49,7 @@ namespace PrisonControl
         void Init()
         {
             MainCameraController.instance.SetCurrentCamera("SocialMedia", 0);
+            ftue.SetActive(true);
         }
 
         void InitLevelData()
@@ -60,6 +65,7 @@ namespace PrisonControl
             {
                 profileListPanel.transform.parent.gameObject.SetActive(true);
             });
+            MainCameraController.instance.SetCameraSolidColor(bgColor);
         }
 
         void AssingDPToUI()
@@ -68,7 +74,7 @@ namespace PrisonControl
             {
                 Texture2D tex = profileDpSO.profileDpList[i];
                 Sprite dp = Sprite.Create(tex, new Rect(0, 0, tex.width, tex.height), new Vector2(0.5f, 0.5f));
-                profileListPanel.transform.GetChild(i).transform.GetChild(0).GetComponent<Image>().sprite = dp;
+                profileListPanel.transform.GetChild(i).transform.GetChild(0).transform.GetChild(0).GetComponent<Image>().sprite = dp;
             }
         }
 
@@ -80,8 +86,9 @@ namespace PrisonControl
             Texture2D tex = profileImage.sprite.texture;
             Progress.Instance.DisplayPicSize = new Vector2(tex.width, tex.height);
             Progress.Instance.DisplayPic = ConvertTextureToString(tex);
-            Timer.Delay(1, () =>
+            Timer.Delay(3, () =>
             {
+                MainCameraController.instance.SetCurrentCamera("SocialMediaZoom",0.5f);
                 AssingPostOptions();
             });
         }
@@ -113,6 +120,17 @@ namespace PrisonControl
         {
             profileImage.sprite = img.sprite;
             nextButton.gameObject.SetActive(true);
+            ftue.SetActive(false);
+        }
+
+        public void SelectedButton(Transform Button)
+        {
+            if (currentSelectedButton != null)
+            {
+                currentSelectedButton.LeanScale(Vector3.one, 0.1f);
+            }
+            currentSelectedButton = Button;
+            currentSelectedButton.LeanScale(Vector3.one * 1.15f, 0.1f);
         }
 
         [Button]
@@ -147,7 +165,7 @@ namespace PrisonControl
                 followerText.transform.parent.gameObject.SetActive(false);
                 statusBody.SetActive(false);
                 postedStamp.SetActive(true);
-
+                AudioManager.instance.PlaySFX(posted);
                 //New followers
                 Timer.Delay(1.0f, () =>
                 {
@@ -191,8 +209,11 @@ namespace PrisonControl
             statusBody.SetActive(true);
             followersIncreasePanel.SetActive(false);
             typeWriter.unity_text.text = postTextDefault;
-
+            currentSelectedButton.transform.LeanScale(Vector3.one, 0.1f);
+            currentSelectedButton = null;
             _mPlayPhasesControl._OnPhaseFinished();
+            MainCameraController.instance.ResetCameraColor();
+
         }
 
     }

@@ -11,6 +11,8 @@ public class MainCameraController : MonoBehaviour
     public List<CinemachineVirtualCamera> cameras = new List<CinemachineVirtualCamera> ();
     private CinemachineVirtualCamera currentCamera;
 
+    Color initColor;
+
     public CinemachineVirtualCamera CurrentCamera
     {
         get
@@ -33,6 +35,7 @@ public class MainCameraController : MonoBehaviour
     }
     void InitCamera()
     {
+        initColor = Camera.main.backgroundColor;
         cameras.Clear();
         for(int i = 0; i < transform.childCount; i++)
         {
@@ -83,6 +86,18 @@ public class MainCameraController : MonoBehaviour
             }
             
         }
+    }
+
+    public void SetCameraSolidColor(Color color)
+    {
+        Camera.main.clearFlags = CameraClearFlags.SolidColor;
+        Camera.main.backgroundColor = color;
+    }
+
+    public void ResetCameraColor()
+    {
+        Camera.main.clearFlags = CameraClearFlags.Skybox;
+        Camera.main.backgroundColor = initColor;
     }
 }
 

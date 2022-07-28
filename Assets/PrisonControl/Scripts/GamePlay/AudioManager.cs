@@ -6,50 +6,55 @@ namespace PrisonControl
 {
     public class AudioManager : MonoBehaviour
     {
+        public static AudioManager instance;
+
         [SerializeField]
-        private AudioSource audioSource, audioSourceTap, audioSourceBG;
+        private AudioSource audioSourceBG, audioSourceSFX;
 
         [SerializeField]
         private HapticsManager hapticsManager;
+        [SerializeField] AudioClip defaultBGMusic;
 
-        [SerializeField]
-        private AudioClip bg_normal, bg_interrogation, bg_slapAndRun;
-
-        public void PlayAudio(AudioClip audioClip)
+        void OnDisable()
         {
-            Debug.Log("Play audio ");
-            audioSource.clip = audioClip;
-            audioSource.Play();
-            hapticsManager.PlayLightImpact();
+        }
+        void Awake()
+        {
+            if(instance == null)
+            {
+                instance = this;
+            }
+            else
+            {
+                Destroy(this);
+            }
+        }    
 
+        void Start()
+        {
+            defaultBGMusic = audioSourceBG.clip;
         }
 
-        public void PlayTap()
+        public void PlayBGMusicDefault()
         {
-            audioSourceTap.Play();
-            hapticsManager.PlayLightImpact();
+            if(audioSourceBG.clip != defaultBGMusic)
+            {
+                audioSourceBG.clip = defaultBGMusic;
+                print("Playing default BG music");
+                audioSourceBG.Play();
+            }
         }
 
-        public void SetNormalBg()
+        public void PlayBGMusic(AudioClip clip)
         {
-            audioSourceBG.clip = bg_normal;
+            audioSourceBG.clip = clip;
             audioSourceBG.Play();
-            audioSourceBG.volume = 0.25f;
         }
 
-        public void SetInterrogationBg()
+        public void PlaySFX(AudioClip clip)
         {
-            audioSourceBG.clip = bg_interrogation;
-            audioSourceBG.Play();
-            audioSourceBG.volume = 0.13f;
-        }
-
-        public void SetSlapAndRunBg()
-        {
-            Debug.Log("slap and run");
-            audioSourceBG.clip = bg_slapAndRun;
-            audioSourceBG.Play();
-            audioSourceBG.volume = 0.25f;
+            audioSourceSFX.clip = clip;
+            audioSourceSFX.Play();
         }
     }
 }

@@ -1,6 +1,6 @@
 // Upgrade NOTE: replaced 'defined FOG_COMBINED_WITH_WORLD_POS' with 'defined (FOG_COMBINED_WITH_WORLD_POS)'
-// Upgrade NOTE: replaced 'glstate_matrix_projection' with 'UNITY_MATRIX_P'
 
+//<HASH>1008947426</HASH>
 ////////////////////////////////////////
 // Generated with Better Shaders
 //
@@ -28,6 +28,10 @@ Shader "Paint in 3D/Overlay"
 	_GlossMapScale("Smoothness", Range(0,1)) = 1
 	_Emission("Emission", Color) = (0,0,0)
 	[Toggle(_USE_UV2)] _UseUV2("Use Second UV", Float) = 0
+
+
+    [Header(UNITY FOG)]
+    [Toggle(DISABLEFOG)] _CW_DisableFog("	Disable", Float) = 0
 
 
    }
@@ -76,6 +80,9 @@ ZWrite Off ColorMask RGB
          
 
 
+    #pragma shader_feature_local DISABLEFOG    
+
+
    #define _STANDARD 1
 
    #define _ALPHABLEND_ON 1
@@ -86,8 +93,133 @@ ZWrite Off ColorMask RGB
 // of the patchy one Unity provides being inlined/emulated in HDRP/URP. Strangely, PSSL and XBoxOne libraries are not
 // included in the standard SRP code, but they are in tons of Unity own projects on the web, so I grabbed them from there.
 
+#if defined(SHADER_API_GAMECORE)
 
-#if defined(SHADER_API_XBOXONE)
+	#define ZERO_INITIALIZE(type, name) name = (type)0;
+	#define ZERO_INITIALIZE_ARRAY(type, name, arraySize) { for (int arrayIndex = 0; arrayIndex < arraySize; arrayIndex++) { name[arrayIndex] = (type)0; } }
+
+	// Texture util abstraction
+
+	#define CALCULATE_TEXTURE2D_LOD(textureName, samplerName, coord2) textureName.CalculateLevelOfDetail(samplerName, coord2)
+
+	// Texture abstraction
+
+	#define TEXTURE2D(textureName)                Texture2D textureName
+	#define TEXTURE2D_ARRAY(textureName)          Texture2DArray textureName
+	#define TEXTURECUBE(textureName)              TextureCube textureName
+	#define TEXTURECUBE_ARRAY(textureName)        TextureCubeArray textureName
+	#define TEXTURE3D(textureName)                Texture3D textureName
+
+	#define TEXTURE2D_FLOAT(textureName)          TEXTURE2D(textureName)
+	#define TEXTURE2D_ARRAY_FLOAT(textureName)    TEXTURE2D_ARRAY(textureName)
+	#define TEXTURECUBE_FLOAT(textureName)        TEXTURECUBE(textureName)
+	#define TEXTURECUBE_ARRAY_FLOAT(textureName)  TEXTURECUBE_ARRAY(textureName)
+	#define TEXTURE3D_FLOAT(textureName)          TEXTURE3D(textureName)
+
+	#define TEXTURE2D_HALF(textureName)           TEXTURE2D(textureName)
+	#define TEXTURE2D_ARRAY_HALF(textureName)     TEXTURE2D_ARRAY(textureName)
+	#define TEXTURECUBE_HALF(textureName)         TEXTURECUBE(textureName)
+	#define TEXTURECUBE_ARRAY_HALF(textureName)   TEXTURECUBE_ARRAY(textureName)
+	#define TEXTURE3D_HALF(textureName)           TEXTURE3D(textureName)
+
+	#define TEXTURE2D_SHADOW(textureName)         TEXTURE2D(textureName)
+	#define TEXTURE2D_ARRAY_SHADOW(textureName)   TEXTURE2D_ARRAY(textureName)
+	#define TEXTURECUBE_SHADOW(textureName)       TEXTURECUBE(textureName)
+	#define TEXTURECUBE_ARRAY_SHADOW(textureName) TEXTURECUBE_ARRAY(textureName)
+
+	#define RW_TEXTURE2D(type, textureName)       RWTexture2D<type> textureName
+	#define RW_TEXTURE2D_ARRAY(type, textureName) RWTexture2DArray<type> textureName
+	#define RW_TEXTURE3D(type, textureName)       RWTexture3D<type> textureName
+
+	#define SAMPLER(samplerName)                  SamplerState samplerName
+	#define SAMPLER_CMP(samplerName)              SamplerComparisonState samplerName
+	#define ASSIGN_SAMPLER(samplerName, samplerValue) samplerName = samplerValue
+
+	#define TEXTURE2D_PARAM(textureName, samplerName)                 TEXTURE2D(textureName),         SAMPLER(samplerName)
+	#define TEXTURE2D_ARRAY_PARAM(textureName, samplerName)           TEXTURE2D_ARRAY(textureName),   SAMPLER(samplerName)
+	#define TEXTURECUBE_PARAM(textureName, samplerName)               TEXTURECUBE(textureName),       SAMPLER(samplerName)
+	#define TEXTURECUBE_ARRAY_PARAM(textureName, samplerName)         TEXTURECUBE_ARRAY(textureName), SAMPLER(samplerName)
+	#define TEXTURE3D_PARAM(textureName, samplerName)                 TEXTURE3D(textureName),         SAMPLER(samplerName)
+
+	#define TEXTURE2D_SHADOW_PARAM(textureName, samplerName)          TEXTURE2D(textureName),         SAMPLER_CMP(samplerName)
+	#define TEXTURE2D_ARRAY_SHADOW_PARAM(textureName, samplerName)    TEXTURE2D_ARRAY(textureName),   SAMPLER_CMP(samplerName)
+	#define TEXTURECUBE_SHADOW_PARAM(textureName, samplerName)        TEXTURECUBE(textureName),       SAMPLER_CMP(samplerName)
+	#define TEXTURECUBE_ARRAY_SHADOW_PARAM(textureName, samplerName)  TEXTURECUBE_ARRAY(textureName), SAMPLER_CMP(samplerName)
+
+	#define TEXTURE2D_ARGS(textureName, samplerName)                textureName, samplerName
+	#define TEXTURE2D_ARRAY_ARGS(textureName, samplerName)          textureName, samplerName
+	#define TEXTURECUBE_ARGS(textureName, samplerName)              textureName, samplerName
+	#define TEXTURECUBE_ARRAY_ARGS(textureName, samplerName)        textureName, samplerName
+	#define TEXTURE3D_ARGS(textureName, samplerName)                textureName, samplerName
+
+	#define TEXTURE2D_SHADOW_ARGS(textureName, samplerName)         textureName, samplerName
+	#define TEXTURE2D_ARRAY_SHADOW_ARGS(textureName, samplerName)   textureName, samplerName
+	#define TEXTURECUBE_SHADOW_ARGS(textureName, samplerName)       textureName, samplerName
+	#define TEXTURECUBE_ARRAY_SHADOW_ARGS(textureName, samplerName) textureName, samplerName
+
+	#define PLATFORM_SAMPLE_TEXTURE2D(textureName, samplerName, coord2)                               textureName.Sample(samplerName, coord2)
+	#define PLATFORM_SAMPLE_TEXTURE2D_LOD(textureName, samplerName, coord2, lod)                      textureName.SampleLevel(samplerName, coord2, lod)
+	#define PLATFORM_SAMPLE_TEXTURE2D_BIAS(textureName, samplerName, coord2, bias)                    textureName.SampleBias(samplerName, coord2, bias)
+	#define PLATFORM_SAMPLE_TEXTURE2D_GRAD(textureName, samplerName, coord2, dpdx, dpdy)              textureName.SampleGrad(samplerName, coord2, dpdx, dpdy)
+	#define PLATFORM_SAMPLE_TEXTURE2D_ARRAY(textureName, samplerName, coord2, index)                  textureName.Sample(samplerName, float3(coord2, index))
+	#define PLATFORM_SAMPLE_TEXTURE2D_ARRAY_LOD(textureName, samplerName, coord2, index, lod)         textureName.SampleLevel(samplerName, float3(coord2, index), lod)
+	#define PLATFORM_SAMPLE_TEXTURE2D_ARRAY_BIAS(textureName, samplerName, coord2, index, bias)       textureName.SampleBias(samplerName, float3(coord2, index), bias)
+	#define PLATFORM_SAMPLE_TEXTURE2D_ARRAY_GRAD(textureName, samplerName, coord2, index, dpdx, dpdy) textureName.SampleGrad(samplerName, float3(coord2, index), dpdx, dpdy)
+	#define PLATFORM_SAMPLE_TEXTURECUBE(textureName, samplerName, coord3)                             textureName.Sample(samplerName, coord3)
+	#define PLATFORM_SAMPLE_TEXTURECUBE_LOD(textureName, samplerName, coord3, lod)                    textureName.SampleLevel(samplerName, coord3, lod)
+	#define PLATFORM_SAMPLE_TEXTURECUBE_BIAS(textureName, samplerName, coord3, bias)                  textureName.SampleBias(samplerName, coord3, bias)
+	#define PLATFORM_SAMPLE_TEXTURECUBE_ARRAY(textureName, samplerName, coord3, index)                textureName.Sample(samplerName, float4(coord3, index))
+	#define PLATFORM_SAMPLE_TEXTURECUBE_ARRAY_LOD(textureName, samplerName, coord3, index, lod)       textureName.SampleLevel(samplerName, float4(coord3, index), lod)
+	#define PLATFORM_SAMPLE_TEXTURECUBE_ARRAY_BIAS(textureName, samplerName, coord3, index, bias)     textureName.SampleBias(samplerName, float4(coord3, index), bias)
+	#define PLATFORM_SAMPLE_TEXTURE3D(textureName, samplerName, coord3)                               textureName.Sample(samplerName, coord3)
+	#define PLATFORM_SAMPLE_TEXTURE3D_LOD(textureName, samplerName, coord3, lod)                      textureName.SampleLevel(samplerName, coord3, lod)
+
+	#define SAMPLE_TEXTURE2D(textureName, samplerName, coord2)                               PLATFORM_SAMPLE_TEXTURE2D(textureName, samplerName, coord2)
+	#define SAMPLE_TEXTURE2D_LOD(textureName, samplerName, coord2, lod)                      PLATFORM_SAMPLE_TEXTURE2D_LOD(textureName, samplerName, coord2, lod)
+	#define SAMPLE_TEXTURE2D_BIAS(textureName, samplerName, coord2, bias)                    PLATFORM_SAMPLE_TEXTURE2D_BIAS(textureName, samplerName, coord2, bias)
+	#define SAMPLE_TEXTURE2D_GRAD(textureName, samplerName, coord2, dpdx, dpdy)              PLATFORM_SAMPLE_TEXTURE2D_GRAD(textureName, samplerName, coord2, dpdx, dpdy)
+	#define SAMPLE_TEXTURE2D_ARRAY(textureName, samplerName, coord2, index)                  PLATFORM_SAMPLE_TEXTURE2D_ARRAY(textureName, samplerName, coord2, index)
+	#define SAMPLE_TEXTURE2D_ARRAY_LOD(textureName, samplerName, coord2, index, lod)         PLATFORM_SAMPLE_TEXTURE2D_ARRAY_LOD(textureName, samplerName, coord2, index, lod)
+	#define SAMPLE_TEXTURE2D_ARRAY_BIAS(textureName, samplerName, coord2, index, bias)       PLATFORM_SAMPLE_TEXTURE2D_ARRAY_BIAS(textureName, samplerName, coord2, index, bias)
+	#define SAMPLE_TEXTURE2D_ARRAY_GRAD(textureName, samplerName, coord2, index, dpdx, dpdy) PLATFORM_SAMPLE_TEXTURE2D_ARRAY_GRAD(textureName, samplerName, coord2, index, dpdx, dpdy)
+	#define SAMPLE_TEXTURECUBE(textureName, samplerName, coord3)                             PLATFORM_SAMPLE_TEXTURECUBE(textureName, samplerName, coord3)
+	#define SAMPLE_TEXTURECUBE_LOD(textureName, samplerName, coord3, lod)                    PLATFORM_SAMPLE_TEXTURECUBE_LOD(textureName, samplerName, coord3, lod)
+	#define SAMPLE_TEXTURECUBE_BIAS(textureName, samplerName, coord3, bias)                  PLATFORM_SAMPLE_TEXTURECUBE_BIAS(textureName, samplerName, coord3, bias)
+	#define SAMPLE_TEXTURECUBE_ARRAY(textureName, samplerName, coord3, index)                PLATFORM_SAMPLE_TEXTURECUBE_ARRAY(textureName, samplerName, coord3, index)
+	#define SAMPLE_TEXTURECUBE_ARRAY_LOD(textureName, samplerName, coord3, index, lod)       PLATFORM_SAMPLE_TEXTURECUBE_ARRAY_LOD(textureName, samplerName, coord3, index, lod)
+	#define SAMPLE_TEXTURECUBE_ARRAY_BIAS(textureName, samplerName, coord3, index, bias)     PLATFORM_SAMPLE_TEXTURECUBE_ARRAY_BIAS(textureName, samplerName, coord3, index, bias)
+	#define SAMPLE_TEXTURE3D(textureName, samplerName, coord3)                               PLATFORM_SAMPLE_TEXTURE3D(textureName, samplerName, coord3)
+	#define SAMPLE_TEXTURE3D_LOD(textureName, samplerName, coord3, lod)                      PLATFORM_SAMPLE_TEXTURE3D_LOD(textureName, samplerName, coord3, lod)
+
+	#define SAMPLE_TEXTURE2D_SHADOW(textureName, samplerName, coord3)                    textureName.SampleCmpLevelZero(samplerName, (coord3).xy, (coord3).z)
+	#define SAMPLE_TEXTURE2D_ARRAY_SHADOW(textureName, samplerName, coord3, index)       textureName.SampleCmpLevelZero(samplerName, float3((coord3).xy, index), (coord3).z)
+	#define SAMPLE_TEXTURECUBE_SHADOW(textureName, samplerName, coord4)                  textureName.SampleCmpLevelZero(samplerName, (coord4).xyz, (coord4).w)
+	#define SAMPLE_TEXTURECUBE_ARRAY_SHADOW(textureName, samplerName, coord4, index)     textureName.SampleCmpLevelZero(samplerName, float4((coord4).xyz, index), (coord4).w)
+
+	#define SAMPLE_DEPTH_TEXTURE(textureName, samplerName, coord2)          SAMPLE_TEXTURE2D(textureName, samplerName, coord2).r
+	#define SAMPLE_DEPTH_TEXTURE_LOD(textureName, samplerName, coord2, lod) SAMPLE_TEXTURE2D_LOD(textureName, samplerName, coord2, lod).r
+
+	#define LOAD_TEXTURE2D(textureName, unCoord2)                                   textureName.Load(int3(unCoord2, 0))
+	#define LOAD_TEXTURE2D_LOD(textureName, unCoord2, lod)                          textureName.Load(int3(unCoord2, lod))
+	#define LOAD_TEXTURE2D_MSAA(textureName, unCoord2, sampleIndex)                 textureName.Load(unCoord2, sampleIndex)
+	#define LOAD_TEXTURE2D_ARRAY(textureName, unCoord2, index)                      textureName.Load(int4(unCoord2, index, 0))
+	#define LOAD_TEXTURE2D_ARRAY_MSAA(textureName, unCoord2, index, sampleIndex)    textureName.Load(int3(unCoord2, index), sampleIndex)
+	#define LOAD_TEXTURE2D_ARRAY_LOD(textureName, unCoord2, index, lod)             textureName.Load(int4(unCoord2, index, lod))
+	#define LOAD_TEXTURE3D(textureName, unCoord3)                                   textureName.Load(int4(unCoord3, 0))
+	#define LOAD_TEXTURE3D_LOD(textureName, unCoord3, lod)                          textureName.Load(int4(unCoord3, lod))
+
+	#define PLATFORM_SUPPORT_GATHER
+	#define GATHER_TEXTURE2D(textureName, samplerName, coord2)                textureName.Gather(samplerName, coord2)
+	#define GATHER_TEXTURE2D_ARRAY(textureName, samplerName, coord2, index)   textureName.Gather(samplerName, float3(coord2, index))
+	#define GATHER_TEXTURECUBE(textureName, samplerName, coord3)              textureName.Gather(samplerName, coord3)
+	#define GATHER_TEXTURECUBE_ARRAY(textureName, samplerName, coord3, index) textureName.Gather(samplerName, float4(coord3, index))
+	#define GATHER_RED_TEXTURE2D(textureName, samplerName, coord2)            textureName.GatherRed(samplerName, coord2)
+	#define GATHER_GREEN_TEXTURE2D(textureName, samplerName, coord2)          textureName.GatherGreen(samplerName, coord2)
+	#define GATHER_BLUE_TEXTURE2D(textureName, samplerName, coord2)           textureName.GatherBlue(samplerName, coord2)
+	#define GATHER_ALPHA_TEXTURE2D(textureName, samplerName, coord2)          textureName.GatherAlpha(samplerName, coord2)
+
+
+#elif defined(SHADER_API_XBOXONE)
 	
 	// Initialize arbitrary structure with zero values.
 	// Do not exist on some platform, in this case we need to have a standard name that call a function that will initialize all parameters to 0
@@ -1143,6 +1275,7 @@ ZWrite Off ColorMask RGB
 
 
 
+#define _USINGTEXCOORD1 1
 
 
          // data across stages, stripped like the above.
@@ -1152,11 +1285,11 @@ ZWrite Off ColorMask RGB
             float3 worldPos : TEXCOORD0;
             float3 worldNormal : TEXCOORD1;
             float4 worldTangent : TEXCOORD2;
-             float4 texcoord0 : TEXCCOORD3;
-             float4 texcoord1 : TEXCCOORD4;
-            // float4 texcoord2 : TEXCCOORD5;
+             float4 texcoord0 : TEXCOORD3;
+             float4 texcoord1 : TEXCOORD4;
+            // float4 texcoord2 : TEXCOORD5;
             // #if %TEXCOORD3REQUIREKEY%
-            // float4 texcoord3 : TEXCCOORD6;
+            // float4 texcoord3 : TEXCOORD6;
             // #endif
 
             // #if %SCREENPOSREQUIREKEY%
@@ -1242,6 +1375,8 @@ ZWrite Off ColorMask RGB
                half IridescenceMask;
                half IridescenceThickness;
                int DiffusionProfileHash;
+               float SpecularAAThreshold;
+               float SpecularAAScreenSpaceVariance;
                // requires _OVERRIDE_BAKEDGI to be defined, but is mapped in all pipelines
                float3 DiffuseGI;
                float3 BackDiffuseGI;
@@ -1307,12 +1442,27 @@ ZWrite Off ColorMask RGB
                float4 tangent : TANGENT;
                float4 texcoord0 : TEXCOORD0;
 
-               // would love to strip these, but they are used in certain
-               // combinations of the lighting system, and may be used
-               // by the user as well, so no easy way to strip them.
+               // optimize out mesh coords when not in use by user or lighting system
+               #if _URP && (_USINGTEXCOORD1 || _PASSMETA || _PASSFORWARD || _PASSGBUFFER)
+                  float4 texcoord1 : TEXCOORD1;
+               #endif
 
-               float4 texcoord1 : TEXCOORD1;
-               float4 texcoord2 : TEXCOORD2;
+               #if _URP && (_USINGTEXCOORD2 || _PASSMETA || ((_PASSFORWARD || _PASSGBUFFER) && defined(DYNAMICLIGHTMAP_ON)))
+                  float4 texcoord2 : TEXCOORD2;
+               #endif
+
+               #if _STANDARD && (_USINGTEXCOORD1 || (_PASSMETA || ((_PASSFORWARD || _PASSGBUFFER || _PASSFORWARDADD) && LIGHTMAP_ON)))
+                  float4 texcoord1 : TEXCOORD1;
+               #endif
+               #if _STANDARD && (_USINGTEXCOORD2 || (_PASSMETA || ((_PASSFORWARD || _PASSGBUFFER) && DYNAMICLIGHTMAP_ON)))
+                  float4 texcoord2 : TEXCOORD2;
+               #endif
+
+
+               #if _HDRP
+                  float4 texcoord1 : TEXCOORD1;
+                  float4 texcoord2 : TEXCOORD2;
+               #endif
 
                // #if %TEXCOORD3REQUIREKEY%
                // float4 texcoord3 : TEXCOORD3;
@@ -1322,7 +1472,7 @@ ZWrite Off ColorMask RGB
                // float4 vertexColor : COLOR;
                // #endif
 
-               #if _HDRP && (_PASSMOTIONVECTOR || (_PASSFORWARD && defined(_WRITE_TRANSPARENT_MOTION_VECTOR)))
+               #if _HDRP && (_PASSMOTIONVECTOR || ((_PASSFORWARD || _PASSUNLIT) && defined(_WRITE_TRANSPARENT_MOTION_VECTOR)))
                   float3 previousPositionOS : TEXCOORD4; // Contain previous transform position (in case of skinning for example)
                   #if defined (_ADD_PRECOMPUTED_VELOCITY)
                      float3 precomputedVelocity    : TEXCOORD5; // Add Precomputed Velocity (Alembic computes velocities on runtime side).
@@ -1351,7 +1501,7 @@ ZWrite Off ColorMask RGB
 
                // #if %EXTRAV2F0REQUIREKEY%
                // float4 extraV2F0 : TEXCOORD5;
-               // endif
+               // #endif
 
                // #if %EXTRAV2F1REQUIREKEY%
                // float4 extraV2F1 : TEXCOORD6;
@@ -1381,7 +1531,7 @@ ZWrite Off ColorMask RGB
                // float4 extraV2F7 : TEXCOORD12;
                // #endif
 
-               #if _HDRP && (_PASSMOTIONVECTOR || (_PASSFORWARD && defined(_WRITE_TRANSPARENT_MOTION_VECTOR)))
+               #if _HDRP && (_PASSMOTIONVECTOR || ((_PASSFORWARD || _PASSUNLIT) && defined(_WRITE_TRANSPARENT_MOTION_VECTOR)))
                   float3 previousPositionOS : TEXCOORD13; // Contain previous transform position (in case of skinning for example)
                   #if defined (_ADD_PRECOMPUTED_VELOCITY)
                      float3 precomputedVelocity : TEXCOORD14;
@@ -1403,6 +1553,7 @@ ZWrite Off ColorMask RGB
                float4 extraV2F6;
                float4 extraV2F7;
                Blackboard blackboard;
+               float4 time;
             };
 
 
@@ -1434,27 +1585,9 @@ ZWrite Off ColorMask RGB
                  #define UNITY_SAMPLE_TEX2D_SAMPLER_LOD(tex,samplertex,coord,lod) tex2D (tex,coord,0,lod)
               #endif
 
-               #undef UNITY_MATRIX_M
                #undef UNITY_MATRIX_I_M
-               #undef UNITY_MATRIX_V
-               #undef UNITY_MATRIX_I_V
-               #undef UNITY_MATRIX_P
-               #undef UNITY_MATRIX_VP
-               #undef UNITY_MATRIX_MV
-               #undef UNITY_MATRIX_T_MV
-               #undef UNITY_MATRIX_IT_MV
-               #undef UNITY_MATRIX_MVP
 
-               #define UNITY_MATRIX_M     unity_ObjectToWorld
                #define UNITY_MATRIX_I_M   unity_WorldToObject
-               #define UNITY_MATRIX_V     unity_MatrixV
-               #define UNITY_MATRIX_I_V   unity_MatrixInvV
-               #define UNITY_MATRIX_P     OptimizeProjectionMatrix(UNITY_MATRIX_P)
-               #define UNITY_MATRIX_VP    unity_MatrixVP
-               #define UNITY_MATRIX_MV    mul(UNITY_MATRIX_V, UNITY_MATRIX_M)
-               #define UNITY_MATRIX_T_MV  transpose(UNITY_MATRIX_MV)
-               #define UNITY_MATRIX_IT_MV transpose(mul(UNITY_MATRIX_I_M, UNITY_MATRIX_I_V))
-               #define UNITY_MATRIX_MVP   mul(UNITY_MATRIX_VP, UNITY_MATRIX_M)
 
 
             #endif
@@ -1507,6 +1640,18 @@ ZWrite Off ColorMask RGB
                float3 wpos = (eye * div) + GetCameraWorldPosition();
                return wpos;
             }
+
+            #if _HDRP
+            float3 ObjectToWorldSpacePosition(float3 pos)
+            {
+               return GetAbsolutePositionWS(TransformObjectToWorld(pos));
+            }
+            #else
+            float3 ObjectToWorldSpacePosition(float3 pos)
+            {
+               return TransformObjectToWorld(pos);
+            }
+            #endif
 
             #if _STANDARD
                UNITY_DECLARE_SCREENSPACE_TEXTURE(_CameraDepthNormalsTexture);
@@ -1613,6 +1758,8 @@ ZWrite Off ColorMask RGB
 
 
 
+
+
          
 
          
@@ -1650,6 +1797,8 @@ ZWrite Off ColorMask RGB
 
 
 
+
+
         
             void ChainSurfaceFunction(inout Surface l, inout ShaderData d)
             {
@@ -1673,13 +1822,28 @@ ZWrite Off ColorMask RGB
                  // Ext_SurfaceFunction17(l, d);
                  // Ext_SurfaceFunction18(l, d);
 		           // Ext_SurfaceFunction19(l, d);
+                 // Ext_SurfaceFunction20(l, d);
+                 // Ext_SurfaceFunction21(l, d);
+                 // Ext_SurfaceFunction22(l, d);
+                 // Ext_SurfaceFunction23(l, d);
+                 // Ext_SurfaceFunction24(l, d);
+                 // Ext_SurfaceFunction25(l, d);
+                 // Ext_SurfaceFunction26(l, d);
+                 // Ext_SurfaceFunction27(l, d);
+                 // Ext_SurfaceFunction28(l, d);
+		           // Ext_SurfaceFunction29(l, d);
             }
 
-            void ChainModifyVertex(inout VertexData v, inout VertexToPixel v2p)
+            void ChainModifyVertex(inout VertexData v, inout VertexToPixel v2p, float4 time)
             {
                  ExtraV2F d;
+                 
                  ZERO_INITIALIZE(ExtraV2F, d);
                  ZERO_INITIALIZE(Blackboard, d.blackboard);
+                 // due to motion vectors in HDRP, we need to use the last
+                 // time in certain spots. So if you are going to use _Time to adjust vertices,
+                 // you need to use this time or motion vectors will break. 
+                 d.time = time;
 
                    Ext_ModifyVertex0(v, d);
                  // Ext_ModifyVertex1(v, d);
@@ -1701,6 +1865,16 @@ ZWrite Off ColorMask RGB
                  // Ext_ModifyVertex17(v, d);
                  // Ext_ModifyVertex18(v, d);
                  // Ext_ModifyVertex19(v, d);
+                 // Ext_ModifyVertex20(v, d);
+                 // Ext_ModifyVertex21(v, d);
+                 // Ext_ModifyVertex22(v, d);
+                 // Ext_ModifyVertex23(v, d);
+                 // Ext_ModifyVertex24(v, d);
+                 // Ext_ModifyVertex25(v, d);
+                 // Ext_ModifyVertex26(v, d);
+                 // Ext_ModifyVertex27(v, d);
+                 // Ext_ModifyVertex28(v, d);
+                 // Ext_ModifyVertex29(v, d);
 
 
                  // #if %EXTRAV2F0REQUIREKEY%
@@ -1795,6 +1969,16 @@ ZWrite Off ColorMask RGB
                // Ext_ModifyTessellatedVertex17(v, d);
                // Ext_ModifyTessellatedVertex18(v, d);
                // Ext_ModifyTessellatedVertex19(v, d);
+               // Ext_ModifyTessellatedVertex20(v, d);
+               // Ext_ModifyTessellatedVertex21(v, d);
+               // Ext_ModifyTessellatedVertex22(v, d);
+               // Ext_ModifyTessellatedVertex23(v, d);
+               // Ext_ModifyTessellatedVertex24(v, d);
+               // Ext_ModifyTessellatedVertex25(v, d);
+               // Ext_ModifyTessellatedVertex26(v, d);
+               // Ext_ModifyTessellatedVertex27(v, d);
+               // Ext_ModifyTessellatedVertex28(v, d);
+               // Ext_ModifyTessellatedVertex29(v, d);
 
                // #if %EXTRAV2F0REQUIREKEY%
                // v2p.extraV2F0 = d.extraV2F0;
@@ -1851,6 +2035,16 @@ ZWrite Off ColorMask RGB
                //  Ext_FinalColorForward17(l, d, color);
                //  Ext_FinalColorForward18(l, d, color);
                //  Ext_FinalColorForward19(l, d, color);
+               //  Ext_FinalColorForward20(l, d, color);
+               //  Ext_FinalColorForward21(l, d, color);
+               //  Ext_FinalColorForward22(l, d, color);
+               //  Ext_FinalColorForward23(l, d, color);
+               //  Ext_FinalColorForward24(l, d, color);
+               //  Ext_FinalColorForward25(l, d, color);
+               //  Ext_FinalColorForward26(l, d, color);
+               //  Ext_FinalColorForward27(l, d, color);
+               //  Ext_FinalColorForward28(l, d, color);
+               //  Ext_FinalColorForward29(l, d, color);
             }
 
             void ChainFinalGBufferStandard(inout Surface s, inout ShaderData d, inout half4 GBuffer0, inout half4 GBuffer1, inout half4 GBuffer2, inout half4 outEmission, inout half4 outShadowMask)
@@ -1875,6 +2069,16 @@ ZWrite Off ColorMask RGB
                //  Ext_FinalGBufferStandard17(s, d, GBuffer0, GBuffer1, GBuffer2, outEmission, outShadowMask);
                //  Ext_FinalGBufferStandard18(s, d, GBuffer0, GBuffer1, GBuffer2, outEmission, outShadowMask);
                //  Ext_FinalGBufferStandard19(s, d, GBuffer0, GBuffer1, GBuffer2, outEmission, outShadowMask);
+               //  Ext_FinalGBufferStandard20(s, d, GBuffer0, GBuffer1, GBuffer2, outEmission, outShadowMask);
+               //  Ext_FinalGBufferStandard21(s, d, GBuffer0, GBuffer1, GBuffer2, outEmission, outShadowMask);
+               //  Ext_FinalGBufferStandard22(s, d, GBuffer0, GBuffer1, GBuffer2, outEmission, outShadowMask);
+               //  Ext_FinalGBufferStandard23(s, d, GBuffer0, GBuffer1, GBuffer2, outEmission, outShadowMask);
+               //  Ext_FinalGBufferStandard24(s, d, GBuffer0, GBuffer1, GBuffer2, outEmission, outShadowMask);
+               //  Ext_FinalGBufferStandard25(s, d, GBuffer0, GBuffer1, GBuffer2, outEmission, outShadowMask);
+               //  Ext_FinalGBufferStandard26(s, d, GBuffer0, GBuffer1, GBuffer2, outEmission, outShadowMask);
+               //  Ext_FinalGBufferStandard27(s, d, GBuffer0, GBuffer1, GBuffer2, outEmission, outShadowMask);
+               //  Ext_FinalGBufferStandard28(s, d, GBuffer0, GBuffer1, GBuffer2, outEmission, outShadowMask);
+               //  Ext_FinalGBufferStandard29(s, d, GBuffer0, GBuffer1, GBuffer2, outEmission, outShadowMask);
             }
 
 
@@ -1975,7 +2179,7 @@ ZWrite Off ColorMask RGB
            UNITY_INITIALIZE_VERTEX_OUTPUT_STEREO(o);
 
 #if !_TESSELLATION_ON
-           ChainModifyVertex(v, o);
+           ChainModifyVertex(v, o, _Time);
 #endif
 
            o.pos = UnityObjectToClipPos(v.vertex);
@@ -2111,7 +2315,7 @@ ZWrite Off ColorMask RGB
                  SurfaceOutput o;
               #endif
 
-              o.Specular = l.SpecularPower;
+              o.Specular = l.Specular;
               o.Gloss = l.Smoothness;
               _SpecColor.rgb = l.Specular; // fucking hell Unity, wtf..
            #else
@@ -2210,8 +2414,9 @@ ZWrite Off ColorMask RGB
 
            ChainFinalColorForward(l, d, c);
 
-           UNITY_APPLY_FOG(_unity_fogCoord, c); // apply fog
-           
+           #if !DISABLEFOG
+            UNITY_APPLY_FOG(_unity_fogCoord, c); // apply fog
+           #endif
            
 
            return c;
@@ -2267,6 +2472,9 @@ ZWrite Off ColorMask RGB
          
 
 
+    #pragma shader_feature_local DISABLEFOG    
+
+
    #define _STANDARD 1
 
    #define _ALPHABLEND_ON 1
@@ -2277,8 +2485,133 @@ ZWrite Off ColorMask RGB
 // of the patchy one Unity provides being inlined/emulated in HDRP/URP. Strangely, PSSL and XBoxOne libraries are not
 // included in the standard SRP code, but they are in tons of Unity own projects on the web, so I grabbed them from there.
 
+#if defined(SHADER_API_GAMECORE)
 
-#if defined(SHADER_API_XBOXONE)
+	#define ZERO_INITIALIZE(type, name) name = (type)0;
+	#define ZERO_INITIALIZE_ARRAY(type, name, arraySize) { for (int arrayIndex = 0; arrayIndex < arraySize; arrayIndex++) { name[arrayIndex] = (type)0; } }
+
+	// Texture util abstraction
+
+	#define CALCULATE_TEXTURE2D_LOD(textureName, samplerName, coord2) textureName.CalculateLevelOfDetail(samplerName, coord2)
+
+	// Texture abstraction
+
+	#define TEXTURE2D(textureName)                Texture2D textureName
+	#define TEXTURE2D_ARRAY(textureName)          Texture2DArray textureName
+	#define TEXTURECUBE(textureName)              TextureCube textureName
+	#define TEXTURECUBE_ARRAY(textureName)        TextureCubeArray textureName
+	#define TEXTURE3D(textureName)                Texture3D textureName
+
+	#define TEXTURE2D_FLOAT(textureName)          TEXTURE2D(textureName)
+	#define TEXTURE2D_ARRAY_FLOAT(textureName)    TEXTURE2D_ARRAY(textureName)
+	#define TEXTURECUBE_FLOAT(textureName)        TEXTURECUBE(textureName)
+	#define TEXTURECUBE_ARRAY_FLOAT(textureName)  TEXTURECUBE_ARRAY(textureName)
+	#define TEXTURE3D_FLOAT(textureName)          TEXTURE3D(textureName)
+
+	#define TEXTURE2D_HALF(textureName)           TEXTURE2D(textureName)
+	#define TEXTURE2D_ARRAY_HALF(textureName)     TEXTURE2D_ARRAY(textureName)
+	#define TEXTURECUBE_HALF(textureName)         TEXTURECUBE(textureName)
+	#define TEXTURECUBE_ARRAY_HALF(textureName)   TEXTURECUBE_ARRAY(textureName)
+	#define TEXTURE3D_HALF(textureName)           TEXTURE3D(textureName)
+
+	#define TEXTURE2D_SHADOW(textureName)         TEXTURE2D(textureName)
+	#define TEXTURE2D_ARRAY_SHADOW(textureName)   TEXTURE2D_ARRAY(textureName)
+	#define TEXTURECUBE_SHADOW(textureName)       TEXTURECUBE(textureName)
+	#define TEXTURECUBE_ARRAY_SHADOW(textureName) TEXTURECUBE_ARRAY(textureName)
+
+	#define RW_TEXTURE2D(type, textureName)       RWTexture2D<type> textureName
+	#define RW_TEXTURE2D_ARRAY(type, textureName) RWTexture2DArray<type> textureName
+	#define RW_TEXTURE3D(type, textureName)       RWTexture3D<type> textureName
+
+	#define SAMPLER(samplerName)                  SamplerState samplerName
+	#define SAMPLER_CMP(samplerName)              SamplerComparisonState samplerName
+	#define ASSIGN_SAMPLER(samplerName, samplerValue) samplerName = samplerValue
+
+	#define TEXTURE2D_PARAM(textureName, samplerName)                 TEXTURE2D(textureName),         SAMPLER(samplerName)
+	#define TEXTURE2D_ARRAY_PARAM(textureName, samplerName)           TEXTURE2D_ARRAY(textureName),   SAMPLER(samplerName)
+	#define TEXTURECUBE_PARAM(textureName, samplerName)               TEXTURECUBE(textureName),       SAMPLER(samplerName)
+	#define TEXTURECUBE_ARRAY_PARAM(textureName, samplerName)         TEXTURECUBE_ARRAY(textureName), SAMPLER(samplerName)
+	#define TEXTURE3D_PARAM(textureName, samplerName)                 TEXTURE3D(textureName),         SAMPLER(samplerName)
+
+	#define TEXTURE2D_SHADOW_PARAM(textureName, samplerName)          TEXTURE2D(textureName),         SAMPLER_CMP(samplerName)
+	#define TEXTURE2D_ARRAY_SHADOW_PARAM(textureName, samplerName)    TEXTURE2D_ARRAY(textureName),   SAMPLER_CMP(samplerName)
+	#define TEXTURECUBE_SHADOW_PARAM(textureName, samplerName)        TEXTURECUBE(textureName),       SAMPLER_CMP(samplerName)
+	#define TEXTURECUBE_ARRAY_SHADOW_PARAM(textureName, samplerName)  TEXTURECUBE_ARRAY(textureName), SAMPLER_CMP(samplerName)
+
+	#define TEXTURE2D_ARGS(textureName, samplerName)                textureName, samplerName
+	#define TEXTURE2D_ARRAY_ARGS(textureName, samplerName)          textureName, samplerName
+	#define TEXTURECUBE_ARGS(textureName, samplerName)              textureName, samplerName
+	#define TEXTURECUBE_ARRAY_ARGS(textureName, samplerName)        textureName, samplerName
+	#define TEXTURE3D_ARGS(textureName, samplerName)                textureName, samplerName
+
+	#define TEXTURE2D_SHADOW_ARGS(textureName, samplerName)         textureName, samplerName
+	#define TEXTURE2D_ARRAY_SHADOW_ARGS(textureName, samplerName)   textureName, samplerName
+	#define TEXTURECUBE_SHADOW_ARGS(textureName, samplerName)       textureName, samplerName
+	#define TEXTURECUBE_ARRAY_SHADOW_ARGS(textureName, samplerName) textureName, samplerName
+
+	#define PLATFORM_SAMPLE_TEXTURE2D(textureName, samplerName, coord2)                               textureName.Sample(samplerName, coord2)
+	#define PLATFORM_SAMPLE_TEXTURE2D_LOD(textureName, samplerName, coord2, lod)                      textureName.SampleLevel(samplerName, coord2, lod)
+	#define PLATFORM_SAMPLE_TEXTURE2D_BIAS(textureName, samplerName, coord2, bias)                    textureName.SampleBias(samplerName, coord2, bias)
+	#define PLATFORM_SAMPLE_TEXTURE2D_GRAD(textureName, samplerName, coord2, dpdx, dpdy)              textureName.SampleGrad(samplerName, coord2, dpdx, dpdy)
+	#define PLATFORM_SAMPLE_TEXTURE2D_ARRAY(textureName, samplerName, coord2, index)                  textureName.Sample(samplerName, float3(coord2, index))
+	#define PLATFORM_SAMPLE_TEXTURE2D_ARRAY_LOD(textureName, samplerName, coord2, index, lod)         textureName.SampleLevel(samplerName, float3(coord2, index), lod)
+	#define PLATFORM_SAMPLE_TEXTURE2D_ARRAY_BIAS(textureName, samplerName, coord2, index, bias)       textureName.SampleBias(samplerName, float3(coord2, index), bias)
+	#define PLATFORM_SAMPLE_TEXTURE2D_ARRAY_GRAD(textureName, samplerName, coord2, index, dpdx, dpdy) textureName.SampleGrad(samplerName, float3(coord2, index), dpdx, dpdy)
+	#define PLATFORM_SAMPLE_TEXTURECUBE(textureName, samplerName, coord3)                             textureName.Sample(samplerName, coord3)
+	#define PLATFORM_SAMPLE_TEXTURECUBE_LOD(textureName, samplerName, coord3, lod)                    textureName.SampleLevel(samplerName, coord3, lod)
+	#define PLATFORM_SAMPLE_TEXTURECUBE_BIAS(textureName, samplerName, coord3, bias)                  textureName.SampleBias(samplerName, coord3, bias)
+	#define PLATFORM_SAMPLE_TEXTURECUBE_ARRAY(textureName, samplerName, coord3, index)                textureName.Sample(samplerName, float4(coord3, index))
+	#define PLATFORM_SAMPLE_TEXTURECUBE_ARRAY_LOD(textureName, samplerName, coord3, index, lod)       textureName.SampleLevel(samplerName, float4(coord3, index), lod)
+	#define PLATFORM_SAMPLE_TEXTURECUBE_ARRAY_BIAS(textureName, samplerName, coord3, index, bias)     textureName.SampleBias(samplerName, float4(coord3, index), bias)
+	#define PLATFORM_SAMPLE_TEXTURE3D(textureName, samplerName, coord3)                               textureName.Sample(samplerName, coord3)
+	#define PLATFORM_SAMPLE_TEXTURE3D_LOD(textureName, samplerName, coord3, lod)                      textureName.SampleLevel(samplerName, coord3, lod)
+
+	#define SAMPLE_TEXTURE2D(textureName, samplerName, coord2)                               PLATFORM_SAMPLE_TEXTURE2D(textureName, samplerName, coord2)
+	#define SAMPLE_TEXTURE2D_LOD(textureName, samplerName, coord2, lod)                      PLATFORM_SAMPLE_TEXTURE2D_LOD(textureName, samplerName, coord2, lod)
+	#define SAMPLE_TEXTURE2D_BIAS(textureName, samplerName, coord2, bias)                    PLATFORM_SAMPLE_TEXTURE2D_BIAS(textureName, samplerName, coord2, bias)
+	#define SAMPLE_TEXTURE2D_GRAD(textureName, samplerName, coord2, dpdx, dpdy)              PLATFORM_SAMPLE_TEXTURE2D_GRAD(textureName, samplerName, coord2, dpdx, dpdy)
+	#define SAMPLE_TEXTURE2D_ARRAY(textureName, samplerName, coord2, index)                  PLATFORM_SAMPLE_TEXTURE2D_ARRAY(textureName, samplerName, coord2, index)
+	#define SAMPLE_TEXTURE2D_ARRAY_LOD(textureName, samplerName, coord2, index, lod)         PLATFORM_SAMPLE_TEXTURE2D_ARRAY_LOD(textureName, samplerName, coord2, index, lod)
+	#define SAMPLE_TEXTURE2D_ARRAY_BIAS(textureName, samplerName, coord2, index, bias)       PLATFORM_SAMPLE_TEXTURE2D_ARRAY_BIAS(textureName, samplerName, coord2, index, bias)
+	#define SAMPLE_TEXTURE2D_ARRAY_GRAD(textureName, samplerName, coord2, index, dpdx, dpdy) PLATFORM_SAMPLE_TEXTURE2D_ARRAY_GRAD(textureName, samplerName, coord2, index, dpdx, dpdy)
+	#define SAMPLE_TEXTURECUBE(textureName, samplerName, coord3)                             PLATFORM_SAMPLE_TEXTURECUBE(textureName, samplerName, coord3)
+	#define SAMPLE_TEXTURECUBE_LOD(textureName, samplerName, coord3, lod)                    PLATFORM_SAMPLE_TEXTURECUBE_LOD(textureName, samplerName, coord3, lod)
+	#define SAMPLE_TEXTURECUBE_BIAS(textureName, samplerName, coord3, bias)                  PLATFORM_SAMPLE_TEXTURECUBE_BIAS(textureName, samplerName, coord3, bias)
+	#define SAMPLE_TEXTURECUBE_ARRAY(textureName, samplerName, coord3, index)                PLATFORM_SAMPLE_TEXTURECUBE_ARRAY(textureName, samplerName, coord3, index)
+	#define SAMPLE_TEXTURECUBE_ARRAY_LOD(textureName, samplerName, coord3, index, lod)       PLATFORM_SAMPLE_TEXTURECUBE_ARRAY_LOD(textureName, samplerName, coord3, index, lod)
+	#define SAMPLE_TEXTURECUBE_ARRAY_BIAS(textureName, samplerName, coord3, index, bias)     PLATFORM_SAMPLE_TEXTURECUBE_ARRAY_BIAS(textureName, samplerName, coord3, index, bias)
+	#define SAMPLE_TEXTURE3D(textureName, samplerName, coord3)                               PLATFORM_SAMPLE_TEXTURE3D(textureName, samplerName, coord3)
+	#define SAMPLE_TEXTURE3D_LOD(textureName, samplerName, coord3, lod)                      PLATFORM_SAMPLE_TEXTURE3D_LOD(textureName, samplerName, coord3, lod)
+
+	#define SAMPLE_TEXTURE2D_SHADOW(textureName, samplerName, coord3)                    textureName.SampleCmpLevelZero(samplerName, (coord3).xy, (coord3).z)
+	#define SAMPLE_TEXTURE2D_ARRAY_SHADOW(textureName, samplerName, coord3, index)       textureName.SampleCmpLevelZero(samplerName, float3((coord3).xy, index), (coord3).z)
+	#define SAMPLE_TEXTURECUBE_SHADOW(textureName, samplerName, coord4)                  textureName.SampleCmpLevelZero(samplerName, (coord4).xyz, (coord4).w)
+	#define SAMPLE_TEXTURECUBE_ARRAY_SHADOW(textureName, samplerName, coord4, index)     textureName.SampleCmpLevelZero(samplerName, float4((coord4).xyz, index), (coord4).w)
+
+	#define SAMPLE_DEPTH_TEXTURE(textureName, samplerName, coord2)          SAMPLE_TEXTURE2D(textureName, samplerName, coord2).r
+	#define SAMPLE_DEPTH_TEXTURE_LOD(textureName, samplerName, coord2, lod) SAMPLE_TEXTURE2D_LOD(textureName, samplerName, coord2, lod).r
+
+	#define LOAD_TEXTURE2D(textureName, unCoord2)                                   textureName.Load(int3(unCoord2, 0))
+	#define LOAD_TEXTURE2D_LOD(textureName, unCoord2, lod)                          textureName.Load(int3(unCoord2, lod))
+	#define LOAD_TEXTURE2D_MSAA(textureName, unCoord2, sampleIndex)                 textureName.Load(unCoord2, sampleIndex)
+	#define LOAD_TEXTURE2D_ARRAY(textureName, unCoord2, index)                      textureName.Load(int4(unCoord2, index, 0))
+	#define LOAD_TEXTURE2D_ARRAY_MSAA(textureName, unCoord2, index, sampleIndex)    textureName.Load(int3(unCoord2, index), sampleIndex)
+	#define LOAD_TEXTURE2D_ARRAY_LOD(textureName, unCoord2, index, lod)             textureName.Load(int4(unCoord2, index, lod))
+	#define LOAD_TEXTURE3D(textureName, unCoord3)                                   textureName.Load(int4(unCoord3, 0))
+	#define LOAD_TEXTURE3D_LOD(textureName, unCoord3, lod)                          textureName.Load(int4(unCoord3, lod))
+
+	#define PLATFORM_SUPPORT_GATHER
+	#define GATHER_TEXTURE2D(textureName, samplerName, coord2)                textureName.Gather(samplerName, coord2)
+	#define GATHER_TEXTURE2D_ARRAY(textureName, samplerName, coord2, index)   textureName.Gather(samplerName, float3(coord2, index))
+	#define GATHER_TEXTURECUBE(textureName, samplerName, coord3)              textureName.Gather(samplerName, coord3)
+	#define GATHER_TEXTURECUBE_ARRAY(textureName, samplerName, coord3, index) textureName.Gather(samplerName, float4(coord3, index))
+	#define GATHER_RED_TEXTURE2D(textureName, samplerName, coord2)            textureName.GatherRed(samplerName, coord2)
+	#define GATHER_GREEN_TEXTURE2D(textureName, samplerName, coord2)          textureName.GatherGreen(samplerName, coord2)
+	#define GATHER_BLUE_TEXTURE2D(textureName, samplerName, coord2)           textureName.GatherBlue(samplerName, coord2)
+	#define GATHER_ALPHA_TEXTURE2D(textureName, samplerName, coord2)          textureName.GatherAlpha(samplerName, coord2)
+
+
+#elif defined(SHADER_API_XBOXONE)
 	
 	// Initialize arbitrary structure with zero values.
 	// Do not exist on some platform, in this case we need to have a standard name that call a function that will initialize all parameters to 0
@@ -3334,6 +3667,7 @@ ZWrite Off ColorMask RGB
 
 
 
+#define _USINGTEXCOORD1 1
 
 
          // data across stages, stripped like the above.
@@ -3343,12 +3677,12 @@ ZWrite Off ColorMask RGB
             float3 worldPos : TEXCOORD0;
             float3 worldNormal : TEXCOORD1;
             float4 worldTangent : TEXCOORD2;
-             float4 texcoord0 : TEXCCOORD3;
-             float4 texcoord1 : TEXCCOORD4;
-            // float4 texcoord2 : TEXCCOORD5;
+             float4 texcoord0 : TEXCOORD3;
+             float4 texcoord1 : TEXCOORD4;
+            // float4 texcoord2 : TEXCOORD5;
 
             // #if %TEXCOORD3REQUIREKEY%
-            // float4 texcoord3 : TEXCCOORD6;
+            // float4 texcoord3 : TEXCOORD6;
             // #endif
             
             // #if %SCREENPOSREQUIREKEY%
@@ -3426,6 +3760,8 @@ ZWrite Off ColorMask RGB
                half IridescenceMask;
                half IridescenceThickness;
                int DiffusionProfileHash;
+               float SpecularAAThreshold;
+               float SpecularAAScreenSpaceVariance;
                // requires _OVERRIDE_BAKEDGI to be defined, but is mapped in all pipelines
                float3 DiffuseGI;
                float3 BackDiffuseGI;
@@ -3491,12 +3827,27 @@ ZWrite Off ColorMask RGB
                float4 tangent : TANGENT;
                float4 texcoord0 : TEXCOORD0;
 
-               // would love to strip these, but they are used in certain
-               // combinations of the lighting system, and may be used
-               // by the user as well, so no easy way to strip them.
+               // optimize out mesh coords when not in use by user or lighting system
+               #if _URP && (_USINGTEXCOORD1 || _PASSMETA || _PASSFORWARD || _PASSGBUFFER)
+                  float4 texcoord1 : TEXCOORD1;
+               #endif
 
-               float4 texcoord1 : TEXCOORD1;
-               float4 texcoord2 : TEXCOORD2;
+               #if _URP && (_USINGTEXCOORD2 || _PASSMETA || ((_PASSFORWARD || _PASSGBUFFER) && defined(DYNAMICLIGHTMAP_ON)))
+                  float4 texcoord2 : TEXCOORD2;
+               #endif
+
+               #if _STANDARD && (_USINGTEXCOORD1 || (_PASSMETA || ((_PASSFORWARD || _PASSGBUFFER || _PASSFORWARDADD) && LIGHTMAP_ON)))
+                  float4 texcoord1 : TEXCOORD1;
+               #endif
+               #if _STANDARD && (_USINGTEXCOORD2 || (_PASSMETA || ((_PASSFORWARD || _PASSGBUFFER) && DYNAMICLIGHTMAP_ON)))
+                  float4 texcoord2 : TEXCOORD2;
+               #endif
+
+
+               #if _HDRP
+                  float4 texcoord1 : TEXCOORD1;
+                  float4 texcoord2 : TEXCOORD2;
+               #endif
 
                // #if %TEXCOORD3REQUIREKEY%
                // float4 texcoord3 : TEXCOORD3;
@@ -3506,7 +3857,7 @@ ZWrite Off ColorMask RGB
                // float4 vertexColor : COLOR;
                // #endif
 
-               #if _HDRP && (_PASSMOTIONVECTOR || (_PASSFORWARD && defined(_WRITE_TRANSPARENT_MOTION_VECTOR)))
+               #if _HDRP && (_PASSMOTIONVECTOR || ((_PASSFORWARD || _PASSUNLIT) && defined(_WRITE_TRANSPARENT_MOTION_VECTOR)))
                   float3 previousPositionOS : TEXCOORD4; // Contain previous transform position (in case of skinning for example)
                   #if defined (_ADD_PRECOMPUTED_VELOCITY)
                      float3 precomputedVelocity    : TEXCOORD5; // Add Precomputed Velocity (Alembic computes velocities on runtime side).
@@ -3535,7 +3886,7 @@ ZWrite Off ColorMask RGB
 
                // #if %EXTRAV2F0REQUIREKEY%
                // float4 extraV2F0 : TEXCOORD5;
-               // endif
+               // #endif
 
                // #if %EXTRAV2F1REQUIREKEY%
                // float4 extraV2F1 : TEXCOORD6;
@@ -3565,7 +3916,7 @@ ZWrite Off ColorMask RGB
                // float4 extraV2F7 : TEXCOORD12;
                // #endif
 
-               #if _HDRP && (_PASSMOTIONVECTOR || (_PASSFORWARD && defined(_WRITE_TRANSPARENT_MOTION_VECTOR)))
+               #if _HDRP && (_PASSMOTIONVECTOR || ((_PASSFORWARD || _PASSUNLIT) && defined(_WRITE_TRANSPARENT_MOTION_VECTOR)))
                   float3 previousPositionOS : TEXCOORD13; // Contain previous transform position (in case of skinning for example)
                   #if defined (_ADD_PRECOMPUTED_VELOCITY)
                      float3 precomputedVelocity : TEXCOORD14;
@@ -3587,6 +3938,7 @@ ZWrite Off ColorMask RGB
                float4 extraV2F6;
                float4 extraV2F7;
                Blackboard blackboard;
+               float4 time;
             };
 
 
@@ -3618,27 +3970,9 @@ ZWrite Off ColorMask RGB
                  #define UNITY_SAMPLE_TEX2D_SAMPLER_LOD(tex,samplertex,coord,lod) tex2D (tex,coord,0,lod)
               #endif
 
-               #undef UNITY_MATRIX_M
                #undef UNITY_MATRIX_I_M
-               #undef UNITY_MATRIX_V
-               #undef UNITY_MATRIX_I_V
-               #undef UNITY_MATRIX_P
-               #undef UNITY_MATRIX_VP
-               #undef UNITY_MATRIX_MV
-               #undef UNITY_MATRIX_T_MV
-               #undef UNITY_MATRIX_IT_MV
-               #undef UNITY_MATRIX_MVP
 
-               #define UNITY_MATRIX_M     unity_ObjectToWorld
                #define UNITY_MATRIX_I_M   unity_WorldToObject
-               #define UNITY_MATRIX_V     unity_MatrixV
-               #define UNITY_MATRIX_I_V   unity_MatrixInvV
-               #define UNITY_MATRIX_P     OptimizeProjectionMatrix(UNITY_MATRIX_P)
-               #define UNITY_MATRIX_VP    unity_MatrixVP
-               #define UNITY_MATRIX_MV    mul(UNITY_MATRIX_V, UNITY_MATRIX_M)
-               #define UNITY_MATRIX_T_MV  transpose(UNITY_MATRIX_MV)
-               #define UNITY_MATRIX_IT_MV transpose(mul(UNITY_MATRIX_I_M, UNITY_MATRIX_I_V))
-               #define UNITY_MATRIX_MVP   mul(UNITY_MATRIX_VP, UNITY_MATRIX_M)
 
 
             #endif
@@ -3691,6 +4025,18 @@ ZWrite Off ColorMask RGB
                float3 wpos = (eye * div) + GetCameraWorldPosition();
                return wpos;
             }
+
+            #if _HDRP
+            float3 ObjectToWorldSpacePosition(float3 pos)
+            {
+               return GetAbsolutePositionWS(TransformObjectToWorld(pos));
+            }
+            #else
+            float3 ObjectToWorldSpacePosition(float3 pos)
+            {
+               return TransformObjectToWorld(pos);
+            }
+            #endif
 
             #if _STANDARD
                UNITY_DECLARE_SCREENSPACE_TEXTURE(_CameraDepthNormalsTexture);
@@ -3797,6 +4143,8 @@ ZWrite Off ColorMask RGB
 
 
 
+
+
          
 
          
@@ -3834,6 +4182,8 @@ ZWrite Off ColorMask RGB
 
 
 
+
+
         
             void ChainSurfaceFunction(inout Surface l, inout ShaderData d)
             {
@@ -3857,13 +4207,28 @@ ZWrite Off ColorMask RGB
                  // Ext_SurfaceFunction17(l, d);
                  // Ext_SurfaceFunction18(l, d);
 		           // Ext_SurfaceFunction19(l, d);
+                 // Ext_SurfaceFunction20(l, d);
+                 // Ext_SurfaceFunction21(l, d);
+                 // Ext_SurfaceFunction22(l, d);
+                 // Ext_SurfaceFunction23(l, d);
+                 // Ext_SurfaceFunction24(l, d);
+                 // Ext_SurfaceFunction25(l, d);
+                 // Ext_SurfaceFunction26(l, d);
+                 // Ext_SurfaceFunction27(l, d);
+                 // Ext_SurfaceFunction28(l, d);
+		           // Ext_SurfaceFunction29(l, d);
             }
 
-            void ChainModifyVertex(inout VertexData v, inout VertexToPixel v2p)
+            void ChainModifyVertex(inout VertexData v, inout VertexToPixel v2p, float4 time)
             {
                  ExtraV2F d;
+                 
                  ZERO_INITIALIZE(ExtraV2F, d);
                  ZERO_INITIALIZE(Blackboard, d.blackboard);
+                 // due to motion vectors in HDRP, we need to use the last
+                 // time in certain spots. So if you are going to use _Time to adjust vertices,
+                 // you need to use this time or motion vectors will break. 
+                 d.time = time;
 
                    Ext_ModifyVertex0(v, d);
                  // Ext_ModifyVertex1(v, d);
@@ -3885,6 +4250,16 @@ ZWrite Off ColorMask RGB
                  // Ext_ModifyVertex17(v, d);
                  // Ext_ModifyVertex18(v, d);
                  // Ext_ModifyVertex19(v, d);
+                 // Ext_ModifyVertex20(v, d);
+                 // Ext_ModifyVertex21(v, d);
+                 // Ext_ModifyVertex22(v, d);
+                 // Ext_ModifyVertex23(v, d);
+                 // Ext_ModifyVertex24(v, d);
+                 // Ext_ModifyVertex25(v, d);
+                 // Ext_ModifyVertex26(v, d);
+                 // Ext_ModifyVertex27(v, d);
+                 // Ext_ModifyVertex28(v, d);
+                 // Ext_ModifyVertex29(v, d);
 
 
                  // #if %EXTRAV2F0REQUIREKEY%
@@ -3979,6 +4354,16 @@ ZWrite Off ColorMask RGB
                // Ext_ModifyTessellatedVertex17(v, d);
                // Ext_ModifyTessellatedVertex18(v, d);
                // Ext_ModifyTessellatedVertex19(v, d);
+               // Ext_ModifyTessellatedVertex20(v, d);
+               // Ext_ModifyTessellatedVertex21(v, d);
+               // Ext_ModifyTessellatedVertex22(v, d);
+               // Ext_ModifyTessellatedVertex23(v, d);
+               // Ext_ModifyTessellatedVertex24(v, d);
+               // Ext_ModifyTessellatedVertex25(v, d);
+               // Ext_ModifyTessellatedVertex26(v, d);
+               // Ext_ModifyTessellatedVertex27(v, d);
+               // Ext_ModifyTessellatedVertex28(v, d);
+               // Ext_ModifyTessellatedVertex29(v, d);
 
                // #if %EXTRAV2F0REQUIREKEY%
                // v2p.extraV2F0 = d.extraV2F0;
@@ -4035,6 +4420,16 @@ ZWrite Off ColorMask RGB
                //  Ext_FinalColorForward17(l, d, color);
                //  Ext_FinalColorForward18(l, d, color);
                //  Ext_FinalColorForward19(l, d, color);
+               //  Ext_FinalColorForward20(l, d, color);
+               //  Ext_FinalColorForward21(l, d, color);
+               //  Ext_FinalColorForward22(l, d, color);
+               //  Ext_FinalColorForward23(l, d, color);
+               //  Ext_FinalColorForward24(l, d, color);
+               //  Ext_FinalColorForward25(l, d, color);
+               //  Ext_FinalColorForward26(l, d, color);
+               //  Ext_FinalColorForward27(l, d, color);
+               //  Ext_FinalColorForward28(l, d, color);
+               //  Ext_FinalColorForward29(l, d, color);
             }
 
             void ChainFinalGBufferStandard(inout Surface s, inout ShaderData d, inout half4 GBuffer0, inout half4 GBuffer1, inout half4 GBuffer2, inout half4 outEmission, inout half4 outShadowMask)
@@ -4059,6 +4454,16 @@ ZWrite Off ColorMask RGB
                //  Ext_FinalGBufferStandard17(s, d, GBuffer0, GBuffer1, GBuffer2, outEmission, outShadowMask);
                //  Ext_FinalGBufferStandard18(s, d, GBuffer0, GBuffer1, GBuffer2, outEmission, outShadowMask);
                //  Ext_FinalGBufferStandard19(s, d, GBuffer0, GBuffer1, GBuffer2, outEmission, outShadowMask);
+               //  Ext_FinalGBufferStandard20(s, d, GBuffer0, GBuffer1, GBuffer2, outEmission, outShadowMask);
+               //  Ext_FinalGBufferStandard21(s, d, GBuffer0, GBuffer1, GBuffer2, outEmission, outShadowMask);
+               //  Ext_FinalGBufferStandard22(s, d, GBuffer0, GBuffer1, GBuffer2, outEmission, outShadowMask);
+               //  Ext_FinalGBufferStandard23(s, d, GBuffer0, GBuffer1, GBuffer2, outEmission, outShadowMask);
+               //  Ext_FinalGBufferStandard24(s, d, GBuffer0, GBuffer1, GBuffer2, outEmission, outShadowMask);
+               //  Ext_FinalGBufferStandard25(s, d, GBuffer0, GBuffer1, GBuffer2, outEmission, outShadowMask);
+               //  Ext_FinalGBufferStandard26(s, d, GBuffer0, GBuffer1, GBuffer2, outEmission, outShadowMask);
+               //  Ext_FinalGBufferStandard27(s, d, GBuffer0, GBuffer1, GBuffer2, outEmission, outShadowMask);
+               //  Ext_FinalGBufferStandard28(s, d, GBuffer0, GBuffer1, GBuffer2, outEmission, outShadowMask);
+               //  Ext_FinalGBufferStandard29(s, d, GBuffer0, GBuffer1, GBuffer2, outEmission, outShadowMask);
             }
 
 
@@ -4159,7 +4564,7 @@ ZWrite Off ColorMask RGB
            UNITY_INITIALIZE_VERTEX_OUTPUT_STEREO(o);
 
 #if !_TESSELLATION_ON
-           ChainModifyVertex(v, o);
+           ChainModifyVertex(v, o, _Time);
 #endif
 
            o.pos = UnityObjectToClipPos(v.vertex);
@@ -4318,8 +4723,9 @@ ZWrite Off ColorMask RGB
 
            ChainFinalColorForward(l, d, c);
 
-           UNITY_APPLY_FOG(_unity_fogCoord, c); // apply fog
-
+           #if !DISABLEFOG
+            UNITY_APPLY_FOG(_unity_fogCoord, c); // apply fog
+           #endif
            #if !_ALPHABLEND_ON
               UNITY_OPAQUE_ALPHA(c.a);
            #endif
@@ -4371,6 +4777,9 @@ ZWrite Off ColorMask RGB
          
 
 
+    #pragma shader_feature_local DISABLEFOG    
+
+
    #define _STANDARD 1
 
    #define _ALPHABLEND_ON 1
@@ -4381,8 +4790,133 @@ ZWrite Off ColorMask RGB
 // of the patchy one Unity provides being inlined/emulated in HDRP/URP. Strangely, PSSL and XBoxOne libraries are not
 // included in the standard SRP code, but they are in tons of Unity own projects on the web, so I grabbed them from there.
 
+#if defined(SHADER_API_GAMECORE)
 
-#if defined(SHADER_API_XBOXONE)
+	#define ZERO_INITIALIZE(type, name) name = (type)0;
+	#define ZERO_INITIALIZE_ARRAY(type, name, arraySize) { for (int arrayIndex = 0; arrayIndex < arraySize; arrayIndex++) { name[arrayIndex] = (type)0; } }
+
+	// Texture util abstraction
+
+	#define CALCULATE_TEXTURE2D_LOD(textureName, samplerName, coord2) textureName.CalculateLevelOfDetail(samplerName, coord2)
+
+	// Texture abstraction
+
+	#define TEXTURE2D(textureName)                Texture2D textureName
+	#define TEXTURE2D_ARRAY(textureName)          Texture2DArray textureName
+	#define TEXTURECUBE(textureName)              TextureCube textureName
+	#define TEXTURECUBE_ARRAY(textureName)        TextureCubeArray textureName
+	#define TEXTURE3D(textureName)                Texture3D textureName
+
+	#define TEXTURE2D_FLOAT(textureName)          TEXTURE2D(textureName)
+	#define TEXTURE2D_ARRAY_FLOAT(textureName)    TEXTURE2D_ARRAY(textureName)
+	#define TEXTURECUBE_FLOAT(textureName)        TEXTURECUBE(textureName)
+	#define TEXTURECUBE_ARRAY_FLOAT(textureName)  TEXTURECUBE_ARRAY(textureName)
+	#define TEXTURE3D_FLOAT(textureName)          TEXTURE3D(textureName)
+
+	#define TEXTURE2D_HALF(textureName)           TEXTURE2D(textureName)
+	#define TEXTURE2D_ARRAY_HALF(textureName)     TEXTURE2D_ARRAY(textureName)
+	#define TEXTURECUBE_HALF(textureName)         TEXTURECUBE(textureName)
+	#define TEXTURECUBE_ARRAY_HALF(textureName)   TEXTURECUBE_ARRAY(textureName)
+	#define TEXTURE3D_HALF(textureName)           TEXTURE3D(textureName)
+
+	#define TEXTURE2D_SHADOW(textureName)         TEXTURE2D(textureName)
+	#define TEXTURE2D_ARRAY_SHADOW(textureName)   TEXTURE2D_ARRAY(textureName)
+	#define TEXTURECUBE_SHADOW(textureName)       TEXTURECUBE(textureName)
+	#define TEXTURECUBE_ARRAY_SHADOW(textureName) TEXTURECUBE_ARRAY(textureName)
+
+	#define RW_TEXTURE2D(type, textureName)       RWTexture2D<type> textureName
+	#define RW_TEXTURE2D_ARRAY(type, textureName) RWTexture2DArray<type> textureName
+	#define RW_TEXTURE3D(type, textureName)       RWTexture3D<type> textureName
+
+	#define SAMPLER(samplerName)                  SamplerState samplerName
+	#define SAMPLER_CMP(samplerName)              SamplerComparisonState samplerName
+	#define ASSIGN_SAMPLER(samplerName, samplerValue) samplerName = samplerValue
+
+	#define TEXTURE2D_PARAM(textureName, samplerName)                 TEXTURE2D(textureName),         SAMPLER(samplerName)
+	#define TEXTURE2D_ARRAY_PARAM(textureName, samplerName)           TEXTURE2D_ARRAY(textureName),   SAMPLER(samplerName)
+	#define TEXTURECUBE_PARAM(textureName, samplerName)               TEXTURECUBE(textureName),       SAMPLER(samplerName)
+	#define TEXTURECUBE_ARRAY_PARAM(textureName, samplerName)         TEXTURECUBE_ARRAY(textureName), SAMPLER(samplerName)
+	#define TEXTURE3D_PARAM(textureName, samplerName)                 TEXTURE3D(textureName),         SAMPLER(samplerName)
+
+	#define TEXTURE2D_SHADOW_PARAM(textureName, samplerName)          TEXTURE2D(textureName),         SAMPLER_CMP(samplerName)
+	#define TEXTURE2D_ARRAY_SHADOW_PARAM(textureName, samplerName)    TEXTURE2D_ARRAY(textureName),   SAMPLER_CMP(samplerName)
+	#define TEXTURECUBE_SHADOW_PARAM(textureName, samplerName)        TEXTURECUBE(textureName),       SAMPLER_CMP(samplerName)
+	#define TEXTURECUBE_ARRAY_SHADOW_PARAM(textureName, samplerName)  TEXTURECUBE_ARRAY(textureName), SAMPLER_CMP(samplerName)
+
+	#define TEXTURE2D_ARGS(textureName, samplerName)                textureName, samplerName
+	#define TEXTURE2D_ARRAY_ARGS(textureName, samplerName)          textureName, samplerName
+	#define TEXTURECUBE_ARGS(textureName, samplerName)              textureName, samplerName
+	#define TEXTURECUBE_ARRAY_ARGS(textureName, samplerName)        textureName, samplerName
+	#define TEXTURE3D_ARGS(textureName, samplerName)                textureName, samplerName
+
+	#define TEXTURE2D_SHADOW_ARGS(textureName, samplerName)         textureName, samplerName
+	#define TEXTURE2D_ARRAY_SHADOW_ARGS(textureName, samplerName)   textureName, samplerName
+	#define TEXTURECUBE_SHADOW_ARGS(textureName, samplerName)       textureName, samplerName
+	#define TEXTURECUBE_ARRAY_SHADOW_ARGS(textureName, samplerName) textureName, samplerName
+
+	#define PLATFORM_SAMPLE_TEXTURE2D(textureName, samplerName, coord2)                               textureName.Sample(samplerName, coord2)
+	#define PLATFORM_SAMPLE_TEXTURE2D_LOD(textureName, samplerName, coord2, lod)                      textureName.SampleLevel(samplerName, coord2, lod)
+	#define PLATFORM_SAMPLE_TEXTURE2D_BIAS(textureName, samplerName, coord2, bias)                    textureName.SampleBias(samplerName, coord2, bias)
+	#define PLATFORM_SAMPLE_TEXTURE2D_GRAD(textureName, samplerName, coord2, dpdx, dpdy)              textureName.SampleGrad(samplerName, coord2, dpdx, dpdy)
+	#define PLATFORM_SAMPLE_TEXTURE2D_ARRAY(textureName, samplerName, coord2, index)                  textureName.Sample(samplerName, float3(coord2, index))
+	#define PLATFORM_SAMPLE_TEXTURE2D_ARRAY_LOD(textureName, samplerName, coord2, index, lod)         textureName.SampleLevel(samplerName, float3(coord2, index), lod)
+	#define PLATFORM_SAMPLE_TEXTURE2D_ARRAY_BIAS(textureName, samplerName, coord2, index, bias)       textureName.SampleBias(samplerName, float3(coord2, index), bias)
+	#define PLATFORM_SAMPLE_TEXTURE2D_ARRAY_GRAD(textureName, samplerName, coord2, index, dpdx, dpdy) textureName.SampleGrad(samplerName, float3(coord2, index), dpdx, dpdy)
+	#define PLATFORM_SAMPLE_TEXTURECUBE(textureName, samplerName, coord3)                             textureName.Sample(samplerName, coord3)
+	#define PLATFORM_SAMPLE_TEXTURECUBE_LOD(textureName, samplerName, coord3, lod)                    textureName.SampleLevel(samplerName, coord3, lod)
+	#define PLATFORM_SAMPLE_TEXTURECUBE_BIAS(textureName, samplerName, coord3, bias)                  textureName.SampleBias(samplerName, coord3, bias)
+	#define PLATFORM_SAMPLE_TEXTURECUBE_ARRAY(textureName, samplerName, coord3, index)                textureName.Sample(samplerName, float4(coord3, index))
+	#define PLATFORM_SAMPLE_TEXTURECUBE_ARRAY_LOD(textureName, samplerName, coord3, index, lod)       textureName.SampleLevel(samplerName, float4(coord3, index), lod)
+	#define PLATFORM_SAMPLE_TEXTURECUBE_ARRAY_BIAS(textureName, samplerName, coord3, index, bias)     textureName.SampleBias(samplerName, float4(coord3, index), bias)
+	#define PLATFORM_SAMPLE_TEXTURE3D(textureName, samplerName, coord3)                               textureName.Sample(samplerName, coord3)
+	#define PLATFORM_SAMPLE_TEXTURE3D_LOD(textureName, samplerName, coord3, lod)                      textureName.SampleLevel(samplerName, coord3, lod)
+
+	#define SAMPLE_TEXTURE2D(textureName, samplerName, coord2)                               PLATFORM_SAMPLE_TEXTURE2D(textureName, samplerName, coord2)
+	#define SAMPLE_TEXTURE2D_LOD(textureName, samplerName, coord2, lod)                      PLATFORM_SAMPLE_TEXTURE2D_LOD(textureName, samplerName, coord2, lod)
+	#define SAMPLE_TEXTURE2D_BIAS(textureName, samplerName, coord2, bias)                    PLATFORM_SAMPLE_TEXTURE2D_BIAS(textureName, samplerName, coord2, bias)
+	#define SAMPLE_TEXTURE2D_GRAD(textureName, samplerName, coord2, dpdx, dpdy)              PLATFORM_SAMPLE_TEXTURE2D_GRAD(textureName, samplerName, coord2, dpdx, dpdy)
+	#define SAMPLE_TEXTURE2D_ARRAY(textureName, samplerName, coord2, index)                  PLATFORM_SAMPLE_TEXTURE2D_ARRAY(textureName, samplerName, coord2, index)
+	#define SAMPLE_TEXTURE2D_ARRAY_LOD(textureName, samplerName, coord2, index, lod)         PLATFORM_SAMPLE_TEXTURE2D_ARRAY_LOD(textureName, samplerName, coord2, index, lod)
+	#define SAMPLE_TEXTURE2D_ARRAY_BIAS(textureName, samplerName, coord2, index, bias)       PLATFORM_SAMPLE_TEXTURE2D_ARRAY_BIAS(textureName, samplerName, coord2, index, bias)
+	#define SAMPLE_TEXTURE2D_ARRAY_GRAD(textureName, samplerName, coord2, index, dpdx, dpdy) PLATFORM_SAMPLE_TEXTURE2D_ARRAY_GRAD(textureName, samplerName, coord2, index, dpdx, dpdy)
+	#define SAMPLE_TEXTURECUBE(textureName, samplerName, coord3)                             PLATFORM_SAMPLE_TEXTURECUBE(textureName, samplerName, coord3)
+	#define SAMPLE_TEXTURECUBE_LOD(textureName, samplerName, coord3, lod)                    PLATFORM_SAMPLE_TEXTURECUBE_LOD(textureName, samplerName, coord3, lod)
+	#define SAMPLE_TEXTURECUBE_BIAS(textureName, samplerName, coord3, bias)                  PLATFORM_SAMPLE_TEXTURECUBE_BIAS(textureName, samplerName, coord3, bias)
+	#define SAMPLE_TEXTURECUBE_ARRAY(textureName, samplerName, coord3, index)                PLATFORM_SAMPLE_TEXTURECUBE_ARRAY(textureName, samplerName, coord3, index)
+	#define SAMPLE_TEXTURECUBE_ARRAY_LOD(textureName, samplerName, coord3, index, lod)       PLATFORM_SAMPLE_TEXTURECUBE_ARRAY_LOD(textureName, samplerName, coord3, index, lod)
+	#define SAMPLE_TEXTURECUBE_ARRAY_BIAS(textureName, samplerName, coord3, index, bias)     PLATFORM_SAMPLE_TEXTURECUBE_ARRAY_BIAS(textureName, samplerName, coord3, index, bias)
+	#define SAMPLE_TEXTURE3D(textureName, samplerName, coord3)                               PLATFORM_SAMPLE_TEXTURE3D(textureName, samplerName, coord3)
+	#define SAMPLE_TEXTURE3D_LOD(textureName, samplerName, coord3, lod)                      PLATFORM_SAMPLE_TEXTURE3D_LOD(textureName, samplerName, coord3, lod)
+
+	#define SAMPLE_TEXTURE2D_SHADOW(textureName, samplerName, coord3)                    textureName.SampleCmpLevelZero(samplerName, (coord3).xy, (coord3).z)
+	#define SAMPLE_TEXTURE2D_ARRAY_SHADOW(textureName, samplerName, coord3, index)       textureName.SampleCmpLevelZero(samplerName, float3((coord3).xy, index), (coord3).z)
+	#define SAMPLE_TEXTURECUBE_SHADOW(textureName, samplerName, coord4)                  textureName.SampleCmpLevelZero(samplerName, (coord4).xyz, (coord4).w)
+	#define SAMPLE_TEXTURECUBE_ARRAY_SHADOW(textureName, samplerName, coord4, index)     textureName.SampleCmpLevelZero(samplerName, float4((coord4).xyz, index), (coord4).w)
+
+	#define SAMPLE_DEPTH_TEXTURE(textureName, samplerName, coord2)          SAMPLE_TEXTURE2D(textureName, samplerName, coord2).r
+	#define SAMPLE_DEPTH_TEXTURE_LOD(textureName, samplerName, coord2, lod) SAMPLE_TEXTURE2D_LOD(textureName, samplerName, coord2, lod).r
+
+	#define LOAD_TEXTURE2D(textureName, unCoord2)                                   textureName.Load(int3(unCoord2, 0))
+	#define LOAD_TEXTURE2D_LOD(textureName, unCoord2, lod)                          textureName.Load(int3(unCoord2, lod))
+	#define LOAD_TEXTURE2D_MSAA(textureName, unCoord2, sampleIndex)                 textureName.Load(unCoord2, sampleIndex)
+	#define LOAD_TEXTURE2D_ARRAY(textureName, unCoord2, index)                      textureName.Load(int4(unCoord2, index, 0))
+	#define LOAD_TEXTURE2D_ARRAY_MSAA(textureName, unCoord2, index, sampleIndex)    textureName.Load(int3(unCoord2, index), sampleIndex)
+	#define LOAD_TEXTURE2D_ARRAY_LOD(textureName, unCoord2, index, lod)             textureName.Load(int4(unCoord2, index, lod))
+	#define LOAD_TEXTURE3D(textureName, unCoord3)                                   textureName.Load(int4(unCoord3, 0))
+	#define LOAD_TEXTURE3D_LOD(textureName, unCoord3, lod)                          textureName.Load(int4(unCoord3, lod))
+
+	#define PLATFORM_SUPPORT_GATHER
+	#define GATHER_TEXTURE2D(textureName, samplerName, coord2)                textureName.Gather(samplerName, coord2)
+	#define GATHER_TEXTURE2D_ARRAY(textureName, samplerName, coord2, index)   textureName.Gather(samplerName, float3(coord2, index))
+	#define GATHER_TEXTURECUBE(textureName, samplerName, coord3)              textureName.Gather(samplerName, coord3)
+	#define GATHER_TEXTURECUBE_ARRAY(textureName, samplerName, coord3, index) textureName.Gather(samplerName, float4(coord3, index))
+	#define GATHER_RED_TEXTURE2D(textureName, samplerName, coord2)            textureName.GatherRed(samplerName, coord2)
+	#define GATHER_GREEN_TEXTURE2D(textureName, samplerName, coord2)          textureName.GatherGreen(samplerName, coord2)
+	#define GATHER_BLUE_TEXTURE2D(textureName, samplerName, coord2)           textureName.GatherBlue(samplerName, coord2)
+	#define GATHER_ALPHA_TEXTURE2D(textureName, samplerName, coord2)          textureName.GatherAlpha(samplerName, coord2)
+
+
+#elif defined(SHADER_API_XBOXONE)
 	
 	// Initialize arbitrary structure with zero values.
 	// Do not exist on some platform, in this case we need to have a standard name that call a function that will initialize all parameters to 0
@@ -5438,6 +5972,7 @@ ZWrite Off ColorMask RGB
 
 
 
+#define _USINGTEXCOORD1 1
 
 
          
@@ -5449,12 +5984,12 @@ ZWrite Off ColorMask RGB
             float3 worldPos : TEXCOORD0;
             float3 worldNormal : TEXCOORD1;
             float4 worldTangent : TEXCOORD2;
-             float4 texcoord0 : TEXCCOORD3;
-             float4 texcoord1 : TEXCCOORD4;
-            // float4 texcoord2 : TEXCCOORD5;
+             float4 texcoord0 : TEXCOORD3;
+             float4 texcoord1 : TEXCOORD4;
+            // float4 texcoord2 : TEXCOORD5;
 
             // #if %TEXCOORD3REQUIREKEY%
-            // float4 texcoord3 : TEXCCOORD6;
+            // float4 texcoord3 : TEXCOORD6;
             // #endif
 
             // #if %SCREENPOSREQUIREKEY%
@@ -5534,6 +6069,8 @@ ZWrite Off ColorMask RGB
                half IridescenceMask;
                half IridescenceThickness;
                int DiffusionProfileHash;
+               float SpecularAAThreshold;
+               float SpecularAAScreenSpaceVariance;
                // requires _OVERRIDE_BAKEDGI to be defined, but is mapped in all pipelines
                float3 DiffuseGI;
                float3 BackDiffuseGI;
@@ -5599,12 +6136,27 @@ ZWrite Off ColorMask RGB
                float4 tangent : TANGENT;
                float4 texcoord0 : TEXCOORD0;
 
-               // would love to strip these, but they are used in certain
-               // combinations of the lighting system, and may be used
-               // by the user as well, so no easy way to strip them.
+               // optimize out mesh coords when not in use by user or lighting system
+               #if _URP && (_USINGTEXCOORD1 || _PASSMETA || _PASSFORWARD || _PASSGBUFFER)
+                  float4 texcoord1 : TEXCOORD1;
+               #endif
 
-               float4 texcoord1 : TEXCOORD1;
-               float4 texcoord2 : TEXCOORD2;
+               #if _URP && (_USINGTEXCOORD2 || _PASSMETA || ((_PASSFORWARD || _PASSGBUFFER) && defined(DYNAMICLIGHTMAP_ON)))
+                  float4 texcoord2 : TEXCOORD2;
+               #endif
+
+               #if _STANDARD && (_USINGTEXCOORD1 || (_PASSMETA || ((_PASSFORWARD || _PASSGBUFFER || _PASSFORWARDADD) && LIGHTMAP_ON)))
+                  float4 texcoord1 : TEXCOORD1;
+               #endif
+               #if _STANDARD && (_USINGTEXCOORD2 || (_PASSMETA || ((_PASSFORWARD || _PASSGBUFFER) && DYNAMICLIGHTMAP_ON)))
+                  float4 texcoord2 : TEXCOORD2;
+               #endif
+
+
+               #if _HDRP
+                  float4 texcoord1 : TEXCOORD1;
+                  float4 texcoord2 : TEXCOORD2;
+               #endif
 
                // #if %TEXCOORD3REQUIREKEY%
                // float4 texcoord3 : TEXCOORD3;
@@ -5614,7 +6166,7 @@ ZWrite Off ColorMask RGB
                // float4 vertexColor : COLOR;
                // #endif
 
-               #if _HDRP && (_PASSMOTIONVECTOR || (_PASSFORWARD && defined(_WRITE_TRANSPARENT_MOTION_VECTOR)))
+               #if _HDRP && (_PASSMOTIONVECTOR || ((_PASSFORWARD || _PASSUNLIT) && defined(_WRITE_TRANSPARENT_MOTION_VECTOR)))
                   float3 previousPositionOS : TEXCOORD4; // Contain previous transform position (in case of skinning for example)
                   #if defined (_ADD_PRECOMPUTED_VELOCITY)
                      float3 precomputedVelocity    : TEXCOORD5; // Add Precomputed Velocity (Alembic computes velocities on runtime side).
@@ -5643,7 +6195,7 @@ ZWrite Off ColorMask RGB
 
                // #if %EXTRAV2F0REQUIREKEY%
                // float4 extraV2F0 : TEXCOORD5;
-               // endif
+               // #endif
 
                // #if %EXTRAV2F1REQUIREKEY%
                // float4 extraV2F1 : TEXCOORD6;
@@ -5673,7 +6225,7 @@ ZWrite Off ColorMask RGB
                // float4 extraV2F7 : TEXCOORD12;
                // #endif
 
-               #if _HDRP && (_PASSMOTIONVECTOR || (_PASSFORWARD && defined(_WRITE_TRANSPARENT_MOTION_VECTOR)))
+               #if _HDRP && (_PASSMOTIONVECTOR || ((_PASSFORWARD || _PASSUNLIT) && defined(_WRITE_TRANSPARENT_MOTION_VECTOR)))
                   float3 previousPositionOS : TEXCOORD13; // Contain previous transform position (in case of skinning for example)
                   #if defined (_ADD_PRECOMPUTED_VELOCITY)
                      float3 precomputedVelocity : TEXCOORD14;
@@ -5695,6 +6247,7 @@ ZWrite Off ColorMask RGB
                float4 extraV2F6;
                float4 extraV2F7;
                Blackboard blackboard;
+               float4 time;
             };
 
 
@@ -5726,27 +6279,9 @@ ZWrite Off ColorMask RGB
                  #define UNITY_SAMPLE_TEX2D_SAMPLER_LOD(tex,samplertex,coord,lod) tex2D (tex,coord,0,lod)
               #endif
 
-               #undef UNITY_MATRIX_M
                #undef UNITY_MATRIX_I_M
-               #undef UNITY_MATRIX_V
-               #undef UNITY_MATRIX_I_V
-               #undef UNITY_MATRIX_P
-               #undef UNITY_MATRIX_VP
-               #undef UNITY_MATRIX_MV
-               #undef UNITY_MATRIX_T_MV
-               #undef UNITY_MATRIX_IT_MV
-               #undef UNITY_MATRIX_MVP
 
-               #define UNITY_MATRIX_M     unity_ObjectToWorld
                #define UNITY_MATRIX_I_M   unity_WorldToObject
-               #define UNITY_MATRIX_V     unity_MatrixV
-               #define UNITY_MATRIX_I_V   unity_MatrixInvV
-               #define UNITY_MATRIX_P     OptimizeProjectionMatrix(UNITY_MATRIX_P)
-               #define UNITY_MATRIX_VP    unity_MatrixVP
-               #define UNITY_MATRIX_MV    mul(UNITY_MATRIX_V, UNITY_MATRIX_M)
-               #define UNITY_MATRIX_T_MV  transpose(UNITY_MATRIX_MV)
-               #define UNITY_MATRIX_IT_MV transpose(mul(UNITY_MATRIX_I_M, UNITY_MATRIX_I_V))
-               #define UNITY_MATRIX_MVP   mul(UNITY_MATRIX_VP, UNITY_MATRIX_M)
 
 
             #endif
@@ -5799,6 +6334,18 @@ ZWrite Off ColorMask RGB
                float3 wpos = (eye * div) + GetCameraWorldPosition();
                return wpos;
             }
+
+            #if _HDRP
+            float3 ObjectToWorldSpacePosition(float3 pos)
+            {
+               return GetAbsolutePositionWS(TransformObjectToWorld(pos));
+            }
+            #else
+            float3 ObjectToWorldSpacePosition(float3 pos)
+            {
+               return TransformObjectToWorld(pos);
+            }
+            #endif
 
             #if _STANDARD
                UNITY_DECLARE_SCREENSPACE_TEXTURE(_CameraDepthNormalsTexture);
@@ -5905,6 +6452,8 @@ ZWrite Off ColorMask RGB
 
 
 
+
+
          
 
          
@@ -5942,6 +6491,8 @@ ZWrite Off ColorMask RGB
 
 
 
+
+
         
             void ChainSurfaceFunction(inout Surface l, inout ShaderData d)
             {
@@ -5965,13 +6516,28 @@ ZWrite Off ColorMask RGB
                  // Ext_SurfaceFunction17(l, d);
                  // Ext_SurfaceFunction18(l, d);
 		           // Ext_SurfaceFunction19(l, d);
+                 // Ext_SurfaceFunction20(l, d);
+                 // Ext_SurfaceFunction21(l, d);
+                 // Ext_SurfaceFunction22(l, d);
+                 // Ext_SurfaceFunction23(l, d);
+                 // Ext_SurfaceFunction24(l, d);
+                 // Ext_SurfaceFunction25(l, d);
+                 // Ext_SurfaceFunction26(l, d);
+                 // Ext_SurfaceFunction27(l, d);
+                 // Ext_SurfaceFunction28(l, d);
+		           // Ext_SurfaceFunction29(l, d);
             }
 
-            void ChainModifyVertex(inout VertexData v, inout VertexToPixel v2p)
+            void ChainModifyVertex(inout VertexData v, inout VertexToPixel v2p, float4 time)
             {
                  ExtraV2F d;
+                 
                  ZERO_INITIALIZE(ExtraV2F, d);
                  ZERO_INITIALIZE(Blackboard, d.blackboard);
+                 // due to motion vectors in HDRP, we need to use the last
+                 // time in certain spots. So if you are going to use _Time to adjust vertices,
+                 // you need to use this time or motion vectors will break. 
+                 d.time = time;
 
                    Ext_ModifyVertex0(v, d);
                  // Ext_ModifyVertex1(v, d);
@@ -5993,6 +6559,16 @@ ZWrite Off ColorMask RGB
                  // Ext_ModifyVertex17(v, d);
                  // Ext_ModifyVertex18(v, d);
                  // Ext_ModifyVertex19(v, d);
+                 // Ext_ModifyVertex20(v, d);
+                 // Ext_ModifyVertex21(v, d);
+                 // Ext_ModifyVertex22(v, d);
+                 // Ext_ModifyVertex23(v, d);
+                 // Ext_ModifyVertex24(v, d);
+                 // Ext_ModifyVertex25(v, d);
+                 // Ext_ModifyVertex26(v, d);
+                 // Ext_ModifyVertex27(v, d);
+                 // Ext_ModifyVertex28(v, d);
+                 // Ext_ModifyVertex29(v, d);
 
 
                  // #if %EXTRAV2F0REQUIREKEY%
@@ -6087,6 +6663,16 @@ ZWrite Off ColorMask RGB
                // Ext_ModifyTessellatedVertex17(v, d);
                // Ext_ModifyTessellatedVertex18(v, d);
                // Ext_ModifyTessellatedVertex19(v, d);
+               // Ext_ModifyTessellatedVertex20(v, d);
+               // Ext_ModifyTessellatedVertex21(v, d);
+               // Ext_ModifyTessellatedVertex22(v, d);
+               // Ext_ModifyTessellatedVertex23(v, d);
+               // Ext_ModifyTessellatedVertex24(v, d);
+               // Ext_ModifyTessellatedVertex25(v, d);
+               // Ext_ModifyTessellatedVertex26(v, d);
+               // Ext_ModifyTessellatedVertex27(v, d);
+               // Ext_ModifyTessellatedVertex28(v, d);
+               // Ext_ModifyTessellatedVertex29(v, d);
 
                // #if %EXTRAV2F0REQUIREKEY%
                // v2p.extraV2F0 = d.extraV2F0;
@@ -6143,6 +6729,16 @@ ZWrite Off ColorMask RGB
                //  Ext_FinalColorForward17(l, d, color);
                //  Ext_FinalColorForward18(l, d, color);
                //  Ext_FinalColorForward19(l, d, color);
+               //  Ext_FinalColorForward20(l, d, color);
+               //  Ext_FinalColorForward21(l, d, color);
+               //  Ext_FinalColorForward22(l, d, color);
+               //  Ext_FinalColorForward23(l, d, color);
+               //  Ext_FinalColorForward24(l, d, color);
+               //  Ext_FinalColorForward25(l, d, color);
+               //  Ext_FinalColorForward26(l, d, color);
+               //  Ext_FinalColorForward27(l, d, color);
+               //  Ext_FinalColorForward28(l, d, color);
+               //  Ext_FinalColorForward29(l, d, color);
             }
 
             void ChainFinalGBufferStandard(inout Surface s, inout ShaderData d, inout half4 GBuffer0, inout half4 GBuffer1, inout half4 GBuffer2, inout half4 outEmission, inout half4 outShadowMask)
@@ -6167,6 +6763,16 @@ ZWrite Off ColorMask RGB
                //  Ext_FinalGBufferStandard17(s, d, GBuffer0, GBuffer1, GBuffer2, outEmission, outShadowMask);
                //  Ext_FinalGBufferStandard18(s, d, GBuffer0, GBuffer1, GBuffer2, outEmission, outShadowMask);
                //  Ext_FinalGBufferStandard19(s, d, GBuffer0, GBuffer1, GBuffer2, outEmission, outShadowMask);
+               //  Ext_FinalGBufferStandard20(s, d, GBuffer0, GBuffer1, GBuffer2, outEmission, outShadowMask);
+               //  Ext_FinalGBufferStandard21(s, d, GBuffer0, GBuffer1, GBuffer2, outEmission, outShadowMask);
+               //  Ext_FinalGBufferStandard22(s, d, GBuffer0, GBuffer1, GBuffer2, outEmission, outShadowMask);
+               //  Ext_FinalGBufferStandard23(s, d, GBuffer0, GBuffer1, GBuffer2, outEmission, outShadowMask);
+               //  Ext_FinalGBufferStandard24(s, d, GBuffer0, GBuffer1, GBuffer2, outEmission, outShadowMask);
+               //  Ext_FinalGBufferStandard25(s, d, GBuffer0, GBuffer1, GBuffer2, outEmission, outShadowMask);
+               //  Ext_FinalGBufferStandard26(s, d, GBuffer0, GBuffer1, GBuffer2, outEmission, outShadowMask);
+               //  Ext_FinalGBufferStandard27(s, d, GBuffer0, GBuffer1, GBuffer2, outEmission, outShadowMask);
+               //  Ext_FinalGBufferStandard28(s, d, GBuffer0, GBuffer1, GBuffer2, outEmission, outShadowMask);
+               //  Ext_FinalGBufferStandard29(s, d, GBuffer0, GBuffer1, GBuffer2, outEmission, outShadowMask);
             }
 
 
@@ -6267,8 +6873,9 @@ ZWrite Off ColorMask RGB
             UNITY_INITIALIZE_VERTEX_OUTPUT_STEREO(o);
 
 #if !_TESSELLATION_ON
-           ChainModifyVertex(v, o);
+           ChainModifyVertex(v, o, _Time);
 #endif
+
 
             o.pos = UnityMetaVertexPosition(v.vertex, v.texcoord1.xy, v.texcoord2.xy, unity_LightmapST, unity_DynamicLightmapST);
             #ifdef EDITOR_VISUALIZATION
@@ -6364,6 +6971,8 @@ ZWrite Off ColorMask RGB
       }
 
       
+
+
 
 
 

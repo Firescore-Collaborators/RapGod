@@ -32,8 +32,8 @@ public class Notes_Manager : MonoBehaviour
 
     void InitLevelData()
     {
-        //Level_SO level = playPhasesControl.levels[Progress.Instance.CurrentLevel - 1];
-        //tiles_SO = level.GetTilesSO;
+        Level_SO level = playPhasesControl.levels[Progress.Instance.CurrentLevel - 1];
+        tiles_SO = level.GetTilesSO;
     }
     void Init()
     {
@@ -125,7 +125,8 @@ public class Notes_Manager : MonoBehaviour
             Destroy(box[i]);
             //box[i] = null;
         }
-        
+        j = 0;
+        sum = 0;
         //box = new GameObject[12];
         PlayBar.SetActive(true);
 

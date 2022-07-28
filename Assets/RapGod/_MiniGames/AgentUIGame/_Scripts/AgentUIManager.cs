@@ -10,6 +10,7 @@ namespace PrisonControl
     {
         [SerializeField] private PlayPhasesControl _mPlayPhasesControl;
         public static AgentUIManager instance;
+        [SerializeField] private AudioClip bgMusic;
         public GameObject[] AgentUI;
 
         //public Agent_SO[] agent_SO;
@@ -38,6 +39,7 @@ namespace PrisonControl
         {
             Level_SO level = _mPlayPhasesControl.levels[Progress.Instance.CurrentLevel - 1];
             agentsList_SO = level.GetAgentsListSO;
+            AudioManager.instance.PlayBGMusic(bgMusic);
         }
 
         void InitPanel()
@@ -48,18 +50,29 @@ namespace PrisonControl
             {
                 AgentUI[i] = Instantiate(Panel, new Vector2(CenterScreen.position.x + 700 * i, CenterScreen.position.y), Quaternion.identity, PanelParent.transform);
                 AgentUI[i].transform.GetChild(1).GetComponent<TMP_Text>().text = agentsList_SO.agentList[i].AgentName;
-                AgentUI[i].transform.GetChild(2).GetComponent<Image>().sprite = agentsList_SO.agentList[i].AgentPic;
+                AgentUI[i].transform.GetChild(2).transform.GetChild(0).GetComponent<Image>().sprite = agentsList_SO.agentList[i].AgentPic;
+                int index = AgentUI[i].transform.GetSiblingIndex();
                 AgentUI[i].GetComponent<AgentUIPanel>().selectButton.onClick.AddListener(() =>
                 {
                     OnAgentSelected();
+                    ScaleSelectedPanel(index);
                 });
             }
+        }
+        
+        void ScaleSelectedPanel(int index)
+        {
+            Transform panel = PanelParent.transform.GetChild(index);
+            panel.LeanScale((Vector3.one * 1.5f),0.25f);
         }
 
         public void OnAgentSelected()
         {
-            _mPlayPhasesControl._OnPhaseFinished();
-            LevelEnd();
+            Timer.Delay(2f, () =>
+            {
+                _mPlayPhasesControl._OnPhaseFinished();
+                LevelEnd();
+            });
         }
 
         void LevelEnd()
