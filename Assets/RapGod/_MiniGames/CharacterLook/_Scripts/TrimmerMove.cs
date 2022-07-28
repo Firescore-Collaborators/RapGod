@@ -30,7 +30,7 @@ public class TrimmerMove : MonoBehaviour
     void OnMouseDrag()
     {
         Timer += Time.deltaTime;
-        if (Timer >= 1)
+        if (Timer >= 2)
         {
             hit.enabled = true;
         }

@@ -39,8 +39,8 @@ public class EqualizerManager : MonoBehaviour
 
     void InitLevelData()
     {
-        Level_SO level = playPhasesControl.levels[Progress.Instance.CurrentLevel - 1];
-        sliderSOList = level.GetEqualizerSO;
+        //Level_SO level = playPhasesControl.levels[Progress.Instance.CurrentLevel - 1];
+        //sliderSOList = level.GetEqualizerSO;
     }
 
     void Init()
