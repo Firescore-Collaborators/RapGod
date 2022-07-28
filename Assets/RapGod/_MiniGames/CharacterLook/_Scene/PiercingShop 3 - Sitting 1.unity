@@ -20227,6 +20227,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 2100000, guid: eb058a589dc9c5d40b3039a0575f30b1, type: 2}
     - target: {fileID: -4396642182433536433, guid: 9b6b545d083d2d0459a08b91cda5b8d8, type: 3}
+      propertyPath: m_Mesh
+      value: 
+      objectReference: {fileID: -219786046997227153, guid: 95679f52a5f45d84581dd501d426e4cf, type: 2}
+    - target: {fileID: -4396642182433536433, guid: 9b6b545d083d2d0459a08b91cda5b8d8, type: 3}
       propertyPath: m_BlendShapeWeights.Array.size
       value: 3
       objectReference: {fileID: 0}
@@ -31307,8 +31311,8 @@ MonoBehaviour:
   stateLimit: 10
   saveLoad: 0
   saveName: 
-  width: 512
-  height: 512
+  width: 1024
+  height: 1024
   texture: {fileID: 0}
   color: {r: 1, g: 1, b: 1, a: 1}
   format: 0
@@ -31379,7 +31383,7 @@ MeshFilter:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 430828925}
-  m_Mesh: {fileID: -8839368762345780380, guid: dc4a65d946da7f1468de7c4821e9c830, type: 3}
+  m_Mesh: {fileID: -219786046997227153, guid: 95679f52a5f45d84581dd501d426e4cf, type: 2}
 --- !u!64 &430828930
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -36742,7 +36746,7 @@ Camera:
     height: 1
   near clip plane: 0.1
   far clip plane: 5000
-  field of view: 45
+  field of view: 50
   orthographic: 0
   orthographic size: 5
   m_Depth: -1
@@ -36767,8 +36771,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 541506892}
-  m_LocalRotation: {x: 0.055555545, y: 0.09734406, z: -0.005442376, w: 0.9936841}
-  m_LocalPosition: {x: 0.28, y: 1.446, z: -8.429}
+  m_LocalRotation: {x: 0.039471753, y: 0.70600426, z: -0.039471753, w: 0.70600426}
+  m_LocalPosition: {x: -0.151, y: 1.454, z: -7.99}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -68634,7 +68638,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   paintIn: 0
-  interval: 0.05
+  interval: 0.01
   preview: 0
   priority: 0
   pressure: 1
@@ -68671,9 +68675,9 @@ MonoBehaviour:
   color: {r: 0, g: 0, b: 0, a: 1}
   opacity: 1
   angle: 0
-  scale: {x: 10, y: 0.3, z: 0.3}
-  radius: 0.01
-  hardness: 20
+  scale: {x: 30, y: 0.3, z: 0.3}
+  radius: 0.007
+  hardness: 5
   tileTexture: {fileID: 0}
   tileTransform: {fileID: 0}
   tileOpacity: 1
@@ -79077,7 +79081,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &1846759192
 Transform:
   m_ObjectHideFlags: 0
@@ -94886,7 +94890,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &4827617436893413794
 MonoBehaviour:
   m_ObjectHideFlags: 0
