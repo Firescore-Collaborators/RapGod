@@ -30,7 +30,7 @@ public class TrimmerMove : MonoBehaviour
     void OnMouseDrag()
     {
         Timer += Time.deltaTime;
-        if (Timer >= 1)
+        if (Timer >= 2)
         {
             hit.enabled = true;
         }
@@ -40,10 +40,10 @@ public class TrimmerMove : MonoBehaviour
         Vector3 curPosition = Camera.main.ScreenToWorldPoint(curScreenPoint) + offset;
 
         //curPosition.z = curPosition.y;
-        curPosition.z = transform.position.z;
+        //curPosition.z = transform.position.z;
         //curPosition.y = 0.75f;
         //curPosition.y = transform.position.y;
-
+        curPosition.x = transform.position.x;
         transform.position = curPosition;
 
         //particleHair.Play();

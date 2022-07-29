@@ -39,8 +39,8 @@ public class EqualizerManager : MonoBehaviour
 
     void InitLevelData()
     {
-        Level_SO level = playPhasesControl.levels[Progress.Instance.CurrentLevel - 1];
-        sliderSOList = level.GetEqualizerSO;
+        //Level_SO level = playPhasesControl.levels[Progress.Instance.CurrentLevel - 1];
+        //sliderSOList = level.GetEqualizerSO;
     }
 
     void Init()
@@ -50,14 +50,23 @@ public class EqualizerManager : MonoBehaviour
             slider[i].GetComponent<SliderScript>().Reading = sliderSOList.reading[i];
             //slider[i].GetComponent<SliderScript>().startPos = slider[i].transform;
             slider[i].transform.position = new Vector3(slider[i].transform.position.x, slider[i].transform.position.y, startLimit.transform.position.z);
+            
         }
+        
     }
     private void OnDisable()
     {
+        counter = 0;
+        GameOver = false;
+        WinPanel.SetActive(false);
+
         for (int i = 0; i < slider.Length; i++)
         {
-            //slider[i].transform.position = new Vector3 (slider[i].transform.position.x, slider[i].transform.position.y, startLimit.transform.position.z);
+            slider[i].GetComponent<SliderScript>().Indicator1.GetComponent<MeshRenderer>().material = RedMat;
+            slider[i].GetComponent<SliderScript>().Indicator2.GetComponent<MeshRenderer>().material = RedMat;
+            slider[i].GetComponent<SliderScript>().isMatched = false;
         }
+        //slider[i].transform.position = new Vector3 (slider[i].transform.position.x, slider[i].transform.position.y, startLimit.transform.position.z);
     }
 
     // Update is called once per frame
