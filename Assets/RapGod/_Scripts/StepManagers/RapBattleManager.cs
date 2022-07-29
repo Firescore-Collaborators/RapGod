@@ -184,7 +184,7 @@ namespace PrisonControl
             audienceManager = EnvironmentList.instance.GetAudienceManager;
             audienceManager.EnemyHeadTarget = enemy;
             audienceManager.PlayerHeadTarget = player;
-
+            audienceManager.gameObject.SetActive(rapData.isRapBattle?true:false);
             //Set BGM
             bgmAudioSource.clip = rapData.rapBattleLyricSO.bgm;
             bgmAudioSource.Play();
@@ -653,7 +653,10 @@ namespace PrisonControl
             hypeMeter.fillAmount = 0;
             tapSmashPanel.gameObject.SetActive(false);
             //rapFinishPanel.SetActive(false);
-            YoutubePanel();
+            if (rapData.isRapBattle)
+            {
+                YoutubePanel();
+            }
             Timer.Delay(10f, () =>
             {
                 OnLevelEnd();

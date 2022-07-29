@@ -76,6 +76,7 @@ public class RapBattleDataSO : ScriptableObject
     public RapPoseData rapPoses;
     public List<RapAnimations> rapAnimations = new List<RapAnimations>();
     public List<rapCameras> rapCameras = new List<rapCameras>();
+    public bool isRapBattle = true;
     public string punchLine;
     public string youtubeVideoTitle = "LATEST RAP SONG RELEASED";
     public float tapSmashLimit = 20f;

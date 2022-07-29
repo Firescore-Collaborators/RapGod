@@ -158,10 +158,10 @@ public class AuditionManager : MonoBehaviour
         CurrentChic.transform.DORotate(new Vector3(0, 90, 0), 1);
 
         yield return new WaitForSeconds(1.5f);
-        CurrentChic.transform.DOMoveX(1.68f, 3);
+        CurrentChic.transform.DOMoveX(1.68f, 1.5f);
         CurrentChic.GetComponent<Animator>().SetTrigger("Walk");
 
-        yield return new WaitForSeconds(3);
+        yield return new WaitForSeconds(1.5f);
         CurrentChic.gameObject.SetActive(false);
 
         chicNo++;
@@ -186,9 +186,9 @@ public class AuditionManager : MonoBehaviour
         CurrentChic.GetComponent<Animator>().SetBool("Walk1", true);
 
         yield return new WaitForSeconds(1);
-        CurrentChic.transform.DOMove(new Vector3(-0.5f + selectedChicNo * 0.3f, 0, 0), 5);
+        CurrentChic.transform.DOMove(new Vector3(-0.5f + selectedChicNo * 0.3f, 0, 0), 2.5f);
 
-        yield return new WaitForSeconds(5);
+        yield return new WaitForSeconds(2.5f);
         CurrentChic.transform.DORotate(new Vector3(0, 0, 0), 1);
         CurrentChic.GetComponent<Animator>().SetBool("Walk1", false);
 

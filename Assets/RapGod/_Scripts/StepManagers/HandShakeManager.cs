@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using NaughtyAttributes;
 
 namespace PrisonControl
 {
@@ -15,6 +16,10 @@ namespace PrisonControl
         private HandShakeSO handShakeSO;
         [SerializeField]
         private InputSequenceUISO inputSequenceUI;
+        [Foldout("SwipeFTUE")]
+        [SerializeField]
+        private List<GameObject> swipeFTUE = new List<GameObject>();
+
         [SerializeField]
         private MultiTouchManager multiTouchManager
         {
@@ -38,7 +43,7 @@ namespace PrisonControl
         private RuntimeAnimatorController playerAnimatorController, enemyAnimatorController;
         [SerializeField]
         private float animTransitionTime = 0.1f;
-        [SerializeField] private Text swipeInstructions;
+        private int currentInstructionType;
         [SerializeField] private Image multiTapMeter;
         [SerializeField] private Transform inputSequenceUIPanel;
         private List<GameObject> sequenceUI = new List<GameObject>();
@@ -50,6 +55,9 @@ namespace PrisonControl
                 return multiTouchManager.currentSequenceIndex;
             }
         }
+        GameObject currentSequenceUI;
+
+
         void OnEnable()
         {
             InitLevelData();
@@ -74,7 +82,7 @@ namespace PrisonControl
             enemy.GetComponent<Animator>().runtimeAnimatorController = enemyAnimatorController;
             InitMultiTouchCallback();
             SpawnSequenceUI();
-
+            swipeFTUE[currentInstructionType].SetActive(true);
         }
 
         void InitMultiTouchCallback()
@@ -98,35 +106,33 @@ namespace PrisonControl
             sequenceUI.Clear();
             Destroy(player);
             Destroy(enemy);
+            multiTapMeter.fillAmount = 0;
 
         }
 
         void SpawnSequenceUI()
         {
-            for (int i = 0; i < handShakeSO.inputSequence.inputSequence.Count; i++)
+            switch (handShakeSO.inputSequence.inputSequence[currentSequenceIndex])
             {
-                switch (handShakeSO.inputSequence.inputSequence[i])
-                {
-                    case TouchInputType.swipeLeft:
-                        toSpawn = inputSequenceUI.leftArrow;
-                        break;
-                    case TouchInputType.swipeRight:
-                        toSpawn = inputSequenceUI.rightArrow;
-                        break;
-                    case TouchInputType.swipeUp:
-                        toSpawn = inputSequenceUI.upArrow;
-                        break;
-                    case TouchInputType.swipeDown:
-                        toSpawn = inputSequenceUI.downArrow;
-                        break;
-                    case TouchInputType.multiTap:
-                        toSpawn = inputSequenceUI.multiTap;
-                        break;
-                }
-                GameObject spawned = Instantiate(toSpawn, inputSequenceUIPanel);
-                spawned.transform.parent = inputSequenceUIPanel.transform;
-                sequenceUI.Add(spawned);
+                case TouchInputType.swipeLeft:
+                    toSpawn = inputSequenceUI.leftArrow;
+                    break;
+                case TouchInputType.swipeRight:
+                    toSpawn = inputSequenceUI.rightArrow;
+                    break;
+                case TouchInputType.swipeUp:
+                    toSpawn = inputSequenceUI.upArrow;
+                    break;
+                case TouchInputType.swipeDown:
+                    toSpawn = inputSequenceUI.downArrow;
+                    break;
+                case TouchInputType.multiTap:
+                    toSpawn = inputSequenceUI.multiTap;
+                    break;
             }
+            GameObject spawned = Instantiate(toSpawn, inputSequenceUIPanel);
+            spawned.transform.parent = inputSequenceUIPanel.transform;
+            sequenceUI.Add(spawned);
         }
 
         void CorrectInputResult()
@@ -134,7 +140,6 @@ namespace PrisonControl
             if (isMultiTaping)
             {
                 print("MultiTapOver");
-
             }
             else
             {
@@ -146,10 +151,10 @@ namespace PrisonControl
                     print("AnimationEnd");
                 });
                 OnAnimationPlay(GetClipTime(handShakeSO.player[currentSequenceIndex].ToString()));
+
+                Destroy(inputSequenceUIPanel.transform.GetChild(0).gameObject);
             }
-
-
-            ColorUI();
+            //ColorUI();
         }
 
         void InitAnimatorClips()
@@ -183,13 +188,16 @@ namespace PrisonControl
 
         void InputAssinged(TouchInputType type)
         {
-            swipeInstructions.text = type.ToString();
+            currentInstructionType = (int)type;
             TouchDefaultState();
             switch (type)
             {
                 case TouchInputType.multiTap:
-                    multiTapMeter.transform.parent.gameObject.SetActive(true);
-                    isMultiTaping = true;
+                    Timer.Delay(GetClipTime(handShakeSO.player[currentSequenceIndex].ToString()), () =>
+                    {
+                        multiTapMeter.transform.parent.gameObject.SetActive(true);
+                        isMultiTaping = true;
+                    });
                     break;
             }
         }
@@ -213,18 +221,37 @@ namespace PrisonControl
 
         void OnAnimationPlay(float activateTime)
         {
-            swipeInstructions.gameObject.SetActive(false);
+            //swipeInstructions.gameObject.SetActive(false);
+            ResetSwipe();
             SetInputStatus(false);
 
             Timer.Delay(activateTime, () =>
             {
-                swipeInstructions.gameObject.SetActive(true);
+                //swipeInstructions.gameObject.SetActive(true);
+                if (currentInstructionType != 4)
+                {
+                    swipeFTUE[currentInstructionType].SetActive(true);
+                }
                 SetInputStatus(true);
+                SpawnSequenceUI();
             });
+        }
+
+        void ResetSwipe()
+        {
+            for (int i = 0; i < swipeFTUE.Count; i++)
+            {
+                swipeFTUE[i].SetActive(false);
+            }
         }
 
         void LevelEndAnim()
         {
+            multiTapMeter.transform.parent.gameObject.SetActive(false);
+            for (int i = 0; i < inputSequenceUIPanel.childCount; i++)
+            {
+                Destroy(inputSequenceUIPanel.GetChild(i).gameObject);
+            }
             Timer.Delay(1f, () =>
             {
                 player.GetComponent<Animator>().speed = 1;

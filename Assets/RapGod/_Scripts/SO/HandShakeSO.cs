@@ -16,7 +16,7 @@ public enum HandShakeType
     GuitarPlaying,
     BlowKiss,
     Kiss,
-    FemaleJumpCheer,
+    Happy1,
 }
 
 [System.Serializable]

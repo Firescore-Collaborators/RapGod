@@ -4,11 +4,11 @@ using UnityEngine;
 
 public enum TouchInputType
 {
-    swipeRight,
-    swipeLeft,
-    swipeUp,
-    swipeDown,
-    multiTap
+    swipeRight = 0,
+    swipeLeft = 1,
+    swipeUp = 2,
+    swipeDown = 3,
+    multiTap = 4,
 }
 public class TouchInputs : MonoBehaviour
 {
