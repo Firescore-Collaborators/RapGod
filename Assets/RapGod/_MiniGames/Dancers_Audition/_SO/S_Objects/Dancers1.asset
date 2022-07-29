@@ -13,17 +13,16 @@ MonoBehaviour:
   m_Name: Dancers1
   m_EditorClassIdentifier: 
   Conversation:
-  - ' Conversation 1'
-  - Conversation 2
+  - I'm Janet, Please select me
+  - I've done videos with scoop. he really likes me!
   responsePositive:
-  - ' Positive Response 1'
-  - ' Positive Response 2'
+  - ALLOW
+  - ALLOW
   responseNegetive:
-  - Negetive Response 1
-  - Negetive Response 2
+  - REJECT
+  - REJECT
   Resume:
   - Janice
   - 20
   - Bar Dancer
-  character: {fileID: 6295899829957586862, guid: f2bad24fc8b9b774ab738aab20d7f566,
-    type: 3}
+  character: {fileID: 6295899829957586862, guid: f2bad24fc8b9b774ab738aab20d7f566, type: 3}

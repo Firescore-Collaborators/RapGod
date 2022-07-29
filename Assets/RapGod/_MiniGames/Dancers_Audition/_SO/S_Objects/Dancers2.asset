@@ -13,17 +13,16 @@ MonoBehaviour:
   m_Name: Dancers2
   m_EditorClassIdentifier: 
   Conversation:
-  - char 2 Conversation 1
-  - char 2 Conversation 2
+  - I'm Marsha, I like to show my boobs
+  - They are not so big, so showing them gets me more attention
   responsePositive:
-  - ' Positive Response 1'
-  - ' Positive Response 2'
+  - ALLOW
+  - ALLOW
   responseNegetive:
-  - Negetive Response 1
-  - Negetive Response 2
+  - REJECT
+  - REJECT
   Resume:
   - Molly
   - 25
   - Actress
-  character: {fileID: 3019100222857359511, guid: de72085119373f043b910137f3baab4b,
-    type: 3}
+  character: {fileID: 3019100222857359511, guid: de72085119373f043b910137f3baab4b, type: 3}

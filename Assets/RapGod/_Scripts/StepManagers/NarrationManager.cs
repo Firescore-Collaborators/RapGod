@@ -183,11 +183,20 @@ namespace PrisonControl
                     }
                     response++;
                 }
+                if (conversation < narration.positiveResponse.Length)
+                {
+                    option1.text = narration.positiveResponse[conversation];
+                    option2.text = narration.negativeResponse[conversation];
+                }
+                else
+                {
+                    option1.text = string.Empty;
+                    option2.text = string.Empty;
+                }
                 //Print def conversation when no response is available
                 if (conversation < narration.default_conversation.Length)
                 {
                     currentConversation = narration.default_conversation[conversation];
-                    print("Showing def response: " + currentConversation);
                     ShowDefaultRespone(currentConversation);
                 }
                 else

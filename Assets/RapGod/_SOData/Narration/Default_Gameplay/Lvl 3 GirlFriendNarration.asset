@@ -12,6 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 843607262f07d514bb352422ad27886f, type: 3}
   m_Name: Lvl 3 GirlFriendNarration
   m_EditorClassIdentifier: 
+  topChart:
+    toShow: 0
+    showAtIndex: 0
   aud_negetiveConv:
   - {fileID: 8300000, guid: 053e333835f874985a08bfe3a5aad866, type: 3}
   - {fileID: 8300000, guid: ca25890d3183644748d6fd78ccb3b95e, type: 3}
@@ -29,17 +32,20 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 2b1276ce192bf484bbdc7cded17d54ea, type: 3}
   - {fileID: 8300000, guid: 56e072745e320401b8db09b007a3a66a, type: 3}
   negetive_conversation:
-  - BABE! don't be lying, Those hoes ever show their face, they dying!
+  - We don't need him you got this
+  - 
   positive_conversation:
-  - Always with you babe, rich or poor, imma always support your career
+  - 
+  - 
   default_conversation:
-  - Hey Babe, congrats on your new contract. You're social media is looking fire
-  - Show me you love me, let's do our signature dance together. You better remember
-    it!
+  - Hey Babe, how was the agent meet?
+  - Let's Blow of some steam and dance together First!
   positiveResponse:
-  - I got you by ma side babe, we gonna blow up.
+  - Good, Gotta get to work now!
+  - C'mon! Let's do it
   negativeResponse:
-  - I'm always fire b****, my DMs stacked with the hotties
+  - The agent is a fool
+  - You better stay on beat!
   positive_anim: 000000000000000000000000
   default_anim: 000000000000000000000000
   negetive_anim: 010000000100000001000000

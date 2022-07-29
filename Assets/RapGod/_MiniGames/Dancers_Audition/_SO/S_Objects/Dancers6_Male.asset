@@ -13,16 +13,16 @@ MonoBehaviour:
   m_Name: Dancers6_Male
   m_EditorClassIdentifier: 
   Conversation:
-  - ' char 4 Conversation 1'
-  - char 4 Conversation 2
+  - I'm victoria, ready to dance
+  - I Identify as a female , you have to let me in
   responsePositive:
-  - ' Positive Response 1'
-  - ' Positive Response 2'
+  - ALLOW
+  - ALLOW
   responseNegetive:
-  - Negetive Response 1
-  - Negetive Response 2
+  - REJECT
+  - REJECT
   Resume:
   - Jennifer
   - 25
   - Cab Driver
-  character: {fileID: 6295899829957586862, guid: f2bad24fc8b9b774ab738aab20d7f566, type: 3}
+  character: {fileID: 2278194674269296903, guid: 509db997c24ef354b8d26795e47be6ca, type: 3}

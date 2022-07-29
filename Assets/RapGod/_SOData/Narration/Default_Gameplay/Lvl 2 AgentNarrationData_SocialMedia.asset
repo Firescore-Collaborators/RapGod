@@ -12,6 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 843607262f07d514bb352422ad27886f, type: 3}
   m_Name: Lvl 2 AgentNarrationData_SocialMedia
   m_EditorClassIdentifier: 
+  topChart:
+    toShow: 0
+    showAtIndex: 0
   aud_negetiveConv:
   - {fileID: 8300000, guid: 053e333835f874985a08bfe3a5aad866, type: 3}
   - {fileID: 8300000, guid: ca25890d3183644748d6fd78ccb3b95e, type: 3}
@@ -29,16 +32,18 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 2b1276ce192bf484bbdc7cded17d54ea, type: 3}
   - {fileID: 8300000, guid: 56e072745e320401b8db09b007a3a66a, type: 3}
   negetive_conversation:
+  - You gotta add your own flair to it.
   - 
   positive_conversation:
+  - Nice!
   - 
   default_conversation:
-  - First order of business is to get your voice out there, we need to setup up a
-    new social media profile for you
+  - Now that thats outta the way, lets set up your social media profile
+  - Change the Display Picture and make your first post
   positiveResponse:
-  - Ight then, let's get started
+  - I Already got one
   negativeResponse:
-  - This better make me really rich, or I'm gonna make you my B****
+  - Ain't u supposed work for me now!
   positive_anim: 000000000000000000000000
   default_anim: 000000000000000000000000
   negetive_anim: 010000000100000001000000

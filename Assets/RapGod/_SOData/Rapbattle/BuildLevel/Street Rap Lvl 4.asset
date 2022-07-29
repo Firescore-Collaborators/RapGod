@@ -22,8 +22,17 @@ MonoBehaviour:
     enemyFail: 0
     playerFail: 0
     enemySuccess: 0
-  rapAnimations: []
-  rapCameras: 
+  rapAnimations:
+  - playerAnim: 0
+    enemyAnim: 4
+  - playerAnim: 0
+    enemyAnim: 5
+  - playerAnim: 3
+    enemyAnim: 6
+  - playerAnim: 12
+    enemyAnim: 3
+  rapCameras: 00000000000000000000000000000000
+  isRapBattle: 1
   punchLine: Punch Line Insert
   youtubeVideoTitle: RAP BATTLE DEMOLITION
   tapSmashLimit: 20

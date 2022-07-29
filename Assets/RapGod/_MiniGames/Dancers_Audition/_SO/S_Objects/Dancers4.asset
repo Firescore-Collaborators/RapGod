@@ -13,17 +13,16 @@ MonoBehaviour:
   m_Name: Dancers4
   m_EditorClassIdentifier: 
   Conversation:
-  - ' char 4 Conversation 1'
-  - char 4 Conversation 2
+  - I'm already selected aren't I?
+  - The baddest alive, you know it!
   responsePositive:
-  - ' Positive Response 1'
-  - ' Positive Response 2'
+  - ALLOW
+  - ALLOW
   responseNegetive:
-  - Negetive Response 1
-  - Negetive Response 2
+  - REJECT
+  - REJECT
   Resume:
   - Laura
   - 18
   - Waitress
-  character: {fileID: 7195378809572563735, guid: bde9017aca09f344890ff934be755c34,
-    type: 3}
+  character: {fileID: 3157763277306305493, guid: 73fcafba11ab86541820a48489a6ebcc, type: 3}
